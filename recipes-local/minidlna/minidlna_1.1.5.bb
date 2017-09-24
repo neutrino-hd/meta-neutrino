@@ -8,7 +8,7 @@ DEPENDS = "libexif libjpeg-turbo libid3tag flac libvorbis sqlite3 ffmpeg util-li
 PR = "r1"
 
 SRC_URI = "${SOURCEFORGE_MIRROR}/project/minidlna/minidlna/${PV}/minidlna-${PV}.tar.gz \
-		file://minidlna*.conf \
+		file://minidlna.conf \
 		file://minidlna.service \
 "
 
@@ -28,12 +28,12 @@ CONFFILES_${PN} = "${sysconfdir}/minidlna.conf"
 SYSTEMD_SERVICE_${PN} = "minidlna.service"
 
 do_configure_prepend() {
-	sed -i "s|Coolstream|${MACHINE}|" ${WORKDIR}/minidlna*.conf
+	sed -i "s|Coolstream|${MACHINE}|" ${WORKDIR}/minidlna.conf
 }
 
 do_install_append() {
 	install -d ${D}${sysconfdir} ${D}${systemd_unitdir}/system ${D}${sysconfdir}/systemd/system/multi-user.target.wants/
-	install -m 644 ${WORKDIR}/minidlna-${DISTRO}.conf ${D}${sysconfdir}/minidlna.conf
+	install -m 644 ${WORKDIR}/minidlna.conf ${D}${sysconfdir}/minidlna.conf
 	install -m 644 ${WORKDIR}/minidlna.service ${D}${systemd_unitdir}/system/minidlna.service
 	ln -sf ${systemd_unitdir}/system/minidlna.service ${D}${sysconfdir}/systemd/system/multi-user.target.wants/minidlna.service
 }
