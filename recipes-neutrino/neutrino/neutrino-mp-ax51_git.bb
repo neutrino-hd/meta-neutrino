@@ -9,7 +9,6 @@ SRCREV = "${AUTOREV}"
 PV = "${SRCPV}"
 
 SRC_URI = "git://github.com/TangoCash/neutrino-mp-cst-next.git;branch=master;protocol=http \
-	file://0001-libtuxtext-fix-build.patch \
 	file://0001-remove_workaround_for_gcc6.x.patch \
 	file://neutrino.service \
 	file://neutrino.sh \
