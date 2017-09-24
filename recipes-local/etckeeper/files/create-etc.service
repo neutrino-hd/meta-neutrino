@@ -1,0 +1,12 @@
+[Unit]
+Description=create etc git remote for etckeeper
+Requires=neutrino.service
+After=neutrino.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/bin/sh /etc/etckeeper/create_etc.sh
+
+[Install]
+WantedBy=basic.target

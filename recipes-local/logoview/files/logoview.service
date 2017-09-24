@@ -1,0 +1,14 @@
+[Unit]
+Description=CST logoview
+After=systemd-modules-load.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c "/usr/bin/logoview --background -t 5 -c --logo=/usr/share/tuxbox/neutrino/icons/start.jpg"
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+
+
+

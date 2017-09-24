@@ -1,0 +1,79 @@
+# /etc/profile: system-wide .profile file for the Bourne shell (sh(1))
+# and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).
+
+PATH="/usr/local/bin:/usr/bin:/bin"
+EDITOR="/bin/vi"			# needed for packages like cron
+export LANG=de_DE.UTF-8
+
+test -z "$TERM" && TERM="vt100"	# Basic terminal capab. For screen etc.
+
+if [ ! -e /etc/localtime -a ! -e /etc/TZ ]; then
+	TZ="UTC"		# Time Zone. Look at http://theory.uwinnipeg.ca/gnu/glibc/libc_303.html 
+				# for an explanation of how to set this to your local timezone.
+	export TZ
+fi
+
+if [ "$HOME" = "/home/root" ]; then
+   PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
+fi
+if [ "$PS1" ]; then
+# works for bash and ash (no other shells known to be in use here)
+   PS1="\[\$? \$(if [[ \$? == 0 ]]; then echo \" \033[0;32m\];)\"; else echo \" \033[0;31m\];(\"; fi)\[\033[00m\]  \t \d \[\e[1;30m\][\[\e[1;34m\]\u@\H\[\e[1;30m\]:\[\e[0;37m\]${SSH_TTY} \[\e[0;32m\]+${SHLVL}\[\e[1;30m\]] \[\e[0;36m\] \w\[\e[00m\] \n($SHLVL:\!)\$ "
+
+fi
+
+if [ -d /etc/profile.d ]; then
+  for i in /etc/profile.d/* ; do
+    . $i
+  done
+  unset i
+fi
+
+if [ -x /usr/bin/resize ];then
+  /usr/bin/resize >/dev/null
+fi
+
+# TMUX
+if which tmux >/dev/null 2>&1; then
+    # if no session is started, start a new session
+    test -z ${TMUX} && tmux.sh
+
+    # when quitting tmux, try to attach
+    while test -z ${TMUX}; do
+        tmux attach || break
+    done
+fi
+
+# Written by Gordio <me@gordio.pp.ua>
+# Licence: MIT
+
+opkg () {
+	BOLD=$(echo -e '\033[1m');
+	NORM=$(echo -e '\033[0m');
+	COL="no";
+	KEEP="no";
+        for arg in $*; do
+                if [ $arg == "whatdepends" -o $arg == "list" \
+                -o $arg == "list-installed" -o $arg == "list-upgradable" \
+                -o $arg == "list-changed-conffiles" -o $arg == "status" \
+                -o $arg == "info" -o $arg == "find" ]; then
+                        COL="yes";
+                        break;
+                elif [ $arg == "upgrade" -o $arg == "install" -o $arg == "remove" ]; then
+                        KEEP='yes';
+                        break;
+                fi
+        done
+        if [ $COL == "yes" ]; then
+                # (|\t*) added for 'whatdepends'
+                /usr/bin/opkg $* | sed -re "s/^(|\t*)[a-z0-9-]*/$BOLD&$NORM/g";
+        elif [ $KEEP == "yes" ]; then
+                etckeeper pre-install && /usr/bin/opkg --force-downgrade --force-reinstall $* && etckeeper post-install;
+        else /usr/bin/opkg $*;
+	fi
+}
+
+export PATH PS1 OPIEDIR QPEDIR QTDIR EDITOR TERM
+
+umask 022
+

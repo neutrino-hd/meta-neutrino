@@ -1,0 +1,44 @@
+From 12faf7e1885110b69bd83e9042990a10de9fdcc2 Mon Sep 17 00:00:00 2001
+From: MarkusVolk <f_l_k@t-online.de>
+Date: Fri, 22 Jan 2016 22:34:58 +0100
+Subject: [PATCH] fix
+
+Signed-off-by: MarkusVolk <f_l_k@t-online.de>
+---
+ commit.d/50vcs-commit | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/commit.d/50vcs-commit b/commit.d/50vcs-commit
+index 55f0db2..2aa698e 100755
+--- a/commit.d/50vcs-commit
++++ b/commit.d/50vcs-commit
+@@ -44,14 +44,14 @@ if [ "$VCS" = git ] && [ -d .git ]; then
+ 	if [ -n "$USER" ]; then
+ 		# Use user.name and user.email from the gitconfig belonging
+ 		# to the user who became root.
+-		USER_HOME="$(getent passwd "$USER" | cut -d: -f6)"
+-		if [ -n "$USER_HOME" ] && [ -e "$USER_HOME/.gitconfig" ]; then
++		SYSCONFDIR="/etc"
++		if [ -n "$SYSCONFDIR" ] && [ -e "$SYSCONFDIR/gitconfig" ]; then
+ 			if [ -z "$GIT_AUTHOR_NAME" ]; then
+-				GIT_AUTHOR_NAME="$(git config -f "$USER_HOME/.gitconfig" user.name)" || true
++				GIT_AUTHOR_NAME="$(git config -f "$SYSCONFDIR/gitconfig" user.name)" || true
+ 				export GIT_AUTHOR_NAME
+ 			fi
+ 			if [ -z "$GIT_AUTHOR_EMAIL" ]; then
+-				GIT_AUTHOR_EMAIL="$(git config -f "$USER_HOME/.gitconfig" user.email)" || true
++				GIT_AUTHOR_EMAIL="$(git config -f "$SYSCONFDIR/gitconfig" user.email)" || true
+ 				export GIT_AUTHOR_EMAIL
+ 			fi
+ 		fi
+@@ -69,7 +69,7 @@ if [ "$VCS" = git ] && [ -d .git ]; then
+ 		fi
+ 
+ 		if [ -z "$GIT_COMMITTER_EMAIL" ]; then
+-			GIT_COMMITTER_EMAIL="$(git config --global user.email)" || true
++GIT_COMMITTER_EMAIL="$(git config --system user.email)" || true
+ 			export GIT_COMMITTER_EMAIL
+ 		fi
+ 		if [ -z "$GIT_AUTHOR_NAME" ]; then
+-- 
+2.1.4

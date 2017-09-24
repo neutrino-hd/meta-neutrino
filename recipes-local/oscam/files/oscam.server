@@ -1,0 +1,11 @@
+
+[reader]
+label   = cccam-remote
+enable  = 1
+protocol  = cccam
+cccversion      = 2.3.0
+ccckeepalive    = 1
+device  = 
+user    = 
+password  = 
+group   = 1
