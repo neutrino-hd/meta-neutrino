@@ -38,8 +38,6 @@ do_custom_baseissueinstall() {
 
 do_install_append () {
 	install -d ${D}${localstatedir}/update ${D}${systemd_unitdir}/system/multi-user.target.wants
-	install -m 755 ${S}/update_kernel.sh ${D}${sysconfdir}/update_kernel.sh
-	install -m 644 ${S}/update-kernel.service ${D}${systemd_unitdir}/system/update-kernel.service
 	if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
   		install -d ${D}${systemd_unitdir}/system
   		install -m 0644 ${WORKDIR}/oscam.service ${D}${systemd_unitdir}/system/oscam.service
