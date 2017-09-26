@@ -121,6 +121,7 @@ do_install_append() {
     install -d ${D}${sysconfdir}/samba
     echo "127.0.0.1 localhost" > ${D}${sysconfdir}/samba/lmhosts
     install -m644 ${WORKDIR}/smb.conf ${D}${sysconfdir}/samba/smb.conf
+    sed -i "s|COOLSTREAM|${MACHINE}|" ${D}${sysconfdir}/samba/smb.conf
     install -m755 ${WORKDIR}/add_smbusr.sh ${D}${sysconfdir}/samba/add_smbusr.sh
 
     install -d ${D}${sysconfdir}/sysconfig/ ${D}${sysconfdir}/systemd/system/multi-user.target.wants

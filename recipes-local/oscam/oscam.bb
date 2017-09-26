@@ -55,16 +55,16 @@ EXTRA_OECMAKE_append_coolstream-hd1 += "-DOSCAM_SYSTEM_NAME=Coolstream \
 EXTRA_OECMAKE_append_coolstream-hd2 += "-DOSCAM_SYSTEM_NAME=CST2 \
 "
 
-EXTRA_OECMAKE_append_hd51 += "-DOSCAM_SYSTEM_NAME=dreambox \
+EXTRA_OECMAKE_append_hd51 += "-DOSCAM_SYSTEM_NAME=NONE \
 "
 
 
 do_install () {
-	install -d ${D}/usr/bin ${D}/etc/neutrino/bin
+	install -d ${D}/usr/bin ${D}/etc/neutrino/bin ${D}/etc/neutrino/config
 	install -D -m 755 ${WORKDIR}/build/oscam ${D}/etc/neutrino/bin/oscam
-	install -m 0644 ${WORKDIR}/oscam.conf ${D}/etc/neutrino/config
-	install -m 0644 ${WORKDIR}/oscam.server ${D}/etc/neutrino/config
-	install -m 0644 ${WORKDIR}/oscam.user ${D}/etc/neutrino/config
+	install -m 0644 ${WORKDIR}/oscam.conf ${D}/etc/neutrino/config/
+	install -m 0644 ${WORKDIR}/oscam.server ${D}/etc/neutrino/config/
+	install -m 0644 ${WORKDIR}/oscam.user ${D}/etc/neutrino/config/
 }
 
 INSANE_SKIP_${PN} = "already-stripped"
