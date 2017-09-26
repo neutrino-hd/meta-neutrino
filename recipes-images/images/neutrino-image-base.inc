@@ -68,6 +68,7 @@ IMAGE_INSTALL += " \
 	util-linux-agetty \
 	util-linux-blkid \
 	virtual/libstb-hal \
+	virtual/dvb-driver \
 	vsftpd \
 	wpa-supplicant \
 	xupnpd \
