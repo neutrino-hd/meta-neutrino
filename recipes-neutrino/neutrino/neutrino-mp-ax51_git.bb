@@ -22,7 +22,7 @@ SRC_URI = "git://github.com/TangoCash/neutrino-mp-cst-next.git;branch=master;pro
 	file://var.tar.gz \
 "
 
-include neutrino-mp.inc
+include neutrino.inc
 
 EXTRA_OECONF_append += "--with-boxtype=armbox \
 						--with-stb-hal-includes=${STAGING_INCDIR}/libstb-hal \"

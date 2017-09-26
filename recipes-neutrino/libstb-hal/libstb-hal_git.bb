@@ -4,7 +4,7 @@ HOMEPAGE = "https://github.com/neutrino-mp"
 SECTION = "libs"
 LICENSE = "GPLv2+"
 LIC_FILES_CHKSUM = "file://${THISDIR}/libstb-hal/COPYING.GPL;md5=751419260aa954499f7abaabaa882bbe"
-
+COMPATIBLE_MACHINE += "hd51"
 #
 # this stuff really is machine specific, not CPU specific
 PACKAGE_ARCH = "${MACHINE_ARCH}"

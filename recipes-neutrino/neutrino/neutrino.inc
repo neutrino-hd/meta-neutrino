@@ -1,8 +1,11 @@
-RCONFLICTS_${PN} = "neutrino-hd neutrino-ni"
+
+PV = "3.5.1"
+
 RDEPENDS_${PN} += "fbshot"
 
 PROVIDES = "virtual/neutrino"
 RPROVIDES_${PN} = "virtual/neutrino"
+
 inherit autotools pkgconfig systemd
 
 DEPENDS += " \
@@ -17,6 +20,7 @@ DEPENDS += " \
 	libdvbsi++ \
 	libid3tag \
 	libjpeg-turbo \
+	pugixml \
 	libmad \
 	libpng \
 	libsigc++-2.0\
@@ -24,7 +28,7 @@ DEPENDS += " \
 	luaposix \
 	openssl \
 	openthreads \
-	libstb-hal \
+	virtual/libstb-hal \
 	virtual/libiconv \
 	fontconfig \
 	libpng \
@@ -39,6 +43,7 @@ EXTRA_OECONF = " \
 	--enable-silent-rules \
 	--enable-mdev \
 	--enable-upnp \
+	--enable-pugixml \
 	--enable-giflib \
 	--enable-flac \
 	--with-target=native \
