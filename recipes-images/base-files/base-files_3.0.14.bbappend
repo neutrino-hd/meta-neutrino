@@ -3,14 +3,12 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/base-files:"
 SRC_URI += "file://profile \
 	    file://inputrc \
 	    file://nsswitch.conf \
-	    file://update_kernel.sh \
-	    file://update-kernel.service \
-	    file://cam.service \
+	    file://oscam.service \
 "
 
 inherit systemd
 
-SYSTEMD_SERVICE_${PN} = "update-kernel.service"
+SYSTEMD_SERVICE_${PN} = "oscam.service"
 BASEFILESISSUEINSTALL = "do_custom_baseissueinstall"
 
 do_custom_baseissueinstall() {
@@ -42,10 +40,8 @@ do_install_append () {
 	install -d ${D}${localstatedir}/update ${D}${systemd_unitdir}/system/multi-user.target.wants
 	install -m 755 ${S}/update_kernel.sh ${D}${sysconfdir}/update_kernel.sh
 	install -m 644 ${S}/update-kernel.service ${D}${systemd_unitdir}/system/update-kernel.service
-	install -m 644 ${S}/cam.service ${D}${systemd_unitdir}/system/cam.service
-	ln -s /lib/systemd/system/cam.service ${D}${systemd_unitdir}/system/multi-user.target.wants/cam.service
-	touch ${D}${localstatedir}/update/.newimage
- 	if [ ${CLEAN_ENV} = "yes" ];then
-		touch ${D}${localstatedir}/update/.erase_env 
+	if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
+  		install -d ${D}${systemd_unitdir}/system
+  		install -m 0644 ${WORKDIR}/oscam.service ${D}${systemd_unitdir}/system/oscam.service
 	fi
 }

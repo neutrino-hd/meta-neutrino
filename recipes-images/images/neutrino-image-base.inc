@@ -53,6 +53,7 @@ IMAGE_INSTALL += " \
 	openssh \
 	openssl \
 	opkg \
+	oscam \
 	parted \
 	procps \
 	rpcbind \
