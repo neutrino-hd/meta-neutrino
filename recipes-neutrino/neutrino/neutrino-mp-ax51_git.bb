@@ -7,9 +7,11 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/COPYING.GPL;md5=751419260aa954499f7abaabaa
 
 SRCREV = "${AUTOREV}"
 PV = "${SRCPV}"
+PKGV = "${GITPKGVTAG}"
 
-SRC_URI = "git://github.com/TangoCash/neutrino-mp-cst-next.git;branch=master;protocol=http \
-	file://0001-remove_workaround_for_gcc6.x.patch \
+
+SRC_URI = "git://github.com/tuxbox-neutrino/gui-neutrino.git;branch=pu/mp;protocol=http \
+	file://0001-remove_workaround_for_gcc6.x.patch;apply=no \
 	file://neutrino.service \
 	file://neutrino.sh \
 	file://timezone.xml \

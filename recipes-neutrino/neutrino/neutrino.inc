@@ -1,12 +1,10 @@
 
-PV = "3.5.1"
-
 RDEPENDS_${PN} += "fbshot"
 
 PROVIDES = "virtual/neutrino"
 RPROVIDES_${PN} = "virtual/neutrino"
 
-inherit autotools pkgconfig systemd
+inherit autotools pkgconfig systemd gitpkgv
 
 DEPENDS += " \
 	curl \
@@ -47,6 +45,7 @@ EXTRA_OECONF = " \
 	--enable-pugixml \
 	--enable-giflib \
 	--enable-flac \
+	--disable-tangos \
 	--with-target=native \
 	--prefix=/usr \
 	--exec_prefix=/usr/bin \
