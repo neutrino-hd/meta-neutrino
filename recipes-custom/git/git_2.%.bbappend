@@ -16,19 +16,3 @@ perl_native_fixup () {
 
 PERLTOOLS = ""
 
-do_install_append() {
-	rm ${WORKDIR}/image/usr/bin/git-shell
-	rm ${WORKDIR}/image/usr/libexec/git-core/git-credential-cache
-	rm ${WORKDIR}/image/usr/libexec/git-core/git-credential-cache--daemon
-	rm ${WORKDIR}/image/usr/libexec/git-core/git-daemon
-	rm ${WORKDIR}/image/usr/libexec/git-core/git-fast-import
-	rm ${WORKDIR}/image/usr/libexec/git-core/git-upload-pack
-	rm ${WORKDIR}/image/usr/libexec/git-core/git-imap-send
-	rm ${WORKDIR}/image/usr/libexec/git-core/git-remote-testsvn
-	rm ${WORKDIR}/image/usr/libexec/git-core/git-sh-i18n--envsubst
-	rm ${WORKDIR}/image/usr/libexec/git-core/git-shell
-	rm ${WORKDIR}/image/usr/libexec/git-core/git-show-index
-	rm ${WORKDIR}/image/usr/libexec/git-core/git-http-backend
-
-}
-

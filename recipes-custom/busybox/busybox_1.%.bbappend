@@ -1,13 +1,14 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-DEPENDS += "libpam"
+DEPENDS_libc-glibc += "libpam"
 
 SRC_URI_append += " \
-	file://neutrino-busybox.cfg \
 	file://telnetd.busybox \
 	file://hostname.script \
 	file://telnet.service \
 	file://udhcpc.service \
 "
+
+SRC_URI_append_libc-uclibc += "file://musl.cfg"
 
 inherit systemd
 

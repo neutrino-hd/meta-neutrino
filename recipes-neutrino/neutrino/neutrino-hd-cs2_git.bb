@@ -9,13 +9,10 @@ SRCREV = "${AUTOREV}"
 PV = "3.5.1"
 
 SRC_URI = "git://github.com/tuxbox-neutrino/gui-neutrino.git;branch=master;protocol=http \
-	file://0001-remove_workaround_for_gcc6.x.patch \
 	file://0007-imageinfo.cpp-change-version-output.patch \
 	file://0008-rcsim.c-fix-eventdev-for-yocto.patch \
 	file://0009-src-nhttpd-tuxboxapi-controlapi.cpp-fix-eventdev-for.patch \
 	file://0012-import-proper-working-format-device-function.patch \
-	file://0013-disable-network_services-menu.patch \
-	file://0016-dont-install-undotum.ttf-to-shrink-size.patch \
 	file://opkg/0001-opkg_manager-remove-reboot-and-restart-trigger-files.patch \
 	file://opkg/0003-opkg-0.3.x-uses-opkg-instead-of-opkg-cl-as-binary-na.patch \
 	file://neutrino.service \
@@ -35,3 +32,7 @@ include neutrino.inc
 EXTRA_OECONF_append += "--with-boxtype=coolstream \
 						--with-boxmodel=hd2 \
 "
+
+N_CFLAGS_append += "-I${STAGING_INCDIR}/sigc++-2.0"
+
+N_CPPFLAGS_append += "-D_GLIBCXX_USE_CXX11_ABI=0"

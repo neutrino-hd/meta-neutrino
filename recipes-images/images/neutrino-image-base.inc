@@ -29,7 +29,6 @@ IMAGE_INSTALL += " \
 	e2fsprogs-tune2fs \
 	etckeeper \
 	exfat-utils \
-	fbshot \
 	gawk \
 	gzip \
 	image-config \
@@ -44,9 +43,9 @@ IMAGE_INSTALL += " \
 	minidlna \
 	nano \
 	neutrino-plugin-logo \
+	ni-logos \
 	nfs-utils \
 	nfs-utils-client \
-	ni-logos \
 	ntfs-3g \
 	ntfsprogs \
 	ntpdate \

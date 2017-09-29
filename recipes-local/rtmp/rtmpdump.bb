@@ -9,10 +9,9 @@ DEPENDS = "openssl zlib"
 
 SRCREV ?= "${AUTOREV}"
 PV = "${SRCPV}"
-PR = "1"
 
 SRC_URI = " \
-    git://git.ffmpeg.org/rtmpdump \
+    git://bitbucket.org/neutrino-images/ni-rtmpdump;protocol=https \
 "
 
 S = "${WORKDIR}/git"
