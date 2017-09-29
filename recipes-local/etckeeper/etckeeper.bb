@@ -2,7 +2,7 @@
 LICENSE = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
-RDEPENDS_${PN} += "git findutils util-linux-mountpoint perl-module-file-glob"
+RDEPENDS_${PN} += "git findutils util-linux-mountpoint perl-module-file-glob glibc-utils"
 
 SRC_URI = "git://git.joeyh.name/git/etckeeper.git/;branch=master;protocol=https \
 	   file://update-etc.service \
@@ -10,7 +10,7 @@ SRC_URI = "git://git.joeyh.name/git/etckeeper.git/;branch=master;protocol=https 
 	   file://etckeeper.conf \
 	   file://create_etc.sh \
 	   file://update_etc.sh \
-	   file://0001-use-systemwide-gitconfig-to-correct-commiter-name-an.patch;apply=no \
+	   file://0001-use-systemwide-gitconfig-to-correct-commiter-name-an.patch \
 	   file://0001-etckeeper-edit-.gitignore.patch \
 "
 
