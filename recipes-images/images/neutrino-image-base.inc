@@ -68,6 +68,7 @@ IMAGE_INSTALL += " \
 	util-linux-blkid \
 	virtual/libstb-hal \
 	virtual/dvb-driver \
+	virtual/screengrabber \
 	vsftpd \
 	wpa-supplicant \
 	xupnpd \
