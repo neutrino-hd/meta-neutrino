@@ -36,6 +36,7 @@ IMAGE_INSTALL += " \
 	kernel-modules \
 	libevent \
 	libusb1 \
+	matze \
 	mc \
 	mc-fish \
 	mc-helpers \

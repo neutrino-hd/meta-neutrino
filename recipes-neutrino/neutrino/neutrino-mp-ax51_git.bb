@@ -9,8 +9,10 @@ SRCREV = "${AUTOREV}"
 PV = "${SRCPV}"
 PKGV = "${GITPKGVTAG}"
 
+PATCHTOOL = "git"
 
 SRC_URI = "git://github.com/TangoCash/neutrino-mp-cst-next.git;protocol=http \
+	file://neutrino.ttf \
 	file://neutrino.service \
 	file://neutrino.sh \
 	file://timezone.xml \
@@ -26,5 +28,9 @@ SRC_URI = "git://github.com/TangoCash/neutrino-mp-cst-next.git;protocol=http \
 include neutrino.inc
 
 EXTRA_OECONF_append += "--with-boxtype=armbox \
-						--with-stb-hal-includes=${STAGING_INCDIR}/libstb-hal \"
+						--with-stb-hal-includes=${STAGING_INCDIR}/libstb-hal \
+"
 
+do_configure_prepend() {
+	cp ${WORKDIR}/neutrino.ttf ${S}/data/fonts
+}

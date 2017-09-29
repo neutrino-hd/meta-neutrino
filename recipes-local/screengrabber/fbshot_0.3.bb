@@ -6,6 +6,7 @@ DEPENDS = " \
            libpng \
            zlib \
 "
+
 PROVIDES = "virtual/screengrabber"
 RPROVIDES_${PN} = "virtual/screengrabber"
 

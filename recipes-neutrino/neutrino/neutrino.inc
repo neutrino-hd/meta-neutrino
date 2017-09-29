@@ -1,6 +1,4 @@
 
-RDEPENDS_${PN} += "fbshot"
-
 PROVIDES = "virtual/neutrino"
 RPROVIDES_${PN} = "virtual/neutrino"
 
@@ -69,7 +67,7 @@ do_configure_prepend() {
 	ln -sf ${B}/src/gui/version.h ${S}/src/gui/
 	sed -i "s|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|${YT_DEV_KEY}|" ${S}/src/neutrino.cpp
 	sed -i "s|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|${TMDB_DEV_KEY}|" ${S}/src/neutrino.cpp
-sed -i "s|XXXXXXXXXXXXXXXX|${SHOUTCAST_DEV_KEY}|" ${S}/src/neutrino.cpp
+	sed -i "s|XXXXXXXXXXXXXXXX|${SHOUTCAST_DEV_KEY}|" ${S}/src/neutrino.cpp
 }
 
 do_compile () {
@@ -83,6 +81,7 @@ do_install_prepend () {
 	install -d ${D}${systemd_unitdir}/system
 	install -d ${D}${bindir}
 	install -d ${D}${sysconfdir}/neutrino/config
+	install -d ${D}${sysconfdir}/neutrino/plugins	
     install -m 0644 ${WORKDIR}/neutrino.service ${D}${systemd_unitdir}/system/
     install -m 0755 ${WORKDIR}/neutrino.sh ${D}${bindir}/   
 	install -m 755 ${WORKDIR}/pre-wlan0.sh ${D}${sysconfdir}/network/
