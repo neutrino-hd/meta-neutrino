@@ -51,9 +51,9 @@ EXTRA_OECONF = " \
 	--exec_prefix=/usr/bin \
 	--includedir=${prefix}/include \
 	--with-configdir=/etc/neutrino/config \
-	--with-plugindir=/var/tuxbox/plugins \
-	--with-webtvdir_var=/var/tuxbox/plugins/webtv \
-	--with-luaplugindir=/var/tuxbox/plugins/luaplugins \
+	--with-plugindir=/etc/neutrino/plugins \
+	--with-webtvdir_var=/etc/neutrino/plugins/webtv \
+	--with-luaplugindir=/etc/neutrino/plugins/luaplugins \
 "
 
 N_CFLAGS = "-Wall -Wextra -Wshadow -g -O2 -fno-strict-aliasing -rdynamic -DENABLE_FREESATEPG -DNEW_LIBCURL -I${S}/lib/libcoolstream2 -I${STAGING_INCDIR}/freetype2 -I${STAGING_INCDIR}/sigc++-2.0"
@@ -103,8 +103,7 @@ do_install_prepend () {
 }
 
 do_install_append() {
-	install -d ${D}/share ${D}${sysconfdir}/neutrino/bin ${D}/var/tuxbox/plugins/luaplugins \
-		   ${D}/var/tuxbox/plugins/webtv
+	install -d ${D}/share ${D}${sysconfdir}/neutrino/bin ${D}/var/tuxbox/plugins/luaplugins ${D}/var/tuxbox/plugins/webtv
 	ln -s ${datadir}/tuxbox ${D}/share/
 	ln -s ${datadir}/fonts  ${D}/share/
 	if [ -d ${WORKDIR}/icons ];then
