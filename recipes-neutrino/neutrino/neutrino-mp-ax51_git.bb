@@ -10,7 +10,7 @@ PV = "${SRCPV}"
 PKGV = "${GITPKGVTAG}"
 
 
-SRC_URI = "git://github.com/tuxbox-neutrino/gui-neutrino.git;branch=pu/mp;protocol=http \
+SRC_URI = "git://github.com/TangoCash/neutrino-mp-cst-next.git;protocol=http \
 	file://0001-remove_workaround_for_gcc6.x.patch;apply=no \
 	file://neutrino.service \
 	file://neutrino.sh \
