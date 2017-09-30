@@ -15,12 +15,9 @@ SRC_URI = "git://github.com/coolstreamtech/cst-public-plugins-scripts-lua.git \
 S = "${WORKDIR}/git"
 PLUGINS_TO_BUILD = "netzkino"
 do_install () {
-	install -d ${D}/home/builder/.config/neutrino/plugins
-	install -m 755 ${S}/plugins/${PLUGINS_TO_BUILD}/${PLUGINS_TO_BUILD}.* ${D}/home/builder/.config/neutrino/plugins
+	install -d ${D}/etc/neutrino/plugins
+	install -m 755 ${S}/plugins/${PLUGINS_TO_BUILD}/${PLUGINS_TO_BUILD}.* ${D}/etc/neutrino/plugins
 }
-
-FILES_${PN} += "/home \
-"
 
 SRC_URI[md5sum] = "f9b7e6c21a6b55245f84e591a2151773"
 SRC_URI[sha256sum] = "c5ed25d014a9fcc3c8b8e9fb1af47cd05269424b1ac1e416d770b9956216c29d"

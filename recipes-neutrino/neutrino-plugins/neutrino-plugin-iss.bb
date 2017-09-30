@@ -15,11 +15,8 @@ SRC_URI = "file://iss-position.lua \
 "
 
 do_install () {
-	install -d ${D}/home/builder/.config/neutrino/plugins
-	install -m 644 ${S}/iss-position.lua ${D}/home/builder/.config/neutrino/plugins
-	install -m 644 ${S}/iss-position.cfg ${D}/home/builder/.config/neutrino/plugins
-	install -m 644 ${S}/iss-position_hint.png ${D}/home/builder/.config/neutrino/plugins
+	install -d ${D}/etc/neutrino/plugins
+	install -m 644 ${S}/iss-position.lua ${D}/etc/neutrino/plugins
+	install -m 644 ${S}/iss-position.cfg ${D}/etc/neutrino/plugins
+	install -m 644 ${S}/iss-position_hint.png ${D}/etc/neutrino/plugins
 }
-
-FILES_${PN} += "/home \
-"

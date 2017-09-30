@@ -1,0 +1,12 @@
+[Unit]
+Description=Telnet daemon
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/telnetd
+ExecStop=/usr/bin/rm /var/run/telnetd.pid
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

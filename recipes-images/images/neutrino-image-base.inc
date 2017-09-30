@@ -33,6 +33,7 @@ IMAGE_INSTALL += " \
 	gzip \
 	image-config \
 	inotify-tools \
+	ifupdown \
 	kernel-modules \
 	libevent \
 	libusb1 \

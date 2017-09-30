@@ -18,7 +18,7 @@
  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  
  Install:
-   copy mytvpro.* files to/home/builder/.config/neutrino/plugins + (Reload plugins)
+   copy mytvpro.* files to /var/tuxbox/plugins + (Reload plugins)
   
  Start:
    blue key -> MyTvPro -> Settings / Select channel

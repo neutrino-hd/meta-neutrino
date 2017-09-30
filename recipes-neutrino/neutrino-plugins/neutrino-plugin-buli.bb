@@ -16,11 +16,10 @@ SRC_URI = "git://github.com/Tischi81/BuliliveTicker.git \
 S = "${WORKDIR}/git"
 
 do_install () {
-	install -d ${D}/home/builder/.config/neutrino/plugins
-	install -m 644 ${S}/bulilive* ${D}/home/builder/.config/neutrino/plugins
+	install -d ${D}/etc/neutrino/plugins
+	install -m 644 ${S}/bulilive* ${D}/etc/neutrino/plugins
 }
 
-FILES_${PN} += "/home \
-"
+
 
 

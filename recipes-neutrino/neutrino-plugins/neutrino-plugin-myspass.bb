@@ -13,15 +13,12 @@ SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git/var/plugins"
 
 do_install () {
-	install -d ${D}/home/builder/.config/neutrino/plugins
-	install -m 755 ${S}/myspass.lua ${D}/home/builder/.config/neutrino/plugins
-	install -m 644 ${S}/myspass.cfg ${D}/home/builder/.config/neutrino/plugins
-	install -m 644 ${S}/myspass.png ${D}/home/builder/.config/neutrino/plugins
+	install -d ${D}/etc/neutrino/plugins
+	install -m 755 ${S}/myspass.lua ${D}/etc/neutrino/plugins
+	install -m 644 ${S}/myspass.cfg ${D}/etc/neutrino/plugins
+	install -m 644 ${S}/myspass.png ${D}/etc/neutrino/plugins
 }
 
 do_install_append () {
-echo "integration=2" >> ${D}/home/builder/.config/neutrino/plugins/myspass.cfg
+echo "integration=2" >> ${D}/etc/neutrino/plugins/myspass.cfg
 }
-
-FILES_${PN} += "/home \
-"

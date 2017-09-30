@@ -106,7 +106,7 @@ end
 ----------------------------------------------------------------------
 
 local neutrino_conf = configfile.new()
-neutrino_conf:loadConfig("/home/builder/.config/neutrino/config/neutrino.conf")
+neutrino_conf:loadConfig("/etc/neutrino/config/neutrino.conf")
 lang = neutrino_conf:getString("language", "english")
 if locale[lang] == nil then
 	lang = "english"

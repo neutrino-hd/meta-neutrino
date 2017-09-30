@@ -13,10 +13,7 @@ SRC_URI = "file://webtv_localtv.xml \
 "
 
 do_install () {
-	install -d ${D}/home/builder/.config/neutrino/config
-	install -m 644 ${S}/webtv_localtv.xml ${D}/home/builder/.config/neutrino/config
-	install -m 644 ${S}/webtv_ora.xml ${D}/home/builder/.config/neutrino/config
+	install -d ${D}/etc/neutrino/config
+	install -m 644 ${S}/webtv_localtv.xml ${D}/etc/neutrino/config
+	install -m 644 ${S}/webtv_ora.xml ${D}/etc/neutrino/config
 }
-
-FILES_${PN} += "/home \
-"

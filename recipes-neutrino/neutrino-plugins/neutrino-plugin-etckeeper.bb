@@ -14,9 +14,8 @@ SRC_URI = "file://etckeeper.lua \
 S = "${WORKDIR}/"
 
 do_install () {
-	install -d ${D}/home/builder/.config/neutrino/plugins
-	install -m 644 ${S}/etckeeper.* ${D}/home/builder/.config/neutrino/plugins
+	install -d ${D}/etc/neutrino/plugins
+	install -m 644 ${S}/etckeeper.* ${D}/etc/neutrino/plugins
 }
 
-FILES_${PN} += "/home \
-"
+

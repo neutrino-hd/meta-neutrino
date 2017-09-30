@@ -14,11 +14,8 @@ SRC_URI = "file://telewizjada.xml \
 "
 
 do_install () {
-	install -d ${D}/home/builder/.config/neutrino/config
-	install -m 644 ${S}/telewizjada.xml ${D}/home/builder/.config/neutrino/config
-	install -d ${D}/home/builder/.config/neutrino/plugins/webtv
-	install -m 644 ${S}/telewizjada.lua ${D}/home/builder/.config/neutrino/plugins/webtv
+	install -d ${D}/etc/neutrino/config
+	install -m 644 ${S}/telewizjada.xml ${D}/etc/neutrino/config
+	install -d ${D}/etc/neutrino/plugins/webtv
+	install -m 644 ${S}/telewizjada.lua ${D}/etc/neutrino/plugins/webtv
 }
-
-FILES_${PN} += "/home \
-"

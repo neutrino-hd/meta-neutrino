@@ -51,7 +51,7 @@ EXTRA_OECONF = " \
 	--with-configdir=/etc/neutrino/config \
 	--with-plugindir=/etc/neutrino/plugins \
 	--with-webtvdir_var=/etc/neutrino/plugins/webtv \
-	--with-luaplugindir=/etc/neutrino/plugins/luaplugins \
+	--with-luaplugindir=/etc/neutrino/plugins \
 "
 
 N_CFLAGS = "-Wall -Wextra -Wshadow -g -O2 -fno-strict-aliasing -rdynamic -DENABLE_FREESATEPG -DNEW_LIBCURL -I${S}/lib/libcoolstream2 -I${STAGING_INCDIR}/freetype2 -I${STAGING_INCDIR}/sigc++-2.0"
@@ -102,20 +102,20 @@ do_install_prepend () {
 }
 
 do_install_append() {
-	install -d ${D}/share ${D}${sysconfdir}/neutrino/bin ${D}/var/tuxbox/plugins/luaplugins ${D}/var/tuxbox/plugins/webtv
+	install -d ${D}/share ${D}${sysconfdir}/neutrino/bin ${D}${sysconfdir}/neutrino/plugins/luaplugins ${D}${sysconfdir}/neutrino/plugins/webtv
 	ln -s ${datadir}/tuxbox ${D}/share/
 	ln -s ${datadir}/fonts  ${D}/share/
 	if [ -d ${WORKDIR}/icons ];then
 		install -m 644 ${WORKDIR}/icons/* ${D}/usr/share/tuxbox/neutrino/icons/
 	fi
 	if [ -d ${WORKDIR}/var ];then
-		install -d ${D}/var/tuxbox/plugins/webtv
 		install -m 644 ${WORKDIR}/var/tuxbox/config/* ${D}/etc/neutrino/config/
-		install -m 644 ${WORKDIR}/var/tuxbox/plugins/webtv/* ${D}/var/tuxbox/plugins/webtv
+		install -m 644 ${WORKDIR}/var/tuxbox/plugins/webtv/* ${D}${sysconfdir}/neutrino/plugins/webtv
 	fi
 	if [ ! -z ${RELEASE_TEXT_LOCATION} ];then
 		echo "${RELEASE_TEXT_LOCATION}" > ${D}/etc/update.urls
 	fi
+	rm -r ${D}/var/tuxbox
 }
 
 FILES_${PN} += "\
@@ -123,7 +123,6 @@ FILES_${PN} += "\
 	/etc \
 	/share \
 	/usr/share \
-	/var \
 	/lib \
 "
 

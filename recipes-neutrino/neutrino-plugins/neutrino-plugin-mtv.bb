@@ -12,18 +12,18 @@ PV = "${SRCPV}"
 
 S = "${WORKDIR}/git/plugins/mtv"
 
-SRC_URI = "git://github.com/coolstreamtech/cst-public-plugins-scripts-lua.git \
+SRC_URI = "git://github.com/tuxbox-neutrino/plugin-scripts-lua.git \
 "
 
 do_install () {
-	install -d ${D}/home/builder/.config/neutrino/plugins
-	install -m 644 ${S}/mtv.lua ${D}/home/builder/.config/neutrino/plugins
-	install -m 644 ${S}/mtv.cfg ${D}/home/builder/.config/neutrino/plugins
-	install -m 644 ${S}/mtv_hint.png ${D}/home/builder/.config/neutrino/plugins
+	install -d ${D}/etc/neutrino/plugins
+	install -m 644 ${S}/mtv.lua ${D}/etc/neutrino/plugins
+	install -m 644 ${S}/mtv.cfg ${D}/etc/neutrino/plugins
+	install -m 644 ${S}/mtv_hint.png ${D}/etc/neutrino/plugins
 }
 
-FILES_${PN} += "/home \
+FILES_${PN} = "\
+    /etc/neutrino/plugins \
 "
-
 SRC_URI[md5sum] = "f9b7e6c21a6b55245f84e591a2151773"
 SRC_URI[sha256sum] = "c5ed25d014a9fcc3c8b8e9fb1af47cd05269424b1ac1e416d770b9956216c29d"

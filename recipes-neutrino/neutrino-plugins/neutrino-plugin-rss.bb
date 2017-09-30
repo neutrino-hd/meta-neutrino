@@ -6,27 +6,24 @@ MAINTAINER = "Jacek Jendrzej"
 DEPENDS = "lua expat"
 RDEPENDS_${PN} = "lua-expat lua-feedparser lua-curl"
 
-PV = "0.09c"
+PV = "0.50"
 PR = "1"
 
 
-SRC_URI = "file://rss.cfg \
-	   file://rss.lua \
-	   file://rssreader.conf \
-	   file://rss_icon.png \
+SRC_URI = "file://rss.tar.gz \
 "
 
 S = "${WORKDIR}/"
 
 do_install () {
-	install -d ${D}/home/builder/.config/neutrino/plugins ${D}/home/builder/.config/neutrino/config
-	install -m 644 ${S}/rss.lua ${D}/home/builder/.config/neutrino/plugins
-	install -m 644 ${S}/rss.cfg ${D}/home/builder/.config/neutrino/plugins
-	install -m 644 ${S}/rss_icon.png ${D}/home/builder/.config/neutrino/plugins
-	install -m 644 ${S}/rssreader.conf ${D}/home/builder/.config/neutrino/config
+	install -d ${D}/etc/neutrino/plugins/rss_addon ${D}/etc/neutrino/config
+	install -m 644 ${S}/rss.lua ${D}/etc/neutrino/plugins
+	install -m 644 ${S}/rss.cfg ${D}/etc/neutrino/plugins
+	install -m 644 ${S}/rss_addon/* ${D}/etc/neutrino/plugins/rss_addon
+	install -m 644 ${S}/rss_icon.png ${D}/etc/neutrino/plugins
+	install -m 644 ${S}/rssreader.conf ${D}/etc/neutrino/config
 }
 
-FILES_${PN} += "/home \
-"
+
 
 

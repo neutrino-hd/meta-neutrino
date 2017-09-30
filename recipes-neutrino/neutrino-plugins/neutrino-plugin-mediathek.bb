@@ -10,21 +10,16 @@ RDEPENDS_${PN} = "lua-json luaposix"
 
 PV = "0.12"
 
-
-SRC_URI = "file://coolithek.tar.gz \
+SRC_URI = "git://git.tuxcode.de/mediathek-luaV2.git;branch=master;protocol=https \
 "
-
-S = "${WORKDIR}"
+SRCREV = "${AUTOREV}"
+S = "${WORKDIR}/git"
 
 do_install () {
-	install -d ${D}/home/builder/.config/neutrino/plugins ${D}/home/builder/.config/neutrino/plugins/coolithek ${D}/home/builder/.config/neutrino/plugins/coolithek/locale ${D}/usr/share/lua/5.2/
-	cp -rf ${WORKDIR}/usr ${D}
-        cp -rf ${WORKDIR}/var/tuxbox/plugins/* ${D}/home/builder/.config/neutrino/plugins
+	install -d ${D}/etc/neutrino/plugins ${D}/usr/share
+	cp -rf ${S}/share ${D}/usr/
+        cp -rf ${S}/coolithek* ${D}/etc/neutrino/plugins
 }
 
-FILES_${PN} += "/usr/share/* \
-		/home \
-"
+FILES_${PN} += "/usr/share/*"
 
-SRC_URI[md5sum] = "f9b7e6c21a6b55245f84e591a2151773"
-SRC_URI[sha256sum] = "c5ed25d014a9fcc3c8b8e9fb1af47cd05269424b1ac1e416d770b9956216c29d"
