@@ -33,6 +33,8 @@ include neutrino.inc
 
 EXTRA_OECONF_append += "--with-boxtype=armbox \
 						--with-stb-hal-includes=${STAGING_INCDIR}/libstb-hal \
+						--enable-reschange \
+						--disable-tangos \
 "
 
 do_configure_prepend() {

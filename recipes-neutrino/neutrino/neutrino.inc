@@ -43,7 +43,6 @@ EXTRA_OECONF = " \
 	--enable-pugixml \
 	--enable-giflib \
 	--enable-flac \
-	--disable-tangos \
 	--with-target=native \
 	--prefix=/usr \
 	--exec_prefix=/usr/bin \
