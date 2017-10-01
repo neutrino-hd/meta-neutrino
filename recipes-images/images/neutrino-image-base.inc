@@ -22,6 +22,7 @@ IMAGE_INSTALL += " \
 	autofs \
 	bash \
 	bzip2 \
+	cifs-utils \
 	coreutils \
 	dosfstools \
 	e2fsprogs-e2fsck \
