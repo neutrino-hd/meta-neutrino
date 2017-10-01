@@ -30,6 +30,10 @@ IMAGE_INSTALL += " \
 	etckeeper \
 	exfat-utils \
 	gawk \
+	glibc-charmaps \
+	glibc-binary-localedata-de-de \
+	glibc-gconvs \
+	glibc-localedatas \
 	gzip \
 	image-config \
 	inotify-tools \
@@ -37,6 +41,7 @@ IMAGE_INSTALL += " \
 	kernel-modules \
 	libevent \
 	libusb1 \
+	localedef \
 	matze \
 	mc \
 	mc-fish \
