@@ -36,6 +36,7 @@ IMAGE_INSTALL += " \
 	glibc-gconvs \
 	glibc-localedatas \
 	gzip \
+	hdparm \
 	image-config \
 	inotify-tools \
 	ifupdown \
