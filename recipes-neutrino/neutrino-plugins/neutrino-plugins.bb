@@ -1,11 +1,11 @@
 DESCRIPTION = "tuxbox plugins, ported to neutrino-hd"
 LICENSE = "GPLv2+"
-LIC_FILES_CHKSUM = "file://tuxcom/tuxcom.c;beginline=10;endline=24;md5=8cfd78763de33face1d26b11904e84d5"
+LIC_FILES_CHKSUM = "file://tuxcom/tuxcom.c;beginline=10;endline=24;md5=f08c0a8fadd6ea7b914992e4bd4b7685"
 DEPENDS = "freetype ffmpeg zlib libxml2 virtual/libiconv openssl libpng curl"
 SRCREV = "${AUTOREV}"
 PV = "8"
 
-SRC_URI = "git://github.com/MarkusVolk/neutrino-hd-plugins.git;branch=master;protocol=https \
+SRC_URI = "git://github.com/neutrino-hd/neutrino-hd-plugins.git;branch=master;protocol=https \
 "
 
 S = "${WORKDIR}/git"
@@ -19,7 +19,7 @@ EXTRA_OECONF += " \
 	--enable-maintainer-mode \
 	--with-target=native \
 	--with-plugindir=/etc/neutrino/plugins \
-	--with-boxtype=coolstream \
+	--with-boxtype=armbox \
 "
 
 EXTRA_OECONF += "--with-configdir=/etc/neutrino/config"
@@ -27,10 +27,6 @@ EXTRA_OECONF += "--with-configdir=/etc/neutrino/config"
 N_CFLAGS = "-Wall -W -Wshadow -g -O2 -funsigned-char -I${STAGING_INCDIR}/freetype2"
 N_CXXFLAGS = "${N_CFLAGS}"
 N_LDFLAGS += "-Wl,--hash-style=gnu -Wl,-rpath-link,${STAGING_DIR_HOST}${libdir},-lfreetype -lcrypto -lssl -lpng -lcurl"
-
-do_configure_prepend() {
-	export FB_DEVICE="/dev/fb"
-}
 
 do_compile () {
 	unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
