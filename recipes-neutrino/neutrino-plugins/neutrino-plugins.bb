@@ -29,7 +29,7 @@ EXTRA_OECONF += "--with-configdir=/etc/neutrino/config"
 
 N_CFLAGS = "-Wall -W -Wshadow -g -O2 -funsigned-char -I${STAGING_INCDIR}/freetype2"
 N_CXXFLAGS = "${N_CFLAGS}"
-N_LDFLAGS += "-Wl,--hash-style=gnu -Wl,-rpath-link,${STAGING_DIR_HOST}${libdir},-lfreetype -lcrypto -lssl -lpng -lcurl"
+N_LDFLAGS += "-Wl,--hash-style=gnu -Wl,-rpath-link,${STAGING_DIR_HOST}${libdir},-lfreetype -lcrypto -lssl -lpng -lcurl -lz"
 
 do_compile () {
 	unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
