@@ -58,6 +58,7 @@ IMAGE_INSTALL += " \
 	ntfs-3g \
 	ntfsprogs \
 	ntpdate \
+	ofgwrite \
 	openssh \
 	openssl \
 	opkg \
