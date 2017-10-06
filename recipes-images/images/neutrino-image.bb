@@ -9,8 +9,6 @@ IMAGE_INSTALL += " \
 	neutrino-plugin-netzkino \
 	neutrino-plugin-rss \
 	neutrino-plugin-localtv \
-	neutrino-plugin-buli \
-	neutrino-plugin-wetter \
 	neutrino-plugin-mtv \
 	neutrino-plugin-mytvpro \
 	neutrino-plugin-myspass \
@@ -18,4 +16,5 @@ IMAGE_INSTALL += " \
 	neutrino-plugin-youtube \
 	neutrino-plugin-webtv \
 	neutrino-plugin-rockpalast \
+	neutrino-plugin-startup \
 	"
