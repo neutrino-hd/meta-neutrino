@@ -13,9 +13,6 @@ PATCHTOOL = "git"
 
 SRC_URI = " \
 	file://0007-imageinfo.cpp-change-version-output.patch \
-	file://0008-rcsim.c-fix-eventdev-for-yocto.patch \
-	file://0009-src-nhttpd-tuxboxapi-controlapi.cpp-fix-eventdev-for.patch \
-	file://0012-import-proper-working-format-device-function.patch \
 	file://neutrino.ttf \
 	file://neutrino.service \
 	file://neutrino.sh \
@@ -31,12 +28,6 @@ SRC_URI = " \
 
 include neutrino.inc
 include ${FLAVOUR}.inc
-
-EXTRA_OECONF_append += "--with-boxtype=armbox \
-						--with-stb-hal-includes=${STAGING_INCDIR}/libstb-hal \
-						--enable-reschange \
-						--disable-tangos \
-"
 
 do_configure_prepend() {
 	cp ${WORKDIR}/neutrino.ttf ${S}/data/fonts
