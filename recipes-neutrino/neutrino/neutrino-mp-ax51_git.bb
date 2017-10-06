@@ -11,7 +11,7 @@ PKGV = "${GITPKGVTAG}"
 
 PATCHTOOL = "git"
 
-SRC_URI = "git://github.com/TangoCash/neutrino-mp-cst-next.git;protocol=http \
+SRC_URI = " \
 	file://0007-imageinfo.cpp-change-version-output.patch \
 	file://0008-rcsim.c-fix-eventdev-for-yocto.patch \
 	file://0009-src-nhttpd-tuxboxapi-controlapi.cpp-fix-eventdev-for.patch \
@@ -30,6 +30,7 @@ SRC_URI = "git://github.com/TangoCash/neutrino-mp-cst-next.git;protocol=http \
 "
 
 include neutrino.inc
+include ${FLAVOUR}.inc
 
 EXTRA_OECONF_append += "--with-boxtype=armbox \
 						--with-stb-hal-includes=${STAGING_INCDIR}/libstb-hal \
