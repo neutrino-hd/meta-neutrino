@@ -9,8 +9,8 @@ inherit gettext
 
 PACKAGECONFIG ??= " \
     ${GSTREAMER_ORC} \
-    orc a52dec lame mad mpeg2dec \
-    cdio dvdread mad amrnb amrwb mpg123\
+    orc a52dec lame mpeg2dec \
+    cdio dvdread amrnb amrwb mpg123\
 "
 
 PACKAGECONFIG[a52dec]   = "--enable-a52dec,--disable-a52dec,liba52"
