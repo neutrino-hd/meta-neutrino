@@ -1,11 +1,11 @@
 [Unit]
 Description=Neutrino HD
 After=update-kernel.service update-etc.service logoview.service
+Requires=networking.service
 
 [Service]
-WorkingDirectory=/tmp
-ExecStart=/bin/sh /usr/bin/neutrino.sh
+Type=simple
+ExecStart=/usr/bin/neutrino
 
 [Install]
 WantedBy=multi-user.target
-
