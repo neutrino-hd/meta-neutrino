@@ -2,7 +2,7 @@ require gstreamer1.0-plugins.inc
 
 LICENSE = "GPLv2+ & LGPLv2+ & LGPLv2.1+"
 
-DEPENDS += "gstreamer1.0-plugins-base libpng jpeg"
+DEPENDS += "gstreamer1.0-plugins-base libpng jpeg libde265"
 
 inherit gettext bluetooth
 
@@ -22,7 +22,7 @@ PACKAGECONFIG ??= " \
     ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', 'bluez', '', d)} \
     ${@bb.utils.filter('DISTRO_FEATURES', 'directfb vulkan', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland egl', '', d)} \
-    bz2 curl dash dtls hls neon rsvg sbc smoothstreaming sndfile uvch264 webp \
+    orc bz2 curl dash dtls hls neon rsvg sbc smoothstreaming sndfile uvch264 webp libmms rtmp faac faad opus\
 "
 
 PACKAGECONFIG[assrender]       = "--enable-assrender,--disable-assrender,libass"
@@ -84,6 +84,7 @@ EXTRA_OECONF += " \
     --enable-dvb \
     --enable-fbdev \
     --enable-netsim \
+    --enable-mpegdemux \
     --enable-shm \
     --enable-vcd \
     --disable-acm \
@@ -103,7 +104,7 @@ EXTRA_OECONF += " \
     --disable-iqa \
     --disable-kate \
     --disable-ladspa \
-    --disable-libde265 \
+    --enable-libde265 \
     --disable-lv2 \
     --disable-mpeg2enc \
     --disable-mplex \

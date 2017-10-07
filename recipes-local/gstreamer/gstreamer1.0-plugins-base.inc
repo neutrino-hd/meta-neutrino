@@ -18,7 +18,7 @@ PACKAGES_DYNAMIC =+ "^libgst.*"
 PACKAGECONFIG ??= " \
     ${GSTREAMER_ORC} \
     ${@bb.utils.filter('DISTRO_FEATURES', 'alsa x11', d)} \
-    gio-unix-2.0 ogg pango theora vorbis \
+    orc ivorbis ogg theora vorbis cdparanoia pango opus\
 "
 
 X11DEPENDS = "virtual/libx11 libsm libxrender libxv"
