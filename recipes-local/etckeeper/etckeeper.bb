@@ -2,7 +2,7 @@
 LICENSE = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
-RDEPENDS_${PN} += "git findutils util-linux-mountpoint perl-module-file-glob glibc-utils"
+RDEPENDS_${PN} += "git findutils util-linux-mountpoint perl-module-file-glob glibc-utils python"
 
 SRC_URI = "git://git.joeyh.name/git/etckeeper.git/;branch=master;protocol=https \
 	   file://update-etc.service \
@@ -10,6 +10,7 @@ SRC_URI = "git://git.joeyh.name/git/etckeeper.git/;branch=master;protocol=https 
 	   file://etckeeper.conf \
 	   file://create_etc.sh \
 	   file://update_etc.sh \
+	   file://findkerneldevice.py \
 	   file://0001-use-systemwide-gitconfig-to-correct-commiter-name-an.patch \
 	   file://0001-etckeeper-edit-.gitignore.patch \
 "
@@ -31,20 +32,19 @@ inherit autotools-brokensep systemd
 do_configure_prepend () {
 	sed -i "s|GIT_USER|${GIT_USER}|" ${WORKDIR}/update_etc.sh
 	sed -i "s|MAIL|${MAIL}|" ${WORKDIR}/update_etc.sh
-	sed -i "s|GIT_URL|${GIT_URL}|" ${WORKDIR}/update_etc.sh
 	sed -i "s|GIT_USER|${GIT_USER}|" ${WORKDIR}/create_etc.sh
 	sed -i "s|MAIL|${MAIL}|" ${WORKDIR}/create_etc.sh
-	sed -i "s|GIT_URL|${GIT_URL}|" ${WORKDIR}/create_etc.sh
 }
 	
 do_install_append () {
-	install -d ${D}${systemd_unitdir}/system ${D}${sysconfdir}/systemd/system/timers.target.wants
+	install -d ${D}${systemd_unitdir}/system ${D}${sysconfdir}/systemd/system/timers.target.wants ${D}${bindir}
 	install -m 644 ${WORKDIR}/etckeeper.conf ${D}/etc/etckeeper
 	install -m 755 ${WORKDIR}/update_etc.sh ${D}/etc/etckeeper/update_etc.sh
 	install -m 755 ${WORKDIR}/create_etc.sh ${D}/etc/etckeeper/create_etc.sh
-	install -m 644 ${WORKDIR}/create-etc.service ${D}${sysconfdir}/systemd/system/create-etc.service
-	install -m 644 ${WORKDIR}/update-etc.service ${D}${sysconfdir}/systemd/system/update-etc.service
+	install -m 644 ${WORKDIR}/create-etc.service ${D}${systemd_unitdir}/system
+	install -m 644 ${WORKDIR}/update-etc.service ${D}${systemd_unitdir}/system
 	ln -s /usr/lib/systemd/system/etckeeper.timer ${D}${sysconfdir}/systemd/system/timers.target.wants/etckeeper.timer
+	install -m 755 ${WORKDIR}/findkerneldevice.py ${D}${bindir}
 }
 
 FILES_${PN}_append += "/lib/systemd \

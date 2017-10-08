@@ -4,7 +4,7 @@ SRC_URI_append += "git://github.com/TangoCash/neutrino-mp-cst-next.git;protocol=
 					 file://0012-import-proper-working-format-device-function.patch \
 "
 
-EXTRA_OECONF_append += "--with-boxtype=armbox \
+EXTRA_OECONF_append += "--with-boxtype=hd51 \
 						--with-stb-hal-includes=${STAGING_INCDIR}/libstb-hal \
 						--enable-reschange \
 						--disable-tangos \

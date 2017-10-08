@@ -4,6 +4,7 @@ include neutrino-image-base.inc
 
 IMAGE_INSTALL += " \
 	virtual/neutrino \
+	neutrino-config \
 	neutrino-plugins \
 	neutrino-plugin-xupnpd \
 	neutrino-plugin-netzkino \

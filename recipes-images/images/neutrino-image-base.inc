@@ -73,6 +73,7 @@ IMAGE_INSTALL += " \
 	parted \
 	procps \
 	python \
+	python-modules \
 	rpcbind \
 	samba \
 	sed \

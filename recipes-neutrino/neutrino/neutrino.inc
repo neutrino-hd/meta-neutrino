@@ -51,6 +51,10 @@ EXTRA_OECONF = " \
 	--with-plugindir=/etc/neutrino/plugins \
 	--with-webtvdir_var=/etc/neutrino/plugins/webtv \
 	--with-luaplugindir=/etc/neutrino/plugins \
+	--with-plugindir_var=/etc/neutrino/plugins \
+	--with-gamesdir=/etc/neutrino/plugins \
+	--with-webtvdir_var=/etc/neutrino/plugins/webtv \
+	--with-plugindir_var=/etc/neutrino/plugins \
 "
 
 N_CFLAGS = "-Wall -Wextra -Wshadow -g -O2 -fno-strict-aliasing -rdynamic -DENABLE_FREESATEPG -DNEW_LIBCURL -I${S}/lib/libcoolstream2 -I${STAGING_INCDIR}/freetype2 -I${STAGING_INCDIR}/sigc++-2.0"
@@ -87,7 +91,6 @@ do_install_prepend () {
 	install -m 755 ${WORKDIR}/post-wlan0.sh ${D}${sysconfdir}/network/
 	install -m 644 ${WORKDIR}/timezone.xml ${D}${sysconfdir}/timezone.xml
 	install -d ${D}${localstatedir}/cache
-	install -d ${D}${localstatedir}/tuxbox
 	install -d ${D}/lib/mdev/fs
 	install -m 755 ${WORKDIR}/mount.mdev ${D}/lib/mdev/fs/mount
 	echo "version=${DISTRO_VERSION}  `date +%Y-%m-%d` `date +%H:%M`"    > ${D}/.version  
@@ -104,17 +107,10 @@ do_install_append() {
 	install -d ${D}/share ${D}${sysconfdir}/neutrino/bin ${D}${sysconfdir}/neutrino/plugins/luaplugins ${D}${sysconfdir}/neutrino/plugins/webtv
 	ln -s ${datadir}/tuxbox ${D}/share/
 	ln -s ${datadir}/fonts  ${D}/share/
-	if [ -d ${WORKDIR}/icons ];then
-		install -m 644 ${WORKDIR}/icons/* ${D}/usr/share/tuxbox/neutrino/icons/
-	fi
-	if [ -d ${WORKDIR}/var ];then
-		install -m 644 ${WORKDIR}/var/tuxbox/config/* ${D}/etc/neutrino/config/
-		install -m 644 ${WORKDIR}/var/tuxbox/plugins/webtv/* ${D}${sysconfdir}/neutrino/plugins/webtv
-	fi
+	install -m 644 ${WORKDIR}/icons/* ${D}/usr/share/tuxbox/neutrino/icons/
 	if [ ! -z ${RELEASE_TEXT_LOCATION} ];then
 		echo "${RELEASE_TEXT_LOCATION}" > ${D}/etc/update.urls
-	fi
-	rm -r ${D}/var/tuxbox
+	fi 
 }
 
 FILES_${PN} += "\
