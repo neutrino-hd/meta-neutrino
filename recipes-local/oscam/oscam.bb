@@ -8,9 +8,6 @@ DEPENDS = "libusb1 openssl"
 DEPENDS_APPEND_libc-uclibc += "virtual/libstb-hal"
 
 SRC_URI = "git://github.com/nx111/oscam.git;protocol=https \
-		   file://oscam.conf \
-		   file://oscam.server \
-		   file://oscam.user \
 "
 
 SRCREV = "${AUTOREV}"
@@ -60,9 +57,8 @@ EXTRA_OECMAKE_append_coolstream-hd2 += "-DOSCAM_SYSTEM_NAME=CST2 \
 EXTRA_OECMAKE_append_hd51 += "-DOSCAM_SYSTEM_NAME=NONE \
 "
 
-
 do_install () {
-	install -d ${D}/usr/bin ${D}/etc/neutrino/bin ${D}/etc/neutrino/config
+	install -d ${D}/usr/bin ${D}/etc/neutrino/bin
 	install -D -m 755 ${WORKDIR}/build/oscam ${D}/etc/neutrino/bin/oscam
 	rm -rf ${D}/usr
 }

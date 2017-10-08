@@ -1,6 +1,6 @@
 [Unit]
 Description=write back etckeeper remote
-After=update-kernel.service
+Requires=create-etc.service
 
 [Service]
 Type=idle

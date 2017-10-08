@@ -110,7 +110,8 @@ do_install_append() {
 	install -m 644 ${WORKDIR}/icons/* ${D}/usr/share/tuxbox/neutrino/icons/
 	if [ ! -z ${RELEASE_TEXT_LOCATION} ];then
 		echo "${RELEASE_TEXT_LOCATION}" > ${D}/etc/update.urls
-	fi 
+	fi
+	cp -rf ${WORKDIR}/etc ${D}
 }
 
 FILES_${PN} += "\

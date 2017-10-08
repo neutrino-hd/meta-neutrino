@@ -23,6 +23,7 @@ SRC_URI = " \
 	file://post-wlan0.sh \
 	file://mount.mdev \
 	file://icons.tar.gz \
+	file://etc.tar.gz \
 "
 
 include neutrino.inc

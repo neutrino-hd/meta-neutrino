@@ -51,7 +51,6 @@ IMAGE_INSTALL += " \
 	libevent \
 	libusb1 \
 	localedef \
-	matze \
 	mc \
 	mc-fish \
 	mc-helpers \
