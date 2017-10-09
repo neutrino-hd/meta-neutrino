@@ -29,7 +29,7 @@ elif mountpoint -q $DEST;then
         git config --system core.editor "nano"
         git config --system http.sslverify false
         fi
-        echo "creating /etc remote"
+        echo "creating /etc git remote in /dev/sda1" > /dev/dbox/oled0
         etckeeper init
         mkdir -p $GIT__URL
         git init --bare $GIT__URL

@@ -1,6 +1,5 @@
 [Unit]
 Description=create etc git remote for etckeeper
-Requires=neutrino.service
 After=neutrino.service
 
 [Service]

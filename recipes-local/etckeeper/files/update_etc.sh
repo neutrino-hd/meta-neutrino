@@ -29,7 +29,7 @@ if [ -e $GIT_EXIST ];then
                 break
         else
                 systemctl stop neutrino.service
-                echo "writing back /etc remote"
+                echo "writing back /etc git remote from /dev/sda1"  > /dev/dbox/oled0
                 cd /etc && etckeeper init
                 git remote add origin $GIT__URL
                 git fetch -a
