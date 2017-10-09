@@ -71,8 +71,6 @@ IMAGE_INSTALL += " \
 	oscam \
 	parted \
 	procps \
-	python \
-	python-modules \
 	rpcbind \
 	samba \
 	sed \

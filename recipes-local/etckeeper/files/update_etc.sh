@@ -1,18 +1,15 @@
 #!/bin/sh
 
-/usr/bin/findkerneldevice.py
-
-kerneldevice=$(ls -lh /dev/kernel)
-kernelpartition=$(echo $kerneldevice | cut -d"/" -f5)
+rootdevice=$(sed -e 's/^.*root=//' -e 's/ .*$//' < /proc/cmdline)
 
 
-if [ $kernelpartition = mmcblk0p2 ]; then
+if [ $rootdevice = /dev/mmcblk0p3 ]; then
         GIT__URL='/media/sda1/service/partition1/git/etc.git'
-elif [ $kernelpartition = mmcblk0p4 ]; then
+elif [ $rootdevice = /dev/mmcblk0p5 ]; then
         GIT__URL='/media/sda1/service/partition2/git/etc.git'
-elif [ $kernelpartition = mmcblk0p6 ]; then
+elif [ $rootdevice = /dev/mmcblk0p7 ]; then
         GIT__URL='/media/sda1/service/partition3/git/etc.git'
-elif [ $kernelpartition = mmcblk0p8 ]; then
+elif [ $rootdevice = /dev/mmcblk0p9 ]; then
         GIT__URL='/media/sda1/service/partition4/git/etc.git'
 fi
 
