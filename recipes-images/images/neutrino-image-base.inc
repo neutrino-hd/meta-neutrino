@@ -74,6 +74,7 @@ IMAGE_INSTALL += " \
 	rpcbind \
 	samba \
 	sed \
+	swapspace \
 	tzdata \
 	tzdata-europe \
 	udev-extraconf \

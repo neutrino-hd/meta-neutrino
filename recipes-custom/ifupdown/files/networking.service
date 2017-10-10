@@ -2,7 +2,7 @@
 Description=ifup network start
 
 [Service]
-Type=notify
+Type=oneshot
 ExecStart=/sbin/ifup -a
 
 [Install]
