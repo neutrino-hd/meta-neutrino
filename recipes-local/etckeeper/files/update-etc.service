@@ -3,7 +3,7 @@ Description=write back etckeeper remote
 Requires=create-etc.service
 
 [Service]
-Type=idle
+Type=oneshot
 ExecStart=/bin/sh /etc/etckeeper/update_etc.sh
  
 [Install]
