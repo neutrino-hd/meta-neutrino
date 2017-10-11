@@ -1,6 +1,7 @@
 [Unit]
 Description=create etc git remote for etckeeper
 After=neutrino.service
+Requires=systemd-modules-load.service 
 
 [Service]
 Type=oneshot
