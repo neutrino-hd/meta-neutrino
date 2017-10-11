@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ -e /tmp/.reboot ]; then # gets created by neutrino
+        echo "REBOOT" > /dev/dbox/olde0
+        systemctl reboot
+else
+        echo "POWER OFF" > /dev/dbox/oled0
+        systemctl poweroff
+fi

@@ -24,6 +24,7 @@ SRC_URI = " \
 	file://mount.mdev \
 	file://icons.tar.gz \
 	file://etc.tar.gz \
+	file://deepstandby.on \
 "
 
 include neutrino.inc
