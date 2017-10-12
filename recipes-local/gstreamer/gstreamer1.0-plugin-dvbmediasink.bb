@@ -9,7 +9,7 @@ RPROVIDES_${PN} = "gst-plugin-dvbmediasink"
 RREPLACES_${PN} = "gst-plugin-dvbmediasink"
 RCONFLICTS_${PN} = "gst-plugin-dvbmediasink"
 
-DEPENDS = "glib-2.0-native gstreamer1.0 gstreamer1.0-plugins-base libdca"
+DEPENDS = "glib-2.0-native gstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly libdca "
 
 GSTVERSION = "1.0"
 
@@ -35,18 +35,13 @@ PACKAGE_ARCH = "${MACHINE_ARCH}"
 EXTRA_OECONF = "--enable-silent-rules \
 				--with-spark \
 				--with-h265 \
-				--with-h264 \
-				--with-h263 \
 				--with-vb8 \
 				--with-vb9 \
 				--with-dts \
 				--with-wma \
 				--with-wmv \
 				--with-pcm \
-				--with-mp3 \
 				--with-eac3 \
-				--with-mpeg4 \
-				--with-dtsdownmix \
-				--with-mpeg4v2 \
+				--with-dts \
 				--with-gstversion=${GSTVERSION} \
 "

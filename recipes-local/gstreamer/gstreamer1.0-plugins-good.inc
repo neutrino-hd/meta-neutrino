@@ -9,7 +9,6 @@ inherit gettext
 PACKAGECONFIG ??= " \
     ${GSTREAMER_ORC} \
     ${@bb.utils.filter('DISTRO_FEATURES', 'pulseaudio x11', d)} \
-    orc flac jpeg libpng soup speex taglib wavpack vpx\
 "
 
 X11DEPENDS = "virtual/libx11 libsm libxrender libxfixes libxdamage"
@@ -33,20 +32,15 @@ PACKAGECONFIG[wavpack]    = "--enable-wavpack,--disable-wavpack,wavpack"
 PACKAGECONFIG[x11]        = "--enable-x,--disable-x,${X11DEPENDS}"
 
 EXTRA_OECONF += " \
-    --enable-bz2 \
-    --enable-oss \
-    --enable-zlib \
-    --disable-aalib \
-    --disable-aalibtest \
-    --disable-directsound \
-    --disable-libcaca \
-    --disable-libdv \
-    --disable-oss4 \
-    --disable-osx_audio \
-    --disable-osx_video \
-    --disable-shout2 \
-    --disable-sunaudio \
-    --disable-waveform \
+            --enable-silent-rules \
+            --enable-oss \
+            --enable-gst_v4l2 \
+            --without-libv4l2 \
+            --disable-examples \
+            --disable-debug \
+            --disable-gtk-doc \
+            --disable-gtk-doc-html \
+            --disable-gtk-doc-pdf \
 "
 
 FILES_${PN}-equalizer += "${datadir}/gstreamer-1.0/presets/*.prs"

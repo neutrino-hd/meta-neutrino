@@ -12,7 +12,7 @@ inherit autotools pkgconfig upstream-version-is-even gtk-doc
 # CAUTION: Using the system libav is not recommended. Since the libav API is changing all the time,
 # compilation errors (and other, more subtle bugs) can happen. It is usually better to rely on the
 # libav copy included in the gst-libav package.
-PACKAGECONFIG ??= "orc yasm"
+PACKAGECONFIG ??= "orc gpl"
 
 PACKAGECONFIG[gpl] = "--enable-gpl,--disable-gpl,"
 PACKAGECONFIG[libav] = "--with-system-libav,,libav"
@@ -28,7 +28,30 @@ LIBAV_EXTRA_CONFIGURE_COMMON_ARG = "--target-os=linux \
   --cc='${CC}' --as='${CC}' --ld='${CC}' --nm='${NM}' --ar='${AR}' \
   --ranlib='${RANLIB}' \
   ${GSTREAMER_1_0_DEBUG} \
-  --cross-prefix='${HOST_PREFIX}'"
+  --cross-prefix='${HOST_PREFIX}'
+  --enable-pic \
+  --disable-protocols \
+  --disable-devices \
+  --disable-network \
+  --disable-hwaccels \
+  --disable-filters \
+  --disable-doc \
+  --enable-optimizations \
+  \
+  --disable-muxers \
+  --disable-encoders \
+  --disable-decoders \
+  --enable-decoder=vorbis \
+  --enable-decoder=flac \
+  \
+  --disable-demuxers \
+  --enable-demuxer=ogg \
+  --enable-demuxer=flac \
+  --enable-demuxer=mpegts \
+  \
+  --disable-bsfs \
+  --enable-pthreads"
+  "
 
 # Disable assembly optimizations for X32, as this libav lacks the support
 PACKAGECONFIG_remove_linux-gnux32 = "yasm"

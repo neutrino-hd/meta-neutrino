@@ -9,8 +9,6 @@ inherit gettext
 
 PACKAGECONFIG ??= " \
     ${GSTREAMER_ORC} \
-    orc a52dec lame mpeg2dec \
-    cdio dvdread amrnb amrwb mpg123\
 "
 
 PACKAGECONFIG[a52dec]   = "--enable-a52dec,--disable-a52dec,liba52"
@@ -24,8 +22,14 @@ PACKAGECONFIG[mpg123]   = "--enable-mpg123,--disable-mpg123,mpg123"
 PACKAGECONFIG[x264]     = "--enable-x264,--disable-x264,x264"
 
 EXTRA_OECONF += " \
-    --disable-sidplay \
-    --disable-twolame \
+			--disable-amrnb \
+			--disable-amrwb \
+			--disable-sidplay \
+			--disable-twolame \
+			--disable-debug \
+			--disable-gtk-doc \
+			--disable-gtk-doc-html \
+			--disable-gtk-doc-pdf \
 "
 
 FILES_${PN}-amrnb += "${datadir}/gstreamer-1.0/presets/GstAmrnbEnc.prs"

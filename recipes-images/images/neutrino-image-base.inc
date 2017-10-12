@@ -35,13 +35,14 @@ IMAGE_INSTALL += " \
 	glibc-binary-localedata-de-de \
 	glibc-gconvs \
 	glibc-localedatas \
-	gstreamer1.0-plugins-good-meta \
-	gstreamer1.0-plugins-bad-meta \
-	gstreamer1.0-plugins-ugly-meta \
-	gstreamer1.0-plugins-base-meta \
 	gstreamer1.0 \
-	gstreamer1.0-plugin-dvbmediasink \
 	gstreamer1.0-libav \
+	gstreamer1.0-plugins-good \
+	gstreamer1.0-plugins-bad \
+	gstreamer1.0-plugins-ugly \
+	gstreamer1.0-plugins-base \
+	gstreamer1.0-plugin-dvbmediasink \
+	gstreamer1.0-plugin-subsink \
 	gzip \
 	hdparm \
 	image-config \

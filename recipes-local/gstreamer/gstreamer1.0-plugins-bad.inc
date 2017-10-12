@@ -22,7 +22,7 @@ PACKAGECONFIG ??= " \
     ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', 'bluez', '', d)} \
     ${@bb.utils.filter('DISTRO_FEATURES', 'directfb vulkan', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland egl', '', d)} \
-    orc bz2 curl dash dtls hls neon rsvg sbc smoothstreaming sndfile uvch264 webp libmms rtmp faac faad opusparse \
+    orc curl \
 "
 
 PACKAGECONFIG[assrender]       = "--enable-assrender,--disable-assrender,libass"
@@ -80,13 +80,12 @@ PACKAGECONFIG[webp]            = "--enable-webp,--disable-webp,libwebp"
 # in a gstreamer1.0-plugins-bad bbappend).
 
 EXTRA_OECONF += " \
-    --enable-decklink \
     --enable-dvb \
-    --enable-fbdev \
-    --enable-netsim \
-    --enable-mpegdemux \
     --enable-shm \
-    --enable-vcd \
+    --enable-fbdev \
+    --enable-decklink \
+    --enable-dts \
+    --enable-mpegdemux \
     --disable-acm \
     --disable-android_media \
     --disable-apple_media \
@@ -104,7 +103,7 @@ EXTRA_OECONF += " \
     --disable-iqa \
     --disable-kate \
     --disable-ladspa \
-    --enable-libde265 \
+    --disable-libde265 \
     --disable-lv2 \
     --disable-mpeg2enc \
     --disable-mplex \
