@@ -13,5 +13,5 @@ S = "${WORKDIR}/"
 
 do_install () {
 	install -d ${D}/etc/neutrino/plugins
-	install -m 644 ${S}/start* ${D}/etc/neutrino/plugins
+	install -m 644 ${S}/stb* ${D}/etc/neutrino/plugins
 }

@@ -28,7 +28,7 @@ LIBAV_EXTRA_CONFIGURE_COMMON_ARG = "--target-os=linux \
   --cc='${CC}' --as='${CC}' --ld='${CC}' --nm='${NM}' --ar='${AR}' \
   --ranlib='${RANLIB}' \
   ${GSTREAMER_1_0_DEBUG} \
-  --cross-prefix='${HOST_PREFIX}'
+  --cross-prefix='${HOST_PREFIX}' \
   --enable-pic \
   --disable-protocols \
   --disable-devices \
@@ -50,7 +50,7 @@ LIBAV_EXTRA_CONFIGURE_COMMON_ARG = "--target-os=linux \
   --enable-demuxer=mpegts \
   \
   --disable-bsfs \
-  --enable-pthreads"
+  --enable-pthreads \
   "
 
 # Disable assembly optimizations for X32, as this libav lacks the support
