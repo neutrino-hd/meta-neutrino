@@ -22,7 +22,7 @@ PACKAGECONFIG ??= " \
     ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', 'bluez', '', d)} \
     ${@bb.utils.filter('DISTRO_FEATURES', 'directfb vulkan', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'wayland egl', '', d)} \
-    orc curl \
+    orc curl dash dtls faac faad hls libmms libssh2 modplug neon openal opusparse rtmp uvch264 \
 "
 
 PACKAGECONFIG[assrender]       = "--enable-assrender,--disable-assrender,libass"
@@ -89,21 +89,21 @@ EXTRA_OECONF += " \
     --disable-acm \
     --disable-android_media \
     --disable-apple_media \
-    --disable-avc \
+    --enable-avc \
     --disable-bs2b \
     --disable-chromaprint \
     --disable-cocoa \
     --disable-daala \
     --disable-direct3d \
     --disable-directsound \
-    --disable-dts \
-    --disable-fdk_aac \
+    --enable-dts \
+    --enable-fdk_aac \
     --disable-gme \
     --disable-gsm \
     --disable-iqa \
     --disable-kate \
     --disable-ladspa \
-    --disable-libde265 \
+    --enable-libde265 \
     --disable-lv2 \
     --disable-mpeg2enc \
     --disable-mplex \
@@ -112,7 +112,7 @@ EXTRA_OECONF += " \
     --disable-nvenc \
     --disable-ofa \
     --disable-openexr \
-    --disable-openh264 \
+    --enable-openh264 \
     --disable-openni2 \
     --disable-opensles \
     --disable-qt \
@@ -127,7 +127,7 @@ EXTRA_OECONF += " \
     --disable-wildmidi \
     --disable-winks \
     --disable-winscreencap \
-    --disable-x265 \
+    --enable-x265 \
     --disable-zbar \
     ${@bb.utils.contains("TUNE_FEATURES", "mx32", "--disable-yadif", "", d)} \
 "
