@@ -2,14 +2,17 @@ require gstreamer1.0-plugins.inc
 
 LICENSE = "GPLv2+ & LGPLv2.1+"
 
-DEPENDS += "gstreamer1.0-plugins-base libcap zlib bzip2"
+# libid3tag
+DEPENDS += "gstreamer1.0-plugins-base zlib bzip2 libcap"
 
 inherit gettext
 
+#cairo gdk-pixbuf gudev v4l2
 PACKAGECONFIG ??= " \
-    ${GSTREAMER_ORC} \
-    ${@bb.utils.filter('DISTRO_FEATURES', 'pulseaudio x11', d)} \
-"
+    ${@bb.utils.contains('DISTRO_FEATURES', 'pulseaudio', 'pulseaudio', '', d)} \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'x11', '', d)} \
+    orc flac jpeg libpng soup speex taglib vpx wavpack libv4l2 v4l2 \
+    "
 
 X11DEPENDS = "virtual/libx11 libsm libxrender libxfixes libxdamage"
 
@@ -32,15 +35,27 @@ PACKAGECONFIG[wavpack]    = "--enable-wavpack,--disable-wavpack,wavpack"
 PACKAGECONFIG[x11]        = "--enable-x,--disable-x,${X11DEPENDS}"
 
 EXTRA_OECONF += " \
-            --enable-silent-rules \
-            --enable-oss \
-            --enable-gst_v4l2 \
-            --without-libv4l2 \
-            --disable-examples \
-            --disable-debug \
-            --disable-gtk-doc \
-            --disable-gtk-doc-html \
-            --disable-gtk-doc-pdf \
+    --enable-oss \
+    --enable-zlib \
+    --enable-bz2 \
+    --disable-directsound \
+    --disable-waveform \
+    --disable-oss4 \
+    --disable-sunaudio \
+    --disable-osx_audio \
+    --disable-osx_video \
+    --disable-aalib \
+    --disable-aalibtest \
+    --disable-libcaca \
+    --disable-libdv \
+    --disable-shout2 \
+    --disable-examples \
 "
 
 FILES_${PN}-equalizer += "${datadir}/gstreamer-1.0/presets/*.prs"
+
+PACKAGESPLITFUNCS_append = " handle_soup_rename "
+
+python handle_soup_rename () {
+    d.setVar('RREPLACES_gstreamer1.0-plugins-good-soup', 'gstreamer1.0-plugins-good-souphttpsrc')
+}

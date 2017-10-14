@@ -9,15 +9,15 @@ RPROVIDES_${PN} = "gst-plugin-dvbmediasink"
 RREPLACES_${PN} = "gst-plugin-dvbmediasink"
 RCONFLICTS_${PN} = "gst-plugin-dvbmediasink"
 
-DEPENDS = "glib-2.0-native gstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly libdca "
+DEPENDS = "glib-2.0-native gstreamer1.0 gstreamer1.0-plugins-base libdca"
 
 GSTVERSION = "1.0"
 
 SRC_URI = "git://github.com/OpenPLi/gst-plugin-dvbmediasink.git;branch=gst-1.0"
 
 S = "${WORKDIR}/git"
-
 SRCREV = "${AUTOREV}"
+
 inherit gitpkgv
 
 PV = "${GSTVERSION}+git${SRCPV}"
@@ -32,16 +32,18 @@ FILES_${PN}-dbg += "${libdir}/gstreamer-${GSTVERSION}/.debug"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
-EXTRA_OECONF = "--enable-silent-rules \
-				--with-spark \
-				--with-h265 \
-				--with-vb8 \
-				--with-vb9 \
-				--with-dts \
-				--with-wma \
-				--with-wmv \
-				--with-pcm \
-				--with-eac3 \
-				--with-dts \
-				--with-gstversion=${GSTVERSION} \
+DVBMEDIASINK_CONFIG = "--enable-silent-rules \
+					   --with-spark \
+					   --with-h265 \
+					   --with-vb8 \
+					   --with-vb9 \
+					   --with-dts \
+					   --with-wma \
+					   --with-wmv \
+					   --with-pcm \
+					   --with-eac3 \
+					   --with-dts \
 "
+
+
+EXTRA_OECONF = "${DVBMEDIASINK_CONFIG} --with-gstversion=${GSTVERSION}"

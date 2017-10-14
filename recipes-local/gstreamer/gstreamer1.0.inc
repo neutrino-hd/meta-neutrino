@@ -6,17 +6,13 @@ BUGTRACKER = "https://bugzilla.gnome.org/enter_bug.cgi?product=Gstreamer"
 SECTION = "multimedia"
 LICENSE = "LGPLv2+"
 
-DEPENDS = "glib-2.0 glib-2.0-native libcap libxml2 bison-native flex-native"
+DEPENDS = "glib-2.0 glib-2.0-native libcap libxml2 bison-native flex-native elfutils"
 
 inherit autotools pkgconfig gettext upstream-version-is-even gobject-introspection gtk-doc
 
 # This way common/m4/introspection.m4 will come first
 # (it has a custom INTROSPECTION_INIT macro, and so must be used instead of our common introspection.m4 file)
 acpaths = "-I ${S}/common/m4 -I ${S}/m4"
-
-SRC_URI_append = " \
-    file://0001-introspection.m4-prefix-pkgconfig-paths-with-PKG_CON.patch \
-"
 
 PACKAGECONFIG ??= ""
 
@@ -25,7 +21,6 @@ PACKAGECONFIG[tests] = "--enable-tests,--disable-tests"
 PACKAGECONFIG[valgrind] = "--enable-valgrind,--disable-valgrind,valgrind,"
 PACKAGECONFIG[gst-tracer-hooks] = "--enable-gst-tracer-hooks,--disable-gst-tracer-hooks,"
 PACKAGECONFIG[unwind] = "--with-unwind,--without-unwind,libunwind"
-PACKAGECONFIG[dw] = "--with-dw,--without-dw,elfutils"
 
 EXTRA_OECONF = " \
     --disable-dependency-tracking \

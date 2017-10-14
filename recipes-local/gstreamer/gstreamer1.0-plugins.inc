@@ -46,6 +46,6 @@ patch_gtk_doc_makefiles() {
            ${S}/common/gtk-doc*mak
 }
 
-do_configure[prefuncs] += " delete_pkg_m4_file patch_gtk_doc_makefiles"
+do_configure[prefuncs] += " delete_pkg_m4_file patch_gtk_doc_makefiles "
 
 PACKAGES_DYNAMIC = "^${PN}-.*"
