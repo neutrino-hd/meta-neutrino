@@ -67,6 +67,7 @@ EXTRA_FFCONF = " \
     --enable-muxer=mpegts \
     --enable-encoders \
     --enable-encoder=mpeg1video \
+    --enable-encoder=mpeg2video \
     --enable-encoder=png \
     --enable-encoder=libx264 \
     --enable-encoder=ljpeg \
@@ -254,6 +255,7 @@ EXTRA_FFCONF = " \
     --enable-demuxer=matroska \
     --enable-demuxer=mp4 \
     --enable-demuxer=h264 \
+    --enable-demuxer=mjpeg \
     --enable-demuxer=mpegvideo \
     --enable-parser=h264 \
     --enable-parser=mjpeg \

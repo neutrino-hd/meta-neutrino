@@ -49,6 +49,7 @@ IMAGE_INSTALL += " \
 	ifupdown \
 	kernel-modules \
 	libevent \
+	libswscale \
 	libusb1 \
 	localedef \
 	mc \
