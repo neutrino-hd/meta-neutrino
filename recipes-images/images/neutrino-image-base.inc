@@ -24,6 +24,10 @@ IMAGE_INSTALL += " \
 	bzip2 \
 	cifs-utils \
 	dosfstools \
+	e2fsprogs-e2fsck \
+	e2fsprogs-mke2fs \
+	e2fsprogs-tune2fs \
+	e2fsprogs-badblocks \
 	etckeeper \
 	gstreamer1.0 \
 	gstreamer1.0-plugins-good \
