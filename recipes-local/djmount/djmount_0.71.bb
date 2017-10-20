@@ -8,7 +8,7 @@ PR = "2"
 INITSCRIPT_NAME = "djmount"
 INITSCRIPT_PARAMS = "defaults"
 
-inherit autotools update-rc.d pkgconfig
+inherit autotools pkgconfig
 
 EXTRA_OECONF = "--with-external-libupnp"
 
@@ -26,10 +26,4 @@ SRC_URI[sha256sum] = "aa5bb482af4cbd42695a7e396043d47b53d075ac2f6aa18a8f8e11383c
 
 do_configure_prepend() {
     cp ${STAGING_DATADIR_NATIVE}/gettext/config.rpath ${S}/libupnp/config.aux/config.rpath
-}
-
-do_install_append () {
-    install -d ${D}${sysconfdir}/init.d
-    install -m 0755 ${WORKDIR}/init ${D}/etc/init.d/djmount
-    update-rc.d -r ${D} djmount start 99 2 3 4 5 .
 }

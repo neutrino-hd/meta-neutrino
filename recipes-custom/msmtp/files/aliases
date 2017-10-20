@@ -1,7 +1,0 @@
-# Example aliases file
-     
-# Send root to:
-root: MAIL
-   
-# Send everything else to admin
-default: MAIL

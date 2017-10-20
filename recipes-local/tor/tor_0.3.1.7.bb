@@ -24,6 +24,7 @@ do_install_append() {
 	install ${WORKDIR}/tsocks.conf ${D}${sysconfdir}/tor/tor-tsocks.conf
 }
 
-SRC_URI[md5sum] = "cc19107b57136a68e8c563bf2d35b072"
-SRC_URI[sha256sum] = "493a8679f904503048114aca6467faef56861206bab8283d858f37141d95105d"
+SRC_URI[md5sum] = "ec7c9f588c9e1a42c09bcc097a1e55eb"
+SRC_URI[sha256sum] = "1df5dd4894bb2f5e0dc96c466955146353cf33ac50cd997cfc1b28ea3ed9c08f"
+
 
