@@ -106,7 +106,7 @@ def get_git_pkgv(d, use_tags):
                     try:
                         output = bb.fetch2.runfetchcmd(
                             "cd %(repodir)s && "
-                            "git describe %(rev)s 2>/dev/null" % vars,
+                            "git describe --tags 2>/dev/null" % vars,
                             d, quiet=True).strip()
                         ver = gitpkgv_drop_tag_prefix(output)
                     except Exception:

@@ -23,39 +23,21 @@ IMAGE_INSTALL += " \
 	bash \
 	bzip2 \
 	cifs-utils \
-	coreutils \
 	dosfstools \
-	e2fsprogs-e2fsck \
-	e2fsprogs-mke2fs \
-	e2fsprogs-tune2fs \
 	etckeeper \
-	exfat-utils \
-	gawk \
-	glibc-charmaps \
-	glibc-binary-localedata-de-de \
-	glibc-gconvs \
-	glibc-localedatas \
 	gstreamer1.0 \
 	gstreamer1.0-plugins-good \
 	gstreamer1.0-plugins-bad \
 	gstreamer1.0-plugins-ugly \
 	gstreamer1.0-plugins-base \
 	gstreamer1.0-plugin-dvbmediasink \
-	gstreamer1.0-plugin-subsink \
 	gzip \
 	hdparm \
 	image-config \
-	inotify-tools \
 	ifupdown \
 	kernel-modules \
-	libevent \
 	libswscale \
 	libusb1 \
-	localedef \
-	mc \
-	mc-fish \
-	mc-helpers \
-	mc-helpers-perl \
 	minidlna \
 	nano \
 	neutrino-plugin-logo \
@@ -70,20 +52,15 @@ IMAGE_INSTALL += " \
 	openssl \
 	opkg \
 	oscam \
-	parted \
 	procps \
 	rpcbind \
 	samba \
-	sed \
 	swapspace \
 	tzdata \
 	tzdata-europe \
 	udev-extraconf \
 	udpxy \
 	usbutils \
-	util-linux \
-	util-linux-agetty \
-	util-linux-blkid \
 	virtual/libstb-hal \
 	virtual/dvb-driver \
 	virtual/screengrabber \
@@ -91,11 +68,5 @@ IMAGE_INSTALL += " \
 	wpa-supplicant \
 	xupnpd \
 "
-    
-RDEPENDS_${PN}_append_libc_glibc += "kbd-locale-de"
 
 EXTRAOPKGCONFIG = "neutrino-feed-config"
-
-
-
-

@@ -34,14 +34,13 @@ ARM_INSTRUCTION_SET = "arm"
 
 # Should be API compatible with libav (which was a fork of ffmpeg)
 # libpostproc was previously packaged from a separate recipe
-PROVIDES = "libav libpostproc"
+PROVIDES = "libav"
 
-DEPENDS = "alsa-lib zlib libogg yasm-native"
+DEPENDS = "alsa-lib zlib libogg yasm-native libass libbluray rtmpdump"
 
 inherit autotools pkgconfig
 
-PACKAGECONFIG ??= "avdevice avfilter avcodec avformat swresample swscale postproc \
-                   bzlib gpl lzma theora x264 \
+PACKAGECONFIG ??= "avdevice avfilter avcodec avformat swresample swscale \
                    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xv', '', d)}"
 
 # libraries to build in addition to avutil
@@ -108,7 +107,115 @@ EXTRA_OECONF = " \
     --cpu=${@cpu(d)} \
 "
 
-EXTRA_OECONF_append_linux-gnux32 = " --disable-asm"
+EXTRA_OECONF_append += "--disable-doc \
+            --disable-htmlpages \
+            --disable-manpages \
+            --disable-podpages \
+            --disable-txtpages \
+            \
+            --disable-ffplay \
+            --disable-ffserver \
+            --disable-ffprobe \
+            \
+            --disable-altivec \
+            --disable-mmx \
+            \
+            --disable-parsers \
+                --enable-parser=aac \
+                --enable-parser=aac_latm \
+                --enable-parser=ac3 \
+                --enable-parser=dca \
+                --enable-parser=dvbsub \
+                --enable-parser=dvdsub \
+                --enable-parser=flac \
+                --enable-parser=h264 \
+                --enable-parser=mjpeg \
+                --enable-parser=mpeg4video \
+                --enable-parser=mpegaudio \
+                --enable-parser=mpegvideo \
+                --enable-parser=vc1 \
+                --enable-parser=vorbis \
+            \
+            --disable-decoders \
+                --enable-decoder=aac \
+                --enable-decoder=ass \
+                --enable-decoder=dca \
+                --enable-decoder=dvbsub \
+                --enable-decoder=dvdsub \
+                --enable-decoder=flac \
+                --enable-decoder=mjpeg \
+                --enable-decoder=movtext \
+                --enable-decoder=mp3 \
+                --enable-decoder=pcm_s16le \
+                --enable-decoder=pcm_s16le_planar \
+                --enable-decoder=pgssub \
+                --enable-decoder=srt \
+                --enable-decoder=subrip \
+                --enable-decoder=subviewer \
+                --enable-decoder=subviewer1 \
+                --enable-decoder=ssa \
+                --enable-decoder=text \
+                --enable-decoder=vorbis \
+                --enable-decoder=xsub \
+            \
+            --disable-encoders \
+            \
+            --disable-demuxers \
+                --enable-demuxer=aac \
+                --enable-demuxer=ass \
+                --enable-demuxer=ac3 \
+                --enable-demuxer=avi \
+                --enable-demuxer=dts \
+                --enable-demuxer=flac \
+                --enable-demuxer=flv \
+                --enable-demuxer=hds \
+                --enable-demuxer=hls \
+                --enable-demuxer=matroska \
+                --enable-demuxer=mov \
+                --enable-demuxer=mp3 \
+                --enable-demuxer=mpegps \
+                --enable-demuxer=mpegts \
+                --enable-demuxer=mpegtsraw \
+                --enable-demuxer=mpegvideo \
+                --enable-demuxer=mjpeg \
+                --enable-demuxer=ogg \
+                --enable-demuxer=pcm_s16be \
+                --enable-demuxer=pcm_s16le \
+                --enable-demuxer=rm \
+                --enable-demuxer=rtsp \
+                --enable-demuxer=srt \
+                --enable-demuxer=vc1 \
+                --enable-demuxer=wav \
+            \
+            --disable-muxers \
+                --enable-muxer=mpegts \
+            \
+            --disable-filters \
+            \
+            --disable-devices \
+            \
+            --disable-extra-warnings \
+            --disable-postproc \
+            \
+            --enable-bsfs \
+            --enable-libass \
+            --enable-libbluray \
+            --enable-librtmp \
+            --enable-network \
+            --enable-nonfree \
+            --enable-openssl \
+            --enable-swresample \
+            \
+            --disable-debug \
+            --enable-cross-compile \
+            --disable-static \
+            --enable-shared \
+            \
+            --enable-encoder=mpeg2video \
+            --enable-muxer=mpeg2video \
+            --enable-filter=scale \
+            --enable-hardcoded-tables \
+"
 
 do_configure() {
     ${S}/configure ${EXTRA_OECONF}

@@ -3,8 +3,7 @@
 
 PATH="/usr/local/bin:/usr/bin:/bin"
 EDITOR="/usr/bin/nano"			# needed for packages like cron
-export LANG=de_DE
-export LC_ALL=de_DE
+
 export TERM=xterm
 test -z "$TERM" && TERM="vt100"	# Basic terminal capab. For screen etc.
 
