@@ -11,6 +11,7 @@ RDEPENDS_${PN} = "lua-json luaposix"
 PV = "0.12"
 
 SRC_URI = "git://git.tuxcode.de/mediathek-luaV2.git;branch=master;protocol=https \
+		   file://0001-Makefile-add-dummy-clean-target.patch \
 "
 SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git"
@@ -18,7 +19,7 @@ S = "${WORKDIR}/git"
 do_install () {
 	install -d ${D}/etc/neutrino/plugins ${D}/usr/share
 	cp -rf ${S}/share ${D}/usr/
-        cp -rf ${S}/coolithek* ${D}/etc/neutrino/plugins
+    cp -rf ${S}/coolithek* ${D}/etc/neutrino/plugins
 }
 
 FILES_${PN} += "/usr/share/*"

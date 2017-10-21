@@ -8,9 +8,7 @@ S = "${WORKDIR}"
 
 PR = "r1"
 
-SRC_URI = "file://rockpalast.cfg \
-	   file://rockpalast.lua \
-	   file://rockpalast_hint.png \
+SRC_URI = "file://rockpalast.tar.gz \
 	   file://license \
 "
 

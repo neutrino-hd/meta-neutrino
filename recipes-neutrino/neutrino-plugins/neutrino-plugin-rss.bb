@@ -13,7 +13,7 @@ PR = "1"
 SRC_URI = "file://rss.tar.gz \
 "
 
-S = "${WORKDIR}/"
+S = "${WORKDIR}"
 
 do_install () {
 	install -d ${D}/etc/neutrino/plugins/rss_addon ${D}/etc/neutrino/config

@@ -8,19 +8,16 @@ DEPENDS = "lua"
 PV = "0.23"
 PR = "1"
 
-SRC_URI = "file://LocalTV.cfg \
-	   file://LocalTV.lua \
-	   file://LocalTV_hint.png \
+SRC_URI = "file://localtv.tar.gz \
 "
 
-S = "${WORKDIR}/"
+S = "${WORKDIR}"
 
 do_install () {
 	install -d ${D}/etc/neutrino/plugins 
-	install -m 644 ${S}/LocalTV.lua ${D}/etc/neutrino/plugins
-	install -m 644 ${S}/LocalTV.cfg ${D}/etc/neutrino/plugins
-	install -m 644 ${S}/LocalTV_hint.png ${D}/etc/neutrino/plugins
-
+	install -m 644 ${WORKDIR}/LocalTV.lua ${D}/etc/neutrino/plugins
+	install -m 644 ${WORKDIR}/LocalTV.cfg ${D}/etc/neutrino/plugins
+	install -m 644 ${WORKDIR}/LocalTV_hint.png ${D}/etc/neutrino/plugins
 }
 
 
