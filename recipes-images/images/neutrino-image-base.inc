@@ -65,6 +65,7 @@ IMAGE_INSTALL += " \
 	udev-extraconf \
 	udpxy \
 	usbutils \
+	util-linux-blkid \
 	virtual/libstb-hal \
 	virtual/dvb-driver \
 	virtual/screengrabber \
