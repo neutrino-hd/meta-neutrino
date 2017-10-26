@@ -22,6 +22,7 @@ IMAGE_INSTALL += " \
 	autofs \
 	bash \
 	bzip2 \
+	ca-certificates \
 	cifs-utils \
 	dosfstools \
 	e2fsprogs-e2fsck \
@@ -35,6 +36,7 @@ IMAGE_INSTALL += " \
 	gstreamer1.0-plugins-ugly \
 	gstreamer1.0-plugins-base \
 	gstreamer1.0-plugin-dvbmediasink \
+	gstreamer1.0-plugin-subsink \
 	gzip \
 	hdparm \
 	image-config \
