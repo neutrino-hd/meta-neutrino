@@ -22,7 +22,6 @@ SRC_URI = " \
 	file://pre-wlan0.sh \
 	file://post-wlan0.sh \
 	file://mount.mdev \
-	file://icons.tar.gz \
 	file://etc.tar.gz \
 	file://deepstandby.on \
 "

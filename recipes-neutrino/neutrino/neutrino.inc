@@ -107,7 +107,6 @@ do_install_append() {
 	install -d ${D}/share ${D}${sysconfdir}/neutrino/bin ${D}${sysconfdir}/neutrino/plugins/luaplugins ${D}${sysconfdir}/neutrino/plugins/webtv
 	ln -s ${datadir}/tuxbox ${D}/share/
 	ln -s ${datadir}/fonts  ${D}/share/
-	install -m 644 ${WORKDIR}/icons/* ${D}/usr/share/tuxbox/neutrino/icons/
 	if [ ! -z ${RELEASE_TEXT_LOCATION} ];then
 		echo "${RELEASE_TEXT_LOCATION}" > ${D}/etc/update.urls
 	fi
