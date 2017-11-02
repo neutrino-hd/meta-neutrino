@@ -9,7 +9,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
 
 SRC_URI="git://git.xiph.org/libao.git;tag=1.2.2;protocol=https"
 
-DEPENDS = "pulseaudio alsa-lib"
+DEPENDS = "alsa-lib"
 
 S = "${WORKDIR}/git"
 
