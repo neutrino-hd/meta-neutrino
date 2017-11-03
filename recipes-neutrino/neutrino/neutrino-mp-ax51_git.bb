@@ -12,7 +12,6 @@ PKGV = "${GITPKGVTAG}"
 PATCHTOOL = "git"
 
 SRC_URI = " \
-	file://0007-imageinfo.cpp-change-version-output.patch \
 	file://neutrino.ttf \
 	file://neutrino.service \
 	file://neutrino.sh \
