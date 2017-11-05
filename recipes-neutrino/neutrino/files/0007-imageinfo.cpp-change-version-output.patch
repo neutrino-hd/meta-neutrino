@@ -18,7 +18,7 @@ index 5964199..4f45e6d 100644
  	v_info.push_back(imagename);
 -	image_info_t version	= {LOCALE_IMAGEINFO_VERSION,	version_string};
 +//	image_info_t version	= {LOCALE_IMAGEINFO_VERSION,	version_string};
-+	image_info_t version	= {LOCALE_IMAGEINFO_VERSION,	config.getString("poky", "n/a")};
++	image_info_t version	= {LOCALE_IMAGEINFO_VERSION,	config.getString("version", "2.4")};
  	v_info.push_back(version);
  #ifdef VCS
  	image_info_t vcs	= {LOCALE_IMAGEINFO_VCS,	VCS};

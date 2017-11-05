@@ -99,10 +99,10 @@ do_install_prepend () {
 	install -d ${D}${localstatedir}/cache
 	install -d ${D}/lib/mdev/fs
 	install -m 755 ${WORKDIR}/mount.mdev ${D}/lib/mdev/fs/mount
-	echo "version=${DISTRO_VERSION}  `date +%Y-%m-%d` `date +%H:%M`"    > ${D}/.version  
 	echo "creator=${CREATOR}"             >> ${D}/.version 
 	echo "imagename=Neutrino-MP"             >> ${D}/.version 
 	echo "homepage=${HOMEPAGE}"              >> ${D}/.version
+        echo "version=${DISTRO_VERSION} ${DISTRO_VERSION_NUMBER}  `date +%Y-%m-%d` `date +%H:%M`"    > ${D}/.version
 	if [ ! -z ${RELEASE_TEXT_LOCATION_HOST} ];then
 		HASH=$(cd ${S} && echo `git rev-parse --abbrev-ref HEAD` `git describe --always --tags --dirty`)
 		echo "${IMAGE_LOCATION} ${RELEASE_STATE}${DISTRO_VERSION_NUMBER_MAJOR}${DISTRO_VERSION_NUMBER_MINOR}"0"`date +%Y%m%d%H%M` MD5 ${HASH} ${DISTRO_VERSION}" > ${RELEASE_TEXT_LOCATION_HOST}
