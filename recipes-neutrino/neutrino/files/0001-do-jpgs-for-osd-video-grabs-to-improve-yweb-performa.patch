@@ -16,8 +16,8 @@ index 5d57d6387..42fa335cc 100644
  	if ("{=var-get:grab=}" != "")
  	{
  		if (enableOSD == 1 && enableVideo == 1)
--			dbox_exec_tools("fbshot grab -p /tmp/"+filename+".png");
-+			dbox_exec_tools("fbshot grab -p -j 85 /tmp/"+filename+".png");
+-			dbox_exec_tools("fbshot grab -q -p /tmp/"+filename+".png");
++			dbox_exec_tools("fbshot grab -q -p -j 85 /tmp/"+filename+".png");
  		else if (enableOSD == 1)
  			dbox_exec_tools("fbshot grab -p -o /tmp/"+filename+".png");
  		else if (enableVideo == 1)
