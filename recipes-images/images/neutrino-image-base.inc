@@ -41,7 +41,6 @@ IMAGE_INSTALL += " \
 	hdparm \
 	image-config \
 	ifupdown \
-	kernel-modules \
 	libswscale \
 	libusb1 \
 	minidlna \
