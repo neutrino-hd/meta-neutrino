@@ -72,11 +72,11 @@ index 8733a85..a9ea8b0 100755
 -
 +	ignore "/*"
 +	ignore "!.gitignore"
-+	ignore "!neutrino/"
++	ignore "!neutrino/config"
 +	ignore "!network/"
 +	ignore "!auto.*"
 + 	ignore "!.etckeeper"
-+        ignore "!minidlna.conf"
++       ignore "!minidlna.conf"
 +	ignore "!resolv.conf"
  	nl
  	comment "end section $managed_by_etckeeper"
