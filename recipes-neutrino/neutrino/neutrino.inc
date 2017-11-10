@@ -128,6 +128,9 @@ FILES_${PN} += "\
 	/lib \
 "
 
+systemd_prerm() {
+}
+
 pkg_postinst_${PN} () {
 	update-alternatives --install /bin/backup.sh backup.sh /usr/bin/backup.sh 100
 	update-alternatives --install /bin/install.sh install.sh /usr/bin/install.sh 100
