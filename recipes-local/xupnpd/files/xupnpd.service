@@ -1,16 +1,17 @@
-
 [Unit]
-Description=xupnpd server
-After=network.target
+Description=eXtensible UPnP agent
+After=networking.service neutrino.service
+Wants=udpxy.service
 
 [Service]
-Type=forking
+ExecStart=/bin/sh -c '/usr/bin/xupnpd > /var/log/xupnpd.log'
 PIDFile=/var/run/xupnpd.pid
-ExecStart=/usr/bin/xupnpd
-ProtectSystem=full
-ProtectHome=on
-PrivateDevices=on
-NoNewPrivileges=on
+ExecStop=/bin/kill -TERM $MAINPID
+TimeoutStopSec=3
+Restart=always
+RestartSec=2
+StartLimitInterval=0
 
 [Install]
 WantedBy=multi-user.target
+
