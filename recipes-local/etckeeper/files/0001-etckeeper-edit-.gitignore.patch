@@ -1,18 +1,18 @@
-From f2ae86cdb303d4fe190b77e4277f598d765f4c83 Mon Sep 17 00:00:00 2001
-From: flk <f_l_k@t-online.de>
-Date: Wed, 15 Feb 2017 12:27:57 +0100
-Subject: [PATCH] fix
+From eaa695cb9123b6a9abce721f4fb80322bba43893 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sat, 11 Nov 2017 14:33:49 +0100
+Subject: [PATCH] etckeeper: edit .gitignore
 
-Signed-off-by: flk <f_l_k@t-online.de>
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
 ---
- update-ignore.d/01update-ignore | 62 ++++++-----------------------------------
- 1 file changed, 8 insertions(+), 54 deletions(-)
+ update-ignore.d/01update-ignore | 64 +++++++----------------------------------
+ 1 file changed, 10 insertions(+), 54 deletions(-)
 
 diff --git a/update-ignore.d/01update-ignore b/update-ignore.d/01update-ignore
-index 8733a85..a9ea8b0 100755
+index 8733a85..9a89299 100755
 --- a/update-ignore.d/01update-ignore
 +++ b/update-ignore.d/01update-ignore
-@@ -105,60 +105,14 @@ writefile () {
+@@ -105,60 +105,16 @@ writefile () {
  		nl
  	fi
  	
@@ -70,17 +70,19 @@ index 8733a85..a9ea8b0 100755
 -	ignore "#*#"
 -	ignore DEADJOE
 -
-+	ignore "/*"
-+	ignore "!.gitignore"
-+	ignore "!neutrino/config"
-+	ignore "!network/"
-+	ignore "!auto.*"
-+ 	ignore "!.etckeeper"
-+       ignore "!minidlna.conf"
-+	ignore "!resolv.conf"
++	/*
++	!.gitignore
++	!neutrino/
++	/neutrino/*
++	!/neutrino/config
++	!network/
++	!auto.*
++	!.etckeeper
++	!minidlna.conf
++	!resolv.conf
  	nl
  	comment "end section $managed_by_etckeeper"
  }
 -- 
-2.7.4
+2.13.3
 
