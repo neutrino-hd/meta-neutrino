@@ -1,18 +1,18 @@
-From eaa695cb9123b6a9abce721f4fb80322bba43893 Mon Sep 17 00:00:00 2001
+From 3fdca652156853eb6a11b3df794d75f8329bc14c Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
-Date: Sat, 11 Nov 2017 14:33:49 +0100
-Subject: [PATCH] etckeeper: edit .gitignore
+Date: Sat, 11 Nov 2017 13:49:45 +0000
+Subject: [PATCH] patch
 
 Signed-off-by: Markus Volk <f_l_k@t-online.de>
 ---
  update-ignore.d/01update-ignore | 64 +++++++----------------------------------
- 1 file changed, 10 insertions(+), 54 deletions(-)
+ 1 file changed, 11 insertions(+), 53 deletions(-)
 
 diff --git a/update-ignore.d/01update-ignore b/update-ignore.d/01update-ignore
-index 8733a85..9a89299 100755
+index 8733a85..a8d30ae 100755
 --- a/update-ignore.d/01update-ignore
 +++ b/update-ignore.d/01update-ignore
-@@ -105,60 +105,16 @@ writefile () {
+@@ -105,59 +105,17 @@ writefile () {
  		nl
  	fi
  	
@@ -69,20 +69,20 @@ index 8733a85..9a89299 100755
 -	ignore ".sw?"
 -	ignore "#*#"
 -	ignore DEADJOE
--
 +	/*
 +	!.gitignore
 +	!neutrino/
 +	/neutrino/*
 +	!/neutrino/config
++	!/neutrino/bin
 +	!network/
 +	!auto.*
 +	!.etckeeper
 +	!minidlna.conf
 +	!resolv.conf
+ 
  	nl
  	comment "end section $managed_by_etckeeper"
- }
 -- 
 2.13.3
 
