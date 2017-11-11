@@ -1,5 +1,6 @@
 
 SRC_URI_append += "git://github.com/tuxbox-neutrino/gui-neutrino.git;protocol=https \
+		   file://workaround_hdd_format.patch \
 "
 
 EXTRA_OECONF_append += "--with-boxtype=armbox \
