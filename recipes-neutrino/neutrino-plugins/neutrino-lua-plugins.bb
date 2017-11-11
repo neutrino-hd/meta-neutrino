@@ -16,7 +16,7 @@ SRC_URI = "git://github.com/tuxbox-neutrino/plugin-scripts-lua.git;protocol=http
 SRCREV = "${AUTOREV}"
 
 do_install () {
-	install -d ${D}/etc/neutrino/plugins/webtv
+	install -d ${D}/etc/neutrino/plugins/webtv ${D}/usr/share/xupnpd/plugins
 	install -m 644 ${S}/plugins/webtv/yt_live.xml ${D}/etc/neutrino/plugins/webtv
 	install -m 644 ${WORKDIR}/webtv_ora.xml ${D}/etc/neutrino/plugins/webtv
 	install -m 644 ${WORKDIR}/webtv_localtv.xml ${D}/etc/neutrino/plugins/webtv
@@ -26,6 +26,6 @@ do_install () {
 	install -m 644 ${S}/plugins/mtv/* ${D}/etc/neutrino/plugins/
 	install -m 644 ${S}/plugins/netzkino/* ${D}/etc/neutrino/plugins/
 	install -m 644 ${S}/plugins/ard_mediathek/* ${D}/etc/neutrino/plugins/
-	install -m 644 ${S}/xupnpd/* ${D}/etc/neutrino/plugins/
+	install -m 644 ${S}/xupnpd/* ${D}/usr/share/xupnpd/plugins/
 }
 
