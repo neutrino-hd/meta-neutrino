@@ -131,6 +131,9 @@ FILES_${PN} += "\
 systemd_prerm() {
 }
 
+systemd_postinst() {
+}
+
 pkg_postinst_${PN} () {
 	update-alternatives --install /bin/backup.sh backup.sh /usr/bin/backup.sh 100
 	update-alternatives --install /bin/install.sh install.sh /usr/bin/install.sh 100
