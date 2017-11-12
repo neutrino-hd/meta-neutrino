@@ -1,7 +1,7 @@
-From 3fdca652156853eb6a11b3df794d75f8329bc14c Mon Sep 17 00:00:00 2001
+From 6421e856777bd1d5b5b56455f804e286884a39c3 Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
-Date: Sat, 11 Nov 2017 13:49:45 +0000
-Subject: [PATCH] patch
+Date: Sun, 12 Nov 2017 07:29:03 +0000
+Subject: [PATCH 2/2] edit
 
 Signed-off-by: Markus Volk <f_l_k@t-online.de>
 ---
@@ -9,7 +9,7 @@ Signed-off-by: Markus Volk <f_l_k@t-online.de>
  1 file changed, 11 insertions(+), 53 deletions(-)
 
 diff --git a/update-ignore.d/01update-ignore b/update-ignore.d/01update-ignore
-index 8733a85..a8d30ae 100755
+index 8733a85..7285ba5 100755
 --- a/update-ignore.d/01update-ignore
 +++ b/update-ignore.d/01update-ignore
 @@ -105,59 +105,17 @@ writefile () {
@@ -69,17 +69,17 @@ index 8733a85..a8d30ae 100755
 -	ignore ".sw?"
 -	ignore "#*#"
 -	ignore DEADJOE
-+	/*
-+	!.gitignore
-+	!neutrino/
-+	/neutrino/*
-+	!/neutrino/config
-+	!/neutrino/bin
-+	!network/
-+	!auto.*
-+	!.etckeeper
-+	!minidlna.conf
-+	!resolv.conf
++	ignore "/*"
++	ignore "!.gitignore"
++	ignore "!neutrino/"
++	ignore "/neutrino/*"
++	ignore "!/neutrino/config"
++	ignore "!/neutrino/bin"
++	ignore "!network/"
++	ignore "!auto.*"
++	ignore "!.etckeeper"
++	ignore "!minidlna.conf"
++	ignore "!resolv.conf"
  
  	nl
  	comment "end section $managed_by_etckeeper"
