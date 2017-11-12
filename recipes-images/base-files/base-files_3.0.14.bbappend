@@ -4,6 +4,7 @@ SRC_URI += "file://profile \
 	    file://inputrc \
 	    file://nsswitch.conf \
 	    file://oscam.service \
+	    file://gbox.service \
 "
 
 inherit systemd
@@ -41,5 +42,6 @@ do_install_append () {
 	if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
   		install -d ${D}${systemd_unitdir}/system
   		install -m 0644 ${WORKDIR}/oscam.service ${D}${systemd_unitdir}/system/oscam.service
+  		install -m 0644 ${WORKDIR}/gbox.service ${D}${systemd_unitdir}/system/gbox.service
 	fi
 }
