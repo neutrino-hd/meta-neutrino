@@ -132,7 +132,21 @@ systemd_prerm() {
 }
 
 systemd_postinst() {
+OPTS=""
+
+if [ -n "$D" ]; then
+    OPTS="--root=$D"
+fi
+
+if type systemctl >/dev/null 2>/dev/null; then
+	if [ -z "$D" ]; then
+		systemctl daemon-reload
+	fi
+
+	systemctl $OPTS ${SYSTEMD_AUTO_ENABLE} ${SYSTEMD_SERVICE}
+fi
 }
+
 
 pkg_postinst_${PN} () {
 	update-alternatives --install /bin/backup.sh backup.sh /usr/bin/backup.sh 100
