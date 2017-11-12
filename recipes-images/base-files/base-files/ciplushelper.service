@@ -1,0 +1,9 @@
+[Unit]Description=ciplushelper
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/ciplushelper
+ExecStop=/usr/bin/killall -9 ciplushelper
+
+[Install]
+WantedBy=multi-user.target

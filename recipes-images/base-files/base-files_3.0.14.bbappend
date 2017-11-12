@@ -5,6 +5,7 @@ SRC_URI += "file://profile \
 	    file://nsswitch.conf \
 	    file://oscam.service \
 	    file://gbox.service \
+	    file://ciplushelper.service \
 "
 
 inherit systemd
@@ -43,5 +44,6 @@ do_install_append () {
   		install -d ${D}${systemd_unitdir}/system
   		install -m 0644 ${WORKDIR}/oscam.service ${D}${systemd_unitdir}/system/oscam.service
   		install -m 0644 ${WORKDIR}/gbox.service ${D}${systemd_unitdir}/system/gbox.service
+  		install -m 0644 ${WORKDIR}/ciplushelper.service ${D}${systemd_unitdir}/system/ciplushelper.service	
 	fi
 }
