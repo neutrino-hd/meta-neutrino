@@ -177,6 +177,7 @@ EXTRA_OECONF_append += "--disable-doc \
                 --enable-demuxer=mpegts \
                 --enable-demuxer=mpegtsraw \
                 --enable-demuxer=mpegvideo \
+                --enable-demuxer=mpjpeg \
                 --enable-demuxer=mjpeg \
                 --enable-demuxer=ogg \
                 --enable-demuxer=pcm_s16be \
