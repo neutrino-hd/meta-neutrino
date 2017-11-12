@@ -29,7 +29,7 @@ do_install () {
 	install -m 644 ${S}/xupnpd/* ${D}/usr/share/xupnpd/plugins/
 }
 
-FILES_${PN += " \
+FILES_${PN} += " \
 	/usr \
 "
 
