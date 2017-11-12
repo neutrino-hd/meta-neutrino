@@ -20,7 +20,6 @@ SRC_URI = "${SAMBA_MIRROR}/stable/samba-${PV}.tar.gz \
            file://netdb_defines.patch \
            file://glibc_only.patch \
            file://volatiles.03_samba \
-           file://smb.conf \
           "
 SRC_URI_append_libc-uclibc = " \
            file://samba-4.2.7-pam.patch \
