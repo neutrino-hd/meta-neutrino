@@ -24,6 +24,7 @@ IMAGE_INSTALL += " \
 	bzip2 \
 	ca-certificates \
 	cifs-utils \
+	curl \
 	dosfstools \
 	e2fsprogs-e2fsck \
 	e2fsprogs-mke2fs \
