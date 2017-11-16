@@ -170,6 +170,7 @@ EXTRA_OECONF_append += "--disable-doc \
                 --enable-demuxer=flv \
                 --enable-demuxer=hds \
                 --enable-demuxer=hls \
+		--enable-demuxer=image2 \
                 --enable-demuxer=matroska \
                 --enable-demuxer=mov \
                 --enable-demuxer=mp3 \
