@@ -6,11 +6,13 @@ SRC_URI += "file://profile \
 	    file://oscam.service \
 	    file://gbox.service \
 	    file://ciplushelper.service \
+	    file://lcd.sh \
+	    file://lcd.service \
 "
 
 inherit systemd
 
-SYSTEMD_SERVICE_${PN} = "oscam.service"
+SYSTEMD_SERVICE_${PN} = "oscam.service lcd.service"
 BASEFILESISSUEINSTALL = "do_custom_baseissueinstall"
 
 do_custom_baseissueinstall() {
@@ -39,11 +41,13 @@ do_custom_baseissueinstall() {
 
 
 do_install_append () {
-	install -d ${D}${localstatedir}/update ${D}${systemd_unitdir}/system/multi-user.target.wants
+	install -d ${D}${localstatedir}/update ${D}${systemd_unitdir}/system/multi-user.target.wants ${D}${bindir}
 	if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
   		install -d ${D}${systemd_unitdir}/system
   		install -m 0644 ${WORKDIR}/oscam.service ${D}${systemd_unitdir}/system/oscam.service
   		install -m 0644 ${WORKDIR}/gbox.service ${D}${systemd_unitdir}/system/gbox.service
-  		install -m 0644 ${WORKDIR}/ciplushelper.service ${D}${systemd_unitdir}/system/ciplushelper.service	
+  		install -m 0644 ${WORKDIR}/ciplushelper.service ${D}${systemd_unitdir}/system/ciplushelper.service
+  		install -m 0644 ${WORKDIR}/lcd.service ${D}${systemd_unitdir}/system/lcd.service
 	fi
+	install -m 0755 ${WORKDIR}/lcd.sh ${D}${bindir}
 }
