@@ -1,0 +1,11 @@
+[Unit]
+Description=configure lcd 
+Requires=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/lcd.sh
+
+[Install]
+WantedBy=multi-user.target
+

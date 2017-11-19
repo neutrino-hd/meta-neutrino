@@ -12,7 +12,7 @@ SRC_URI += "file://profile \
 
 inherit systemd
 
-SYSTEMD_SERVICE_${PN} = "oscam.service lcd.service"
+SYSTEMD_SERVICE_${PN} = "oscam.service"
 BASEFILESISSUEINSTALL = "do_custom_baseissueinstall"
 
 do_custom_baseissueinstall() {
@@ -48,6 +48,7 @@ do_install_append () {
   		install -m 0644 ${WORKDIR}/gbox.service ${D}${systemd_unitdir}/system/gbox.service
   		install -m 0644 ${WORKDIR}/ciplushelper.service ${D}${systemd_unitdir}/system/ciplushelper.service
   		install -m 0644 ${WORKDIR}/lcd.service ${D}${systemd_unitdir}/system/lcd.service
+		ln -sf /lib/systemd/system/lcd.service ${D}${systemd_unitdir}/system/multi-user.target.wants
 	fi
 	install -m 0755 ${WORKDIR}/lcd.sh ${D}${bindir}
 }
