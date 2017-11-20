@@ -17,6 +17,10 @@ set_root_passwd() {
    mv ${IMAGE_ROOTFS}/etc/shadow.new ${IMAGE_ROOTFS}/etc/shadow ;
 }
 
+DEPENDS_append += " \
+	dropbear \
+	mc \
+"
 
 IMAGE_INSTALL += " \
 	autofs \
