@@ -5,7 +5,7 @@ Requires=networking.service
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/neutrino
+ExecStart=/usr/bin/neutrino.sh
 
 [Install]
 WantedBy=multi-user.target

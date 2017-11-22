@@ -117,7 +117,6 @@ do_install_append() {
 		echo "${RELEASE_TEXT_LOCATION}" > ${D}/etc/update.urls
 	fi
 	cp -rf ${WORKDIR}/etc ${D}
-	install -m 755 ${WORKDIR}/deepstandby.on ${D}/etc/neutrino/config
 }
 
 FILES_${PN} += "\

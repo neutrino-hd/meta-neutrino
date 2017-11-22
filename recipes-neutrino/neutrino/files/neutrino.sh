@@ -1,14 +1,15 @@
 #!/bin/sh
 
-echo "### Starting NEUTRINO ###"
-/usr/bin/neutrino > /dev/null 2> /dev/null
-/bin/sync
+echo "### Starting Neutrino ###"
+/usr/bin/neutrino; RET=$?
 
-if [ -e /tmp/.reboot ] ; then
-    dt -t"Rebooting..."
-    systemctl reboot
-else
-    dt -t"Panic..."
-    sleep 5
-    systemctl reboot
+if [ $RET -eq 0 ]; then
+        echo "...Reboot" > /dev/dbox/oled0
+        systemctl reboot
+elif [ $RET -eq 1 ]; then
+        echo "...Shutdown" > /dev/dbox/oled0
+        systemctl poweroff
+elif [ $RET -eq 2 ]; then
+        :
 fi
+
