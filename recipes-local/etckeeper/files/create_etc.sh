@@ -4,13 +4,13 @@ rootdevice=$(sed -e 's/^.*root=//' -e 's/ .*$//' < /proc/cmdline)
 
 
 if [ $rootdevice = /dev/mmcblk0p3 ]; then
-        GIT__URL='/media/sda1/service/partition1/git/etc.git'
+        GIT__URL='/media/HDD/service/partition1/git/etc.git'
 elif [ $rootdevice = /dev/mmcblk0p5 ]; then
-        GIT__URL='/media/sda1/service/partition2/git/etc.git'
+        GIT__URL='/media/HDD/service/partition2/git/etc.git'
 elif [ $rootdevice = /dev/mmcblk0p7 ]; then
-        GIT__URL='/media/sda1/service/partition3/git/etc.git'
+        GIT__URL='/media/HDD/service/partition3/git/etc.git'
 elif [ $rootdevice = /dev/mmcblk0p9 ]; then
-        GIT__URL='/media/sda1/service/partition4/git/etc.git'
+        GIT__URL='/media/HDD/service/partition4/git/etc.git'
 fi
 
 GIT_EXIST=$(echo $GIT__URL"/HEAD")
@@ -26,7 +26,7 @@ elif mountpoint -q $DEST;then
         git config --system core.editor "nano"
         git config --system http.sslverify false
         fi
-        echo "creating /etc git remote in /dev/sda1" > /dev/dbox/oled0
+        echo "creating /etc git remote in /dev/HDD" > /dev/dbox/oled0
         etckeeper init
         mkdir -p $GIT__URL
         git init --bare $GIT__URL

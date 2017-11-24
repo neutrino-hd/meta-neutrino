@@ -8,6 +8,7 @@ SRC_URI += "file://profile \
 	    file://ciplushelper.service \
 	    file://lcd.sh \
 	    file://lcd.service \
+	    file://fstab \
 "
 
 inherit systemd
