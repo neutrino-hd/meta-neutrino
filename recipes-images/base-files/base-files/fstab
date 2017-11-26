@@ -8,9 +8,9 @@ tmpfs                /var/volatile        tmpfs      defaults              0  0
 
 # uncomment this if your device has a SD/MMC/Transflash slot
 /dev/mmcblk0p1       /boot          auto       defaults  0  0
-/dev/mmcblk0p3       /mnt/partition_1          auto       defaults  0  0
-/dev/mmcblk0p5       /mnt/partition_2          auto       defaults  0  0
-/dev/mmcblk0p7       /mnt/partition_3          auto       defaults  0  0
-/dev/mmcblk0p9       /mnt/partition_4          auto       defaults  0  0
+/dev/mmcblk0p3       /mnt/partition_1          noauto,x-systemd.automount       defaults  0  0
+/dev/mmcblk0p5       /mnt/partition_2          noauto,x-systemd.automount       defaults  0  0
+/dev/mmcblk0p7       /mnt/partition_3          noauto,x-systemd.automount       defaults  0  0
+/dev/mmcblk0p9       /mnt/partition_4          noauto,x-systemd.automount       defaults  0  0
 
 /dev/mmcblk0p10 none swap defaults 0 0
