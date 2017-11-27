@@ -72,6 +72,8 @@ IMAGE_INSTALL += " \
 	udpxy \
 	usbutils \
 	util-linux-blkid \
+	util-linux-mount \
+	util-linux-umount \
 	virtual/libstb-hal \
 	virtual/dvb-driver \
 	virtual/screengrabber \

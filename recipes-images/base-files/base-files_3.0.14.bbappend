@@ -3,11 +3,14 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/base-files:"
 SRC_URI += "file://profile \
 	    file://inputrc \
 	    file://nsswitch.conf \
+	    file://fstab \
 	    file://oscam.service \
 	    file://gbox.service \
 	    file://ciplushelper.service \
 	    file://lcd.sh \
 	    file://lcd.service \
+	    file://-.mount \
+	    file://boot.mount \
 	    file://mnt-partition_1.mount \
             file://mnt-partition_2.mount \
             file://mnt-partition_3.mount \
@@ -56,6 +59,10 @@ do_install_append () {
   		install -m 0644 ${WORKDIR}/ciplushelper.service ${D}${systemd_unitdir}/system/ciplushelper.service
   		install -m 0644 ${WORKDIR}/lcd.service ${D}${systemd_unitdir}/system/lcd.service
 		ln -sf /lib/systemd/system/lcd.service ${D}${systemd_unitdir}/system/multi-user.target.wants
+                install -m 0644 ${WORKDIR}/-.mount ${D}${systemd_unitdir}/system
+                ln -sf /lib/systemd/system/-.mount  ${D}${systemd_unitdir}/system/multi-user.target.wants
+                install -m 0644 ${WORKDIR}/boot.mount ${D}${systemd_unitdir}/system
+                ln -sf /lib/systemd/system/boot.mount  ${D}${systemd_unitdir}/system/multi-user.target.wants
                 install -m 0644 ${WORKDIR}/mnt-partition_1.mount ${D}${systemd_unitdir}/system
                 install -m 0644 ${WORKDIR}/mnt-partition_2.mount ${D}${systemd_unitdir}/system
                 install -m 0644 ${WORKDIR}/mnt-partition_3.mount ${D}${systemd_unitdir}/system
