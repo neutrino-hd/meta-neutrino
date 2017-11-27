@@ -8,7 +8,14 @@ SRC_URI += "file://profile \
 	    file://ciplushelper.service \
 	    file://lcd.sh \
 	    file://lcd.service \
-	    file://fstab \
+	    file://mnt-partition_1.mount \
+            file://mnt-partition_2.mount \
+            file://mnt-partition_3.mount \
+            file://mnt-partition_4.mount \
+            file://mnt-partition_1.automount \
+            file://mnt-partition_2.automount \
+            file://mnt-partition_3.automount \
+            file://mnt-partition_4.automount \
 "
 
 inherit systemd
@@ -40,7 +47,6 @@ do_custom_baseissueinstall() {
 	echo >> ${D}${sysconfdir}/issue.net
 }
 
-
 do_install_append () {
 	install -d ${D}${localstatedir}/update ${D}${systemd_unitdir}/system/multi-user.target.wants ${D}${bindir}
 	if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
@@ -50,6 +56,18 @@ do_install_append () {
   		install -m 0644 ${WORKDIR}/ciplushelper.service ${D}${systemd_unitdir}/system/ciplushelper.service
   		install -m 0644 ${WORKDIR}/lcd.service ${D}${systemd_unitdir}/system/lcd.service
 		ln -sf /lib/systemd/system/lcd.service ${D}${systemd_unitdir}/system/multi-user.target.wants
+                install -m 0644 ${WORKDIR}/mnt-partition_1.mount ${D}${systemd_unitdir}/system
+                install -m 0644 ${WORKDIR}/mnt-partition_2.mount ${D}${systemd_unitdir}/system
+                install -m 0644 ${WORKDIR}/mnt-partition_3.mount ${D}${systemd_unitdir}/system
+                install -m 0644 ${WORKDIR}/mnt-partition_4.mount ${D}${systemd_unitdir}/system
+                install -m 0644 ${WORKDIR}/mnt-partition_1.automount ${D}${systemd_unitdir}/system
+                ln -sf /lib/systemd/system/mnt-partition_1.automount  ${D}${systemd_unitdir}/system/multi-user.target.wants
+                install -m 0644 ${WORKDIR}/mnt-partition_2.automount  ${D}${systemd_unitdir}/system/lcd.service
+                ln -sf /lib/systemd/system/mnt-partition_2.automount  ${D}${systemd_unitdir}/system/multi-user.target.wants
+                install -m 0644 ${WORKDIR}/mnt-partition_3.automount  ${D}${systemd_unitdir}/system/lcd.service
+                ln -sf /lib/systemd/system/mnt-partition_3.automount  ${D}${systemd_unitdir}/system/multi-user.target.wants
+                install -m 0644 ${WORKDIR}/mnt-partition_4.automount  ${D}${systemd_unitdir}/system/lcd.service
+                ln -sf /lib/systemd/system/mnt-partition_4.automount  ${D}${systemd_unitdir}/system/multi-user.target.wants
 	fi
 	install -m 0755 ${WORKDIR}/lcd.sh ${D}${bindir}
 }

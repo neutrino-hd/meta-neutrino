@@ -1,0 +1,9 @@
+[Unit]
+Description=Mount Image Partitions 
+
+[Automount]
+Where=/mnt/partition_4
+
+[Install]
+WantedBy=multi-user.target
+
