@@ -62,11 +62,11 @@ do_install_append () {
                 install -m 0644 ${WORKDIR}/mnt-partition_4.mount ${D}${systemd_unitdir}/system
                 install -m 0644 ${WORKDIR}/mnt-partition_1.automount ${D}${systemd_unitdir}/system
                 ln -sf /lib/systemd/system/mnt-partition_1.automount  ${D}${systemd_unitdir}/system/multi-user.target.wants
-                install -m 0644 ${WORKDIR}/mnt-partition_2.automount  ${D}${systemd_unitdir}/system/lcd.service
+                install -m 0644 ${WORKDIR}/mnt-partition_2.automount  ${D}${systemd_unitdir}/system
                 ln -sf /lib/systemd/system/mnt-partition_2.automount  ${D}${systemd_unitdir}/system/multi-user.target.wants
-                install -m 0644 ${WORKDIR}/mnt-partition_3.automount  ${D}${systemd_unitdir}/system/lcd.service
+                install -m 0644 ${WORKDIR}/mnt-partition_3.automount  ${D}${systemd_unitdir}/system
                 ln -sf /lib/systemd/system/mnt-partition_3.automount  ${D}${systemd_unitdir}/system/multi-user.target.wants
-                install -m 0644 ${WORKDIR}/mnt-partition_4.automount  ${D}${systemd_unitdir}/system/lcd.service
+                install -m 0644 ${WORKDIR}/mnt-partition_4.automount  ${D}${systemd_unitdir}/system
                 ln -sf /lib/systemd/system/mnt-partition_4.automount  ${D}${systemd_unitdir}/system/multi-user.target.wants
 	fi
 	install -m 0755 ${WORKDIR}/lcd.sh ${D}${bindir}
