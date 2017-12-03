@@ -15,9 +15,9 @@ SRC_URI = "git://bitbucket.org/neutrino-images/ni-logo-stuff;protocol=https \
 "
 
 do_install () {
-	install -d ${D}/etc/neutrino/plugins
-	install -m 755 ${S}/logo-addon.sh ${D}/etc/neutrino/plugins
-	install -m 644 ${S}/logo-addon.cfg ${D}/etc/neutrino/plugins
-	install -m 644 ${S}/logo-addon_hint.png ${D}/etc/neutrino/plugins
+	install -d ${D}/var/tuxbox/plugins
+	install -m 755 ${S}/logo-addon.sh ${D}/var/tuxbox/plugins
+	install -m 644 ${S}/logo-addon.cfg ${D}/var/tuxbox/plugins
+	install -m 644 ${S}/logo-addon_hint.png ${D}/var/tuxbox/plugins
 }
 

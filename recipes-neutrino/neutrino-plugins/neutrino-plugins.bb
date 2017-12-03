@@ -21,7 +21,7 @@ inherit autotools pkgconfig
 EXTRA_OECONF += " \
 	--enable-maintainer-mode \
 	--with-target=native \
-	--with-plugindir=/etc/neutrino/plugins \
+	--with-plugindir=/var/tuxbox/plugins \
 	--with-boxtype=armbox \
 "
 
@@ -43,10 +43,10 @@ do_install () {
 }			
 
 do_install_append() {
-	rm -f ${D}/etc/neutrino/plugins/*.la
+	rm -f ${D}/var/tuxbox/plugins/*.la
 }
 
-FILES_${PN}-dbg += "/etc/neutrino/plugins/.debug"
+FILES_${PN}-dbg += "/var/tuxbox/plugins/.debug"
 
 SRC_URI[md5sum] = "f04cf2dddc22af9f12685f4d4dda0067"
 SRC_URI[sha256sum] = "f3ad02f2e43afca3da474bfeccd70808ca9651858893eff0b90891067284b0b8"

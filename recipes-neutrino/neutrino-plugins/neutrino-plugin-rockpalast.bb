@@ -13,8 +13,8 @@ SRC_URI = "file://rockpalast.tar.gz \
 "
 
 do_install () {
-	install -d ${D}/etc/neutrino/plugins
-	install -m 644 ${S}/rockpalast.cfg ${D}/etc/neutrino/plugins
-	install -m 644 ${S}/rockpalast.lua ${D}/etc/neutrino/plugins
-	install -m 644 ${S}/rockpalast_hint.png ${D}/etc/neutrino/plugins
+	install -d ${D}/var/tuxbox/plugins
+	install -m 644 ${S}/rockpalast.cfg ${D}/var/tuxbox/plugins
+	install -m 644 ${S}/rockpalast.lua ${D}/var/tuxbox/plugins
+	install -m 644 ${S}/rockpalast_hint.png ${D}/var/tuxbox/plugins
 }

@@ -14,10 +14,10 @@ SRC_URI = "file://localtv.tar.gz \
 S = "${WORKDIR}"
 
 do_install () {
-	install -d ${D}/etc/neutrino/plugins 
-	install -m 644 ${WORKDIR}/LocalTV.lua ${D}/etc/neutrino/plugins
-	install -m 644 ${WORKDIR}/LocalTV.cfg ${D}/etc/neutrino/plugins
-	install -m 644 ${WORKDIR}/LocalTV_hint.png ${D}/etc/neutrino/plugins
+	install -d ${D}/var/tuxbox/plugins 
+	install -m 644 ${WORKDIR}/LocalTV.lua ${D}/var/tuxbox/plugins
+	install -m 644 ${WORKDIR}/LocalTV.cfg ${D}/var/tuxbox/plugins
+	install -m 644 ${WORKDIR}/LocalTV_hint.png ${D}/var/tuxbox/plugins
 }
 
 

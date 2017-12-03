@@ -16,11 +16,11 @@ SRC_URI = "file://rss.tar.gz \
 S = "${WORKDIR}"
 
 do_install () {
-	install -d ${D}/etc/neutrino/plugins/rss_addon ${D}/etc/neutrino/config
-	install -m 644 ${S}/rss.lua ${D}/etc/neutrino/plugins
-	install -m 644 ${S}/rss.cfg ${D}/etc/neutrino/plugins
-	install -m 644 ${S}/rss_addon/* ${D}/etc/neutrino/plugins/rss_addon
-	install -m 644 ${S}/rss_icon.png ${D}/etc/neutrino/plugins
+	install -d ${D}/var/tuxbox/plugins/rss_addon ${D}/etc/neutrino/config
+	install -m 644 ${S}/rss.lua ${D}/var/tuxbox/plugins
+	install -m 644 ${S}/rss.cfg ${D}/var/tuxbox/plugins
+	install -m 644 ${S}/rss_addon/* ${D}/var/tuxbox/plugins/rss_addon
+	install -m 644 ${S}/rss_icon.png ${D}/var/tuxbox/plugins
 	install -m 644 ${S}/rssreader.conf ${D}/etc/neutrino/config
 }
 

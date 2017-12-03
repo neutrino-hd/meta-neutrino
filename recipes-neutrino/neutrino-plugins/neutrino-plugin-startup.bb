@@ -12,6 +12,6 @@ SRC_URI = "file://start_lua.tar.gz \
 S = "${WORKDIR}/"
 
 do_install () {
-	install -d ${D}/etc/neutrino/plugins
-	install -m 644 ${S}/stb* ${D}/etc/neutrino/plugins
+	install -d ${D}/var/tuxbox/plugins
+	install -m 644 ${S}/stb* ${D}/var/tuxbox/plugins
 }

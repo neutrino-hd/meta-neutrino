@@ -1,18 +1,18 @@
-From 6421e856777bd1d5b5b56455f804e286884a39c3 Mon Sep 17 00:00:00 2001
+From b82c4fa63bcf1c6ea80ffae07fe158f5159ec843 Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
-Date: Sun, 12 Nov 2017 07:29:03 +0000
-Subject: [PATCH 2/2] edit
+Date: Sun, 3 Dec 2017 09:37:36 +0000
+Subject: [PATCH] test
 
 Signed-off-by: Markus Volk <f_l_k@t-online.de>
 ---
- update-ignore.d/01update-ignore | 64 +++++++----------------------------------
- 1 file changed, 11 insertions(+), 53 deletions(-)
+ update-ignore.d/01update-ignore | 65 ++++++++---------------------------------
+ 1 file changed, 12 insertions(+), 53 deletions(-)
 
 diff --git a/update-ignore.d/01update-ignore b/update-ignore.d/01update-ignore
-index 8733a85..7285ba5 100755
+index 8733a85..802a471 100755
 --- a/update-ignore.d/01update-ignore
 +++ b/update-ignore.d/01update-ignore
-@@ -105,59 +105,17 @@ writefile () {
+@@ -105,59 +105,18 @@ writefile () {
  		nl
  	fi
  	
@@ -69,17 +69,18 @@ index 8733a85..7285ba5 100755
 -	ignore ".sw?"
 -	ignore "#*#"
 -	ignore DEADJOE
-+	ignore "/*"
-+	ignore "!.gitignore"
-+	ignore "!neutrino/"
-+	ignore "/neutrino/*"
-+	ignore "!/neutrino/config"
-+	ignore "!/neutrino/bin"
-+	ignore "!network/"
-+	ignore "!auto.*"
-+	ignore "!.etckeeper"
-+	ignore "!minidlna.conf"
-+	ignore "!resolv.conf"
++        ignore "/*"
++        ignore "!.gitignore"
++        ignore "!neutrino/"
++        ignore "/neutrino/*"
++        ignore "!/neutrino/config"
++        ignore "!/neutrino/bin"
++        ignore "!/neutrino/plugins"
++        ignore "!network/"
++        ignore "!auto.*"
++        ignore "!.etckeeper"
++        ignore "!minidlna.conf"
++        ignore "!resolv.conf"
  
  	nl
  	comment "end section $managed_by_etckeeper"
