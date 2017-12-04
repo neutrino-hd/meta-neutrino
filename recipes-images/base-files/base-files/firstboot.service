@@ -1,0 +1,10 @@
+[Unit]
+Description=start initscript upon first boot
+Requires=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'sleep 5 ; /usr/sbin/firstboot.sh'
+
+[Install]
+WantedBy=multi-user.target

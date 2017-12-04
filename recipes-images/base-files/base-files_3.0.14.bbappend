@@ -9,6 +9,8 @@ SRC_URI += "file://profile \
 	    file://ciplushelper.service \
 	    file://lcd.sh \
 	    file://lcd.service \
+	    file://firstboot.service \
+	    file://firstboot.sh \
 	    file://-.mount \
 	    file://boot.mount \
 	    file://mnt-partition_1.mount \
@@ -19,8 +21,7 @@ SRC_URI += "file://profile \
             file://mnt-partition_2.automount \
             file://mnt-partition_3.automount \
             file://mnt-partition_4.automount \
-            file://createswap.sh \
-	    file://createswap.service \
+	    file://dev-mmcblk0p10.swap \
 "
 
 inherit systemd
@@ -77,8 +78,11 @@ do_install_append () {
                 ln -sf /lib/systemd/system/mnt-partition_3.automount  ${D}${systemd_unitdir}/system/multi-user.target.wants
                 install -m 0644 ${WORKDIR}/mnt-partition_4.automount  ${D}${systemd_unitdir}/system
                 ln -sf /lib/systemd/system/mnt-partition_4.automount  ${D}${systemd_unitdir}/system/multi-user.target.wants
-    		install -m 0644 ${WORKDIR}/createswap.service ${D}${systemd_unitdir}/system/createswap.service
-    		ln -sf /lib/systemd/system/createswap.service  ${D}${systemd_unitdir}/system/multi-user.target.wants
+		install -m 0644 ${WORKDIR}/dev-mmcblk0p10.swap  ${D}${systemd_unitdir}/system
+                ln -sf /lib/systemd/system/dev-mmcblk0p10.swap  ${D}${systemd_unitdir}/system/multi-user.target.wants
+         	install -m 0755 ${WORKDIR}/firstboot.sh  ${D}${sbindir}
+		install -m 0644 ${WORKDIR}/firstboot.service  ${D}${systemd_unitdir}/system
+                ln -sf /lib/systemd/system/firstboot.service  ${D}${systemd_unitdir}/system/multi-user.target.wants
 	fi
 	install -m 0755 ${WORKDIR}/lcd.sh ${D}${bindir}
 }
