@@ -12,13 +12,17 @@ SRC_URI += "file://profile \
 	    file://-.mount \
 	    file://boot.mount \
 	    file://mnt-partition_1.mount \
-            file://mnt-partition_2.mount \
-            file://mnt-partition_3.mount \
-            file://mnt-partition_4.mount \
-            file://mnt-partition_1.automount \
-            file://mnt-partition_2.automount \
-            file://mnt-partition_3.automount \
-            file://mnt-partition_4.automount \
+        file://mnt-partition_2.mount \
+        file://mnt-partition_3.mount \
+        file://mnt-partition_4.mount \
+        file://mnt-partition_1.automount \
+        file://mnt-partition_2.automount \
+        file://mnt-partition_3.automount \
+        file://mnt-partition_4.automount \
+        file://caminfo.service \
+        file://caminfo.sh \
+        file://createswap.sh \
+		file://createswap.service \
 "
 
 inherit systemd
@@ -54,6 +58,7 @@ do_install_append () {
 	install -d ${D}${localstatedir}/update ${D}${systemd_unitdir}/system/multi-user.target.wants ${D}${bindir}
 	if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
   		install -d ${D}${systemd_unitdir}/system
+  		install -m 0755 ${WORKDIR}/caminfo.sh ${D}${bindir}
   		install -m 0644 ${WORKDIR}/oscam.service ${D}${systemd_unitdir}/system/oscam.service
   		install -m 0644 ${WORKDIR}/gbox.service ${D}${systemd_unitdir}/system/gbox.service
   		install -m 0644 ${WORKDIR}/ciplushelper.service ${D}${systemd_unitdir}/system/ciplushelper.service
@@ -75,6 +80,10 @@ do_install_append () {
                 ln -sf /lib/systemd/system/mnt-partition_3.automount  ${D}${systemd_unitdir}/system/multi-user.target.wants
                 install -m 0644 ${WORKDIR}/mnt-partition_4.automount  ${D}${systemd_unitdir}/system
                 ln -sf /lib/systemd/system/mnt-partition_4.automount  ${D}${systemd_unitdir}/system/multi-user.target.wants
+				install -m 0644 ${WORKDIR}/caminfo.service  ${D}${systemd_unitdir}/system
+				install -m 0755 ${WORKDIR}/createswap.sh ${D}${bindir}/createswap.sh
+    			install -m 0644 ${WORKDIR}/createswap.service ${D}${systemd_unitdir}/system/createswap.service
+    			ln -sf /lib/systemd/system/createswap.service  ${D}${systemd_unitdir}/system/multi-user.target.wants
 	fi
 	install -m 0755 ${WORKDIR}/lcd.sh ${D}${bindir}
 }
