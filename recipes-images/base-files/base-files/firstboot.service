@@ -1,6 +1,7 @@
 [Unit]
 Description=start initscript upon first boot
 Requires=local-fs.target
+Before=update-etc.service
 
 [Service]
 Type=oneshot
