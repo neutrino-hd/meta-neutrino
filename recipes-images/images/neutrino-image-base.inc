@@ -29,6 +29,7 @@ IMAGE_INSTALL += " \
 	ca-certificates \
 	cifs-utils \
 	curl \
+	dvb-usb-drivers-meta \
 	dosfstools \
 	e2fsprogs-e2fsck \
 	e2fsprogs-mke2fs \
@@ -80,6 +81,9 @@ IMAGE_INSTALL += " \
 	vsftpd \
 	wpa-supplicant \
 	xupnpd \
+	${KERNEL_WIFI_DRIVERS} \
+	${EXTRA_KERNEL_WIFI_DRIVERS} \
+	${EXTERNAL_WIFI_DRIVERS} \
 "
 
 EXTRAOPKGCONFIG = "neutrino-feed-config"
