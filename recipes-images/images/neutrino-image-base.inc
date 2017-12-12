@@ -36,6 +36,7 @@ IMAGE_INSTALL += " \
 	e2fsprogs-tune2fs \
 	e2fsprogs-badblocks \
 	etckeeper \
+	gptfdisk \
 	gstreamer1.0 \
 	gstreamer1.0-plugins-good \
 	gstreamer1.0-plugins-bad \

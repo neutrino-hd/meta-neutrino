@@ -16,6 +16,13 @@ else
         mkswap /dev/mmcblk0p10
 fi
 
+(
+echo r # Enter repair options
+echo d # Create GPT backup
+echo w # Write changes
+echo y # confirm changes
+) | gdisk /dev/mmcblk0
+
 
 echo "first boot script work done"
 
