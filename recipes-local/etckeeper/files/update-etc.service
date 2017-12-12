@@ -1,6 +1,7 @@
 [Unit]
 Description=write back etckeeper remote
 Requires=create-etc.service
+After=firstboot.service
 
 [Service]
 Type=oneshot
