@@ -81,8 +81,8 @@ do_install_append () {
 		install -m 0644 ${WORKDIR}/dev-mmcblk0p10.swap  ${D}${systemd_unitdir}/system
                 ln -sf /lib/systemd/system/dev-mmcblk0p10.swap  ${D}${systemd_unitdir}/system/multi-user.target.wants
          	install -m 0755 ${WORKDIR}/firstboot.sh  ${D}${sbindir}
-		install -m 0644 ${WORKDIR}/firstboot.service  ${D}${systemd_unitdir}/system
-                ln -sf /lib/systemd/system/firstboot.service  ${D}${systemd_unitdir}/system/multi-user.target.wants
+		install -m 0644 ${WORKDIR}/firstboot.service  ${D}${sysconfdir}/systemd/system
+                ln -sf /etc/systemd/system/firstboot.service  ${D}${sysconfdir}/systemd/system/multi-user.target.wants
 	fi
 	install -m 0755 ${WORKDIR}/lcd.sh ${D}${bindir}
 }

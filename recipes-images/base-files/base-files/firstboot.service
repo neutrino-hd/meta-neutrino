@@ -5,7 +5,7 @@ Before=update-etc.service
 
 [Service]
 Type=oneshot
-ExecStart=/bin/sh -c 'sleep 5 ; /usr/sbin/firstboot.sh'
+ExecStart=/usr/sbin/firstboot.sh
 
 [Install]
 WantedBy=multi-user.target
