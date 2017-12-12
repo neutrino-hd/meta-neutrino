@@ -54,7 +54,7 @@ do_custom_baseissueinstall() {
 }
 
 do_install_append () {
-	install -d ${D}${localstatedir}/update ${D}${systemd_unitdir}/system/multi-user.target.wants ${D}${bindir}
+	install -d ${D}${localstatedir}/update ${D}${systemd_unitdir}/system/multi-user.target.wants ${D}${bindir} ${D}${sysconfdir}/systemd/system/multi-user.target.wants
 	if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
   		install -d ${D}${systemd_unitdir}/system
   		install -m 0644 ${WORKDIR}/oscam.service ${D}${systemd_unitdir}/system/oscam.service
