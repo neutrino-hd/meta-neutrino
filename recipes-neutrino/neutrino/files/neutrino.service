@@ -1,6 +1,5 @@
 [Unit]
 Description=Neutrino HD
-After=update-kernel.service update-etc.service logoview.service
 Requires=networking.service
 
 [Service]
