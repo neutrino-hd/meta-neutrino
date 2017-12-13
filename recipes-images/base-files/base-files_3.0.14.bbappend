@@ -22,9 +22,8 @@ SRC_URI += "file://profile \
             file://mnt-partition_3.automount \
             file://mnt-partition_4.automount \
 	    file://dev-mmcblk0p10.swap \
-	    file//fstrim.service \
+	    file://fstrim.service \
 	    file://fstrim.timer \
-
 "
 
 inherit systemd
