@@ -1,6 +1,7 @@
 [Unit]
 Description=Neutrino HD
 Requires=networking.service update-etc.service
+After=firstboot.service
 
 [Service]
 Type=simple
