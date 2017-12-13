@@ -1,0 +1,10 @@
+[Unit]
+Description=Run fstrim.service every 12 hours
+
+[Timer]
+OnUnitInactiveSec=12h
+Persistent=true
+
+[Install]
+WantedBy=multi-user.target
+

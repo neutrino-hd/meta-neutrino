@@ -1,0 +1,7 @@
+[Unit]
+Description=Runs fstrim on all mounted devices that support TRIM
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c '/sbin/fstrim -a'
+

@@ -76,6 +76,7 @@ IMAGE_INSTALL += " \
 	util-linux-blkid \
 	util-linux-mount \
 	util-linux-umount \
+	util-linux-fstrim \
 	virtual/libstb-hal \
 	virtual/dvb-driver \
 	virtual/screengrabber \

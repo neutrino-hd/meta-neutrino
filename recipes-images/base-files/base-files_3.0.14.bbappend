@@ -22,6 +22,9 @@ SRC_URI += "file://profile \
             file://mnt-partition_3.automount \
             file://mnt-partition_4.automount \
 	    file://dev-mmcblk0p10.swap \
+	    file//fstrim.service \
+	    file://fstrim.timer \
+
 "
 
 inherit systemd
@@ -83,6 +86,9 @@ do_install_append () {
          	install -m 0755 ${WORKDIR}/firstboot.sh  ${D}${sbindir}
 		install -m 0644 ${WORKDIR}/firstboot.service  ${D}${sysconfdir}/systemd/system
                 ln -sf /etc/systemd/system/firstboot.service  ${D}${sysconfdir}/systemd/system/multi-user.target.wants
+                install -m 0644 ${WORKDIR}/fstrim.service  ${D}${systemd_unitdir}/system
+                install -m 0644 ${WORKDIR}/fstrim.timer  ${D}${systemd_unitdir}/system
+                ln -sf /lib/systemd/system/fstrim.timer  ${D}${systemd_unitdir}/system/multi-user.target.wants
 	fi
 	install -m 0755 ${WORKDIR}/lcd.sh ${D}${bindir}
 }
