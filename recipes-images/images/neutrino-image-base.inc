@@ -20,6 +20,7 @@ set_root_passwd() {
 DEPENDS_append += " \
 	dropbear \
 	mc \
+	libxslt \
 "
 
 IMAGE_INSTALL += " \
