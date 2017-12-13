@@ -73,7 +73,6 @@ IMAGE_INSTALL += " \
 	udev-extraconf \
 	udpxy \
 	usbutils \
-	util-linux \
 	util-linux-blkid \
 	util-linux-mount \
 	util-linux-umount \
