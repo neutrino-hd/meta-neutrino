@@ -1,21 +1,47 @@
-From b82c4fa63bcf1c6ea80ffae07fe158f5159ec843 Mon Sep 17 00:00:00 2001
+kFrom cb4dcd146596f54fdc5ca5232dadc4380e92edf8 Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
-Date: Sun, 3 Dec 2017 09:37:36 +0000
-Subject: [PATCH] test
+Date: Thu, 14 Dec 2017 16:16:57 +0000
+Subject: [PATCH 2/2] test
 
 Signed-off-by: Markus Volk <f_l_k@t-online.de>
 ---
- update-ignore.d/01update-ignore | 65 ++++++++---------------------------------
- 1 file changed, 12 insertions(+), 53 deletions(-)
+ update-ignore.d/01update-ignore | 87 ++++-------------------------------------
+ 1 file changed, 8 insertions(+), 79 deletions(-)
 
 diff --git a/update-ignore.d/01update-ignore b/update-ignore.d/01update-ignore
-index 8733a85..802a471 100755
+index 8733a85..0bbb506 100755
 --- a/update-ignore.d/01update-ignore
 +++ b/update-ignore.d/01update-ignore
-@@ -105,59 +105,18 @@ writefile () {
- 		nl
- 	fi
- 	
+@@ -79,85 +79,14 @@ writefile () {
+ 	comment "begin section $managed_by_etckeeper (do not edit this section by hand)"
+ 	nl
+ 
+-	if [ "$VCS" = darcs ]; then
+-		darcs setpref boringfile .darcsignore
+-	fi
+-
+-	if [ "$LOWLEVEL_PACKAGE_MANAGER" = dpkg ]; then
+-		comment "new and old versions of conffiles, stored by dpkg"
+-		ignore "*.dpkg-*"
+-		comment "new and old versions of conffiles, stored by ucf"
+-		ignore "*.ucf-*"
+-		nl
+-	elif [ "$LOWLEVEL_PACKAGE_MANAGER" = "rpm" ]; then
+-		comment "new and old versions of conffiles, stored by apt/rpm"
+-		ignore "*.rpm*"
+-		nl
+-	elif [ "$LOWLEVEL_PACKAGE_MANAGER" = "pacman-g2" -o "$LOWLEVEL_PACKAGE_MANAGER" = "pacman" -o "$LOWLEVEL_PACKAGE_MANAGER" = "pacmatic" ]; then
+-		comment "new and old versions of conffiles, stored by pacman"
+-		ignore "*.pacnew"
+-		ignore "*.pacorig"
+-		ignore "*.pacsave"
+-		nl
+-	elif [ "$LOWLEVEL_PACKAGE_MANAGER" = "apk" ]; then
+-		comment "new versions of conffiles, stored by apk"
+-		ignore "*.apk-new"
+-		nl
+-	fi
+-	
 -	comment "old versions of files"
 -	ignore "*.old"
 -	# Not currently ignored as admins tend to rely on these files.
@@ -72,10 +98,6 @@ index 8733a85..802a471 100755
 +        ignore "/*"
 +        ignore "!.gitignore"
 +        ignore "!neutrino/"
-+        ignore "/neutrino/*"
-+        ignore "!/neutrino/config"
-+        ignore "!/neutrino/bin"
-+        ignore "!/neutrino/plugins"
 +        ignore "!network/"
 +        ignore "!auto.*"
 +        ignore "!.etckeeper"
@@ -86,4 +108,5 @@ index 8733a85..802a471 100755
  	comment "end section $managed_by_etckeeper"
 -- 
 2.13.3
+
 
