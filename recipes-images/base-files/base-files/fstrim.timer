@@ -2,7 +2,8 @@
 Description=Run fstrim.service every 12 hours
 
 [Timer]
-OnUnitInactiveSec=12h
+OnBootSec=1min
+OnUnitActiveSec=12h
 Persistent=true
 
 [Install]
