@@ -24,6 +24,7 @@ SRC_URI += "file://profile \
 	    file://dev-mmcblk0p10.swap \
 	    file://fstrim.service \
 	    file://fstrim.timer \
+	    file://flash \
 "
 
 inherit systemd
@@ -91,4 +92,5 @@ do_install_append () {
                 ln -sf /lib/systemd/system/fstrim.timer  ${D}${systemd_unitdir}/system/multi-user.target.wants
 	fi
 	install -m 0755 ${WORKDIR}/lcd.sh ${D}${bindir}
+	install -m 0755 ${WORKDIR}/flash ${D}${bindir}
 }
