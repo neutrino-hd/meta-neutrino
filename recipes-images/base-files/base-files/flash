@@ -25,7 +25,6 @@ unzip="unzip -x hd51.zip"
 mkfs="mkfs.ext4 -F /dev/mmcblk0p$root"
 mount="systemctl start mnt-partition_$part.automount"
 umount="systemctl stop mnt-partition_$part.automount"
-unzip="unzip -x hd51.zip"
 
 if [ $rootdevice = /dev/mmcblk0p$root ]; then
         printf '%s\n' "Flashing into running partition is not supported" && exit 1
