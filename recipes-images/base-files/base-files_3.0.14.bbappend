@@ -27,6 +27,8 @@ SRC_URI += "file://profile \
 	    file://flash \
 "
 
+RDEPENDS_${PN}_append += "bash"
+
 inherit systemd
 
 SYSTEMD_SERVICE_${PN} = "oscam.service"
