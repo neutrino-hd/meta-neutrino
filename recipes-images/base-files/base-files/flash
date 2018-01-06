@@ -22,21 +22,14 @@ imagesource="https://tuxbox-images.de/images/hd51/neutrino-image_ofgwrite.zip"
 imagebase="/media/HDD/service/image"
 rootdevice="$(sed -e 's/^.*root=//' -e 's/ .*$//' < /proc/cmdline)"
 unzip="unzip -x hd51.zip"
-mkfs="mkfs.ext4 -F /dev/mmcblk0p$root"
-mount="systemctl start mnt-partition_$part.automount"
-umount="systemctl stop mnt-partition_$part.automount"
 
-if [ $rootdevice = /dev/mmcblk0p$root ]; then
-        printf '%s\n' "Flashing into running partition is not supported" && exit 1
+if  [ $1 -lt 1 ] || [ $1 -gt 4 ]; then
+        printf '\n%s\n' "Choose a valid partition" && exit 1
 fi
 
 reset && read -n1 -s -r -p "Press y to continue..." key
 
 if [ "$key" = 'y' ]; then
-        if  [ $1 -lt 1 ] || [ $1 -gt 4 ]; then
-                printf '\n\n%s\n' "Choose a valid partition" && exit 1
-        fi
-
         if [ -z $2 ]; then
                 [ ! -e $imagebase ] && mkdir -p $imagebase
                 curl $imagesource -o $imagebase/hd51.zip
@@ -44,27 +37,32 @@ if [ "$key" = 'y' ]; then
                 cd $imagebase && $unzip
                 rm $imagebase/hd51.zip
                 imagedir="$imagebase/hd51"
-
         else
                 imagedir="$2"
-                if [ ! -f $imagedir/rootfs.tar.bz2 ]; then
-                        printf '\n\n%s\n' "$2/rootfs.tar.bz2 not found" && exit 1
+                if [ ! -f $imagedir/neutrino-image-hd51.ext4.bz2 ]; then
+                        printf '\n\n%s\n' "$2/neutrino-image-hd51.ext4.bz2 not found" && exit 1
                 elif [ ! -f $imagedir/kernel.bin ]; then
                         printf '\n\n%s\n' "$2/kernel.bin not found" && exit 1
                 fi
         fi
 
-dd="dd if=$imagedir/kernel.bin of=/dev/mmcblk0p$kernel bs=1M"
-[ -e /bin/tar.tar ] && tar_extraopt="--checkpoint=.300"
-tar="tar -xjf $imagedir/rootfs.tar.bz2 -C /mnt/partition_$part $tar_extraopt"
+        dd_kernel="dd if=$imagedir/kernel.bin of=/dev/mmcblk0p$kernel bs=1M"
+        dd_rootfs="dd of=/dev/mmcblk0p$root bs=1M"
+        unpack="bzip2 -cd $imagedir/neutrino-image-hd51.ext4.bz2"
 
-        printf '\n\n%s\n' "Flashing image into partition_"$part
-        $dd             || { echo 'Flashing the kernel failed' ; exit 1; }
-        $umount         || { echo 'unmounting /mnt/partition_$part failed' ; exit 1; }
-        $mkfs           || { echo 'creating ext4 filesystem on /dev/mmcblk0p$root failed' ; exit 1; }
-        $mount          || { echo 'mounting /mnt/partition_$part failed' ; exit 1; }
-        $tar && sync    || { echo 'unpacking the rootfs failed' ; exit 1; }
-        printf '\n%s\n' "Flash successful" && exit 0
+        printf '\n\n%s\n' "Flashing Kernel into /dev/mmcblk0p$kernel"
+        $dd_kernel              || { echo 'Flashing the kernel failed' ; exit 1; }
+
+        printf '\n\n%s\n' "Flashing rootfs into /dev/mmcblk0p$root"
+        $unpack | $dd_rootfs    || { echo 'unpacking the rootfs failed' ; exit 1; }
+
+        if [ $rootdevice = /dev/mmcblk0p$root ]; then
+                printf '\n%s\n' "Flash successful"
+                systemctl --force --force reboot
+        else
+                printf '\n%s\n' "Flash successful"
+        fi
 else
         printf '\n%s\n' "Flashing image into partition_"$part" aborted" && exit 1
 fi
+
