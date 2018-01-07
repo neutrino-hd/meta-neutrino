@@ -18,7 +18,7 @@ elif [ $1 = 4 ]; then
         root=9
 fi
 
-imagesource="https://tuxbox-images.de/images/hd51/neutrino-image_ofgwrite.zip"
+imagesource="https://tuxbox-images.de/images/hd51/neutrino-image_flash.zip"
 imagebase="/media/HDD/service/image"
 rootdevice="$(sed -e 's/^.*root=//' -e 's/ .*$//' < /proc/cmdline)"
 unzip="unzip -x hd51.zip"
