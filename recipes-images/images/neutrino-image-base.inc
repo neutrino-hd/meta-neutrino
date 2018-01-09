@@ -21,6 +21,7 @@ DEPENDS_append += " \
 	dropbear \
 	mc \
 	libxslt \
+	dvbsnoop \
 "
 
 IMAGE_INSTALL += " \
