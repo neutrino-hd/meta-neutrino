@@ -39,13 +39,6 @@ IMAGE_INSTALL += " \
 	e2fsprogs-badblocks \
 	etckeeper \
 	gptfdisk \
-	gstreamer1.0 \
-	gstreamer1.0-plugins-good \
-	gstreamer1.0-plugins-bad \
-	gstreamer1.0-plugins-ugly \
-	gstreamer1.0-plugins-base \
-	gstreamer1.0-plugin-dvbmediasink \
-	gstreamer1.0-plugin-subsink \
 	gzip \
 	hdparm \
 	image-config \
