@@ -30,9 +30,11 @@ fi
 reset && read -n1 -s -r -p "Press y to continue..." key
 
 if [ "$key" = 'y' ]; then
+        reset
         if [ -z $2 ]; then
                 [ ! -e $imagebase ] && mkdir -p $imagebase
                 curl $imagesource -o $imagebase/hd51.zip
+                printf '\n%s\n'
                 rm -r $imagebase/hd51
                 cd $imagebase && $unzip
                 rm $imagebase/hd51.zip
@@ -40,9 +42,9 @@ if [ "$key" = 'y' ]; then
         else
                 imagedir="$2"
                 if [ ! -f $imagedir/neutrino-image-hd51.ext4.bz2 ]; then
-                        printf '\n\n%s\n' "$2/neutrino-image-hd51.ext4.bz2 not found" && exit 1
+                        printf '\n%s\n' "$2/neutrino-image-hd51.ext4.bz2 not found" && exit 1
                 elif [ ! -f $imagedir/kernel.bin ]; then
-                        printf '\n\n%s\n' "$2/kernel.bin not found" && exit 1
+                        printf '\n%s\n' "$2/kernel.bin not found" && exit 1
                 fi
         fi
 
@@ -50,11 +52,11 @@ if [ "$key" = 'y' ]; then
         dd_rootfs="dd of=/dev/mmcblk0p$root bs=1M"
         unpack="bzip2 -cd $imagedir/neutrino-image-hd51.ext4.bz2"
 
-        printf '\n\n%s\n' "Flashing Kernel into /dev/mmcblk0p$kernel"
-        $dd_kernel              || { echo 'Flashing the kernel failed' ; exit 1; }
+        printf '\n%s\n' "Flashing Kernel into /dev/mmcblk0p$kernel"
+        $dd_kernel                      || { echo 'Flashing the kernel failed' ; exit 1; }
 
-        printf '\n\n%s\n' "Flashing rootfs into /dev/mmcblk0p$root"
-        $unpack | $dd_rootfs    || { echo 'unpacking the rootfs failed' ; exit 1; }
+        printf '\n%s\n' "Flashing rootfs into /dev/mmcblk0p$root"
+        $unpack | $dd_rootfs && sync    || { echo 'unpacking the rootfs failed' ; exit 1; }
 
         if [ $rootdevice = /dev/mmcblk0p$root ]; then
                 printf '\n%s\n' "Flash successful"
