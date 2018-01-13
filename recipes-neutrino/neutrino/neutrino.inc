@@ -64,6 +64,11 @@ N_CPPFLAGS = "-DDYNAMIC_LUAPOSIX -D__KERNEL_STRICT_NAMES -D__STDC_CONSTANT_MACRO
 
 CPPFLAGS = "${N_CPPFLAGS}"
 
+do_configure_prepend() {
+        ln -sf ${B}/src/gui/version.h ${S}/src/gui/
+}
+
+
 do_compile () {
 	# unset CFLAGS CXXFLAGS LDFLAGS
 	oe_runmake CFLAGS="${N_CFLAGS}" CXXFLAGS="${N_CXXFLAGS}" LDFLAGS="${N_LDFLAGS}"
