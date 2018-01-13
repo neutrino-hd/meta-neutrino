@@ -64,19 +64,6 @@ N_CPPFLAGS = "-DDYNAMIC_LUAPOSIX -D__KERNEL_STRICT_NAMES -D__STDC_CONSTANT_MACRO
 
 CPPFLAGS = "${N_CPPFLAGS}"
 
-do_configure_prepend() {
-	ln -sf ${B}/src/gui/version.h ${S}/src/gui/
-	if [ ${YT_DEV_KEY} ];then
-		sed -i "s|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|${YT_DEV_KEY}|" ${S}/src/neutrino.cpp
-	fi
-	if [ ${TMDB_DEV_KEY} ];then
-		sed -i "s|XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX|${TMDB_DEV_KEY}|" ${S}/src/neutrino.cpp
-	fi
-	if [ ${SHOUTCAST_DEV_KEY} ];then
-		sed -i "s|XXXXXXXXXXXXXXXX|${SHOUTCAST_DEV_KEY}|" ${S}/src/neutrino.cpp
-	fi
-}
-
 do_compile () {
 	# unset CFLAGS CXXFLAGS LDFLAGS
 	oe_runmake CFLAGS="${N_CFLAGS}" CXXFLAGS="${N_CXXFLAGS}" LDFLAGS="${N_LDFLAGS}"
