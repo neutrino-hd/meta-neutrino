@@ -35,11 +35,9 @@ if [ "$key" = 'y' ]; then
                 imagedir="$imagebase/hd51"
                 unpack="unzip -x $imagefile -d $imagebase"
                 [ ! -e $imagebase ] && mkdir -p $imagebase
-                if [ -d $imagedir ]; then
-                        space_available="$(df -Pk $imagedir | awk 'NR==2 {print $4}')"
-                        if [ $space_available -lt 1048576 ];then
-                                printf '\n%s\n' "You need at least 1G of free space on your HDD" && exit 1
-                        fi
+                space_available="$(df -Pk $imagebase | awk 'NR==2 {print $4}')"
+                if [ $space_available -lt 1048576 ];then
+                        printf '\n%s\n' "You need at least 1G of free space on your HDD" && exit 1
                 fi
                 curl $imagesource -o $imagefile || { printf '\n%s\n' "Downloading the image failed" ; exit 1; }
                 printf '\n%s\n'
@@ -73,3 +71,4 @@ if [ "$key" = 'y' ]; then
 else
         printf '\n%s\n' "Flashing image into partition_"$part" aborted" && exit 1
 fi
+
