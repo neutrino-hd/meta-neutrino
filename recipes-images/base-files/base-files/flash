@@ -22,9 +22,12 @@ imagesource="https://tuxbox-images.de/images/hd51/neutrino-image_flash.zip"
 imagebase="/media/HDD/service/image"
 imagefile="$imagebase/hd51.zip"
 rootdevice="$(sed -e 's/^.*root=//' -e 's/ .*$//' < /proc/cmdline)"
+partition_sectorsize="$(gdisk -l /dev/mmcblk0p$root | grep 'Total free space' | awk '{print $5}')"
 
 if  [ $1 -lt 1 ] || [ $1 -gt 4 ]; then
         printf '\n%s\n' "Choose a valid partition" && exit 1
+elif [ $partition_sectorsize -ne 1638333 ]; then
+        printf '\n%s\n' "The partition scheme is invalid ... use ofgwrite for flashing" && exit 1
 fi
 
 reset && read -n1 -s -r -p "Press y to continue..." key
@@ -34,7 +37,7 @@ if [ "$key" = 'y' ]; then
         if [ -z $2 ]; then
                 imagedir="$imagebase/hd51"
                 unpack="unzip -x $imagefile -d $imagebase"
-                [ ! -e $imagebase ] && mkdir -p $imagebase
+                [ ! -d $imagebase ] && mkdir -p $imagebase
                 space_available="$(df -Pk $imagebase | awk 'NR==2 {print $4}')"
                 if [ $space_available -lt 1048576 ];then
                         printf '\n%s\n' "You need at least 1G of free space on your HDD" && exit 1
@@ -56,19 +59,19 @@ if [ "$key" = 'y' ]; then
                 fi
         fi
 
-        printf '\n%s\n' "Flashing kernel into /dev/mmcblk0p$kernel"
-        dd if=$imagedir/kernel.bin of=/dev/mmcblk0p$kernel bs=1M || { printf '\n%s\n' "Flashing the kernel failed" ; exit 1; }
+        printf '\n%s\n' "Writing kernel into /dev/mmcblk0p$kernel"
+        dd if=$imagedir/kernel.bin of=/dev/mmcblk0p$kernel bs=1M || { printf '\n%s\n' "Writing the kernel failed" ; exit 1; }
 
-        printf '\n%s\n' "Flashing rootfs into /dev/mmcblk0p$root"
-        bzip2 -cd $imagedir/neutrino-image-hd51.ext4.bz2 | dd of=/dev/mmcblk0p$root bs=1M && sync || { printf '\n%s\n' "Flash successful ... please unplug manually" ; exit 1; }
-
+        printf '\n%s\n' "Writing rootfs into /dev/mmcblk0p$root"
+        success="Flash successful"
         if [ $rootdevice = /dev/mmcblk0p$root ]; then
-                printf '\n%s\n' "Flash successful"
-                systemctl --force --force reboot
-        else
-                printf '\n%s\n' "Flash successful"
+                reboot="systemctl --force --force reboot"
         fi
+        bzip2 -cd $imagedir/neutrino-image-hd51.ext4.bz2 | dd of=/dev/mmcblk0p$root bs=1M && \
+        sync && \
+        printf '\n%s\n' "$success" && \
+        $reboot \
+        || { printf '\n%s\n' "Writing rootfs into /dev/mmcblk0p$root failed" ; exit 1; }
 else
         printf '\n%s\n' "Flashing image into partition_"$part" aborted" && exit 1
 fi
-
