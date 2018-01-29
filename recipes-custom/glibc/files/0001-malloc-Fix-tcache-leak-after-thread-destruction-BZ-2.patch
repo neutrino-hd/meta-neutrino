@@ -16,30 +16,12 @@ is very reliable at detecting that there is a leak given the number of
 iterations.  Without the fix the test will consume 122MiB of leaked
 memory.
 ---
- ChangeLog                       |   9 ++++
  malloc/Makefile                 |   3 ++
  malloc/malloc.c                 |   8 +--
  malloc/tst-malloc-tcache-leak.c | 112 ++++++++++++++++++++++++++++++++++++++++
  4 files changed, 129 insertions(+), 3 deletions(-)
  create mode 100644 malloc/tst-malloc-tcache-leak.c
 
-diff --git a/ChangeLog b/ChangeLog
-index ac0f18844d..bbd80b1367 100644
---- a/ChangeLog
-+++ b/ChangeLog
-@@ -1,3 +1,12 @@
-+2017-10-06  Carlos O'Donell  <carlos@redhat.com>
-+
-+	[BZ #22111]
-+	* malloc/malloc.c (tcache_shutting_down): Use bool type.
-+	(tcache_thread_freeres): Set tcache_shutting_down before
-+	freeing the tcache.
-+	* malloc/Makefile (tests): Add tst-malloc-tcache-leak.
-+	* malloc/tst-malloc-tcache-leak.c: New file.
-+
- 2017-08-02  Siddhesh Poyarekar  <siddhesh@sourceware.org>
- 
- 	* version.h (RELEASE): Set to "stable"
 diff --git a/malloc/Makefile b/malloc/Makefile
 index 50b487eeb5..6cf78e1177 100644
 --- a/malloc/Makefile
