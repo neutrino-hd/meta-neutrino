@@ -54,7 +54,7 @@ if [ "$key" = 'y' ]; then
         else
             	imagedir="$2"
                 if [ ! -f $imagedir/neutrino-image-hd51.ext4.bz2 ]; then
-                        printf '\n%s\n' "$2/neutrino-image-hd51.ext4.bz2 not found" ; exit 1
+                        printf '\n%s\n' "$2/neutrino-image-hd51.ext4.bz2 not found" ; exit 1;
                 elif [ ! -f $imagedir/kernel.bin ]; then
                         printf '\n%s\n' "$2/kernel.bin not found" ; exit 1;
                 fi
