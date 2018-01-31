@@ -81,8 +81,8 @@ do_install_prepend () {
 	install -d ${D}${bindir}
 	install -d ${D}${sysconfdir}/neutrino/config
 	install -d ${D}${sysconfdir}/neutrino/plugins	
-    install -m 0644 ${WORKDIR}/neutrino.service ${D}${systemd_unitdir}/system/
-    install -m 0755 ${WORKDIR}/neutrino.sh ${D}${bindir}/   
+	install -m 0644 ${WORKDIR}/neutrino.service ${D}${systemd_unitdir}/system/
+	install -m 0755 ${WORKDIR}/neutrino.sh ${D}${bindir}/   
 	install -m 755 ${WORKDIR}/pre-wlan0.sh ${D}${sysconfdir}/network/
 	install -m 755 ${WORKDIR}/post-wlan0.sh ${D}${sysconfdir}/network/
 	install -m 644 ${WORKDIR}/timezone.xml ${D}${sysconfdir}/timezone.xml
@@ -93,7 +93,7 @@ do_install_prepend () {
 	echo "creator=${CREATOR}"             >> ${D}/.version 
 	echo "imagename=yocto ${DISTRO}"             >> ${D}/.version 
 	echo "homepage=${HOMEPAGE}"              >> ${D}/.version
-        echo "version=${DISTRO_VERSION_NUMBER}"   >> ${D}/.version
+        echo "version=${RELEASE_STATE}${DISTRO_VERSION_NUMBER_MAJOR}${DISTRO_VERSION_NUMBER_MINOR}"0"`date +%Y%m%d%H%M`" >> ${D}/.version
 	if [ ! -z ${RELEASE_TEXT_LOCATION_HOST} ];then
 		HASH=$(cd ${S} && echo `git rev-parse --abbrev-ref HEAD` `git describe --always --tags --dirty`)
 		echo "${IMAGE_LOCATION} ${RELEASE_STATE}${DISTRO_VERSION_NUMBER_MAJOR}${DISTRO_VERSION_NUMBER_MINOR}"0"`date +%Y%m%d%H%M` MD5 ${HASH} ${DISTRO_VERSION}" > ${RELEASE_TEXT_LOCATION_HOST}
