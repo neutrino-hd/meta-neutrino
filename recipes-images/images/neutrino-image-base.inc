@@ -62,6 +62,7 @@ IMAGE_INSTALL += " \
 	procps \
 	rpcbind \
 	samba \
+	sed \
 	tzdata \
 	tzdata-europe \
 	udev-extraconf \
