@@ -3,6 +3,8 @@
 imagesource="https://tuxbox-images.de/images/hd51/neutrino-image_flash.zip"
 imagebase="/media/HDD/service/image"
 imagefile="$imagebase/hd51.zip"
+imagename="neutrino-image-hd51.ext4.bz2"
+devbase="/dev/mmcblk0p"
 
 if  [ -z $1 ] || [ $1 = "-h" ] || [ $1 = "--help" ]; then
         printf '\n%s\n' "Give the destination partition number [1 - 4] as first argument.
@@ -12,7 +14,7 @@ If no second argument is given the image will be downloaded from
 
 $imagesource
 
-"; 
+";
 	exit 0;
 fi
 
@@ -41,7 +43,7 @@ else
 fi
 
 rootdevice="$(sed -e 's/^.*root=//' -e 's/ .*$//' < /proc/cmdline)"
-partition_sectorsize="$(gdisk -l /dev/mmcblk0p$root | grep 'Total free space' | awk '{print $5}')"
+partition_sectorsize="$(gdisk -l $devbase$root | grep 'Total free space' | awk '{print $5}')"
 
 if [ $partition_sectorsize -ne 1638333 ]; then
         printf '\n%s\n' "The partition scheme is invalid ... use ofgwrite for flashing" ; exit 1;
@@ -66,8 +68,8 @@ if [ "$key" = 'y' ]; then
                 [ -f $imagefile ] && rm $imagefile
         else
             	imagedir="$2"
-                if [ ! -f $imagedir/neutrino-image-hd51.ext4.bz2 ]; then
-                        printf '\n%s\n' "$2/neutrino-image-hd51.ext4.bz2 not found" ; exit 1;
+                if [ ! -f $imagedir/$imagename ]; then
+                        printf '\n%s\n' "$2/$imagename not found" ; exit 1;
                 elif [ ! -f $imagedir/kernel.bin ]; then
                         printf '\n%s\n' "$2/kernel.bin not found" ; exit 1;
                 fi
@@ -77,16 +79,15 @@ if [ "$key" = 'y' ]; then
                 fi
         fi
 
-        printf '\n%s\n' "Writing kernel into /dev/mmcblk0p$kernel"
-        dd if=$imagedir/kernel.bin of=/dev/mmcblk0p$kernel bs=1M status=progress conv=fsync \
+        printf '\n%s\n' "Writing kernel into $devbase$kernel"
+        dd if=$imagedir/kernel.bin of=$devbase$kernel bs=1M status=progress conv=fsync \
         || { printf '\n%s\n' "Writing the kernel failed" ; exit 1; }
 
-        printf '\n%s\n' "Writing rootfs into /dev/mmcblk0p$root"
-        success="Flash successful"
-        bzip2 -cd $imagedir/neutrino-image-hd51.ext4.bz2 | dd of=/dev/mmcblk0p$root bs=1M status=progress conv=fsync \
-        || { printf '\n%s\n' "Writing rootfs into /dev/mmcblk0p$root failed" ; exit 1; }
-        printf '\n%s\n' "$success"
-        if [ $rootdevice = /dev/mmcblk0p$root ]; then
+        printf '\n%s\n' "Writing rootfs into $devbase$root"
+        bzip2 -cd $imagedir/$imagename | dd of=$devbase$root bs=1M status=progress conv=fsync \
+        || { printf '\n%s\n' "Writing rootfs into $devbase$root failed" ; exit 1; }
+        printf '\n%s\n' "Flash successful"
+        if [ $rootdevice = $devbase$root ]; then
                 reboot="$(echo 1 > /proc/sys/kernel/sysrq && echo b > /proc/sysrq-trigger)"
         fi
 else
