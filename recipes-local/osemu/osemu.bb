@@ -13,9 +13,8 @@ SRCREV = "${AUTOREV}"
 PV = "${SRCPV}"
 PR = "r4"
 
-SRC_URI = " \
-	git://github.com/nautilus7/OSEmu.git \
-	file://0002-OSEmu.c-search-keyfile-in-etc-neutrino-config.patch \
+SRC_URI = "git://github.com/oscam-emu/OSEmu.git \
+	   file://0002-OSEmu.c-search-keyfile-in-etc-neutrino-config.patch \
 "
 
 INHIBIT_PACKAGE_STRIP = "1"
@@ -28,4 +27,3 @@ do_install() {
 	install -d ${D}${sysconfdir}/neutrino/bin
 	install -m 755 ${S}/OSEmu ${D}${sysconfdir}/neutrino/bin/osemu
 }
-
