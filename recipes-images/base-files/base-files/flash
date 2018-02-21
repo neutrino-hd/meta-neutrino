@@ -49,47 +49,42 @@ if [ $partition_sectorsize -ne 1638333 ]; then
         printf '\n%s\n' "The partition scheme is invalid ... use ofgwrite for flashing" ; exit 1;
 fi
 
-reset && read -n1 -s -r -p "Press y to continue..." key
+reset
 
-if [ "$key" = 'y' ]; then
-        reset
-	if [ -z $2 ]; then
-                imagedir="$imagebase/hd51"
-                unpack="unzip -x $imagefile -d $imagebase"
-                [ ! -d $imagebase ] && mkdir -p $imagebase
-                space_available="$(df -Pk $imagebase | awk 'NR==2 {print $4}')"
-                if [ $space_available -lt 1048576 ];then
-                        printf '\n%s\n' "You need at least 1G of free space on your HDD" ; exit 1;
-                fi
-                curl $imagesource -o $imagefile || { printf '\n%s\n' "Downloading the image failed" ; exit 1; }
-                printf '\n%s\n'
-                [ -d $imagedir ] && rm -r $imagedir
-                $unpack || { printf '\n%s\n' "Unpacking the image failed" ; exit 1; }
-                [ -f $imagefile ] && rm $imagefile
-        else
-            	imagedir="$2"
-                if [ ! -f $imagedir/$imagename ]; then
-                        printf '\n%s\n' "$2/$imagename not found" ; exit 1;
-                elif [ ! -f $imagedir/kernel.bin ]; then
-                        printf '\n%s\n' "$2/kernel.bin not found" ; exit 1;
-                fi
-                space_available="$(df -Pk $imagedir | awk 'NR==2 {print $4}')"
-                if [ $space_available -lt 1048576 ];then
-                        printf '\n%s\n' "You need at least 1G of free space on your device" ; exit 1;
-                fi
-        fi
-
-        printf '\n%s\n' "Writing kernel into $devbase$kernel"
-        dd if=$imagedir/kernel.bin of=$devbase$kernel bs=1M status=progress conv=fsync \
-        || { printf '\n%s\n' "Writing the kernel failed" ; exit 1; }
-
-        printf '\n%s\n' "Writing rootfs into $devbase$root"
-        bzip2 -cd $imagedir/$imagename | dd of=$devbase$root bs=1M status=progress conv=fsync \
-        || { printf '\n%s\n' "Writing rootfs into $devbase$root failed" ; exit 1; }
-        printf '\n%s\n' "Flash successful"
-        if [ $rootdevice = $devbase$root ]; then
-                reboot="$(echo 1 > /proc/sys/kernel/sysrq && echo b > /proc/sysrq-trigger)"
-        fi
+if [ -z $2 ]; then
+	imagedir="$imagebase/hd51"
+	unpack="unzip -x $imagefile -d $imagebase"
+	[ ! -d $imagebase ] && mkdir -p $imagebase
+	space_available="$(df -Pk $imagebase | awk 'NR==2 {print $4}')"
+	if [ $space_available -lt 1048576 ];then
+		printf '\n%s\n' "You need at least 1G of free space on your HDD" ; exit 1;
+	fi
+	curl $imagesource -o $imagefile || { printf '\n%s\n' "Downloading the image failed" ; exit 1; }
+	printf '\n%s\n'
+	[ -d $imagedir ] && rm -r $imagedir
+	$unpack || { printf '\n%s\n' "Unpacking the image failed" ; exit 1; }
+	[ -f $imagefile ] && rm $imagefile
 else
-    	printf '\n%s\n' "Flashing image into partition_"$part" aborted" ; exit 1;
+	imagedir="$2"
+	if [ ! -f $imagedir/$imagename ]; then
+		printf '\n%s\n' "$2/$imagename not found" ; exit 1;
+	elif [ ! -f $imagedir/kernel.bin ]; then
+		printf '\n%s\n' "$2/kernel.bin not found" ; exit 1;
+	fi
+	space_available="$(df -Pk $imagedir | awk 'NR==2 {print $4}')"
+	if [ $space_available -lt 1048576 ];then
+		printf '\n%s\n' "You need at least 1G of free space on your device" ; exit 1;
+	fi
+fi
+
+printf '\n%s\n' "Writing kernel into $devbase$kernel"
+dd if=$imagedir/kernel.bin of=$devbase$kernel bs=1M status=progress conv=fsync \
+|| { printf '\n%s\n' "Writing the kernel failed" ; exit 1; }
+
+printf '\n%s\n' "Writing rootfs into $devbase$root"
+bzip2 -cd $imagedir/$imagename | dd of=$devbase$root bs=1M status=progress conv=fsync \
+|| { printf '\n%s\n' "Writing rootfs into $devbase$root failed" ; exit 1; }
+printf '\n%s\n' "Flash successful"
+if [ $rootdevice = $devbase$root ]; then
+	reboot="$(echo 1 > /proc/sys/kernel/sysrq && echo b > /proc/sysrq-trigger)"
 fi
