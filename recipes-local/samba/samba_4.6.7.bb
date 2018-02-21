@@ -49,7 +49,7 @@ SYSTEMD_SERVICE_${PN}-base = "nmb.service smb.service"
 SYSTEMD_SERVICE_winbind = "winbind.service"
 
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'systemd zeroconf', d)} \
-                   acl cups ldap \
+                   acl ldap \
 "
 
 RDEPENDS_${PN}-base += "${LSB}"
@@ -87,7 +87,7 @@ EXTRA_OECONF += "--enable-fhs \
                  --bundled-libraries=${SAMBA4_LIBS} \
                  --with-system-mitkrb5 \
                  --without-ad-dc \
-                 ${@base_conditional('TARGET_ARCH', 'x86_64', '', '--disable-glusterfs', d)} \
+                 ${@oe.utils.conditional('TARGET_ARCH', 'x86_64', '', '--disable-glusterfs', d)} \
                  --with-cluster-support \
                  --with-profiling-data \
                  --with-libiconv=${STAGING_DIR_HOST}${prefix} \

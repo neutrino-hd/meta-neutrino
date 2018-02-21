@@ -23,9 +23,17 @@ LIC_FILES_CHKSUM = "file://COPYING.GPLv2;md5=b234ee4d69f5fce4486a80fdaf4a4263 \
                     file://COPYING.LGPLv2.1;md5=bd7a443320af8c812e4c18d1b79df004 \
                     file://COPYING.LGPLv3;md5=e6a600fd5e1d9cbde2d983680233ad02"
 
-SRC_URI = "https://www.ffmpeg.org/releases/${BP}.tar.xz \
-           file://mips64_cpu_detection.patch \
-          "
+SRC_URI =  "https://www.ffmpeg.org/releases/${BP}.tar.xz \
+            file://mips64_cpu_detection.patch \
+            file://ffmpeg-fix-hls.patch \
+            file://ffmpeg-buffer-size.patch \
+            file://ffmpeg-aac.patch \
+            file://ffmpeg-fix-mpegts.patch \
+            file://000003_allow_to_choose_rtmp_impl_at_runtime.patch \
+            file://ffmpeg-fix-edit-list-parsing.patch \
+            file://000001_add_dash_demux.patch \
+"
+
 SRC_URI[md5sum] = "368f1fff4bdadaf2823934cc0aadd71d"
 SRC_URI[sha256sum] = "599e7f7c017221c22011c4037b88bdcd1c47cd40c1e466838bc3c465f3e9569d"
 
@@ -36,7 +44,7 @@ ARM_INSTRUCTION_SET = "arm"
 # libpostproc was previously packaged from a separate recipe
 PROVIDES = "libav"
 
-DEPENDS = "alsa-lib zlib libogg yasm-native libass libbluray rtmpdump"
+DEPENDS_append += "alsa-lib zlib libogg yasm-native libass libbluray rtmpdump"
 
 inherit autotools pkgconfig
 
@@ -219,8 +227,21 @@ EXTRA_OECONF_append += "--disable-doc \
             --enable-hardcoded-tables \
 "
 
+EXTRA_OECONF_append_hd51 = " \
+    --enable-vfp \
+"
+
 do_configure() {
+    # We don't have TARGET_PREFIX-pkgconfig
+    sed -i '/pkg_config_default="${cross_prefix}${pkg_config_default}"/d' ${S}/configure
+    mkdir -p ${B}
+    cd ${B}
     ${S}/configure ${EXTRA_OECONF}
+    sed -i -e s:Os:O4:g ${B}/config.h
+}
+
+do_install_append() {
+    install -m 0644 ${S}/libavfilter/*.h ${D}${includedir}/libavfilter/
 }
 
 PACKAGES =+ "libavcodec \
@@ -253,3 +274,5 @@ INSANE_SKIP_${MLPREFIX}libavresample = "textrel"
 INSANE_SKIP_${MLPREFIX}libswscale = "textrel"
 INSANE_SKIP_${MLPREFIX}libswresample = "textrel"
 INSANE_SKIP_${MLPREFIX}libpostproc = "textrel"
+
+LICENSE_FLAGS_WHITELIST = "commercial"

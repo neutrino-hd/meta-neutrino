@@ -1,8 +1,8 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
 SRC_URI_append += "file://smb.conf \
-				   file://smb.service \
-				   file://add_smbusr.sh \
+		   file://smb.service \
+		   file://add_smbusr.sh \
 "
 
 do_install_append() {
