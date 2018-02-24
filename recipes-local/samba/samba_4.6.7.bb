@@ -33,7 +33,7 @@ inherit systemd waf-samba cpan-base perlnative update-rc.d
 # remove default added RDEPENDS on perl
 RDEPENDS_${PN}_remove = "perl"
 
-DEPENDS += "readline virtual/libiconv zlib popt libtalloc libtdb libtevent libldb krb5 libbsd libaio libpam"
+DEPENDS += "readline virtual/libiconv zlib popt libtalloc libtdb libtevent krb5 libbsd libaio libpam"
 DEPENDS_append_libc-uclibc = " libtirpc"
 CFLAGS_append_libc-uclibc = " -I${STAGING_INCDIR}/tirpc"
 LDFLAGS_append_libc-uclibc = " -ltirpc"
