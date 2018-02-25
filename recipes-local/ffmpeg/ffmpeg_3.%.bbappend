@@ -1,6 +1,7 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/ffmpeg:"
 
-DEPENDS_append += "libass rtmpdump libxml2"
+DEPENDS_append += "libass rtmpdump"
+RDEPENDS_${PN}_append += "xz"
 
 SRC_URI_append = " \
     file://ffmpeg-fix-hls.patch \
@@ -12,7 +13,7 @@ SRC_URI_append = " \
     file://000001_add_dash_demux.patch \
 "
 
-PACKAGECONFIG_append += "openssl"
+PACKAGECONFIG = "avdevice avfilter avcodec avformat swresample swscale openssl"
 
 EXTRA_OECONF_append += " \
             --disable-ffserver \
@@ -287,7 +288,6 @@ EXTRA_OECONF_append += " \
             --disable-libxcb-xfixes \
             --disable-libxcb-shape \
             --enable-librtmp \
-            --enable-libxml2 \
             \
 "
 
