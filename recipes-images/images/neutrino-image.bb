@@ -8,7 +8,6 @@ IMAGE_INSTALL += " \
 	neutrino-lua-plugins \
 	neutrino-plugin-rss \
 	neutrino-plugin-localtv \
-	neutrino-plugin-myspass \
 	neutrino-plugin-mediathek \
 	neutrino-plugin-rockpalast \
 	neutrino-plugin-startup \
