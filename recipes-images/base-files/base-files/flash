@@ -67,7 +67,7 @@ else
 fi
 
 printf '\n%s\n' "Writing kernel into $devbase$kernel"
-dd if=$imagedir/kernel.bin of=$devbase$kernel bs=1M status=progress conv=fsync \
+dd if=$imagedir/$kernelname of=$devbase$kernel bs=1M status=progress conv=fsync \
 || { printf '\n%s\n' "Writing the kernel failed" ; exit 1; }
 
 printf '\n%s\n' "Writing rootfs into $devbase$root"
@@ -76,4 +76,3 @@ bzip2 -cd $imagedir/$imagename | dd of=$devbase$root bs=1M $have_coreutils conv=
 || { printf '\n%s\n' "Writing rootfs into $devbase$root failed" ; exit 1; }
 printf '\n%s\n' "Flash successful"
 [ $rootdevice = $devbase$root ] && reboot="$(echo 1 > /proc/sys/kernel/sysrq && echo b > /proc/sysrq-trigger)"
-
