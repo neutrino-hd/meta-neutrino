@@ -4,6 +4,7 @@ imagesource="https://tuxbox-images.de/images/hd51/neutrino-image_flash.zip"
 imagebase="/media/HDD/service/image"
 imagefile="$imagebase/hd51.zip"
 imagename="neutrino-image-hd51.ext4.bz2"
+kernelname="kernel.bin"
 devbase="/dev/mmcblk0p"
 
 [ -z $1 ] || [ $1 = "-h" ] || [ $1 = "--help" ] && printf '\n%s\n' "Give the destination partition number [1 - 4] as first argument.
@@ -59,8 +60,8 @@ if [ -z $2 ]; then
 	[ -f $imagefile ] && rm $imagefile
 else
 	imagedir="$2"
-	[ ! -f $imagedir/$imagename ] && printf '\n%s\n' "$2/$imagename not found" && exit 1;
-	[ ! -f $imagedir/kernel.bin ] && printf '\n%s\n' "$2/kernel.bin not found" && exit 1;
+	[ ! -f $imagedir/$imagename ] && printf '\n%s\n' "$imagedir/$imagename not found" && exit 1;
+	[ ! -f $imagedir/$kernelname ] && printf '\n%s\n' "$imagedir/$kernelname not found" && exit 1;
 	space_available="$(df -Pk $imagedir | awk 'NR==2 {print $4}')"
 	[ $space_available -lt 1048576 ] && printf '\n%s\n' "You need at least 1G of free space on your device" && exit 1;
 fi
