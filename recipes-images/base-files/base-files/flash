@@ -66,12 +66,13 @@ else
 	[ $space_available -lt 1048576 ] && printf '\n%s\n' "You need at least 1G of free space on your device" && exit 1;
 fi
 
+[ -f /bin/dd.coreutils ] && have_coreutils="status=progress"
+
 printf '\n%s\n' "Writing kernel into $devbase$kernel"
-dd if=$imagedir/$kernelname of=$devbase$kernel bs=1M status=progress conv=fsync \
+dd if=$imagedir/$kernelname of=$devbase$kernel bs=1M $have_coreutils conv=fsync \
 || { printf '\n%s\n' "Writing the kernel failed" ; exit 1; }
 
 printf '\n%s\n' "Writing rootfs into $devbase$root"
-[ -f /bin/dd.coreutils ] && have_coreutils="status=progress"
 bzip2 -cd $imagedir/$imagename | dd of=$devbase$root bs=1M $have_coreutils conv=fsync \
 || { printf '\n%s\n' "Writing rootfs into $devbase$root failed" ; exit 1; }
 printf '\n%s\n' "Flash successful"
