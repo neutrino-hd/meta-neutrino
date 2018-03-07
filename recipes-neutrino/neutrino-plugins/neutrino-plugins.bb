@@ -1,14 +1,30 @@
 DESCRIPTION = "tuxbox plugins, ported to neutrino-hd"
-LICENSE = "GPLv2+"
-LIC_FILES_CHKSUM = "file://tuxcom/tuxcom.c;beginline=10;endline=24;md5=f08c0a8fadd6ea7b914992e4bd4b7685"
+LICENSE = "GPL-2.0"
+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
 
 DEPENDS = "freetype ffmpeg zlib libxml2 virtual/libiconv openssl libpng curl giflib libjpeg-turbo"
 
-SRCREV = "${AUTOREV}"
+SRCREV_autotools = "${AUTOREV}"
+SRCREV_tuxcom = "${AUTOREV}"
+SRCREV_msgbox = "${AUTOREV}"
+SRCREV_input = "${AUTOREV}"
+SRCREV_tuxwetter = "${AUTOREV}"
+SRCREV_shellexec = "${AUTOREV}"
+
 PV = "8"
 
-SRC_URI = "git://github.com/neutrino-hd/neutrino-hd-plugins.git;branch=master;protocol=https \
+SRC_URI = "git://github.com/neutrino-hd/neutrino-hd-plugins.git;branch=master;protocol=https;name=autotools \
+	   git://github.com/tuxbox-neutrino/plugin-tuxcom.git;destsuffix=git/tuxcom;branch=master;name=tuxcom \
+	   git://github.com/tuxbox-neutrino/plugin-msgbox.git;destsuffix=git/msgbox;branch=master;name=msgbox \
+	   git://github.com/tuxbox-neutrino/plugin-input.git;destsuffix=git/input;branch=master;name=input \
+	   git://github.com/tuxbox-neutrino/plugin-shellexec.git;destsuffix=git/shellexec;branch=master;name=shellexec \
+	   git://github.com/tuxbox-neutrino/plugin-tuxwetter.git;destsuffix=git/tuxwetter;branch=master;name=tuxwetter \
+	   file://Makefile.am_msgbox \
+	   file://Makefile.am_input \
+	   file://Makefile.am_shellexec \
+	   file://Makefile.am_tuxcom \
+	   file://Makefile.am_tuxwetter \
 "
 
 S = "${WORKDIR}/git"
@@ -22,6 +38,7 @@ EXTRA_OECONF += " \
 	--enable-maintainer-mode \
 	--with-target=native \
 	--with-plugindir=/var/tuxbox/plugins \
+	--with-fontdir=/usr/share/fonts \
 	--with-boxtype=armbox \
 "
 
@@ -30,6 +47,15 @@ EXTRA_OECONF += "--with-configdir=/etc/neutrino/config"
 N_CFLAGS = "-Wall -W -Wshadow -g -O2 -funsigned-char -I${STAGING_INCDIR}/freetype2"
 N_CXXFLAGS = "${N_CFLAGS}"
 N_LDFLAGS += "-Wl,--hash-style=gnu -Wl,-rpath-link,${STAGING_DIR_HOST}${libdir},-lfreetype -lcrypto -lssl -lpng -lcurl -lz"
+
+do_configure_prepend() {
+	cp ${WORKDIR}/Makefile.am_msgbox ${S}/msgbox/Makefile.am
+	cp ${WORKDIR}/Makefile.am_input ${S}/input/Makefile.am
+	cp ${WORKDIR}/Makefile.am_shellexec ${S}/shellexec/Makefile.am
+	cp ${WORKDIR}/Makefile.am_tuxwetter ${S}/tuxwetter/Makefile.am
+	cp ${WORKDIR}/Makefile.am_tuxcom ${S}/tuxcom/Makefile.am
+}
+
 
 do_compile () {
 	unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
