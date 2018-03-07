@@ -1,12 +1,10 @@
-DESCRIPTION = "Add webtv.xml listings"
+DESCRIPTION = "Lua Plugin Scripts"
 LICENSE = "GPL-2.0"
-MAINTAINER = "bazi98"
+MAINTAINER = "tuxbox-neutrino"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 HOMEPAGE = "https://github.com/tuxbox-neutrino"
 
 S = "${WORKDIR}/git"
-
-PR = "r1"
 
 SRC_URI = "git://github.com/tuxbox-neutrino/plugin-scripts-lua.git;protocol=https \
 		   file://yt_live.tar.gz \
