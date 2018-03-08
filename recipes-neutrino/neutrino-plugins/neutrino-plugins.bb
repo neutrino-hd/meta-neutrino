@@ -1,4 +1,4 @@
-DESCRIPTION = "tuxbox plugins, ported to neutrino-hd"
+#DESCRIPTION = "tuxbox plugins, ported to neutrino-hd"
 LICENSE = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
@@ -38,7 +38,6 @@ EXTRA_OECONF += " \
 	--enable-maintainer-mode \
 	--with-target=native \
 	--with-plugindir=/var/tuxbox/plugins \
-	--with-fontdir=/usr/share/fonts/ \
 	--with-boxtype=armbox \
 "
 
