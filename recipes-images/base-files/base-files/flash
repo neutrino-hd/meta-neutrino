@@ -8,9 +8,12 @@ kernelname="kernel.bin"
 devbase="/dev/mmcblk0p"
 
 [ -z $1 ] || [ $1 = "-h" ] || [ $1 = "--help" ] && printf '\n%s\n' "Give the destination partition number [1 - 4] as first argument.
+
 As second argument you can specify the path where the image is stored.
 If no second argument is given the image will be downloaded from
+
 $imagesource
+
 " && exit 0;
 
 if [[ $1 =~ ^[0-9]+$ ]]; then
@@ -66,6 +69,7 @@ fi
 
 echo "Writing image into partition $part" > /dev/dbox/oled0
 [ -f /bin/dd.coreutils ] && have_coreutils="status=progress"
+
 printf '\n%s\n' "Writing kernel into $devbase$kernel"
 dd if=$imagedir/$kernelname of=$devbase$kernel bs=1M $have_coreutils conv=fsync \
 || { printf '\n%s\n' "Writing the kernel failed" ; exit 1; }
