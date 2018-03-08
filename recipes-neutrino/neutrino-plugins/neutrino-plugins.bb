@@ -38,7 +38,6 @@ EXTRA_OECONF += " \
 	--enable-maintainer-mode \
 	--with-target=native \
 	--with-plugindir=/var/tuxbox/plugins \
-	--with-fontdir=/usr/share/fonts/ \
 	--with-boxtype=armbox \
 "
 
