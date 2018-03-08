@@ -8,12 +8,9 @@ kernelname="kernel.bin"
 devbase="/dev/mmcblk0p"
 
 [ -z $1 ] || [ $1 = "-h" ] || [ $1 = "--help" ] && printf '\n%s\n' "Give the destination partition number [1 - 4] as first argument.
-
 As second argument you can specify the path where the image is stored.
 If no second argument is given the image will be downloaded from
-
 $imagesource
-
 " && exit 0;
 
 if [[ $1 =~ ^[0-9]+$ ]]; then
@@ -37,37 +34,38 @@ if [[ $1 =~ ^[0-9]+$ ]]; then
                 root=9
         fi
 else
-    	printf '\n%s\n' "Please give the partition number as first argument" ; exit 1;
+        printf '\n%s\n' "Please give the partition number as first argument" ; exit 1;
 fi
 
 rootdevice="$(sed -e 's/^.*root=//' -e 's/ .*$//' < /proc/cmdline)"
 partition_sectorsize="$(gdisk -l $devbase$root | grep 'Total free space' | awk '{print $5}')"
-
 [ $partition_sectorsize -ne 1638333 ] && printf '\n%s\n' "The partition scheme is invalid ... use ofgwrite for flashing" && exit 1;
 
 reset
 
 if [ -z $2 ]; then
-	imagedir="$imagebase/hd51"
-	unpack="unzip -x $imagefile -d $imagebase"
-	[ ! -d $imagebase ] && mkdir -p $imagebase
-	space_available="$(df -Pk $imagebase | awk 'NR==2 {print $4}')"
-	[ $space_available -lt 1048576 ] && printf '\n%s\n' "You need at least 1G of free space on your HDD" && exit 1;
-	curl $imagesource -o $imagefile || { printf '\n%s\n' "Downloading the image failed" ; exit 1; }
-	printf '\n%s\n'
-	[ -d $imagedir ] && rm -r $imagedir
-	$unpack || { printf '\n%s\n' "Unpacking the image failed" ; exit 1; }
-	[ -f $imagefile ] && rm $imagefile
+        echo "Downloading $imagesource" > /dev/dbox/oled0
+        imagedir="$imagebase/hd51"
+        unpack="unzip -x $imagefile -d $imagebase"
+        [ ! -d $imagebase ] && mkdir -p $imagebase
+        space_available="$(df -Pk $imagebase | awk 'NR==2 {print $4}')"
+        [ $space_available -lt 1048576 ] && printf '\n%s\n' "You need at least 1G of free space on your HDD" && exit 1;
+        curl $imagesource -o $imagefile || { printf '\n%s\n' "Downloading the image failed" ; exit 1; }
+        printf '\n%s\n'
+        [ -d $imagedir ] && rm -r $imagedir
+        echo "Decompressing $imagename" > /dev/dbox/oled0
+        $unpack || { printf '\n%s\n' "Unpacking the image failed" ; exit 1; }
+        [ -f $imagefile ] && rm $imagefile
 else
-	imagedir="$2"
-	[ ! -f $imagedir/$imagename ] && printf '\n%s\n' "$imagedir/$imagename not found" && exit 1;
-	[ ! -f $imagedir/$kernelname ] && printf '\n%s\n' "$imagedir/$kernelname not found" && exit 1;
-	space_available="$(df -Pk $imagedir | awk 'NR==2 {print $4}')"
-	[ $space_available -lt 1048576 ] && printf '\n%s\n' "You need at least 1G of free space on your device" && exit 1;
+        imagedir="$2"
+        [ ! -f $imagedir/$imagename ] && printf '\n%s\n' "$imagedir/$imagename not found" && exit 1;
+        [ ! -f $imagedir/$kernelname ] && printf '\n%s\n' "$imagedir/$kernelname not found" && exit 1;
+        space_available="$(df -Pk $imagedir | awk 'NR==2 {print $4}')"
+        [ $space_available -lt 1048576 ] && printf '\n%s\n' "You need at least 1G of free space on your device" && exit 1;
 fi
 
+echo "Writing image into partition $part" > /dev/dbox/oled0
 [ -f /bin/dd.coreutils ] && have_coreutils="status=progress"
-
 printf '\n%s\n' "Writing kernel into $devbase$kernel"
 dd if=$imagedir/$kernelname of=$devbase$kernel bs=1M $have_coreutils conv=fsync \
 || { printf '\n%s\n' "Writing the kernel failed" ; exit 1; }
@@ -76,4 +74,7 @@ printf '\n%s\n' "Writing rootfs into $devbase$root"
 bzip2 -cd $imagedir/$imagename | dd of=$devbase$root bs=1M $have_coreutils conv=fsync \
 || { printf '\n%s\n' "Writing rootfs into $devbase$root failed" ; exit 1; }
 printf '\n%s\n' "Flash successful"
-[ $rootdevice = $devbase$root ] && reboot="$(echo 1 > /proc/sys/kernel/sysrq && echo b > /proc/sysrq-trigger)"
+
+[ $rootdevice = $devbase$root ] && echo "...Reboot" > /dev/dbox/oled0 && \
+reboot="$(echo 1 > /proc/sys/kernel/sysrq && echo b > /proc/sysrq-trigger)"
+echo "Flash successful" > /dev/dbox/oled0
