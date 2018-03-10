@@ -1,6 +1,7 @@
 #!/bin/bash
 
-imagesource="https://tuxbox-images.de/images/hd51/neutrino-image_flash.zip"
+url="https://tuxbox-images.de/images/hd51"
+image="neutrino-image_flash.zip"
 imagebase="/media/HDD/service/image"
 imagefile="$imagebase/hd51.zip"
 imagename="neutrino-image-hd51.ext4.bz2"
@@ -40,16 +41,17 @@ partition_sectorsize="$(gdisk -l $devbase$root | grep 'Total free space' | awk '
 reset
 
 if [ -z $2 ]; then
-        echo "Downloading $imagesource" > $dev_display
+        echo "Downloading $image" > $dev_display
         imagedir="$imagebase/hd51"
         unpack="unzip -x $imagefile -d $imagebase"
         [ ! -d $imagebase ] && mkdir -p $imagebase
         space_available="$(df -Pk $imagebase | awk 'NR==2 {print $4}')"
         [ $space_available -lt 1048576 ] && printf '\n%s\n' "You need at least 1G of free space on your HDD" && exit 1;
+        imagesource="$url/$image"
         curl $imagesource -o $imagefile || { printf '\n%s\n' "Downloading the image failed" ; exit 1; }
         printf '\n%s\n'
         [ -d $imagedir ] && rm -r $imagedir
-        echo "Decompressing $imagename" > $dev_display
+        echo "Decompressing $image" > $dev_display
         $unpack || { printf '\n%s\n' "Unpacking the image failed" ; exit 1; }
         [ -f $imagefile ] && rm $imagefile
 else
