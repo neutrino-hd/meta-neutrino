@@ -1,4 +1,4 @@
- #!/bin/bash
+#!/bin/bash
 
 imagesource="https://tuxbox-images.de/images/hd51/neutrino-image_flash.zip"
 imagebase="/media/HDD/service/image"
