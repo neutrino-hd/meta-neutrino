@@ -20,11 +20,6 @@ SRC_URI = "git://github.com/neutrino-hd/neutrino-hd-plugins.git;branch=master;pr
 	   git://github.com/tuxbox-neutrino/plugin-input.git;destsuffix=git/input;branch=master;name=input \
 	   git://github.com/tuxbox-neutrino/plugin-shellexec.git;destsuffix=git/shellexec;branch=master;name=shellexec \
 	   git://github.com/tuxbox-neutrino/plugin-tuxwetter.git;destsuffix=git/tuxwetter;branch=master;name=tuxwetter \
-	   file://Makefile.am_msgbox \
-	   file://Makefile.am_input \
-	   file://Makefile.am_shellexec \
-	   file://Makefile.am_tuxcom \
-	   file://Makefile.am_tuxwetter \
 "
 
 S = "${WORKDIR}/git"
@@ -46,15 +41,6 @@ EXTRA_OECONF += "--with-configdir=/etc/neutrino/config"
 N_CFLAGS = "-Wall -W -Wshadow -g -O2 -funsigned-char -I${STAGING_INCDIR}/freetype2"
 N_CXXFLAGS = "${N_CFLAGS}"
 N_LDFLAGS += "-Wl,--hash-style=gnu -Wl,-rpath-link,${STAGING_DIR_HOST}${libdir},-lfreetype -lcrypto -lssl -lpng -lcurl -lz"
-
-do_configure_prepend() {
-	cp ${WORKDIR}/Makefile.am_msgbox ${S}/msgbox/Makefile.am
-	cp ${WORKDIR}/Makefile.am_input ${S}/input/Makefile.am
-	cp ${WORKDIR}/Makefile.am_shellexec ${S}/shellexec/Makefile.am
-	cp ${WORKDIR}/Makefile.am_tuxwetter ${S}/tuxwetter/Makefile.am
-	cp ${WORKDIR}/Makefile.am_tuxcom ${S}/tuxcom/Makefile.am
-}
-
 
 do_compile () {
 	unset CFLAGS CPPFLAGS CXXFLAGS LDFLAGS
