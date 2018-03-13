@@ -9,6 +9,7 @@ S = "${WORKDIR}/git"
 PR = "r1"
 
 SRC_URI = "git://github.com/tuxbox-neutrino/plugin-scripts-lua.git;protocol=https \
+		   file://0001-ard-mediathek-disable-hds.patch \
 		   file://yt_live.tar.gz \
 		   file://webtv.tar.gz \
 "

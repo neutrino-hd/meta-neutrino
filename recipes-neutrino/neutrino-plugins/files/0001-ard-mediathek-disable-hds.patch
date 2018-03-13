@@ -1,0 +1,26 @@
+From 61d81b874e47130fba388ebe992fcf124b094620 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Tue, 13 Mar 2018 02:15:34 +0100
+Subject: [PATCH] ard mediathek: disable hds
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ plugins/ard_mediathek/ard_mediathek.lua | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/plugins/ard_mediathek/ard_mediathek.lua b/plugins/ard_mediathek/ard_mediathek.lua
+index 7b84a05..a00ec18 100644
+--- a/plugins/ard_mediathek/ard_mediathek.lua
++++ b/plugins/ard_mediathek/ard_mediathek.lua
+@@ -93,7 +93,7 @@ function init()
+ 	-- set collectgarbage() interval from 200 (default) to 50
+ 	collectgarbage('setpause', 50)
+ 
+-	hdsAvailable = true
++	hdsAvailable = false
+ --	if isNevis() == true then hdsAvailable = false end
+ 
+ 	playQuality 			= "auto"
+-- 
+2.13.3
+
