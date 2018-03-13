@@ -10,3 +10,4 @@ do_configure_prepend() {
         fi
 }
 
+do_install_append += "mv -f ${D}${sysconfdir}/neutrino/config/bad_package_pattern.list.sample ${D}${sysconfdir}/neutrino/config/bad_package_pattern.list"
