@@ -1,10 +1,11 @@
 #!/bin/bash
 
-url="https://tuxbox-images.de/images/hd51"
-image="neutrino-image_flash.zip"
-hdd_mount="/media/HDD"
-imagename="neutrino-image-hd51.ext4.bz2"
 machine="hd51"
+url="https://tuxbox-images.de/images/$machine"
+imagename="neutrino-image-$machine.ext4.bz2"
+image="neutrino-image_flash.zip"
+imagesource="$url/$image"
+hdd_mount="/media/HDD"
 kernelname="kernel.bin"
 devbase="/dev/mmcblk0p"
 dev_display="/dev/dbox/oled0"
@@ -40,7 +41,6 @@ partition_sectorsize="$(gdisk -l $devbase$root | grep 'Total free space' | awk '
 reset
 
 if [ -z $2 ]; then
-	imagesource="$url/$image"
 	imagebase="$hdd_mount/service/image"
 	imagedir="$imagebase/$machine"
 	imagefile="$imagebase/$image"
