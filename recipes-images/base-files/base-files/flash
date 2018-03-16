@@ -36,7 +36,7 @@ fi
 
 rootdevice="$(sed -e 's/^.*root=//' -e 's/ .*$//' < /proc/cmdline)"
 partition_sectorsize="$(gdisk -l $devbase$root | grep 'Total free space' | awk '{print $5}')"
-[ $partition_sectorsize -ne 1638333 ] && printf '\n%s\n' "The partition scheme is invalid ... use ofgwrite for flashing" && exit 1;
+[ $partition_sectorsize -ne 1638333 ] && printf '\n%s\n' "The partition scheme is invalid ... use ofgwrite for flashing" && exit 2;
 
 reset
 
@@ -49,18 +49,19 @@ if [ -z $2 ]; then
 	imageversion_online="$url/imageversion"
 	[ ! -d $imagebase ] && mkdir -p $imagebase
 	space_available="$(df -Pk $imagebase | awk 'NR==2 {print $4}')"
-	[ $space_available -lt 1048576 ] && printf '\n%s\n' "You need at least 1G of free space on your HDD" && exit 1;
+	[ $space_available -lt 1048576 ] && printf '\n%s\n' "You need at least 1G of free space on your HDD" && exit 3;
 	[ ! -f $imageversion_local ] && touch $imageversion_local
 	md5_imageversion_online=$(curl -s $imageversion_online | md5sum | awk '{print $1}')
 	md5_imageversion_local=$(md5sum "$imageversion_local" | awk '{print $1}')
-	[ $md5_imageversion_online = $md5_imageversion_local ] && printf '\n%s\n' "No update available" && echo "No update available" > $dev_display && exit 0;
+	[ $md5_imageversion_online = $md5_imageversion_local ] && printf '\n%s\n' "No update available" && \
+	echo "No update available" > $dev_display && exit 4;
 	echo "Downloading $image" > $dev_display
 	unpack="unzip -x $imagefile -d $imagebase"
-	curl $imagesource -o $imagefile || { printf '\n%s\n' "Downloading the image failed" ; exit 1; }
+	curl $imagesource -o $imagefile || { printf '\n%s\n' "Downloading the image failed" ; exit 5; }
 	printf '\n%s\n'
 	[ -d $imagedir ] && rm -r $imagedir
 	echo "Decompressing $image" > $dev_display
-	$unpack || { printf '\n%s\n' "Unpacking the image failed" ; exit 1; }
+	$unpack || { printf '\n%s\n' "Unpacking the image failed" ; exit 6; }
 	cp -rf $imageversion $imageversion_local 
 	[ -f $imagefile ] && rm $imagefile
 else
@@ -76,13 +77,14 @@ echo "Writing image into partition $part" > $dev_display
 
 printf '\n%s\n' "Writing kernel into $devbase$kernel"
 dd if=$imagedir/$kernelname of=$devbase$kernel bs=1M $have_coreutils conv=fsync \
-|| { printf '\n%s\n' "Writing the kernel failed" ; exit 1; }
+|| { printf '\n%s\n' "Writing the kernel failed" ; exit 7; }
 
 printf '\n%s\n' "Writing rootfs into $devbase$root"
 bzip2 -cd $imagedir/$imagename | dd of=$devbase$root bs=1M $have_coreutils conv=fsync \
-|| { printf '\n%s\n' "Writing rootfs into $devbase$root failed" ; exit 1; }
+|| { printf '\n%s\n' "Writing rootfs into $devbase$root failed" ; exit 8; }
 printf '\n%s\n' "Flash successful"
 
 [ $rootdevice = $devbase$root ] && echo "...Reboot" > $dev_display && \
 reboot="$(echo 1 > /proc/sys/kernel/sysrq && echo b > /proc/sysrq-trigger)"
 echo "Flash succeeded" > $dev_display
+
