@@ -36,7 +36,7 @@ fi
 
 rootdevice="$(sed -e 's/^.*root=//' -e 's/ .*$//' < /proc/cmdline)"
 partition_sectorsize="$(gdisk -l $devbase$root | grep 'Total free space' | awk '{print $5}')"
-[ $partition_sectorsize -ne 1638333 ] && printf '\n%s\n' "The partition scheme is invalid ... use ofgwrite for flashing" && exit 1;
+[ $partition_sectorsize -ne 1638333 ] && printf '\n%s\n' "The partition scheme is invalid ... use ofgwrite for flashing" && exit 2;
 
 reset
 
