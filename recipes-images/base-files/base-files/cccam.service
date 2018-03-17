@@ -1,0 +1,16 @@
+[Unit]
+Description=cccam
+After=network.target
+Requires=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/cccam -C /etc/neutrino/config/CCcam.cfg
+TimeoutStopSec=1
+Restart=always
+RestartSec=5
+StartLimitInterval=0
+
+[Install]
+WantedBy=multi-user.target
+

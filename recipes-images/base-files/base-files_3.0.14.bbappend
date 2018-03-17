@@ -6,6 +6,7 @@ SRC_URI += "file://profile \
 	    file://fstab \
 	    file://oscam.service \
 	    file://gbox.service \
+	    file://cccam.service \
 	    file://ciplushelper.service \
 	    file://lcd.sh \
 	    file://lcd.service \
@@ -64,6 +65,7 @@ do_install_append () {
   		install -d ${D}${systemd_unitdir}/system
   		install -m 0644 ${WORKDIR}/oscam.service ${D}${systemd_unitdir}/system/oscam.service
   		install -m 0644 ${WORKDIR}/gbox.service ${D}${systemd_unitdir}/system/gbox.service
+                install -m 0644 ${WORKDIR}/cccam.service ${D}${systemd_unitdir}/system/cccam.service
   		install -m 0644 ${WORKDIR}/ciplushelper.service ${D}${systemd_unitdir}/system/ciplushelper.service
                 ln -sf /lib/systemd/system/ciplushelper.service  ${D}${sysconfdir}/systemd/system/multi-user.target.wants
   		install -m 0644 ${WORKDIR}/lcd.service ${D}${systemd_unitdir}/system/lcd.service
