@@ -22,5 +22,5 @@ do_install() {
 
 FILES_${PN} += "/usr/share/lua/5.2"
 
-
+BBCLASSEXTEND = "native nativesdk"
 

@@ -25,3 +25,5 @@ do_install () {
 	install -m 644 ${S}/JSON.lua ${D}/usr/share/lua/5.2/json.lua
 }
 
+BBCLASSEXTEND = "native nativesdk"
+
