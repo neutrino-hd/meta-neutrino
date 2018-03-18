@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://doc/readme.html;beginline=318;endline=352;md5=9fda976
 HOMEPAGE = "http://www.lua.org/"
 
 DEPENDS = "readline"
-RDEPENDS_${PN} += "lua-curl lua-json lua-feedparser lua-expat lua-linotify"
+RDEPENDS_${PN} += "lua-curl lua-json lua-feedparser lua-expat lua-linotify lua-filesystem"
 SRC_URI = "http://www.lua.org/ftp/lua-${PV}.tar.gz \
            file://lua.pc.in \
            "
