@@ -47,7 +47,6 @@ IMAGE_INSTALL += " \
 	libusb1 \
 	minidlna \
 	nano \
-	neutrino-plugin-logo \
 	ni-logos \
 	nfs-utils \
 	nfs-utils-client \
