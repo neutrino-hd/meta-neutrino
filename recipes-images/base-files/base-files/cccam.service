@@ -5,7 +5,7 @@ Requires=network.target
 
 [Service]
 Type=forking
-ExecStart=/usr/bin/CCcam -C /etc/neutrino/config/CCcam.cfg
+ExecStart=/usr/bin/cccam -C /etc/neutrino/config/CCcam.cfg
 TimeoutStopSec=1
 Restart=always
 RestartSec=5
@@ -13,4 +13,3 @@ StartLimitInterval=0
 
 [Install]
 WantedBy=multi-user.target
-
