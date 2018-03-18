@@ -1,10 +1,12 @@
-DESCRIPTION = "Lua Plugin Scripts"
+DESCRIPTION = "Add webtv.xml listings"
 LICENSE = "GPL-2.0"
-MAINTAINER = "tuxbox-neutrino"
+MAINTAINER = "bazi98"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 HOMEPAGE = "https://github.com/tuxbox-neutrino"
 
 S = "${WORKDIR}/git"
+
+PR = "r1"
 
 SRC_URI = "git://github.com/tuxbox-neutrino/plugin-scripts-lua.git;protocol=https \
 		   file://0001-ard-mediathek-disable-hds.patch \

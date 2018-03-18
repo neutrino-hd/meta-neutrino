@@ -1,4 +1,4 @@
-#DESCRIPTION = "tuxbox plugins, ported to neutrino-hd"
+DESCRIPTION = "tuxbox plugins, ported to neutrino-hd"
 LICENSE = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
@@ -61,4 +61,3 @@ FILES_${PN}-dbg += "/var/tuxbox/plugins/.debug"
 
 SRC_URI[md5sum] = "f04cf2dddc22af9f12685f4d4dda0067"
 SRC_URI[sha256sum] = "f3ad02f2e43afca3da474bfeccd70808ca9651858893eff0b90891067284b0b8"
-
