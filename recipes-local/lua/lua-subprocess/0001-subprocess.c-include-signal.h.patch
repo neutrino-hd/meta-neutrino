@@ -1,0 +1,31 @@
+From 43f3ba548cc5bcb5035daefa3c3f363bdf3516f0 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Mon, 9 Apr 2018 14:29:29 +0200
+Subject: [PATCH] subprocess.c: include signal.h
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ subprocess.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/subprocess.c b/subprocess.c
+index 1f4e9ea..5fab815 100644
+--- a/subprocess.c
++++ b/subprocess.c
+@@ -38,11 +38,13 @@
+ #include "fcntl.h"
+ #include "assert.h"
+ #include "liolib-copy.h"
++#include "signal.h"
+ #if defined(OS_POSIX)
+ #include "unistd.h"
+ #include "sys/wait.h"
+ #include "sys/stat.h"
+ #include "stdio.h"
++
+ typedef int filedes_t;
+ 
+ /* return 1 if the named directory exists and is a directory */
+-- 
+2.13.3
+
