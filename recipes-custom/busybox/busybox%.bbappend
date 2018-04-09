@@ -4,6 +4,7 @@ SYSTEMD_SERVICE_${PN} = "telnet.service"
 
 SRC_URI_append += "file://telnet.service \
 				   file://telnetd.cfg \
+				   file://dos2unix.cfg \
 				   file://ether-wake.cfg \
 				   file://simple.script \
 				   file://resolv.conf \
