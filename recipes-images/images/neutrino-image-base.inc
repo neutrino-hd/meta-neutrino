@@ -22,8 +22,9 @@ DEPENDS_append += " \
 	mc \
 	libxslt \
 	dvbsnoop \
+	ncdu \
 "
-
+	
 IMAGE_INSTALL += " \
 	autofs \
 	bash \
