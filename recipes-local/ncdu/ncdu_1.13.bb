@@ -4,8 +4,8 @@ PR = "r1"
 
 SRC_URI = "http://dev.yorhel.nl/download/ncdu-${PV}.tar.gz"
 
-LICENSE = "free"
-LIC_FILES_CHKSUM = "file://COPYING;md5=24b9569831c46d4818450b55282476b4"
+LICENSE = "MIT"
+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
 inherit autotools pkgconfig
 
