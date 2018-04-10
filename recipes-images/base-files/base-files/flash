@@ -73,18 +73,16 @@ else
 fi
 
 echo "Writing image into partition $part" > $dev_display
-[ -f /bin/dd.coreutils ] && have_coreutils="status=progress"
 
 printf '\n%s\n' "Writing kernel into $devbase$kernel"
-dd if=$imagedir/$kernelname of=$devbase$kernel bs=1M $have_coreutils conv=fsync \
+pv < $imagedir/$kernelname > $devbase$kernel \
 || { printf '\n%s\n' "Writing the kernel failed" ; exit 7; }
 
 printf '\n%s\n' "Writing rootfs into $devbase$root"
-bzip2 -cd $imagedir/$imagename | dd of=$devbase$root bs=1M $have_coreutils conv=fsync \
+bzip2 -cd $imagedir/$imagename | pv > $devbase$root \
 || { printf '\n%s\n' "Writing rootfs into $devbase$root failed" ; exit 8; }
 printf '\n%s\n' "Flash successful"
 
 [ $rootdevice = $devbase$root ] && echo "...Reboot" > $dev_display && \
 reboot="$(echo 1 > /proc/sys/kernel/sysrq && echo b > /proc/sysrq-trigger)"
 echo "Flash succeeded" > $dev_display
-

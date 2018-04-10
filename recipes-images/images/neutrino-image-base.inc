@@ -60,6 +60,7 @@ IMAGE_INSTALL += " \
 	opkg \
 	oscam \
 	procps \
+	pv \
 	rpcbind \
 	samba \
 	sed \
