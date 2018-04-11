@@ -4,7 +4,7 @@
 PATH="/usr/local/bin:/usr/bin:/bin"
 EDITOR="/usr/bin/nano"			# needed for packages like cron
 
-export TERM=xterm
+export TERM=xterm-256color
 test -z "$TERM" && TERM="vt100"	# Basic terminal capab. For screen etc.
 
 if [ ! -e /etc/localtime -a ! -e /etc/TZ ]; then
@@ -15,10 +15,6 @@ fi
 
 if [ "$HOME" = "/home/root" ]; then
    PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
-fi
-if [ "$PS1" ]; then
-# works for bash and ash (no other shells known to be in use here)
-   PS1='\[\e[0;33m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[m\] \[\e[1;32m\]\$ \[\e[m\]\[\e[1;37m\] '
 fi
 
 if [ -d /etc/profile.d ]; then
@@ -76,3 +72,4 @@ export PATH PS1 OPIEDIR QPEDIR QTDIR EDITOR TERM
 
 umask 022
 
+env zsh

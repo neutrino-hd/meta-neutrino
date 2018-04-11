@@ -27,7 +27,7 @@ SRC_URI += "file://profile \
 	    file://flash \
 "
 
-RDEPENDS_${PN}_append += "bash coreutils"
+RDEPENDS_${PN}_append += "coreutils"
 
 inherit systemd
 

@@ -1,0 +1,21 @@
+export TERM="xterm-256color"
+export ZSH=/home/root/.oh-my-zsh
+ZSH_THEME="robbyrussell"
+CASE_SENSITIVE="true"
+DISABLE_AUTO_UPDATE="true"
+ENABLE_CORRECTION="true"
+COMPLETION_WAITING_DOTS="true"
+HIST_STAMPS="dd/mm/yyyy"
+plugins=(
+  git rails rails3 ruby capistrano bundler heroku rake rvm autojump command-not-found python pip github gnu-utils history-substring-search zsh-syntax-highlighting
+)
+source $ZSH/oh-my-zsh.sh
+export LANG=en_US.UTF-8
+export EDITOR='nano'
+export ARCHFLAGS="-arch x86_64"
+
+
+alias zshconfig="nano ~/.zshrc"
+alias ohmyzsh="nano ~/.oh-my-zsh"
+
+

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 machine="hd51"
 url="https://tuxbox-images.de/images/$machine"

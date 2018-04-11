@@ -27,7 +27,6 @@ DEPENDS_append += " \
 	
 IMAGE_INSTALL += " \
 	autofs \
-	bash \
 	bzip2 \
 	ca-certificates \
 	cifs-utils \
@@ -55,6 +54,7 @@ IMAGE_INSTALL += " \
 	ntfsprogs \
 	ntpdate \
 	ofgwrite \
+	oh-my-zsh \
 	openssh \
 	openssl \
 	opkg \
@@ -80,6 +80,7 @@ IMAGE_INSTALL += " \
 	vsftpd \
 	wpa-supplicant \
 	xupnpd \
+	zsh \
 	${KERNEL_WIFI_DRIVERS} \
 	${EXTRA_KERNEL_WIFI_DRIVERS} \
 	${EXTERNAL_WIFI_DRIVERS} \
