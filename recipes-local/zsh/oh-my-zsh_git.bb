@@ -5,8 +5,8 @@ DESCRIPTION = "Zsh is a shell designed for interactive use, although it is also 
 HOMEPAGE = "https://github.com/robbyrussell/oh-my-zsh.git"
 SECTION = "base/shell"
 
-LICENSE = "zsh"
-LIC_FILES_CHKSUM = "file://LICENCE;md5=1a4c4cda3e8096d2fd483ff2f4514fec"
+LICENSE = "MIT"
+LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=bfe3cd795831f8ea1dd7fc53382a1f19"
 
 RDEPENDS_${PN} = "zsh"
 
