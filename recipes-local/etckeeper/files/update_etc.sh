@@ -23,7 +23,7 @@ if [ -e $GIT_EXIST ];then
                 git config --system http.sslverify false
         fi
         if [ "$(cd $GIT__URL && git log -1 --pretty=format:"%cd")" == "$(cd /etc && git log -1 --pretty=format:"%cd")" ];then
-                break
+                exit
         else
                 systemctl stop neutrino.service
                 echo "writing back /etc git remote from /dev/HDD"  > /dev/dbox/oled0
