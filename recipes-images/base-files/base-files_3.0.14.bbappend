@@ -1,9 +1,9 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/base-files:"
 
-SRC_URI += "file://profile \
-	    file://inputrc \
+SRC_URI += "file://inputrc \
 	    file://nsswitch.conf \
 	    file://fstab \
+	    file://shells \
 	    file://oscam.service \
 	    file://gbox.service \
 	    file://cccam.service \
@@ -94,4 +94,5 @@ do_install_append () {
 	fi
 	install -m 0755 ${WORKDIR}/lcd.sh ${D}${bindir}
 	install -m 0755 ${WORKDIR}/flash ${D}${bindir}
+	rm -rf ${D}${sysconfdir}/profile
 }

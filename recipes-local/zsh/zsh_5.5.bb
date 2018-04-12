@@ -9,7 +9,7 @@ LICENSE = "zsh"
 LIC_FILES_CHKSUM = "file://LICENCE;md5=1a4c4cda3e8096d2fd483ff2f4514fec"
 
 DEPENDS = "ncurses bison-native libcap libpcre gdbm groff-native"
-
+RDEPENDS_${PN} = "base-files"
 SRC_URI = "${SOURCEFORGE_MIRROR}/${BPN}/${BP}.tar.gz"
 SRC_URI[md5sum] = "2430c85bd128c59f5c0806ef00d3ea8d"
 SRC_URI[sha256sum] = "d05606a545672ae8623828802dbcc4c83d9a4d3dbfb960e94a9fd9f62467c159"
@@ -48,9 +48,7 @@ do_configure () {
 }
 
 pkg_postinst_ontarget_${PN} () {
-    touch $D${sysconfdir}/shells
-    grep -q "bin/zsh" $D${sysconfdir}/shells || echo /bin/zsh >> $D${sysconfdir}/shells
-    grep -q "bin/sh" $D${sysconfdir}/shells || echo /bin/sh >> $D${sysconfdir}/shells
+    chsh -s /bin/zsh
 }
 
 FILES_${PN}-dbg += "\
