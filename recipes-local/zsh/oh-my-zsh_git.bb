@@ -21,11 +21,10 @@ PR = "1"
 S = "${WORKDIR}/git"
 
 do_install () {
-	install -d ${D}/home/root/.oh-my-zsh
+	install -d ${D}/home/root/.oh-my-zsh ${D}${sysconfdir}/zsh
 	cp -rf ${S}/* ${D}/home/root/.oh-my-zsh
-	cp -rf ${WORKDIR}/zshrc ${D}/home/root/.zshrc
+	cp -rf ${WORKDIR}/zshrc ${D}${sysconfdir}/zsh/zshrc
 }
-
 
 FILES_${PN} = "/home \
 	       /etc \
