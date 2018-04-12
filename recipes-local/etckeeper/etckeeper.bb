@@ -4,14 +4,12 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=80
 
 RDEPENDS_${PN} += "git findutils util-linux-mountpoint perl-module-file-glob glibc-utils"
 
-SRC_URI = "git://git.joeyh.name/git/etckeeper.git/;branch=master;protocol=https \
+SRC_URI = "git://github.com/neutrino-hd/etckeeper.git;protocol=https \
 	   file://update-etc.service \
 	   file://create-etc.service \
 	   file://etckeeper.conf \
 	   file://create_etc.sh \
 	   file://update_etc.sh \
-	   file://0001-use-systemwide-gitconfig-to-correct-commiter-name-an.patch \
-	   file://0001-etckeeper-edit-.gitignore.patch \
 "
 
 
