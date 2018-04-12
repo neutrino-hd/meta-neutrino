@@ -20,6 +20,7 @@ S = "${WORKDIR}/git"
 do_install () {
 	install -d ${D}/home/root/.oh-my-zsh/custom/plugins/zsh-history-substring-search
 	cp -rf ${S}/zsh-history-substring-search.plugin.zsh ${D}/home/root/.oh-my-zsh/custom/plugins/zsh-history-substring-search
+        cp -rf ${S}/zsh-history-substring-search.zsh ${D}/home/root/.oh-my-zsh/custom/plugins/zsh-history-substring-search
 }
 
 FILES_${PN} = "/home \

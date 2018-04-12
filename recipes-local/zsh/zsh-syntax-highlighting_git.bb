@@ -20,6 +20,9 @@ S = "${WORKDIR}/git"
 do_install () {
 	install -d ${D}/home/root/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 	cp -rf ${S}/zsh-syntax-highlighting.plugin.zsh ${D}/home/root/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+        cp -rf ${S}/zsh-syntax-highlighting.zsh ${D}/home/root/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+        cp -rf ${S}/.revision-hash  ${D}/home/root/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+        cp -rf ${S}/.version ${D}/home/root/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 	cp -rf ${S}/highlighters ${D}/home/root/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 }
 
