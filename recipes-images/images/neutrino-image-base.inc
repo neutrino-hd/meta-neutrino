@@ -23,6 +23,7 @@ DEPENDS_append += " \
 	libxslt \
 	dvbsnoop \
 	ncdu \
+	tmux \
 "
 	
 IMAGE_INSTALL += " \
@@ -38,6 +39,8 @@ IMAGE_INSTALL += " \
 	e2fsprogs-tune2fs \
 	e2fsprogs-badblocks \
 	etckeeper \
+	glibc-charmap-utf-8 \
+	glibc-localedata-en-us \
 	gptfdisk \
 	gzip \
 	hdparm \
@@ -45,6 +48,7 @@ IMAGE_INSTALL += " \
 	ifupdown \
 	libswscale \
 	libusb1 \
+	localedef \
 	minidlna \
 	nano \
 	ni-logos \
@@ -69,6 +73,7 @@ IMAGE_INSTALL += " \
 	udev-extraconf \
 	udpxy \
 	usbutils \
+	util-linux \
 	util-linux-blkid \
 	util-linux-mount \
 	util-linux-umount \
