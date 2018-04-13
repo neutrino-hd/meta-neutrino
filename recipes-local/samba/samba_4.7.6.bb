@@ -1,3 +1,4 @@
+HOMEPAGE = "https://www.samba.org/"
 SECTION = "console/network"
 
 LICENSE = "GPL-3.0+ & LGPL-3.0+ & GPL-2.0+"
@@ -19,24 +20,31 @@ SRC_URI = "${SAMBA_MIRROR}/stable/samba-${PV}.tar.gz \
            file://0006-avoid-using-colon-in-the-checking-msg.patch \
            file://netdb_defines.patch \
            file://glibc_only.patch \
+           file://iconv-4.7.0.patch \
+           file://dnsserver-4.7.0.patch \
+           file://smb_conf-4.7.0.patch \
            file://volatiles.03_samba \
           "
-SRC_URI_append_libc-uclibc = " \
-           file://samba-4.2.7-pam.patch \
+SRC_URI_append_libc-musl = " \
+           file://samba-pam.patch \
            file://samba-4.3.9-remove-getpwent_r.patch \
           "
 
-SRC_URI[md5sum] = "c6ee5c766016d59908c8fb672fbbd445"
-SRC_URI[sha256sum] = "9ef24393de08390f236cabccd6a420b5cea304e959cbf1a99ff317325db3ddfa"
+SRC_URI[md5sum] = "0253021a45c479cec1e135b004a0177a"
+SRC_URI[sha256sum] = "1eede30fc8ef6504e24602fb72b00baa0a7b73b59f16d25cb0771dc8c7c57d6e"
 
 inherit systemd waf-samba cpan-base perlnative update-rc.d
 # remove default added RDEPENDS on perl
 RDEPENDS_${PN}_remove = "perl"
 
-DEPENDS += "readline virtual/libiconv zlib popt libtalloc libtdb libtevent krb5 libbsd libaio libpam"
-DEPENDS_append_libc-uclibc = " libtirpc"
-CFLAGS_append_libc-uclibc = " -I${STAGING_INCDIR}/tirpc"
-LDFLAGS_append_libc-uclibc = " -ltirpc"
+DEPENDS += "readline virtual/libiconv zlib popt libtalloc libtdb libtevent libldb libbsd libaio libpam"
+
+inherit distro_features_check
+REQUIRED_DISTRO_FEATURES = "pam"
+
+DEPENDS_append_libc-musl = " libtirpc"
+CFLAGS_append_libc-musl = " -I${STAGING_INCDIR}/tirpc"
+LDFLAGS_append_libc-musl = " -ltirpc"
 
 LSB = ""
 LSB_linuxstdbase = "lsb"
@@ -44,12 +52,20 @@ LSB_linuxstdbase = "lsb"
 INITSCRIPT_NAME = "samba"
 INITSCRIPT_PARAMS = "start 20 3 5 . stop 20 0 1 6 ."
 
-SYSTEMD_PACKAGES = "${PN}-base winbind"
+SYSTEMD_PACKAGES = "${PN}-base ${PN}-ad-dc winbind"
 SYSTEMD_SERVICE_${PN}-base = "nmb.service smb.service"
+SYSTEMD_SERVICE_${PN}-ad-dc = "${@bb.utils.contains('PACKAGECONFIG', 'ad-dc', 'samba.service', '', d)}"
 SYSTEMD_SERVICE_winbind = "winbind.service"
 
+# There are prerequisite settings to enable ad-dc, so disable the service by default.
+# Reference:
+# https://wiki.samba.org/index.php/Setting_up_Samba_as_an_Active_Directory_Domain_Controller
+SYSTEMD_AUTO_ENABLE_${PN}-ad-dc = "disable"
+
+# Use krb5.  Build active domain controller.
+#
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'systemd zeroconf', d)} \
-                   acl ldap \
+                   acl ad-dc cups gnutls ldap mitkrb5 \
 "
 
 RDEPENDS_${PN}-base += "${LSB}"
@@ -67,13 +83,30 @@ PACKAGECONFIG[valgrind] = ",--without-valgrind,valgrind,"
 PACKAGECONFIG[lttng] = "--with-lttng, --without-lttng,lttng-ust"
 PACKAGECONFIG[archive] = "--with-libarchive, --without-libarchive, libarchive"
 
+# Building the AD (Active Directory) DC (Domain Controller) requires GnuTLS,
+# And ad-dc doesn't work with mitkrb5 for versions prior to 4.7.0 according to:
+# http://samba.2283325.n4.nabble.com/samba-4-6-6-Unknown-dependency-kdc-in-service-kdc-objlist-td4722096.html
+# So the working combination is:
+# 1) ad-dc: enable, gnutls: enable, mitkrb5: disable
+# 2) ad-dc: disable, gnutls: enable/disable, mitkrb5: enable
+#
+# We are now at 4.7.0, so take the above with a grain of salt. We do not need to know where
+# krb5kdc is unless ad-dc is enabled, but we tell configure anyhow.
+#
+PACKAGECONFIG[ad-dc] = ",--without-ad-dc,,"
+PACKAGECONFIG[gnutls] = "--enable-gnutls,--disable-gnutls,gnutls,"
+PACKAGECONFIG[mitkrb5] = "--with-system-mitkrb5 --with-system-mitkdc=/usr/sbin/krb5kdc,,krb5,"
 
 SAMBA4_IDMAP_MODULES="idmap_ad,idmap_rid,idmap_adex,idmap_hash,idmap_tdb2"
 SAMBA4_PDB_MODULES="pdb_tdbsam,${@bb.utils.contains('PACKAGECONFIG', 'ldap', 'pdb_ldap,', '', d)}pdb_ads,pdb_smbpasswd,pdb_wbc_sam,pdb_samba4"
 SAMBA4_AUTH_MODULES="auth_unix,auth_wbc,auth_server,auth_netlogond,auth_script,auth_samba4"
 SAMBA4_MODULES="${SAMBA4_IDMAP_MODULES},${SAMBA4_PDB_MODULES},${SAMBA4_AUTH_MODULES}"
 
-SAMBA4_LIBS="heimdal,!zlib,!popt,!talloc,!pytalloc,!pytalloc-util,!tevent,!pytevent,!tdb,!pytdb,!ldb,!pyldb"
+# These libraries are supposed to replace others supplied by packages, but decorate the names of
+# .so files so there will not be a conflict.  This is not done consistantly, so be very careful
+# when adding to this list.
+#
+SAMBA4_LIBS="heimdal,cmocka,NONE"
 
 EXTRA_OECONF += "--enable-fhs \
                  --with-piddir=/run \
@@ -81,12 +114,9 @@ EXTRA_OECONF += "--enable-fhs \
                  --with-modulesdir=${libdir}/samba \
                  --with-lockdir=${localstatedir}/lib/samba \
                  --with-cachedir=${localstatedir}/lib/samba \
-                 --disable-gnutls \
                  --disable-rpath-install \
                  --with-shared-modules=${SAMBA4_MODULES} \
                  --bundled-libraries=${SAMBA4_LIBS} \
-                 --with-system-mitkrb5 \
-                 --without-ad-dc \
                  ${@oe.utils.conditional('TARGET_ARCH', 'x86_64', '', '--disable-glusterfs', d)} \
                  --with-cluster-support \
                  --with-profiling-data \
@@ -112,6 +142,10 @@ do_install_append() {
         -e 's,/etc/sysconfig/samba,${sysconfdir}/default/samba,' \
         -i ${D}${systemd_system_unitdir}/*.service
 
+    if [ "${@bb.utils.contains('PACKAGECONFIG', 'ad-dc', 'yes', 'no', d)}" = "no" ]; then
+        rm -f ${D}${systemd_system_unitdir}/samba.service
+    fi
+
     install -d ${D}${sysconfdir}/tmpfiles.d
     install -m644 packaging/systemd/samba.conf.tmp ${D}${sysconfdir}/tmpfiles.d/samba.conf
     echo "d ${localstatedir}/log/samba 0755 root root -" \
@@ -132,7 +166,7 @@ do_install_append() {
 
     install -d ${D}${sysconfdir}/samba
     echo "127.0.0.1 localhost" > ${D}${sysconfdir}/samba/lmhosts
-    install -m644 packaging/LSB/smb.conf ${D}${sysconfdir}/samba/smb.conf
+    install -m644 packaging/RHEL/setup/smb.conf ${D}${sysconfdir}/samba/smb.conf
     install -D -m 644 ${WORKDIR}/volatiles.03_samba ${D}${sysconfdir}/default/volatiles/03_samba
 
     install -d ${D}${sysconfdir}/default
@@ -160,8 +194,8 @@ do_install_append() {
 PACKAGES =+ "${PN}-python ${PN}-pidl \
              ${PN}-dsdb-modules ${PN}-testsuite registry-tools \
              winbind \
-             ${PN}-common ${PN}-base ${PN}-ctdb-tests \
-             smbclient"
+             ${PN}-common ${PN}-base ${PN}-ad-dc ${PN}-ctdb-tests \
+             smbclient ${PN}-client ${PN}-server ${PN}-test"
 
 python samba_populate_packages() {
     def module_hook(file, pkg, pattern, format, basename):
@@ -185,7 +219,8 @@ python samba_populate_packages() {
 
 PACKAGESPLITFUNCS_prepend = "samba_populate_packages "
 
-RDEPENDS_${PN} += "${PN}-base"
+RDEPENDS_${PN} += "${PN}-base ${PN}-python ${PN}-dsdb-modules"
+RDEPENDS_${PN}-python += "pytalloc python-tdb"
 
 FILES_${PN}-base = "${sbindir}/nmbd \
                     ${sbindir}/smbd \
@@ -194,8 +229,13 @@ FILES_${PN}-base = "${sbindir}/nmbd \
                     ${localstatedir}/nmbd \
                     ${localstatedir}/spool/samba \
                     ${systemd_system_unitdir}/nmb.service \
-                    ${systemd_system_unitdir}/samba.service \
                     ${systemd_system_unitdir}/smb.service"
+
+FILES_${PN}-ad-dc = "${sbindir}/samba \
+                     ${systemd_system_unitdir}/samba.service \
+                     ${libdir}/krb5/plugins/kdb/samba.so \
+                    "
+RDEPENDS_${PN}-ad-dc = "krb5-kdc"
 
 FILES_${PN}-ctdb-tests = "${bindir}/ctdb_run_tests \
                           ${bindir}/ctdb_run_cluster_tests \
@@ -252,3 +292,27 @@ FILES_smbclient = "${bindir}/cifsdd \
 
 RDEPENDS_${PN}-pidl_append = " perl"
 FILES_${PN}-pidl = "${bindir}/pidl ${datadir}/perl5/Parse"
+
+RDEPENDS_${PN}-client = "\
+    smbclient \
+    winbind \
+    registry-tools \
+    ${PN}-pidl \
+    " 
+
+ALLOW_EMPTY_${PN}-client = "1"
+
+RDEPENDS_${PN}-server = "\
+    ${PN} \
+    winbind \
+    registry-tools \
+    " 
+
+ALLOW_EMPTY_${PN}-server = "1"
+
+RDEPENDS_${PN}-test = "\
+    ${PN}-ctdb-tests \
+    ${PN}-testsuite \
+    "
+
+ALLOW_EMPTY_${PN}-test = "1"
