@@ -9,7 +9,7 @@ LICENSE = "zsh"
 LIC_FILES_CHKSUM = "file://LICENCE;md5=1a4c4cda3e8096d2fd483ff2f4514fec"
 
 DEPENDS = "ncurses bison-native libcap libpcre gdbm groff-native"
-RDEPENDS_${PN} = "base-files oh-my-zsh zsh-syntax-highlighting zsh-history-substring-search systemd"
+RDEPENDS_${PN} = "base-files oh-my-zsh zsh-syntax-highlighting zsh-autosuggestions zsh-completions systemd"
 SRC_URI = "${SOURCEFORGE_MIRROR}/${BPN}/${BP}.tar.gz"
 SRC_URI[md5sum] = "2430c85bd128c59f5c0806ef00d3ea8d"
 SRC_URI[sha256sum] = "d05606a545672ae8623828802dbcc4c83d9a4d3dbfb960e94a9fd9f62467c159"
