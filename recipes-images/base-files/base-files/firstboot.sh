@@ -27,21 +27,18 @@ if [ $rootdevice = /dev/mmcblk0p3 ]; then
         else
                 mkswap /dev/mmcblk0p10
         fi
-
-        echo "first boot script work done"
-
-        #job done, remove it from systemd services
-        systemctl disable firstboot.service
-
-        echo "firstboot script disabled ... reboot"
-        systemctl reboot
-
-else
-        echo "Nothing to do"
-
-        #job done, remove it from systemd services
-        systemctl disable firstboot.service
-
-        echo "firstboot script disabled"
 fi
 
+if [ -z $(localedef --list-archive) ]; then
+        # create directory needed for localedef
+        mkdir /usr/lib/locale
+        # create en-us as default utf8 locale
+        localedef -c -f UTF-8 -i en_US en_US.UTF-8
+fi
+
+echo "first boot script work done"
+#job done, remove it from systemd services
+systemctl disable firstboot.service
+echo "firstboot script disabled"
+echo "... reboot"
+systemctl reboot
