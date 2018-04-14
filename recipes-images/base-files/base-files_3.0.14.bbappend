@@ -25,6 +25,7 @@ SRC_URI += "file://inputrc \
 	    file://fstrim.service \
 	    file://fstrim.timer \
 	    file://flash \
+	    file://locale.conf \
 "
 
 RDEPENDS_${PN}_append += "coreutils"
@@ -85,6 +86,7 @@ do_install_append () {
                 ln -sf /lib/systemd/system/mnt-partition_4.automount  ${D}${systemd_unitdir}/system/multi-user.target.wants
 		install -m 0644 ${WORKDIR}/dev-mmcblk0p10.swap  ${D}${systemd_unitdir}/system
                 ln -sf /lib/systemd/system/dev-mmcblk0p10.swap  ${D}${systemd_unitdir}/system/multi-user.target.wants
+                install -m 0644 ${WORKDIR}/locale.conf  ${D}${sysconfdir}
          	install -m 0755 ${WORKDIR}/firstboot.sh  ${D}${sbindir}
 		install -m 0644 ${WORKDIR}/firstboot.service  ${D}${sysconfdir}/systemd/system
                 ln -sf /etc/systemd/system/firstboot.service  ${D}${sysconfdir}/systemd/system/multi-user.target.wants
