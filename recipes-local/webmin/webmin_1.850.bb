@@ -27,7 +27,7 @@ SRC_URI[sha256sum] = "c66caa9e4cb50d5447bc8aceb7989d2284dde060278f404b13e171c7ce
 UPSTREAM_CHECK_URI = "http://www.webmin.com/download.html"
 UPSTREAM_CHECK_REGEX = "webmin-(?P<pver>\d+(\.\d+)+).tar.gz"
 
-inherit perlnative update-rc.d systemd
+inherit perlnative systemd
 
 do_configure() {
     # Remove binaries and plugins for other platforms
@@ -72,14 +72,12 @@ do_configure() {
     sed -i "s/find_pid_command=.*/find_pid_command=pidof NAME/" config-generic-linux
 }
 
-WEBMIN_LOGIN ?= "admin"
-WEBMIN_PASSWORD ?= "password"
+WEBMIN_LOGIN ?= "root"
+WEBMIN_PASSWORD ?= "root"
 
 do_install() {
     install -d ${D}${sysconfdir}
     install -d ${D}${sysconfdir}/webmin
-    install -d ${D}${sysconfdir}/init.d
-    install -m 0755 webmin-init ${D}${sysconfdir}/init.d/webmin
 
     install -d ${D}${systemd_unitdir}/system
     install -m 0644 ${WORKDIR}/webmin.service ${D}${systemd_unitdir}/system
@@ -123,11 +121,8 @@ do_install() {
     sed -i -e 's#${D}##g' ${D}${sysconfdir}/webmin/start
 }
 
-INITSCRIPT_NAME = "webmin"
-INITSCRIPT_PARAMS = "start 99 5 3 2 . stop 10 0 1 6 ."
-
 SYSTEMD_SERVICE_${PN} = "webmin.service"
-SYSTEMD_AUTO_ENABLE_${PN} = "disable"
+SYSTEMD_AUTO_ENABLE_${PN} = "enable"
 
 # FIXME: some of this should be figured out automatically
 RDEPENDS_${PN} += "perl perl-module-socket perl-module-exporter perl-module-exporter-heavy perl-module-carp perl-module-strict"
@@ -136,7 +131,7 @@ RDEPENDS_${PN} += "perl-module-fcntl perl-module-tie-hash perl-module-vars perl-
 RDEPENDS_${PN} += "perl-module-file-glob perl-module-file-copy perl-module-sdbm-file perl-module-feature"
 
 PACKAGES_DYNAMIC += "webmin-module-* webmin-theme-*"
-RRECOMMENDS_${PN} += "webmin-module-system-status"
+RRECOMMENDS_${PN} += "webmin-module-system-status net-ssleay-perl perl-module-file-path webmin-module-mount gnupg"
 
 PACKAGES += "${PN}-module-proc ${PN}-module-raid ${PN}-module-exports ${PN}-module-fdisk ${PN}-module-lvm"
 RDEPENDS_${PN}-module-proc = "procps"
