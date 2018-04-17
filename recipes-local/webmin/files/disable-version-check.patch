@@ -1,17 +1,18 @@
-Disable OS version check in status screen
+From b7f88c3e3088ec9cf96dae7942ea211a6f73ae1e Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Tue, 17 Apr 2018 01:18:05 +0200
+Subject: [PATCH 2/2] disable-version-check
 
-The code is not able to accurately detect the correct distro/version at
-the moment.
-
-Upstream-status: Inappropriate
-
-Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ webmin/webmin-lib.pl | 44 ++++++++++++++++++++++----------------------
+ 1 file changed, 22 insertions(+), 22 deletions(-)
 
 diff --git a/webmin/webmin-lib.pl b/webmin/webmin-lib.pl
-index 57a37f7..838b944 100755
+index dedf96c..1d4a430 100755
 --- a/webmin/webmin-lib.pl
 +++ b/webmin/webmin-lib.pl
-@@ -1086,28 +1086,28 @@
+@@ -1120,28 +1120,28 @@ my %miniserv;
  &load_theme_library();	# So that UI functions work
  
  # Need OS upgrade
@@ -29,7 +30,7 @@ index 57a37f7..838b944 100755
 -		}
 -	else {
 -		# Large enough change to tell the user
--		push(@notifs, 
+-		push(@notifs,
 -		    &ui_form_start("$gconfig{'webprefix'}/webmin/fix_os.cgi").
 -		    &text('os_incorrect', $realos{'real_os_type'},
 -		    		          $realos{'real_os_version'})."<p>\n".
@@ -51,7 +52,7 @@ index 57a37f7..838b944 100755
 +#		}
 +#	else {
 +#		# Large enough change to tell the user
-+#		push(@notifs, 
++#		push(@notifs,
 +#		    &ui_form_start("$gconfig{'webprefix'}/webmin/fix_os.cgi").
 +#		    &text('os_incorrect', $realos{'real_os_type'},
 +#		    		          $realos{'real_os_version'})."<p>\n".
@@ -62,4 +63,6 @@ index 57a37f7..838b944 100755
  
  # Password close to expiry
  my $warn_days = $config{'warn_days'};
+-- 
+2.7.4
 

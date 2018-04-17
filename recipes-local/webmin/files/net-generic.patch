@@ -1,21 +1,35 @@
-# Add support for configuring network interfaces on a generic linux system
-#
-# Upstream-status: Not appropriate [config]
-#
-# Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
---- webmin-1.570.orig/net/module.info
-+++ webmin-1.570/net/module.info
-@@ -11,7 +11,7 @@ desc_ko_KR.UTF-8=ë„¤íŠ¸ì›Œí¬ êµ¬ì„±
+From 950da83c57f0f2481840b8df373b3746ed5ab5c5 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Tue, 17 Apr 2018 01:15:40 +0200
+Subject: [PATCH 1/2] net-generic
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ net/generic-linux-lib.pl | 2 ++
+ net/module.info          | 2 +-
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+ create mode 100644 net/generic-linux-lib.pl
+
+diff --git a/net/generic-linux-lib.pl b/net/generic-linux-lib.pl
+new file mode 100644
+index 0000000..dbca8d8
+--- /dev/null
++++ b/net/generic-linux-lib.pl
+@@ -0,0 +1,2 @@
++do 'linux-lib.pl'
++
+diff --git a/net/module.info b/net/module.info
+index 4ac9b2c..6e97e35 100644
+--- a/net/module.info
++++ b/net/module.info
+@@ -1,7 +1,7 @@
+ version=1.881
+ longdesc=Configure boot time and active interfaces, DNS, routing and /etc/hosts.
  name=Networking
- desc_tr=Ağ Yapılandırması
- desc_de=Netzwerkkonfiguration
 -os_support=solaris coherent-linux redhat-linux/5.0-* mandrake-linux united-linux suse-linux/6.0-* open-linux unixware turbo-linux/4.0 freebsd/3.2-* openbsd debian-linux/2.2-* cobalt-linux/2.2-* msc-linux gentoo-linux macos/1.5-* trustix-linux slackware-linux/8.0-* openmamba-linux cygwin windows pardus-linux
 +os_support=generic-linux solaris coherent-linux redhat-linux/5.0-* mandrake-linux united-linux suse-linux/6.0-* open-linux unixware turbo-linux/4.0 freebsd/3.2-* openbsd debian-linux/2.2-* cobalt-linux/2.2-* msc-linux gentoo-linux macos/1.5-* trustix-linux slackware-linux/8.0-* openmamba-linux cygwin windows pardus-linux
- desc_sk=Konfigurácia siete
- desc_zh_CN=ÍøÂçÅäÖÃ
- risk=low medium high
---- /dev/null
-+++ webmin-1.570/net/generic-linux-lib.pl
-@@ -0,0 +1,2 @@
-+do 'linux-lib.pl';
-+
+ readonly=1
+ desc=Network Configuration
+ category=net
+-- 
+2.7.4

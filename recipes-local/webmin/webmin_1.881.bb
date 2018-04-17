@@ -21,8 +21,8 @@ SRC_URI = "${SOURCEFORGE_MIRROR}/webadmin/webmin-${PV}.tar.gz \
            file://webmin.service \
             "
 
-SRC_URI[md5sum] = "cd6ee98f73f9418562197675b952d81b"
-SRC_URI[sha256sum] = "c66caa9e4cb50d5447bc8aceb7989d2284dde060278f404b13e171c7ce1690e1"
+SRC_URI[md5sum] = "f37b564c76c1c6b0241fccb1f844f2f0"
+SRC_URI[sha256sum] = "6a93a74ff9adb0ca48cb8e03d74faf77731008eaca2613db225e1d59e07d5190"
 
 UPSTREAM_CHECK_URI = "http://www.webmin.com/download.html"
 UPSTREAM_CHECK_REGEX = "webmin-(?P<pver>\d+(\.\d+)+).tar.gz"
@@ -131,12 +131,13 @@ RDEPENDS_${PN} += "perl-module-fcntl perl-module-tie-hash perl-module-vars perl-
 RDEPENDS_${PN} += "perl-module-file-glob perl-module-file-copy perl-module-sdbm-file perl-module-feature"
 
 PACKAGES_DYNAMIC += "webmin-module-* webmin-theme-*"
-RRECOMMENDS_${PN} += "webmin-module-system-status net-ssleay-perl perl-module-file-path webmin-module-mount gnupg"
+RRECOMMENDS_${PN} += "webmin-module-system-status net-ssleay-perl perl-module-file-path webmin-module-mount gnupg webmin-theme-authentic-theme"
 
 PACKAGES += "${PN}-module-proc ${PN}-module-raid ${PN}-module-exports ${PN}-module-fdisk ${PN}-module-lvm"
 RDEPENDS_${PN}-module-proc = "procps"
 RDEPENDS_${PN}-module-raid = "mdadm"
 RDEPENDS_${PN}-module-exports = "perl-module-file-basename perl-module-file-path perl-module-cwd perl-module-file-spec perl-module-file-spec-unix"
+RDEPENDS_${PN}-theme-authentic-theme = "perl-module-lib perl-module-overload perl-module-bytes perl-module-encode perl-module-encode-unicode perl-module-utf8 perl-module-unicore"
 RRECOMMENDS_${PN}-module-fdisk = "parted"
 RRECOMMENDS_${PN}-module-lvm = "lvm2"
 
