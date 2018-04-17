@@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/Artistic-1.0;md5=cda03bbdc3c195
 file://${COMMON_LICENSE_DIR}/GPL-1.0;md5=e9e36a9de734199567a4d769498f743d"
 
 DEPENDS = "zlib openssl openssl-native"
-RDEPENDS_${PN} += "zlib libssl"
+RDEPENDS_${PN} += "zlib libssl perl perl-module-errno"
 
 SRC_URI = "https://cpan.metacpan.org/authors/id/M/MI/MIKEM/Net-SSLeay-1.84.tar.gz"
 
