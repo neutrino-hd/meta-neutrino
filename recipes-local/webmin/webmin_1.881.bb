@@ -131,11 +131,15 @@ RDEPENDS_${PN} += "perl-module-fcntl perl-module-tie-hash perl-module-vars perl-
 RDEPENDS_${PN} += "perl-module-file-glob perl-module-file-copy perl-module-sdbm-file perl-module-feature"
 
 PACKAGES_DYNAMIC += "webmin-module-* webmin-theme-*"
-RRECOMMENDS_${PN} += "webmin-module-system-status net-ssleay-perl perl-module-file-path webmin-module-mount gnupg webmin-theme-authentic-theme"
+RRECOMMENDS_${PN} += "webmin-module-system-status net-ssleay-perl perl-module-file-path webmin-module-mount gnupg webmin-module-samba webmin-theme-authentic-theme \
+webmin-module-change-user webmin-module-file webmin-module-net webmin-module-pam webmin-module-shell webmin-module-smart-status webmin-module-sshd webmin-module-status \
+webmin-module-system-status webmin-module-webmin webmin-module-webminlog webmin-module-updown webmin-module-acl webmin-module-servers webmin-module-filemin \
+"
 
 PACKAGES += "${PN}-module-proc ${PN}-module-raid ${PN}-module-exports ${PN}-module-fdisk ${PN}-module-lvm"
 RDEPENDS_${PN}-module-proc = "procps"
 RDEPENDS_${PN}-module-raid = "mdadm"
+RDEPENDS_${PN}-module-filemin = "perl-module-perlio"
 RDEPENDS_${PN}-module-exports = "perl-module-file-basename perl-module-file-path perl-module-cwd perl-module-file-spec perl-module-file-spec-unix"
 RDEPENDS_${PN}-theme-authentic-theme = "perl-module-lib perl-module-overload perl-module-bytes perl-module-encode perl-module-encode-unicode perl-module-utf8 perl-module-unicore"
 RRECOMMENDS_${PN}-module-fdisk = "parted"
