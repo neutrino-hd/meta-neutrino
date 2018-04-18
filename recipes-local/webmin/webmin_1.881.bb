@@ -124,19 +124,22 @@ do_install() {
 SYSTEMD_SERVICE_${PN} = "webmin.service"
 SYSTEMD_AUTO_ENABLE_${PN} = "enable"
 
+DEPENDS += "perl smartmontools procps mdadm"
+
 # FIXME: some of this should be figured out automatically
 RDEPENDS_${PN} += "perl perl-module-socket perl-module-exporter perl-module-exporter-heavy perl-module-carp perl-module-strict"
 RDEPENDS_${PN} += "perl-module-warnings perl-module-xsloader perl-module-posix perl-module-autoloader"
 RDEPENDS_${PN} += "perl-module-fcntl perl-module-tie-hash perl-module-vars perl-module-time-local perl-module-config perl-module-constant"
-RDEPENDS_${PN} += "perl-module-file-glob perl-module-file-copy perl-module-sdbm-file perl-module-feature"
+RDEPENDS_${PN} += "perl-module-file-glob perl-module-file-copy perl-module-sdbm-file perl-module-feature smartmontools"
 
 PACKAGES_DYNAMIC += "webmin-module-* webmin-theme-*"
 RRECOMMENDS_${PN} += "webmin-module-system-status net-ssleay-perl perl-module-file-path webmin-module-mount gnupg webmin-module-samba webmin-theme-authentic-theme \
 webmin-module-change-user webmin-module-file webmin-module-net webmin-module-pam webmin-module-shell webmin-module-smart-status webmin-module-sshd webmin-module-status \
 webmin-module-system-status webmin-module-webmin webmin-module-webminlog webmin-module-updown webmin-module-acl webmin-module-servers webmin-module-filemin \
+webmin-module-fdisk webmin-module-exports webmin-module-useradmin webmin-module-passwd \
 "
 
-PACKAGES += "${PN}-module-proc ${PN}-module-raid ${PN}-module-exports ${PN}-module-fdisk ${PN}-module-lvm"
+PACKAGES += "${PN}-module-proc"
 RDEPENDS_${PN}-module-proc = "procps"
 RDEPENDS_${PN}-module-raid = "mdadm"
 RDEPENDS_${PN}-module-filemin = "perl-module-perlio"
