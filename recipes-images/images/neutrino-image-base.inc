@@ -24,7 +24,6 @@ DEPENDS_append += " \
 	dvbsnoop \
 	ncdu \
 	tmux \
-	webmin \
 "
 	
 IMAGE_INSTALL += " \
@@ -42,6 +41,9 @@ IMAGE_INSTALL += " \
 	etckeeper \
 	glibc-charmap-utf-8 \
 	glibc-localedata-en-us \
+        glibc-localedata-de-de \
+        glibc-localedata-fr-fr \
+        glibc-localedata-ru-ru \
 	gptfdisk \
 	gzip \
 	hdparm \
@@ -84,6 +86,7 @@ IMAGE_INSTALL += " \
 	virtual/dvb-driver \
 	virtual/screengrabber \
 	proftpd \
+	webmin \
 	wpa-supplicant \
 	xupnpd \
 	zsh \

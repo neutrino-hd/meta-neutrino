@@ -122,7 +122,7 @@ do_install() {
 }
 
 do_install_append() {
-	echo "lang_root=en.UTF-8" >> ${D}${sysconfdir}/webmin/config
+	echo "lang_root=de.UTF-8" >> ${D}${sysconfdir}/webmin/config
 }
 
 SYSTEMD_SERVICE_${PN} = "webmin.service"

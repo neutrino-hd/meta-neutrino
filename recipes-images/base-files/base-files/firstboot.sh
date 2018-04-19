@@ -34,6 +34,9 @@ if [ -z $(localedef --list-archive) ]; then
         mkdir /usr/lib/locale
         # create en-us as default utf8 locale
         localedef -c -f UTF-8 -i en_US en_US.UTF-8
+        localedef -c -f UTF-8 -i de_DE de_DE.UTF-8
+        localedef -c -f UTF-8 -i fr_FR fr_FR.UTF-8
+        localedef -c -f UTF-8 -i ru_RU ru_RU.UTF-8
 fi
 
 echo "first boot script work done"
