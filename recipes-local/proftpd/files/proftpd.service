@@ -3,5 +3,9 @@ Description=proftpd Daemon
 
 [Service]
 Type=forking
-ExecStart=-@SBINDIR@/proftpd -c @SYSCONFDIR@/proftpd.conf
+ExecStart=-/usr/sbin/proftpd -c /etc/proftpd.conf
 StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
+

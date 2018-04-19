@@ -23,7 +23,7 @@ SRC_URI[sha256sum] = "c10316fb003bd25eccbc08c77dd9057e053693e6527ffa2ea2cc4e08cc
 
 RDEPENDS_${PN} = "pam-plugin-listfile"
 
-inherit autotools-brokensep useradd update-rc.d systemd
+inherit autotools-brokensep useradd systemd
 
 PACKAGECONFIG ??= "pam shadow"
 PACKAGECONFIG += " ${@bb.utils.contains('DISTRO_FEATURES', 'ipv6', 'ipv6', '', d)}"
@@ -104,9 +104,6 @@ do_install () {
         -e 's,@SBINDIR@,${sbindir},g' \
         -i ${D}${systemd_unitdir}/system/*.service
 }
-
-INITSCRIPT_NAME = "proftpd"
-INITSCRIPT_PARAM = "defaults 85 15"
 
 SYSTEMD_PACKAGES = "${PN}"
 SYSTEMD_SERVICE_${PN} = "proftpd.service"

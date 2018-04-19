@@ -83,7 +83,7 @@ IMAGE_INSTALL += " \
 	virtual/libstb-hal \
 	virtual/dvb-driver \
 	virtual/screengrabber \
-	vsftpd \
+	proftpd \
 	wpa-supplicant \
 	xupnpd \
 	zsh \

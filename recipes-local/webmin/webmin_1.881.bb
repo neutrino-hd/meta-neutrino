@@ -140,7 +140,7 @@ PACKAGES_DYNAMIC += "webmin-module-* webmin-theme-*"
 RRECOMMENDS_${PN} += "webmin-module-system-status net-ssleay-perl perl-module-file-path webmin-module-mount gnupg webmin-module-samba webmin-theme-authentic-theme \
 webmin-module-change-user webmin-module-file webmin-module-net webmin-module-pam webmin-module-shell webmin-module-smart-status webmin-module-sshd webmin-module-status \
 webmin-module-system-status webmin-module-webmin webmin-module-webminlog webmin-module-updown webmin-module-acl webmin-module-servers webmin-module-filemin \
-webmin-module-fdisk webmin-module-exports webmin-module-useradmin webmin-module-passwd webmin-module-proc \
+webmin-module-fdisk webmin-module-exports webmin-module-useradmin webmin-module-passwd webmin-module-proc webmin-module-proftpd \
 "
 
 RDEPENDS_${PN}-module-proc = "procps"
