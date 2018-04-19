@@ -7,7 +7,6 @@ IMAGE_INSTALL += " \
 	neutrino-plugins \
 	neutrino-lua-plugins \
 	neutrino-plugin-rss \
-	neutrino-plugin-localtv \
 	neutrino-plugin-mediathek \
 	neutrino-plugin-rockpalast \
 	neutrino-plugin-startup \
