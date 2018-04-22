@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=2c38926f611bfbd5a3be0f817c8d2dad \
 "
 DEPENDS = ""
 
-SRCREV = "${AUTOREV}"
+SRCREV = "f8444d7002fde691198c68e66888cf589a233628"
 
 SRC_URI = "git://bitbucket.org/neutrino-images/ni-openthreads/src;protocol=https \
 "

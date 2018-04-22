@@ -6,7 +6,7 @@ DEPENDS += "curl lua"
 RDEPENDS_${PN} += "lua"
 
 S = "${WORKDIR}/git"
-SRCREV = "${AUTOREV}"
+SRCREV = "05d6f74622dcbf7facd91472e9dc670dc28f5082"
 PV = "${SRCPV}"
 PR = "1"
 

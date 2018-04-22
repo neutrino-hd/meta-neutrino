@@ -10,7 +10,7 @@ DEPENDS_APPEND_libc-uclibc += "virtual/libstb-hal"
 SRC_URI = "git://github.com/nx111/oscam.git;protocol=https \
 "
 
-SRCREV = "${AUTOREV}"
+SRCREV = "f07272ae3d8ee2abb8ac884f038a1e7497e2c543"
 
 S = "${WORKDIR}/git"
 	

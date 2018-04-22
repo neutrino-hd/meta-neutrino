@@ -10,7 +10,7 @@ SRC_URI = "git://github.com/keplerproject/luafilesystem.git;protocol=https \
 	   file://0001-adjust-config.patch \
 "
 
-SRCREV = "${AUTOREV}"
+SRCREV = "1dfb8c41e8a7e689959baeaf2961437db9615f74"
 PV = "${SRCPV}"
 PR = "1"
 

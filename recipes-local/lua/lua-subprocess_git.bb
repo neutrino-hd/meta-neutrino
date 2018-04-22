@@ -11,7 +11,7 @@ SRC_URI = "git://github.com/xlq/lua-subprocess.git;protocol=https \
 	   file://Makefile \
 "		
 
-SRCREV = "${AUTOREV}"
+SRCREV = "b5f84612acb625a0b564aa50f18614180a2a404e"
 PV = "${SRCPV}"
 PR = "1"
 

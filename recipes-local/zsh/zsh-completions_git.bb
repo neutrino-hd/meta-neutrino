@@ -11,7 +11,7 @@ RDEPENDS_${PN} = "zsh"
 SRC_URI = "git://github.com/zsh-users/zsh-completions.git;protocol=https \
 "
 
-SRCREV = "${AUTOREV}"
+SRCREV = "1a71e0a1a36117722c02736487e6940e72455e0b"
 PV = "${SRCPV}"
 PR = "1"
 

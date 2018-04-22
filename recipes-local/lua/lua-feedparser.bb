@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://LICENCE;md5=b8e3c7d92765c11f200410b0e53c8bdb"
 HOMEPAGE = "https://github.com/slact/lua-feedparser"
 
 RDEPENDS_${PN} += "lua"
-SRCREV = "${AUTOREV}"
+SRCREV = "9b284bc014ea6adbbd847b16ba64dadd40724fac"
 PR = "r1"
 S = "${WORKDIR}/git"
 

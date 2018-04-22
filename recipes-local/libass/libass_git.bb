@@ -8,7 +8,7 @@ DEPENDS = "enca fontconfig freetype libpng fribidi"
 
 SRC_URI = "git://github.com/libass/libass.git;protocol=https"
 
-SRCREV = "${AUTOREV}"
+SRCREV = "98727c3b78f44cb3bbc955fcf5d977ebd911d5ca"
 
 S = "${WORKDIR}/git"
 

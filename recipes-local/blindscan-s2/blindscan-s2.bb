@@ -12,7 +12,7 @@ PKGV = "1+git${GITPKGV}"
 
 S = "${WORKDIR}/git/"
 
-SRCREV = "${AUTOREV}"
+SRCREV = "1c359fac35e429d34226b28ebd8237c2f3dbb0e2"
 
 do_configure_prepend() {
 	sed -i "s|CFLG=-O -g -W|CFLG=-O -g -W -Wl,--hash-style=gnu|" ${S}/Makefile 

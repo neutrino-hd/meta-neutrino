@@ -9,7 +9,7 @@ RDEPENDS_${PN} += "lua"
 SRC_URI = "git://github.com/hoelzro/linotify.git;protocol=https \
 "
 
-SRCREV = "${AUTOREV}"
+SRCREV = "a56913e9c0922befb65227a00cf69c2e8052de1a"
 PV = "${SRCPV}"
 PR = "1"
 

@@ -5,7 +5,7 @@ LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://../LICENSE;md5=193ff0a3bc8b0d2cb0d1d881586d3388"
 
 DEPENDS += "lua openssl"
-SRCREV = "${AUTOREV}"
+SRCREV = "6578ceb40ee5a1b62a89f87e5303942d860fd90e"
 SRC_URI = "\
 	git://github.com/clark15b/xupnpd.git;branch=master \
 	file://0002-ui_restart-fix-xupnpd-install-path.patch \

@@ -10,7 +10,7 @@ SRC_URI = " \
 	file://udpxy.default \
 "
 
-SRCREV = "${AUTOREV}"
+SRCREV = "612d2271b0d3ccb92f5e1c1c54aa3c0674af75cf"
 
 S = "${WORKDIR}/git/chipmunk"
 

@@ -11,7 +11,7 @@ RDEPENDS_${PN} = "zsh"
 SRC_URI = "git://github.com/zsh-users/zsh-syntax-highlighting.git;protocol=https \
 "
 
-SRCREV = "${AUTOREV}"
+SRCREV = "02a37dd919dc48e0821186e5f20e78bd0215f86a"
 PV = "${SRCPV}"
 PR = "1"
 

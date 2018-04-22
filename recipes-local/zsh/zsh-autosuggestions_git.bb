@@ -11,7 +11,7 @@ RDEPENDS_${PN} = "zsh"
 SRC_URI = "git://github.com/zsh-users/zsh-autosuggestions.git;protocol=https \
 "
 
-SRCREV = "${AUTOREV}"
+SRCREV = "67a364bc1766fb775010cd00dda1967210013410"
 PV = "${SRCPV}"
 PR = "1"
 

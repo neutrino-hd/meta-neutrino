@@ -13,6 +13,6 @@ PKGV = "1.4.53+git${GITPKGV}"
 SRC_URI = "git://github.com/Duckbox-Developers/dvbsnoop.git;protocol=https"
 
 S = "${WORKDIR}/git"
-SRCREV = "${AUTOREV}"
+SRCREV = "badf61fcdab1177c1162747be06d035a2b671e9b"
 
 inherit autotools
