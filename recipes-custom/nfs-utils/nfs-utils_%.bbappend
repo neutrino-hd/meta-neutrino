@@ -1,7 +1,6 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
 SRC_URI_append += "file://exports \
-		   file://nfs-server.service \
 " 
 
 RDEPENDS_${PN} = "${PN}-client"
@@ -11,4 +10,4 @@ do_install_append() {
 }
         
 INSANE_SKIP_${PN} = "file-rdeps"
-	
+
