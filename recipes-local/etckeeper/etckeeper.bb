@@ -16,7 +16,7 @@ SRC_URI = "git://github.com/neutrino-hd/etckeeper.git;protocol=https \
 SRC_URI[md5sum] = "439d65fc487910a30b686788b7c6fc99"
 SRC_URI[sha256sum] = "76fd0349ff138b98a4dde831a23a13d3fc6608147ef4fef35ce58ebf48f18f23"
 
-SRCREV = "4469d9450ab5879087544349d607d7bf33afea7f"
+SRCREV = "ba00bcfdd58ab3701dfcb4ce0b3bc7b7a4c045f5"
 PV = "${SRCPV}"
 PR = "1"
 
