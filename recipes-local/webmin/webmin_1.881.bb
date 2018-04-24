@@ -19,7 +19,11 @@ SRC_URI = "${SOURCEFORGE_MIRROR}/webadmin/webmin-${PV}.tar.gz \
            file://remove-python2.3.patch \
            file://mysql-config-fix.patch \
            file://webmin.service \
-            "
+	   file://samba_config \
+	   file://exports_config \
+	   file://smart_config \
+	   file://proftpd_config \
+"
 
 SRC_URI[md5sum] = "f37b564c76c1c6b0241fccb1f844f2f0"
 SRC_URI[sha256sum] = "6a93a74ff9adb0ca48cb8e03d74faf77731008eaca2613db225e1d59e07d5190"
@@ -113,7 +117,7 @@ do_install() {
     export password=${WEBMIN_PASSWORD}
     export ssl=0
     export atboot=1
-    export no_pam=1
+    export no_pam=0
     mkdir -p $tempdir
     ${S}/../setup.sh
 
@@ -123,6 +127,10 @@ do_install() {
 
 do_install_append() {
 	echo "lang_root=de.UTF-8" >> ${D}${sysconfdir}/webmin/config
+	install -m 644 ${WORKDIR}/samba_config ${D}${sysconfdir}/webmin/samba/config
+        install -m 644 ${WORKDIR}/exports_config ${D}${sysconfdir}/webmin/exports/config
+        install -m 644 ${WORKDIR}/smart_config ${D}${sysconfdir}/webmin/smart-status/config
+        install -m 644 ${WORKDIR}/proftpd_config ${D}${sysconfdir}/webmin/proftpd/config
 }
 
 SYSTEMD_SERVICE_${PN} = "webmin.service"
@@ -138,9 +146,10 @@ RDEPENDS_${PN} += "perl-module-file-glob perl-module-file-copy perl-module-sdbm-
 
 PACKAGES_DYNAMIC += "webmin-module-* webmin-theme-*"
 RDEPENDS_${PN} += "webmin-module-system-status net-ssleay-perl perl-module-file-path webmin-module-mount gnupg webmin-module-samba webmin-theme-authentic-theme \
-webmin-module-change-user webmin-module-net webmin-module-pam webmin-module-shell webmin-module-smart-status webmin-module-sshd webmin-module-status \
+webmin-module-change-user webmin-module-net webmin-module-pam webmin-module-shell webmin-module-smart-status webmin-module-sshd webmin-module-status webmin-module-time \
 webmin-module-system-status webmin-module-webmin webmin-module-webminlog webmin-module-updown webmin-module-acl webmin-module-servers webmin-module-filemin \
-webmin-module-fdisk webmin-module-exports webmin-module-useradmin webmin-module-passwd webmin-module-proc webmin-module-proftpd \
+webmin-module-fdisk webmin-module-exports webmin-module-useradmin webmin-module-passwd webmin-module-proc webmin-module-proftpd webmin-module-webmincron \
+webmin-module-software \
 "
 
 RRECOMMENDS_${PN}-module-proc = "procps"
