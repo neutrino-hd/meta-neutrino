@@ -28,6 +28,7 @@ DEPENDS_append += " \
 	
 IMAGE_INSTALL += " \
 	autofs \
+	bash \
 	bzip2 \
 	ca-certificates \
 	cifs-utils \
