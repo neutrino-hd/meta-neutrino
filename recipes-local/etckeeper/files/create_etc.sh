@@ -36,4 +36,5 @@ elif mountpoint -q $DEST;then
         git push origin master
 else
         echo "no mounted media found"
+        /usr/libexec/openssh/sshd_check_keys
 fi
