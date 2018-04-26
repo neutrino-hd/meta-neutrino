@@ -19,6 +19,7 @@ DEST=$(echo $GIT__URL | cut -d"/" -f1,2,3)
 if [ -e $GIT_EXIST ];then
         exit
 elif mountpoint -q $DEST;then
+	/usr/libexec/openssh/sshd_check_keys
         cd /etc
         if [ ! -e /etc/gitconfig ];then
         git config --system user.name "GIT_USER"
