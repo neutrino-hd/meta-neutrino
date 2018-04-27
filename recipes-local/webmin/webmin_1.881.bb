@@ -189,5 +189,3 @@ python populate_packages_prepend() {
 package_do_pkgconfig() {
     :
 }
-
-FILES_webmin-module-filemin_append += "${S}/webmin/filemin/unauthenticated"
