@@ -2,7 +2,7 @@
 PROVIDES = "virtual/neutrino"
 RPROVIDES_${PN} = "virtual/neutrino"
 
-inherit autotools pkgconfig systemd gitpkgv
+inherit autotools pkgconfig systemd gitpkgv ccache
 
 DEPENDS += " \
 	curl \
@@ -37,6 +37,10 @@ S = "${WORKDIR}/git"
 
 SYSTEMD_SERVICE_${PN} = "neutrino.service"
 
+N_PREFIX = "/usr"
+
+N_EXEC_PREFIX = "${N_PREFIX}/bin"
+
 EXTRA_OECONF = " \
 	--enable-maintainer-mode \
 	--enable-silent-rules \
@@ -47,9 +51,9 @@ EXTRA_OECONF = " \
 	--enable-giflib \
 	--enable-flac \
 	--with-target=native \
-	--prefix=/usr \
-	--exec_prefix=/usr/bin \
-	--includedir=${prefix}/include \
+	--prefix=${N_PREFIX} \
+	--exec_prefix=${N_EXEC_PREFIX} \
+	--includedir=${N_PREFIX}/include \
 	--with-configdir=/etc/neutrino/config \
 	--with-plugindir=/var/tuxbox/plugins \
 	--with-webtvdir_var=/etc/neutrino/plugins/webtv \
@@ -57,6 +61,8 @@ EXTRA_OECONF = " \
 	--with-plugindir_var=/etc/neutrino/plugins \
 	--with-gamesdir=/etc/neutrino/plugins \
 "
+
+VERSION_FILE = "${N_PREFIX}/.version"
 
 N_CFLAGS = "-Wall -Wextra -Wshadow -g -O2 -fno-strict-aliasing -rdynamic -DENABLE_FREESATEPG -DNEW_LIBCURL \
 -I${S}/lib/libcoolstream2 -I${STAGING_INCDIR}/freetype2 -I${STAGING_INCDIR}/sigc++-2.0 -I${STAGING_INCDIR}/glib-2.0 -I${STAGING_LIBDIR}/glib-2.0/include"
@@ -94,10 +100,10 @@ do_install_prepend () {
 	install -d ${D}${localstatedir}/cache
 	install -d ${D}/lib/mdev/fs
 	install -m 755 ${WORKDIR}/mount.mdev ${D}/lib/mdev/fs/mount
-	echo "creator=${CREATOR}"             >> ${D}/.version 
-	echo "imagename=yocto ${DISTRO}"             >> ${D}/.version 
-	echo "homepage=${HOMEPAGE}"              >> ${D}/.version
-        echo "version=${RELEASE_STATE}${DISTRO_VERSION_NUMBER_MAJOR}${DISTRO_VERSION_NUMBER_MINOR}${DISTRO_VERSION_NUMBER_MICRO}`date +%Y%m%d%H%M`" >> ${D}/.version
+	echo "creator=${CREATOR}"             >> ${D}${VERSION_FILE} 
+	echo "imagename=yocto ${DISTRO}"             >> ${D}${VERSION_FILE} 
+	echo "homepage=${HOMEPAGE}"              >> ${D}${VERSION_FILE}
+        echo "version=${RELEASE_STATE}${DISTRO_VERSION_NUMBER_MAJOR}${DISTRO_VERSION_NUMBER_MINOR}${DISTRO_VERSION_NUMBER_MICRO}`date +%Y%m%d%H%M`" >> ${D}${VERSION_FILE}
 	if [ ! -z ${RELEASE_TEXT_LOCATION_HOST} ];then
 		HASH=$(cd ${S} && echo `git rev-parse --abbrev-ref HEAD` `git describe --always --tags --dirty`)
 		echo "${IMAGE_LOCATION} ${RELEASE_STATE}${DISTRO_VERSION_NUMBER_MAJOR}${DISTRO_VERSION_NUMBER_MINOR}${DISTRO_VERSION_NUMBER_MICRO}`date +%Y%m%d%H%M` MD5 ${HASH} ${DISTRO_VERSION}" > ${RELEASE_TEXT_LOCATION_HOST}
@@ -115,6 +121,7 @@ do_install_append() {
 }
 
 FILES_${PN} += "\
+	${VERSION_FILE} \
 	/.version \
 	/etc \
 	/share \
@@ -142,7 +149,7 @@ fi
 }
 
 
-pkg_postinst_${PN} () {
+pkg_postinst_ontarget_${PN} () {
 	update-alternatives --install /bin/backup.sh backup.sh /usr/bin/backup.sh 100
 	update-alternatives --install /bin/install.sh install.sh /usr/bin/install.sh 100
 	update-alternatives --install /bin/restore.sh restore.sh /usr/bin/restore.sh 100
@@ -152,5 +159,5 @@ pkg_postinst_${PN} () {
 		I=/usr/share/tuxbox/neutrino/icons
 		pic2m2v $I/mp3.jpg $I/radiomode.jpg $I/scan.jpg $I/shutdown.jpg $I/start.jpg
 	fi
+	ln -sf /usr/.version /.version
 }
-
