@@ -23,6 +23,8 @@ SRC_URI = "${SOURCEFORGE_MIRROR}/webadmin/webmin-${PV}.tar.gz \
 	   file://exports_config \
 	   file://smart_config \
 	   file://proftpd_config \
+	   file://authentic_settings-root \
+	   file://authentic_settings.js \
 "
 
 SRC_URI[md5sum] = "f37b564c76c1c6b0241fccb1f844f2f0"
@@ -127,10 +129,13 @@ do_install() {
 
 do_install_append() {
 	echo "lang_root=de.UTF-8" >> ${D}${sysconfdir}/webmin/config
+	install -d ${D}${sysconfdir}/webmin/authentic-theme
 	install -m 644 ${WORKDIR}/samba_config ${D}${sysconfdir}/webmin/samba/config
         install -m 644 ${WORKDIR}/exports_config ${D}${sysconfdir}/webmin/exports/config
         install -m 644 ${WORKDIR}/smart_config ${D}${sysconfdir}/webmin/smart-status/config
         install -m 644 ${WORKDIR}/proftpd_config ${D}${sysconfdir}/webmin/proftpd/config
+        install -m 644 ${WORKDIR}/authentic_settings-root ${D}${sysconfdir}/webmin/authentic-theme/settings-root
+        install -m 644 ${WORKDIR}/authentic_settings.js ${D}${sysconfdir}/webmin/authentic-theme/settings.js
 }
 
 SYSTEMD_SERVICE_${PN} = "webmin.service"
