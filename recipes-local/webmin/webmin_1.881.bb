@@ -18,6 +18,7 @@ SRC_URI = "${SOURCEFORGE_MIRROR}/webadmin/webmin-${PV}.tar.gz \
            file://media-tomb.patch \
            file://remove-python2.3.patch \
            file://mysql-config-fix.patch \
+	   file://filemin_fix_toolbar.patch \
            file://webmin.service \
 	   file://samba_config \
 	   file://exports_config \
@@ -188,3 +189,5 @@ python populate_packages_prepend() {
 package_do_pkgconfig() {
     :
 }
+
+FILES_webmin-module-filemin_append += "${S}/webmin/filemin/unauthenticated"

@@ -1,0 +1,11 @@
+--- a/filemin/filemin-lib.pl	2018-03-16 04:06:44.000000000 +0100
++++ b/filemin/filemin-lib.pl	2018-04-27 23:14:25.374630373 +0200
+@@ -116,7 +116,7 @@
+ 
+ sub print_template {
+     $template_name = @_[0];
+-    if (open(my $fh, '<:encoding(UTF-8)', $template_name)) {
++    if (open(my $fh, $template_name)) {
+       while (my $row = <$fh>) {
+         print (eval "qq($row)");
+       }
