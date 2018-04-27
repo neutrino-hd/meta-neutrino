@@ -24,6 +24,7 @@ DEPENDS_append += " \
 	dvbsnoop \
 	ncdu \
 	tmux \
+	fzf \
 "
 	
 IMAGE_INSTALL += " \

@@ -4,16 +4,18 @@ HOMEPAGE = "https://github.com/junegunn/fzf.git"
 SECTION = "base/shell"
 
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=04a8c5d840f2f1a07d28ce3e19951303"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
-DEPENDS = "go-native"
-SRC_URI = "git://github.com/junegunn/fzf.git;protocol=https \
+DEPENDS = "go-shellwords go-runewidth go-isatty golang-x-terminal"
+
+GO_IMPORT = "github.com/junegunn/fzf"
+
+SRC_URI = "git://${GO_IMPORT} \
 "
 
-SRCREV = "${AUTOREV}"
-PV = "${SRCPV}"
-PR = "1"
-
-S = "${WORKDIR}/git"
+SRCREV = "6eac4af7db54b2b736a2ede928b14456c0496711"
 
 inherit go
+
+GO_INSTALL = "${GO_IMPORT}"
+
