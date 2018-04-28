@@ -31,7 +31,6 @@ if [ -e $GIT_EXIST ];then
                 git remote add origin $GIT__URL
                 git fetch -a
                 git reset --hard origin/master
-                rm /etc/ssh/ssh_host*
                 echo "...done"
                 sync
                 sleep 2
@@ -41,7 +40,3 @@ if [ -e $GIT_EXIST ];then
 else
         echo "no remote found"
 fi
-
-
-
-
