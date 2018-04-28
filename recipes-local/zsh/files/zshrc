@@ -13,6 +13,7 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 export EDITOR='nano'
 export ARCHFLAGS="-arch x86_64"
+export LANG="de_DE.UTF-8"
 
 alias zshconfig="nano ~/.zshrc"
 alias ohmyzsh="nano ~/.oh-my-zsh"
