@@ -37,6 +37,14 @@ S = "${WORKDIR}/git"
 
 SYSTEMD_SERVICE_${PN} = "neutrino.service"
 
+YT_DEV_KEY ?= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+TMDB_DEV_KEY ?= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+SHOUTCAST_DEV_KEY ?= "XXXXXXXXXXXXXXXX"
+
+OMDB_API_KEY ?= "XXXXXXXX"
+
 N_PREFIX = "/usr"
 
 N_EXEC_PREFIX = "${N_PREFIX}/bin"
@@ -60,6 +68,10 @@ EXTRA_OECONF = " \
 	--with-luaplugindir=/var/tuxbox/plugins \
 	--with-plugindir_var=/etc/neutrino/plugins \
 	--with-gamesdir=/etc/neutrino/plugins \
+	--with-tmdb-dev-key="${TMDB_DEV_KEY}" \
+	--with-omdb-api-key="${OMDB_API_KEY}" \
+	--with-youtube-dev-key="${YT_DEV_KEY}" \
+	--with-shoutcast-dev-key="${SHOUTCAST_DEV_KEY}" \
 "
 
 VERSION_FILE = "${N_PREFIX}/.version"
@@ -122,7 +134,6 @@ do_install_append() {
 
 FILES_${PN} += "\
 	${VERSION_FILE} \
-	/.version \
 	/etc \
 	/share \
 	/usr/share \
