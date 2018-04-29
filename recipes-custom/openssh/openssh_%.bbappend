@@ -3,6 +3,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
 SRC_URI += "file://sshd_config \
 	    file://sshd_banner \
+	    file://sshd.socket \
 "
 
 DEPENDS_append += "libpam"
