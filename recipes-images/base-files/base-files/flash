@@ -20,7 +20,7 @@ $imagesource
 
 if [[ $1 =~ ^[0-9]+$ ]]; then
 	if  [ $1 -lt 1 ] || [ $1 -gt 4 ]; then
-	        printf '\n%s\n' "Choose a valid partition" ; exit 1;
+	        printf '\n%s\n' "Choose a valid partition [1-4]" ; exit 1;
 	elif [ $1 = 1 ]; then
 	        part=1; kernel=2; root=3
 	elif [ $1 = 2 ]; then
@@ -31,7 +31,7 @@ if [[ $1 =~ ^[0-9]+$ ]]; then
 	        part=4; kernel=8; root=9
 	fi
 else
-	printf '\n%s\n' "Please give the partition number as first argument" ; exit 1;
+	printf '\n%s\n' "Please give the partition number [1-4] as first argument" ; exit 1;
 fi
 
 rootdevice="$(sed -e 's/^.*root=//' -e 's/ .*$//' < /proc/cmdline)"
