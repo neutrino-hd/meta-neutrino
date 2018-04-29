@@ -13,7 +13,11 @@ EXTRA_OECONF_append = " --with-pam"
 
 do_install_append () {
 	sed -i "s|yocto|${MACHINE}|" ${WORKDIR}/sshd_banner
-	install -m 0644 ${WORKDIR}/sshd_banner ${D}${sysconfdir}/ssh/sshd_banner
+	install -m 0700 ${WORKDIR}/sshd_banner ${D}${sysconfdir}/ssh/sshd_banner
 }
 
 FILES_${PN}-sshd += "${sysconfdir}/ssh/sshd_banner"
+
+pkg_postinst_ontarget_${PN} () {
+	chmod 700 /etc/ssh
+}
