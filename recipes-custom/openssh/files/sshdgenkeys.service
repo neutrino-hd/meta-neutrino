@@ -1,0 +1,10 @@
+[Unit]
+Description=OpenSSH Key Generation
+RequiresMountsFor=/var /run
+
+[Service]
+ExecStart=/usr/libexec/openssh/sshd_check_keys
+ExecStartPost=/bin/chmod -R 600 /etc/ssh
+Type=oneshot
+RemainAfterExit=yes
+
