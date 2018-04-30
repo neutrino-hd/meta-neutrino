@@ -4,7 +4,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 SRC_URI += "file://sshd_config \
 	    file://sshd_banner \
 	    file://sshd.socket \
-	    file://sshdgenkeys.service \
+	    file://sshd_check_keys \
 "
 
 DEPENDS_append += "libpam"
@@ -20,5 +20,5 @@ do_install_append () {
 FILES_${PN}-sshd += "${sysconfdir}/ssh/sshd_banner"
 
 pkg_postinst_ontarget_${PN} () {
-	chmod 600 /etc/ssh
+	chmod 700 /etc/ssh
 }
