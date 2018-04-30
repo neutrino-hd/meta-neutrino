@@ -42,7 +42,6 @@ StrictModes no
 #MaxAuthTries 6
 #MaxSessions 10
 
-RSAAuthentication yes
 PubkeyAuthentication yes
 AuthorizedKeysFile	/etc/ssh/authorized_keys
 
@@ -94,7 +93,6 @@ UsePAM yes
 #PrintLastLog yes
 #TCPKeepAlive yes
 #UseLogin no
-UsePrivilegeSeparation yes
 #PermitUserEnvironment no
 Compression no
 ClientAliveInterval 15
