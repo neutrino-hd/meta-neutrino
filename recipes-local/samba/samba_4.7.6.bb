@@ -316,3 +316,5 @@ RDEPENDS_${PN}-test = "\
     "
 
 ALLOW_EMPTY_${PN}-test = "1"
+
+RRECOMMENDS_${PN} += "glibc-gconv-ibm850"
