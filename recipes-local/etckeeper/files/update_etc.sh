@@ -33,7 +33,7 @@ if [ -e $GIT_EXIST ];then
                 git reset --hard origin/master
                 echo "...done"
                 sync
-                sleep 2
+                etckeeper init
                 echo "rebooting"
                 systemctl reboot
         fi
