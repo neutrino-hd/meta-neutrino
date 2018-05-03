@@ -4,7 +4,6 @@ SRC_URI += "file://inputrc \
 	    file://nsswitch.conf \
 	    file://fstab \
 	    file://shells \
-	    file://oscam.service \
 	    file://gbox.service \
 	    file://cccam.service \
 	    file://lcd.sh \
@@ -26,13 +25,11 @@ SRC_URI += "file://inputrc \
 	    file://fstrim.timer \
 	    file://flash \
 	    file://locale.conf \
+	    file://local_cam.sh \
 "
 
 RDEPENDS_${PN}_append += "coreutils"
 
-inherit systemd
-
-SYSTEMD_SERVICE_${PN} = "oscam.service"
 BASEFILESISSUEINSTALL = "do_custom_baseissueinstall"
 
 do_custom_baseissueinstall() {
@@ -63,10 +60,10 @@ do_install_append () {
 	install -d ${D}${localstatedir}/update ${D}${systemd_unitdir}/system/multi-user.target.wants ${D}${bindir} ${D}${sysconfdir}/systemd/system/multi-user.target.wants
 	if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
   		install -d ${D}${systemd_unitdir}/system
-  		install -m 0644 ${WORKDIR}/oscam.service ${D}${systemd_unitdir}/system/oscam.service
   		install -m 0644 ${WORKDIR}/gbox.service ${D}${systemd_unitdir}/system/gbox.service
                 install -m 0644 ${WORKDIR}/cccam.service ${D}${systemd_unitdir}/system/cccam.service
   		install -m 0644 ${WORKDIR}/lcd.service ${D}${systemd_unitdir}/system/lcd.service
+		install -m 0755 ${WORKDIR}/local_cam.sh ${D}${bindir}
 		ln -sf /lib/systemd/system/lcd.service ${D}${systemd_unitdir}/system/multi-user.target.wants
                 install -m 0644 ${WORKDIR}/-.mount ${D}${systemd_unitdir}/system
                 ln -sf /lib/systemd/system/-.mount  ${D}${systemd_unitdir}/system/multi-user.target.wants

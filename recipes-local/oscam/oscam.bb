@@ -7,7 +7,10 @@ DEPENDS = "libusb1 openssl pcsc-lite"
 
 DEPENDS_APPEND_libc-uclibc += "virtual/libstb-hal"
 
-SRC_URI = "svn://www.streamboard.tv/svn/oscam-addons;protocol=http;module=modern;scmdata=keep"
+SRC_URI = "svn://www.streamboard.tv/svn/oscam-addons;protocol=http;module=modern;scmdata=keep \
+	   file://oscam.service \
+"
+
 SRCREV = "1528"
 PV = "svn${SRCREV}"
 
@@ -17,6 +20,8 @@ B = "${S}"
 INHIBIT_PACKAGE_STRIP = "1"
 
 inherit cmake systemd
+
+SYSTEMD_SERVICE_${PN} = "oscam.service"
 
 do_configure_append_coolstream-hd2 () {
 	if [ ${BOXTYPE} = "kronos" ];then
@@ -31,7 +36,7 @@ EXTRA_OECMAKE = " \
 		 -DWEBIF=1 \
 		 -DUSE_LIBCRYPTO=1 \
 		 -DUSE_LIBUSB=1 \
-		 -DUSE_STAPI=1 \
+		 -DUSE_STAPI=0 \
 		 -DREADER_IRDETO=1 \
 		 -DREADER_NAGRA=1 \
 		 -DREADER_SECA=1 \
@@ -59,9 +64,13 @@ EXTRA_OECMAKE_append_hd51 += "-DOSCAM_SYSTEM_NAME=tuxbox \
 "
 
 do_install () {
-	install -d ${D}/usr/bin ${D}/etc/neutrino/bin
-	install -D -m 755 ${WORKDIR}/build/oscam ${D}/etc/neutrino/bin/oscam
-	rm -rf ${D}/usr
+	install -d ${D}/usr/bin ${D}${systemd_system_unitdir}
+	install -m 755 ${WORKDIR}/build/oscam ${D}/usr/bin/oscam.internal
+        install -m 644 ${WORKDIR}/oscam.service ${D}${systemd_system_unitdir}
+}
+
+pkg_postinst_ontarget_${PN} () {
+	ln -sf /usr/bin/oscam.internal /usr/bin/oscam
 }
 
 INSANE_SKIP_${PN} = "already-stripped"
