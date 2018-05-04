@@ -2,7 +2,7 @@
 
 for cam in oscam ccam gbox; do
         if [ -f /etc/neutrino/bin/"$cam" ]; then
-                ln -sf /etc/neutrino/bin/"$cam" /usr/bin/"$cam"
+                ls -lh /usr/bin/"$cam" | grep "internal" > /dev/null && ln -sf /etc/neutrino/bin/"$cam" /usr/bin/"$cam"
         fi
 done
 
