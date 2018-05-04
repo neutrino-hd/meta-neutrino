@@ -1,11 +1,23 @@
 #!/bin/sh
 
-for cam in oscam ccam gbox; do
-        if [ -f /etc/neutrino/bin/"$cam" ]; then
-                ls -lh /usr/bin/"$cam" | grep "internal" > /dev/null && ln -sf /etc/neutrino/bin/"$cam" /usr/bin/"$cam"
+local_bindir="/etc/neutrino/bin"
+bindir="/usr/bin"
+
+for cam in oscam cccam gbox; do
+        if [ -x "$local_bindir"/"$cam" ]; then
+                if [ "$cam" = "oscam" ]; then
+                        ls -lh "$bindir"/"$cam" | grep "internal" > /dev/null && ln -sf "$local_bindir"/"$cam" "$bindir"/"$cam"
+                else
+                        [ ! -L "$bindir"/"$cam" ] && ln -sf "$local_bindir"/"$cam" "$bindir"/"$cam"
+                fi
+        else
+                if [ "$cam" = "oscam" ]; then
+                        ls -lh "$bindir"/"$cam" | grep "internal" > /dev/null || ln -sf "$bindir"/"$cam".internal "$bindir"/"$cam"
+                else
+                        [ -L "$bindir"/"$cam" ] && rm -rf "$bindir"/"$cam"
+                fi
         fi
 done
 
-[ ! -e /usr/bin/oscam ] && ln -sf /usr/bin/oscam.internal /usr/bin/oscam
-
 exit 0
+
