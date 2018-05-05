@@ -5,6 +5,7 @@ Requires=network.target
 
 [Service]
 Type=forking
+ExecStartPre=/usr/bin/local_cam.sh
 ExecStart=/usr/bin/cccam -C /etc/neutrino/config/CCcam.cfg
 TimeoutStopSec=1
 Restart=always

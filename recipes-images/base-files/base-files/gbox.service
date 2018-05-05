@@ -5,6 +5,7 @@ Requires=network.target
 
 [Service]
 Type=simple
+ExecStartPre=/usr/bin/local_cam.sh
 ExecStart=/usr/bin/gbox
 TimeoutStopSec=1
 Restart=always
