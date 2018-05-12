@@ -61,3 +61,4 @@ FILES_${PN}-dbg += "/var/tuxbox/plugins/.debug"
 
 SRC_URI[md5sum] = "f04cf2dddc22af9f12685f4d4dda0067"
 SRC_URI[sha256sum] = "f3ad02f2e43afca3da474bfeccd70808ca9651858893eff0b90891067284b0b8"
+

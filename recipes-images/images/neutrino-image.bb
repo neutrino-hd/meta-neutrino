@@ -12,7 +12,6 @@ IMAGE_INSTALL += " \
 	neutrino-plugin-startup \
 	neutrino-plugin-flash \
 	neutrino-plugin-logo \
-	neutrino-plugin-scre \
 	"
 
 
