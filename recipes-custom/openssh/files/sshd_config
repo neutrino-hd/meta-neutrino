@@ -91,12 +91,12 @@ UsePAM yes
 #X11UseLocalhost yes
 #PrintMotd yes
 #PrintLastLog yes
-#TCPKeepAlive yes
+TCPKeepAlive yes
 #UseLogin no
 #PermitUserEnvironment no
 Compression no
-ClientAliveInterval 15
-ClientAliveCountMax 4
+ClientAliveInterval 360
+ClientAliveCountMax 10
 #UseDNS yes
 #PidFile /var/run/sshd.pid
 #MaxStartups 10
