@@ -31,6 +31,7 @@ DEPENDS += " \
 	libvorbis \
 	fontconfig \
 	libpng \
+	tremor \
 "
 
 S = "${WORKDIR}/git"
@@ -52,11 +53,12 @@ N_EXEC_PREFIX = "${N_PREFIX}/bin"
 EXTRA_OECONF = " \
 	--enable-maintainer-mode \
 	--enable-silent-rules \
-	--enable-mdev \
 	--enable-upnp \
+	--enable-mdev \
 	--enable-fribidi \
 	--enable-pugixml \
 	--enable-giflib \
+	--enable-tremor \
 	--enable-flac \
 	--with-target=native \
 	--prefix=${N_PREFIX} \
