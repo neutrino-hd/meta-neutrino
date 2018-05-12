@@ -25,7 +25,7 @@ RDEPENDS_${PN} = "pam-plugin-listfile"
 
 inherit autotools-brokensep useradd systemd
 
-PACKAGECONFIG ??= "pam shadow largefile8"
+PACKAGECONFIG ??= "pam shadow largefile"
 PACKAGECONFIG += " ${@bb.utils.contains('DISTRO_FEATURES', 'ipv6', 'ipv6', '', d)}"
 PACKAGECONFIG += " ${@bb.utils.contains('DISTRO_FEATURES', 'pam', 'pam', '', d)}"
 
