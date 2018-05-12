@@ -18,14 +18,14 @@ SRC_URI = "ftp://ftp.proftpd.org/distrib/source/${BPN}-${PV}.tar.gz \
 	   file://ftp.pam \
            "
 
-SRC_URI[md5sum] = "aff1bff40e675244d72c4667f203e5bb"
-SRC_URI[sha256sum] = "c10316fb003bd25eccbc08c77dd9057e053693e6527ffa2ea2cc4e08ccb87715"
+SRC_URI[md5sum] = "13270911c42aac842435f18205546a1b"
+SRC_URI[sha256sum] = "91ef74b143495d5ff97c4d4770c6804072a8c8eb1ad1ecc8cc541b40e152ecaf"
 
 RDEPENDS_${PN} = "pam-plugin-listfile"
 
 inherit autotools-brokensep useradd systemd
 
-PACKAGECONFIG ??= "pam shadow"
+PACKAGECONFIG ??= "pam shadow largefile8"
 PACKAGECONFIG += " ${@bb.utils.contains('DISTRO_FEATURES', 'ipv6', 'ipv6', '', d)}"
 PACKAGECONFIG += " ${@bb.utils.contains('DISTRO_FEATURES', 'pam', 'pam', '', d)}"
 
