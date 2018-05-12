@@ -16,7 +16,7 @@ SRC_URI = "git://github.com/neutrino-hd/etckeeper.git;protocol=https \
 SRC_URI[md5sum] = "439d65fc487910a30b686788b7c6fc99"
 SRC_URI[sha256sum] = "76fd0349ff138b98a4dde831a23a13d3fc6608147ef4fef35ce58ebf48f18f23"
 
-SRCREV = "ba283447d7a75f810563e4489d99261331f3025f"
+SRCREV = "15ad5bd450b81a65ba50ce99c97615b183cc032d"
 PV = "${SRCPV}"
 PR = "1"
 
@@ -47,4 +47,3 @@ FILES_${PN}_append += "/lib/systemd \
 		       /usr/share/bash-completion \
 		       /usr/lib/ \
 "
-
