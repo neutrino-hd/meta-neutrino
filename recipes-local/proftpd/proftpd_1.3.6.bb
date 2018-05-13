@@ -21,7 +21,7 @@ SRC_URI = "ftp://ftp.proftpd.org/distrib/source/${BPN}-${PV}.tar.gz \
 SRC_URI[md5sum] = "13270911c42aac842435f18205546a1b"
 SRC_URI[sha256sum] = "91ef74b143495d5ff97c4d4770c6804072a8c8eb1ad1ecc8cc541b40e152ecaf"
 
-DEPENDS += "libpam ncurses shadow"
+DEPENDS += "libpam ncurses shadow gettext"
 RDEPENDS_${PN} = "pam-plugin-listfile"
 
 inherit autotools-brokensep useradd systemd
@@ -35,7 +35,8 @@ EXTRA_OECONF += " \
         --disable-strip \
         --enable-largefile \
         --enable-dso \
-	--disable-nls \
+	--enable-nls \
+	--enable-pcre \
 "
 
 
@@ -53,7 +54,7 @@ FTPGROUP = "ftp"
 
 do_install () {
     oe_runmake DESTDIR=${D} install
-    rmdir ${D}${libdir}/proftpd ${D}${datadir}/locale
+    rmdir ${D}${libdir}/proftpd
     [ -d ${D}${libexecdir} ] && rmdir ${D}${libexecdir}
     sed -i '/ *User[ \t]*/s/ftp/${FTPUSER}/' ${D}${sysconfdir}/proftpd.conf
     sed -i '/ *Group[ \t]*/s/ftp/${FTPGROUP}/' ${D}${sysconfdir}/proftpd.conf
@@ -77,6 +78,7 @@ do_install () {
     install -m 644 ${WORKDIR}/proftpd.service ${D}/${systemd_unitdir}/system
     sed -e 's,@BASE_SBINDIR@,${base_sbindir},g' \
         -e 's,@SYSCONFDIR@,${sysconfdir},g' \
+        -e 's,@LOCALEDIR@,${localedir},g' \
         -e 's,@SBINDIR@,${sbindir},g' \
         -i ${D}${systemd_unitdir}/system/*.service
 
@@ -103,6 +105,8 @@ GROUPADD_PARAM_${PN} = "--system ${FTPGROUP}"
 USERADD_PARAM_${PN} = "--system -g ${FTPGROUP} --home-dir /var/lib/${FTPUSER} --no-create-home \
                        --shell /bin/false ${FTPUSER}"
 
-FILES_${PN} += "/home/${FTPUSER}"
+FILES_${PN} += "/home/${FTPUSER} \
+		/usr/share/locale \
+"
 
 RDEPENDS_${PN} += "perl"
