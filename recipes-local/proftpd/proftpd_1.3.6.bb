@@ -78,7 +78,6 @@ do_install () {
     install -m 644 ${WORKDIR}/proftpd.service ${D}/${systemd_unitdir}/system
     sed -e 's,@BASE_SBINDIR@,${base_sbindir},g' \
         -e 's,@SYSCONFDIR@,${sysconfdir},g' \
-        -e 's,@LOCALEDIR@,${localedir},g' \
         -e 's,@SBINDIR@,${sbindir},g' \
         -i ${D}${systemd_unitdir}/system/*.service
 
