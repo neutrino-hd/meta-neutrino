@@ -18,7 +18,6 @@ SRC_URI = "${SOURCEFORGE_MIRROR}/webadmin/webmin-${PV}.tar.gz \
            file://media-tomb.patch \
            file://remove-python2.3.patch \
            file://mysql-config-fix.patch \
-	   file://filemin_fix_toolbar.patch \
            file://webmin.service \
 	   file://samba_config \
 	   file://exports_config \
@@ -160,7 +159,7 @@ webmin-module-software \
 
 RRECOMMENDS_${PN}-module-proc = "procps"
 RRECOMMENDS_${PN}-module-raid = "mdadm"
-RRECOMMENDS_${PN}-module-filemin = "perl-module-perlio"
+RRECOMMENDS_${PN}-module-filemin = "perl-module-perlio perl-module-perlio-encoding"
 RRECOMMENDS_${PN}-module-exports = "perl-module-file-basename perl-module-file-path perl-module-cwd perl-module-file-spec perl-module-file-spec-unix"
 RRECOMMENDS_${PN}-theme-authentic-theme = "perl-module-lib perl-module-overload perl-module-bytes perl-module-encode perl-module-encode-unicode perl-module-utf8 perl-module-unicore perl-module-file-find"
 RRECOMMENDS_${PN}-module-fdisk = "parted"
