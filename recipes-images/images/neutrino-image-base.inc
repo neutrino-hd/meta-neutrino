@@ -42,15 +42,15 @@ IMAGE_INSTALL += " \
 	e2fsprogs-badblocks \
 	etckeeper \
 	glibc-charmap-utf-8 \
-	glibc-localedata-en-us \
-        glibc-localedata-de-de \
-        glibc-localedata-fr-fr \
-        glibc-localedata-ru-ru \
+	glibc-binary-localedata-en-us \
+        glibc-binary-localedata-de-de \
+        glibc-binary-localedata-fr-fr \
+        glibc-binary-localedata-ru-ru \
 	gptfdisk \
 	gzip \
 	hdparm \
 	image-config \
-	ifupdown \
+	ifupdown \ 
 	libswscale \
 	libusb1 \
 	localedef \
