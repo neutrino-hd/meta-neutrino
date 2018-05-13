@@ -49,6 +49,12 @@ do_configure () {
     cp ${STAGING_BINDIR_CROSS}/${HOST_SYS}-libtool ${S}/libtool
 }
 
+do_configure_append() {
+    # Configuring  test for fprint %llu ability fails if cross compiling.
+    # This breaks the shown filesize for large files. Let's hack this, because we know we have it.
+    sed -i "s|HAVE_LU|HAVE_LLU|" ${S}/configure
+}
+
 FTPUSER = "ftp"
 FTPGROUP = "ftp"
 
