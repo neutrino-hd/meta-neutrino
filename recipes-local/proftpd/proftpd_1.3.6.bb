@@ -21,55 +21,31 @@ SRC_URI = "ftp://ftp.proftpd.org/distrib/source/${BPN}-${PV}.tar.gz \
 SRC_URI[md5sum] = "13270911c42aac842435f18205546a1b"
 SRC_URI[sha256sum] = "91ef74b143495d5ff97c4d4770c6804072a8c8eb1ad1ecc8cc541b40e152ecaf"
 
+DEPENDS += "libpam ncurses shadow"
 RDEPENDS_${PN} = "pam-plugin-listfile"
 
 inherit autotools-brokensep useradd systemd
 
-PACKAGECONFIG ??= "pam shadow largefile"
-PACKAGECONFIG += " ${@bb.utils.contains('DISTRO_FEATURES', 'ipv6', 'ipv6', '', d)}"
-PACKAGECONFIG += " ${@bb.utils.contains('DISTRO_FEATURES', 'pam', 'pam', '', d)}"
-
-PACKAGECONFIG[curses] = "--enable-curses --enable-ncurses, --disable-curses --disable-ncurses, ncurses"
-PACKAGECONFIG[openssl] = "--enable-openssl, --disable-openssl, openssl, openssl"
-PACKAGECONFIG[pam] = "--enable-auth-pam, --disable-auth-pam, libpam, libpam"
-PACKAGECONFIG[ipv6] = "--enable-ipv6, --disable-ipv6"
-PACKAGECONFIG[shadow] = "--enable-shadow, --disable-shadow"
-PACKAGECONFIG[pcre] = "--enable-pcre, --disable-pcre, libpcre "
-
-# enable POSIX.1e capabilities
-PACKAGECONFIG[cap] = "--enable-cap, --disable-cap, libcap, libcap"
-
-#enable support for POSIX ACLs
-PACKAGECONFIG[acl] = "--enable-facl, --disable-facl"
-
-#enable proftpd controls via ftpdct
-PACKAGECONFIG[ctrls] = "--enable-ctrls, --disable-crtls"
-
-#prevent proftpd from using its bundled getopt implementation.
-PACKAGECONFIG[getopt] = "--with-getopt, --without-getopt"
-
-#do not strip debugging symbols from installed code
-PACKAGECONFIG[strip] = "--enable-strip, --disable-strip"
-
-#enable SIA authentication support (Tru64)
-PACKAGECONFIG[sia] = "--enable-sia, --disable-sia"
-PACKAGECONFIG[sendfile] = "-enable-sendfile, --disable-sendfile"
-
-#enable Native Language Support (NLS)
-PACKAGECONFIG[nls] = "--enable-nls, --disable-nls"
-
-#add mod_dso to core modules
-PACKAGECONFIG[dso] = "--enable-dso, --disable-dso"
-PACKAGECONFIG[largefile] = "--enable-largefile, --disable-largefile"
-
-#omit mod_auth_file from core modules
-PACKAGECONFIG[auth] = "--enable-auth-file, --disable-auth-file"
+EXTRA_OECONF += " \
+	--enable-dependency-tracking \
+        --enable-curses \
+        --without-getopt \
+        --enable-shadow \
+        --enable-ipv6 \
+        --disable-strip \
+        --enable-largefile \
+        --enable-dso \
+	--disable-nls \
+"
 
 
 # proftpd uses libltdl which currently makes configuring using
 # autotools.bbclass a pain...
 do_configure () {
+    install -m 0755 ${STAGING_DATADIR_NATIVE}/gnu-config/config.guess ${S}
+    install -m 0755 ${STAGING_DATADIR_NATIVE}/gnu-config/config.sub ${S}
     oe_runconf
+    cp ${STAGING_BINDIR_CROSS}/${HOST_SYS}-libtool ${S}/libtool
 }
 
 FTPUSER = "ftp"
@@ -103,6 +79,20 @@ do_install () {
         -e 's,@SYSCONFDIR@,${sysconfdir},g' \
         -e 's,@SBINDIR@,${sbindir},g' \
         -i ${D}${systemd_unitdir}/system/*.service
+
+    sed -e 's|--sysroot=${STAGING_DIR_HOST}||g' \
+        -e 's|${STAGING_DIR_NATIVE}||g' \
+        -e 's|-fdebug-prefix-map=[^ ]*||g' \
+        -i ${D}/${bindir}/prxs
+
+    # ftpmail perl script, which reads the proftpd log file and sends
+    # automatic email notifications once an upload finishs,
+    # depends on an old perl Mail::Sendmail
+    # The Mail::Sendmail has not been maintained for almost 10 years
+    # Other distribution not ship with ftpmail, so do the same to
+    # avoid confusion about having it fails to run
+    rm -rf ${D}${bindir}/ftpmail
+    rm -rf ${D}${mandir}/man1/ftpmail.1
 }
 
 SYSTEMD_PACKAGES = "${PN}"
