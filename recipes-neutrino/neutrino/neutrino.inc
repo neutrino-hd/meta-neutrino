@@ -58,7 +58,7 @@ EXTRA_OECONF = " \
 	--enable-fribidi \
 	--enable-pugixml \
 	--enable-giflib \
-	--enable-tremor \
+	--with-tremor \
 	--enable-flac \
 	--with-target=native \
 	--prefix=${N_PREFIX} \
