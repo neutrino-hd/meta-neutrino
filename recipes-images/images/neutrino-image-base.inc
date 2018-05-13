@@ -46,6 +46,9 @@ IMAGE_INSTALL += " \
         glibc-binary-localedata-de-de \
         glibc-binary-localedata-fr-fr \
         glibc-binary-localedata-ru-ru \
+        glibc-binary-localedata-cz-cz \
+        glibc-binary-localedata-pl-pl \
+        glibc-binary-localedata-es-es \
 	gptfdisk \
 	gzip \
 	hdparm \
