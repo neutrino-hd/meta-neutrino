@@ -22,7 +22,7 @@ SRC_URI = "ftp://ftp.proftpd.org/distrib/source/${BPN}-${PV}.tar.gz \
 SRC_URI[md5sum] = "13270911c42aac842435f18205546a1b"
 SRC_URI[sha256sum] = "91ef74b143495d5ff97c4d4770c6804072a8c8eb1ad1ecc8cc541b40e152ecaf"
 
-DEPENDS += "libpam ncurses shadow libtool-native"
+DEPENDS += "libpam ncurses shadow"
 RDEPENDS_${PN} = "pam-plugin-listfile"
 
 FTPUSER = "ftp"
@@ -87,6 +87,8 @@ do_install () {
 do_install_append () {
     rm -rf ${D}${libexecdir}
     find ${D}${datadir}/locale/. -type d -maxdepth 1 -not -name en_US -exec rm -rf {} \;
+    rm -rf ${D}${bindir}/ftpmail
+    rm -rf ${D}${mandir}/man1/ftpmail.1
 }
 
 SYSTEMD_PACKAGES = "${PN}"
