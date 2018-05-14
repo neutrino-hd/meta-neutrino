@@ -1,0 +1,13 @@
+--- a/Makefile.in	2018-05-14 15:58:08.702059336 +0200
++++ b/Makefile.in	2018-05-14 16:21:31.510107572 +0200
+@@ -110,10 +110,6 @@
+ 
+ install-proftpd: proftpd $(DESTDIR)$(includedir) $(DESTDIR)$(localstatedir) $(DESTDIR)$(sysconfdir) $(DESTDIR)$(sbindir)
+ 	$(INSTALL_SBIN) proftpd $(DESTDIR)$(sbindir)/proftpd
+-	if [ -f $(DESTDIR)$(sbindir)/in.proftpd ] ; then \
+-		rm -f $(DESTDIR)$(sbindir)/in.proftpd ; \
+-	fi
+-	ln -s proftpd $(DESTDIR)$(sbindir)/in.proftpd
+ 
+ install-libs: $(DESTDIR)$(libdir)/proftpd
+ 	cd lib/ && $(MAKE) install

@@ -16,13 +16,17 @@ SRC_URI = "ftp://ftp.proftpd.org/distrib/source/${BPN}-${PV}.tar.gz \
 	   file://proftpd_banner \
 	   file://proftpd.conf \
 	   file://ftp.pam \
+	   file://Makefile.patch \
            "
 
 SRC_URI[md5sum] = "13270911c42aac842435f18205546a1b"
 SRC_URI[sha256sum] = "91ef74b143495d5ff97c4d4770c6804072a8c8eb1ad1ecc8cc541b40e152ecaf"
 
-DEPENDS += "libpam ncurses shadow libpcre"
+DEPENDS += "libpam ncurses shadow libtool-native"
 RDEPENDS_${PN} = "pam-plugin-listfile"
+
+FTPUSER = "ftp"
+FTPGROUP = "ftp"
 
 inherit autotools-brokensep useradd systemd gettext
 
@@ -34,19 +38,16 @@ EXTRA_OECONF += " \
         --enable-ipv6 \
         --disable-strip \
         --enable-largefile \
-        --enable-dso \
+        --disable-dso \
 	--enable-nls \
-	--enable-pcre \
+	--disable-pcre \
 "
 
 
 # proftpd uses libltdl which currently makes configuring using
 # autotools.bbclass a pain...
 do_configure () {
-    install -m 0755 ${STAGING_DATADIR_NATIVE}/gnu-config/config.guess ${S}
-    install -m 0755 ${STAGING_DATADIR_NATIVE}/gnu-config/config.sub ${S}
     oe_runconf
-    cp ${STAGING_BINDIR_CROSS}/${HOST_SYS}-libtool ${S}/libtool
 }
 
 do_configure_append() {
@@ -55,15 +56,15 @@ do_configure_append() {
     sed -i "s|HAVE_LU|HAVE_LLU|" ${S}/configure
 }
 
-FTPUSER = "ftp"
-FTPGROUP = "ftp"
+do_compile () {
+    make
+}
 
 do_install () {
-    oe_runmake DESTDIR=${D} install
-    [ -d ${D}${libexecdir} ] && rm -rf ${D}${libexecdir}
-    [ -d ${D}${libdir} ] && rm -rf ${D}${libdir}
-    sed -i '/ *User[ \t]*/s/ftp/${FTPUSER}/' ${D}${sysconfdir}/proftpd.conf
-    sed -i '/ *Group[ \t]*/s/ftp/${FTPGROUP}/' ${D}${sysconfdir}/proftpd.conf
+    make install-proftpd DESTDIR=${D}                
+    make install-locales DESTDIR=${D}                
+    make install-utils DESTDIR=${D}              
+    make install-modules DESTDIR=${D}
     install -m 644 ${WORKDIR}/proftpd.conf ${D}${sysconfdir}/proftpd.conf
     install -m 644 ${WORKDIR}/proftpd_banner ${D}${sysconfdir}/welcome.msg
     install -d ${D}${sysconfdir}/pam.d/
@@ -81,15 +82,11 @@ do_install () {
         -e 's|${STAGING_DIR_NATIVE}||g' \
         -e 's|-fdebug-prefix-map=[^ ]*||g' \
         -i ${D}/${bindir}/prxs
+}
 
-    # ftpmail perl script, which reads the proftpd log file and sends
-    # automatic email notifications once an upload finishs,
-    # depends on an old perl Mail::Sendmail
-    # The Mail::Sendmail has not been maintained for almost 10 years
-    # Other distribution not ship with ftpmail, so do the same to
-    # avoid confusion about having it fails to run
-    rm -rf ${D}${bindir}/ftpmail
-    rm -rf ${D}${mandir}/man1/ftpmail.1
+do_install_append () {
+    rm -rf ${D}${libexecdir}
+    find ${D}${datadir}/locale/. -type d -maxdepth 1 -not -name en_US -exec rm -rf {} \;
 }
 
 SYSTEMD_PACKAGES = "${PN}"
