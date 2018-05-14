@@ -64,16 +64,6 @@ do_install () {
     [ -d ${D}${libdir} ] && rm -rf ${D}${libdir}
     sed -i '/ *User[ \t]*/s/ftp/${FTPUSER}/' ${D}${sysconfdir}/proftpd.conf
     sed -i '/ *Group[ \t]*/s/ftp/${FTPGROUP}/' ${D}${sysconfdir}/proftpd.conf
-    install -d ${D}${sysconfdir}/init.d
-    install -m 0755 ${WORKDIR}/proftpd-basic.init ${D}${sysconfdir}/init.d/proftpd
-    sed -i 's!/usr/sbin/!${sbindir}/!g' ${D}${sysconfdir}/init.d/proftpd
-    sed -i 's!/etc/!${sysconfdir}/!g' ${D}${sysconfdir}/init.d/proftpd
-    sed -i 's!/var/!${localstatedir}/!g' ${D}${sysconfdir}/init.d/proftpd
-    sed -i 's!^PATH=.*!PATH=${base_sbindir}:${base_bindir}:${sbindir}:${bindir}!' ${D}${sysconfdir}/init.d/proftpd
-
-    install -d ${D}${sysconfdir}/default
-    install -m 0755 ${WORKDIR}/default ${D}${sysconfdir}/default/proftpd
-    install -m 644 ${WORKDIR}/ftpusers ${D}${sysconfdir}/ftpusers
     install -m 644 ${WORKDIR}/proftpd.conf ${D}${sysconfdir}/proftpd.conf
     install -m 644 ${WORKDIR}/proftpd_banner ${D}${sysconfdir}/welcome.msg
     install -d ${D}${sysconfdir}/pam.d/
