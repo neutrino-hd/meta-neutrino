@@ -21,10 +21,10 @@ SRC_URI = "ftp://ftp.proftpd.org/distrib/source/${BPN}-${PV}.tar.gz \
 SRC_URI[md5sum] = "13270911c42aac842435f18205546a1b"
 SRC_URI[sha256sum] = "91ef74b143495d5ff97c4d4770c6804072a8c8eb1ad1ecc8cc541b40e152ecaf"
 
-DEPENDS += "libpam ncurses shadow gettext"
+DEPENDS += "libpam ncurses shadow libpcre"
 RDEPENDS_${PN} = "pam-plugin-listfile"
 
-inherit autotools-brokensep useradd systemd
+inherit autotools-brokensep useradd systemd gettext
 
 EXTRA_OECONF += " \
 	--enable-dependency-tracking \
@@ -60,7 +60,6 @@ FTPGROUP = "ftp"
 
 do_install () {
     oe_runmake DESTDIR=${D} install
-    rmdir ${D}${libdir}/proftpd
     [ -d ${D}${libexecdir} ] && rmdir ${D}${libexecdir}
     sed -i '/ *User[ \t]*/s/ftp/${FTPUSER}/' ${D}${sysconfdir}/proftpd.conf
     sed -i '/ *Group[ \t]*/s/ftp/${FTPGROUP}/' ${D}${sysconfdir}/proftpd.conf
