@@ -60,7 +60,8 @@ FTPGROUP = "ftp"
 
 do_install () {
     oe_runmake DESTDIR=${D} install
-    [ -d ${D}${libexecdir} ] && rmdir ${D}${libexecdir}
+    [ -d ${D}${libexecdir} ] && rm -rf ${D}${libexecdir}
+    [ -d ${D}${libdir} ] && rm -rf ${D}${libdir}
     sed -i '/ *User[ \t]*/s/ftp/${FTPUSER}/' ${D}${sysconfdir}/proftpd.conf
     sed -i '/ *Group[ \t]*/s/ftp/${FTPGROUP}/' ${D}${sysconfdir}/proftpd.conf
     install -d ${D}${sysconfdir}/init.d
