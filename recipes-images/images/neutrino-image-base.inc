@@ -74,6 +74,7 @@ IMAGE_INSTALL += " \
 	procps \
 	pv \
 	rpcbind \
+	rsync \
 	samba \
 	sed \
 	tzdata \
