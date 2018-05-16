@@ -60,6 +60,7 @@ EXTRA_OECONF = " \
 	--enable-giflib \
 	--with-tremor \
 	--enable-flac \
+	--enable-ffmpegdec \
 	--with-target=native \
 	--prefix=${N_PREFIX} \
 	--exec_prefix=${N_EXEC_PREFIX} \
@@ -74,6 +75,10 @@ EXTRA_OECONF = " \
 	--with-omdb-api-key="${OMDB_API_KEY}" \
 	--with-youtube-dev-key="${YT_DEV_KEY}" \
 	--with-shoutcast-dev-key="${SHOUTCAST_DEV_KEY}" \
+        --disable-tmdb-key-manage \
+        --disable-omdb-key-manage \
+        --disable-youtube-key-manage \
+        --disable-shoutcast-key-manage \
 "
 
 VERSION_FILE = "${N_PREFIX}/.version"
