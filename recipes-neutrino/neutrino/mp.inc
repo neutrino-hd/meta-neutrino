@@ -1,6 +1,5 @@
 
 SRC_URI_append += "git://github.com/tuxbox-neutrino/gui-neutrino.git;protocol=https \
-		   file://0001-do-jpgs-for-osd-video-grabs-to-improve-yweb-performa.patch \
 "
 
 
