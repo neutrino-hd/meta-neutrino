@@ -1,4 +1,4 @@
-#DESCRIPTION = "STB - Flash Plugin"
+DESCRIPTION = "STB - Flash Plugin"
 LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/BSD-2-Clause;md5=8bef8e6712b1be5aa76af1ebde9d6378"
 HOMEPAGE = "https://github.com/neutrino-hd"
