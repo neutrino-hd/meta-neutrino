@@ -12,6 +12,8 @@ SRC_URI = "file://start_lua.tar.gz \
 S = "${WORKDIR}/"
 
 do_install () {
-	install -d ${D}/var/tuxbox/plugins
-	install -m 644 ${S}/stb* ${D}/var/tuxbox/plugins
+	install -d ${D}/usr/share/tuxbox/plugins
+	install -m 644 ${S}/stb* ${D}/usr/share/tuxbox/plugins
 }
+
+FILES_${PN} = "/usr"

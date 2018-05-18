@@ -21,8 +21,8 @@ PKGV = "${GITPKGVTAG}"
 S = "${WORKDIR}/git"
 
 do_install () {
-	install -d ${D}/var/tuxbox/plugins ${D}/usr/share
-	cp -rf ${S}/plugins/* ${D}/var/tuxbox/plugins/
+	install -d ${D}/usr/share/tuxbox/plugins
+	cp -rf ${S}/plugins/* ${D}/usr/share/tuxbox/plugins
 	cp -rf ${S}/share ${D}/usr/
 }
 

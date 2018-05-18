@@ -1,4 +1,4 @@
-DESCRIPTION = "STB - Flash Plugin"
+#DESCRIPTION = "STB - Flash Plugin"
 LICENSE = "BSD-2-Clause"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/BSD-2-Clause;md5=8bef8e6712b1be5aa76af1ebde9d6378"
 HOMEPAGE = "https://github.com/neutrino-hd"
@@ -12,6 +12,9 @@ SRC_URI = "file://stb_flash.tar.gz \
 S = "${WORKDIR}/"
 
 do_install () {
-	install -d ${D}/var/tuxbox/plugins
-	install -m 644 ${S}/stb* ${D}/var/tuxbox/plugins
+	install -d ${D}/usr/share/tuxbox/plugins
+	install -m 644 ${S}/stb* ${D}/usr/share/tuxbox/plugins
 }
+
+FILES_${PN} = "/usr"
+

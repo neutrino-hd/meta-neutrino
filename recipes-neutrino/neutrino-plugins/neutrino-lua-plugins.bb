@@ -17,18 +17,18 @@ SRC_URI = "git://github.com/tuxbox-neutrino/plugin-scripts-lua.git;protocol=http
 SRCREV = "${AUTOREV}"
 
 do_install () {
-	install -d ${D}/var/tuxbox/plugins/webtv ${D}/usr/share/xupnpd/plugins
-	install -m 644 ${S}/plugins/webtv/yt_live.xml ${D}/var/tuxbox/plugins/webtv
-	install -m 644 ${S}/plugins/webtv/yt_live.lua ${D}/var/tuxbox/plugins/webtv
-	install -m 644 ${S}/plugins/webtv/LocalTVEpg.lua ${D}/var/tuxbox/plugins/webtv
-        install -m 644 ${S}/plugins/LocalTV/* ${D}/var/tuxbox/plugins/
-	install -m 644 ${S}/plugins/mtv/* ${D}/var/tuxbox/plugins/
-	install -m 644 ${S}/plugins/netzkino/* ${D}/var/tuxbox/plugins/
-	install -m 644 ${S}/plugins/ard_mediathek/* ${D}/var/tuxbox/plugins/
-        install -m 644 ${WORKDIR}/webtv_ora.xml ${D}/var/tuxbox/plugins/webtv
-        install -m 644 ${WORKDIR}/webtv_localtv.xml ${D}/var/tuxbox/plugins/webtv
-        install -m 644 ${WORKDIR}/yt_live.cfg ${D}/var/tuxbox/plugins
-        install -m 644 ${WORKDIR}/yt_live.png ${D}/var/tuxbox/plugins
+	install -d ${D}/usr/share/tuxbox/plugins/webtv ${D}/usr/share/xupnpd/plugins
+	install -m 644 ${S}/plugins/webtv/yt_live.xml ${D}/usr/share/tuxbox/plugins/webtv
+	install -m 644 ${S}/plugins/webtv/yt_live.lua ${D}/usr/share/tuxbox/plugins/webtv
+	install -m 644 ${S}/plugins/webtv/LocalTVEpg.lua ${D}/usr/share/tuxbox/plugins/webtv
+        install -m 644 ${S}/plugins/LocalTV/* ${D}/usr/share/tuxbox/plugins
+	install -m 644 ${S}/plugins/mtv/* ${D}/usr/share/tuxbox/plugins
+	install -m 644 ${S}/plugins/netzkino/* ${D}/usr/share/tuxbox/plugins
+	install -m 644 ${S}/plugins/ard_mediathek/* ${D}/usr/share/tuxbox/plugins
+        install -m 644 ${WORKDIR}/webtv_ora.xml ${D}/usr/share/tuxbox/plugins/webtv
+        install -m 644 ${WORKDIR}/webtv_localtv.xml ${D}/usr/share/tuxbox/plugins/webtv
+        install -m 644 ${WORKDIR}/yt_live.cfg ${D}/usr/share/tuxbox/plugins
+        install -m 644 ${WORKDIR}/yt_live.png ${D}/usr/share/tuxbox/plugins
 	install -m 644 ${S}/xupnpd/* ${D}/usr/share/xupnpd/plugins/
 }
 
