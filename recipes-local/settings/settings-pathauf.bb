@@ -5,10 +5,10 @@ HOMEPAGE = "http://www.coolstream.to/index.php?page=Thread&threadID=9536"
 
 S = "${WORKDIR}/git"
 
-SRCREV = "${AUTOREV}"
+RREPLACES_${PN} = "settings-annie-19.2e-13.0e-23.5e-28.2e settings-annie-19.2e-13.0e-23.5e settings-annie-19.2e-13.0e settings-annie-19.2e settings-matze-astra settings-matze-astra+hb settings-annie-19.2e-13.0e-23.5e-28.2e-26.0e-0.8w-5.0w"
+RCONFLICTS_${PN} = "settings-annie-19.2e-13.0e-23.5e-28.2e settings-annie-19.2e-13.0e-23.5e settings-annie-19.2e-13.0e settings-annie-19.2e settings-matze-astra settings-matze-astra+hb settings-annie-19.2e-13.0e-23.5e-28.2e-26.0e-0.8w-5.0w"
 
-RREPLACES_${PN} = "settings-matze-astra+hb settings-matze-astra settings-annie"
-RCONFLICTS_${PN} = "settings-matze-astra+hb settings-annie settings-matze-astra"
+SRCREV = "${AUTOREV}"
 
 SRC_URI = "git://github.com/neutrino-hd/settings-pathauf.git;protocol=https"
 
