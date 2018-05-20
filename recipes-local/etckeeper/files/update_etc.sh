@@ -5,7 +5,7 @@ dev="HDD"
 mountpoint -q /media/USB && dev="USB"
 
 if [ $rootdevice = /dev/mmcblk0p3 ]; then
-        GIT__URL="/media/$dev/service/partition1/git/etc.git"
+        git commit GIT__URL="/media/$dev/service/partition1/git/etc.git"
 elif [ $rootdevice = /dev/mmcblk0p5 ]; then
         GIT__URL="/media/$dev/service/partition2/git/etc.git"
 elif [ $rootdevice = /dev/mmcblk0p7 ]; then
