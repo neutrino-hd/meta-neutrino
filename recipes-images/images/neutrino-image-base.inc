@@ -25,6 +25,10 @@ DEPENDS_append += " \
 	ncdu \
 	tmux \
 	fzf \
+	settings-pathauf \
+	settings-annie \
+	settings-matze-astra \
+	settings-matze-astra+hb \
 "
 	
 IMAGE_INSTALL += " \
