@@ -25,8 +25,12 @@ DEPENDS_append += " \
 	ncdu \
 	tmux \
 	fzf \
+        settings-annie-19.2e \
+	settings-annie-19.2e-13.0e \ 
+	settings-annie-19.2e-13.0e-23.5e \
+	settings-annie-19.2e-13.0e-23.5e-28.2e \
+	settings-annie-19.2e-13.0e-23.5e-28.2e-26.0e-0.8w-5.0w \
 	settings-pathauf \
-	settings-annie \
 	settings-matze-astra \
 	settings-matze-astra+hb \
 "
