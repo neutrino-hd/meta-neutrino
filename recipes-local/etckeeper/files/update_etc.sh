@@ -29,6 +29,7 @@ if [ -e $GIT_EXIST ];then
 		systemctl stop neutrino.service
 		echo "writing back /etc git remote from /dev/$dev"  > /dev/dbox/oled0
 		cd /etc && etckeeper init
+		git remote add -f origin $GIT__URL
 		git fetch -a
 		git reset --hard origin/master
 		echo "...done"
