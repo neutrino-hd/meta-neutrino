@@ -49,6 +49,7 @@ IMAGE_INSTALL += " \
 	e2fsprogs-tune2fs \
 	e2fsprogs-badblocks \
 	etckeeper \
+	gptfdisk \
 	glibc-charmap-utf-8 \
 	glibc-binary-localedata-en-us \
         glibc-binary-localedata-de-de \
@@ -79,6 +80,7 @@ IMAGE_INSTALL += " \
 	openssl \
 	opkg \
 	oscam \
+	parted \
 	procps \
 	pv \
 	rpcbind \
