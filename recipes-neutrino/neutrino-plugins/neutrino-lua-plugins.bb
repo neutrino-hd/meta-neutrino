@@ -22,7 +22,6 @@ do_install () {
 	install -m 644 ${S}/plugins/webtv/yt_live.lua ${D}/usr/share/tuxbox/plugins/webtv
 	install -m 644 ${S}/plugins/webtv/LocalTVEpg.lua ${D}/usr/share/tuxbox/plugins/webtv
         install -m 644 ${S}/plugins/LocalTV/* ${D}/usr/share/tuxbox/plugins
-	install -m 644 ${S}/plugins/mtv/* ${D}/usr/share/tuxbox/plugins
 	install -m 644 ${S}/plugins/netzkino/* ${D}/usr/share/tuxbox/plugins
 	install -m 644 ${S}/plugins/ard_mediathek/* ${D}/usr/share/tuxbox/plugins
         install -m 644 ${WORKDIR}/webtv_ora.xml ${D}/usr/share/tuxbox/plugins/webtv
