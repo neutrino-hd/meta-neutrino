@@ -15,20 +15,19 @@ function stop_services () {
 	pidof smbd >> /dev/null && systemctl stop smb
 	pidof nmbd >> /dev/null && systemctl stop nmb
 	pidof xupnpd >> /dev/null && systemctl stop xupnpd
-        pidof udpxy >> /dev/null && systemctl stop udpxy    
+	pidof udpxy >> /dev/null && systemctl stop udpxy
 	netstat -tl | grep nfs >> /dev/null && systemctl stop nfs-server && systemctl stop nfs-mountd && systemctl stop nfs-statd
 	pidof oscam >> /dev/null && systemctl stop oscam
 	pidof cccam >> /dev/null && systemctl stop cccam
 	pidof gbox >> /dev/null && systemctl stop gbox
 	netstat -tl | grep webmin >> /dev/null && systemctl stop webmin
-        netstat -tl | grep sunrpc >> /dev/null && systemctl -q stop rpcbind
-        netstat -tl | grep ftp >> /dev/null && systemctl stop proftpd
-        pidof minidlnad >> /dev/null && systemctl stop minidlna
-        pidof automount >> /dev/null && systemctl stop autofs
-        pidof ntpdate >> /dev/null && systemctl stop ntpdate
+	netstat -tl | grep sunrpc >> /dev/null && systemctl -q stop rpcbind
+	netstat -tl | grep ftp >> /dev/null && systemctl stop proftpd
+	pidof minidlnad >> /dev/null && systemctl stop minidlna
+	pidof automount >> /dev/null && systemctl stop autofs
+	pidof ntpdate >> /dev/null && systemctl stop ntpdate
 	cd /etc && git status  >> /dev/null && systemctl -q stop etckeeper
 	pidof sshd >> /dev/null && systemctl stop sshd.socket
-        pidof telnetd >> /dev/null && systemctl stop telnet
 }
 
 [ -z $1 ] || [ $1 = "-h" ] || [ $1 = "--help" ] && printf '\n%s\n' "Give the destination partition number [1 - 4] as first argument.
