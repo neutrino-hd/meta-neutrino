@@ -11,7 +11,7 @@ SRC_URI = "svn://www.streamboard.tv/svn/oscam-addons;protocol=http;module=modern
 	   file://oscam.service \
 "
 
-SRCREV = "1528"
+SRCREV = "1531"
 PV = "svn${SRCREV}"
 
 S = "${WORKDIR}/modern"
