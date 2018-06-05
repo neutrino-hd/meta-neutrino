@@ -1,0 +1,10 @@
+[Unit]
+Description=Umount Shares At Shutdown
+
+[Service]
+RemainAfterExit=true
+ExecStart=/bin/true
+ExecStop=/usr/bin/net-umount.sh
+
+[Install]
+WantedBy=multi-user.target

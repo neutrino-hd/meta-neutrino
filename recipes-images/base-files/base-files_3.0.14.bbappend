@@ -26,6 +26,8 @@ SRC_URI += "file://inputrc \
 	    file://flash \
 	    file://locale.conf \
 	    file://local_cam.sh \
+	    file://net-umount.sh \
+	    file://net-umount.service \
 "
 
 RDEPENDS_${PN}_append += "coreutils"
@@ -90,6 +92,9 @@ do_install_append () {
                 install -m 0644 ${WORKDIR}/fstrim.service  ${D}${systemd_unitdir}/system
                 install -m 0644 ${WORKDIR}/fstrim.timer  ${D}${systemd_unitdir}/system
                 ln -sf /lib/systemd/system/fstrim.timer  ${D}${systemd_unitdir}/system/multi-user.target.wants
+		install -m 0644 ${WORKDIR}/net-umount.service  ${D}${systemd_unitdir}/system
+                install -m 0755 ${WORKDIR}/net-umount.sh  ${D}${bindir}
+                ln -sf /lib/systemd/system/net-umount.service  ${D}${sysconfdir}/systemd/system/multi-user.target.wants
 	fi
 	install -m 0755 ${WORKDIR}/lcd.sh ${D}${bindir}
 	install -m 0755 ${WORKDIR}/flash ${D}${bindir}
