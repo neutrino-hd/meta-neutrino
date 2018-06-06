@@ -9,6 +9,7 @@ DEPENDS_APPEND_libc-uclibc += "virtual/libstb-hal"
 
 SRC_URI = "svn://www.streamboard.tv/svn/oscam-addons;protocol=http;module=modern;scmdata=keep \
 	   file://oscam.service \
+	   file://oscam.conf \
 "
 
 SRCREV = "1531"
@@ -64,9 +65,10 @@ EXTRA_OECMAKE_append_hd51 += "-DOSCAM_SYSTEM_NAME=tuxbox \
 "
 
 do_install () {
-	install -d ${D}/usr/bin ${D}${systemd_system_unitdir}
+	install -d ${D}/usr/bin ${D}${systemd_system_unitdir} ${D}${sysconfdir}/neutrino/config
 	install -m 755 ${WORKDIR}/build/oscam ${D}/usr/bin/oscam.internal
         install -m 644 ${WORKDIR}/oscam.service ${D}${systemd_system_unitdir}
+	install -m 644 ${WORKDIR}/oscam.conf ${D}${sysconfdir}/neutrino/config
 }
 
 pkg_postinst_ontarget_${PN} () {
