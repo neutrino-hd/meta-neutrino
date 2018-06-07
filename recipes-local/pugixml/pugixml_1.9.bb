@@ -13,9 +13,8 @@ SRC_URI = "http://github.com/zeux/pugixml/releases/download/v${PV}/pugixml-${PV}
 	   file://001_Makefile.patch \
 "
 
-SRCSRC_URI[md5sum] = "ffa59ee4853958e243050e6b690b4f2e"
-SRC_URI[sha256sum] = "8ef26a51c670fbe79a71e9af94df4884d5a4b00a2db38a0608a87c14113b2904"
-
+SRC_URI[md5sum] = "7286ee2ed11376b6b780ced19fae0b64"
+SRC_URI[sha256sum] = "d156d35b83f680e40fd6412c4455fdd03544339779134617b9b28d19e11fdba6"
 
 S = "${WORKDIR}/${PN}-${PV}"
 
