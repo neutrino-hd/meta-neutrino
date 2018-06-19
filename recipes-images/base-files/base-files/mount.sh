@@ -25,12 +25,12 @@ do_mount()
 
 	if udevadm info --query=property --name=${DEVICE} | grep "ID_FS_LABEL="; then
                	LABEL="$(udevadm info --query=property --name=${DEVICE} | grep ID_FS_LABEL= | cut -d= -f2)"
-        elif udevadm info --query=property --name=${DEVICE} | grep ID_BUS | grep "ata"; then
-               	LABEL="HDD"
         else
                	LABEL="$(udevadm info --query=property --name=${DEVICE} | grep ID_VENDOR= | cut -d= -f2)"
         fi
+
         udevadm info --query=property --name=${DEVICE} | grep ID_PATH | grep "platform-f0470300.ehci-usb-0:1.3:1.0-scsi-0:0:0:0" && LABEL="USB"
+        udevadm info --query=property --name=${DEVICE} | grep ID_BUS | grep "ata" && LABEL="HDD"
 
        	MOUNT_POINT="/media/${LABEL}"
 
