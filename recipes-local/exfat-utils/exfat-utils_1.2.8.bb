@@ -21,3 +21,8 @@ inherit pkgconfig autotools
 SRC_URI[md5sum] = "00953eb7f704a875e26d7d01cc738fd3"
 SRC_URI[sha256sum] = "5c1643d23d24663b4e483292a643a791d2af7269870cac2f781c5dfe6a20ce27"
 
+do_install_append() {
+	install -d ${D}/sbin
+	ln -s /usr/sbin/mkfs.exfat ${D}/sbin/mkfs.exfat
+        ln -s /usr/sbin/fsck.exfat ${D}/sbin/fsck.exfat
+}
