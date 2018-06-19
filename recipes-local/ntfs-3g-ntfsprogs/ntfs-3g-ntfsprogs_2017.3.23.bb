@@ -18,10 +18,6 @@ inherit autotools pkgconfig
 PACKAGECONFIG ??= "uuid"
 PACKAGECONFIG[uuid] = "--with-uuid,--without-uuid,util-linux"
 
-EXTRA_OECONF += "--disable-static \
-		 --with-fuse=external \
-"
-
 # required or it calls ldconfig at install step
 EXTRA_OEMAKE = "LDCONFIG=echo"
 
