@@ -5,7 +5,6 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=80
 RDEPENDS_${PN} += "git findutils util-linux-mountpoint perl-module-file-glob glibc-utils"
 
 SRC_URI = "git://github.com/neutrino-hd/etckeeper.git;protocol=https \
-	   file://update-etc.service \
 	   file://create-etc.service \
 	   file://etckeeper.conf \
 	   file://create_etc.sh \
@@ -22,7 +21,7 @@ PR = "1"
 
 S = "${WORKDIR}/git"
 
-SYSTEMD_SERVICE_${PN} = "update-etc.service create-etc.service"
+SYSTEMD_SERVICE_${PN} = "create-etc.service"
 
 inherit autotools-brokensep systemd
 
@@ -39,7 +38,6 @@ do_install_append () {
 	install -m 755 ${WORKDIR}/update_etc.sh ${D}/etc/etckeeper/update_etc.sh
 	install -m 755 ${WORKDIR}/create_etc.sh ${D}/etc/etckeeper/create_etc.sh
 	install -m 644 ${WORKDIR}/create-etc.service ${D}${systemd_unitdir}/system
-	install -m 644 ${WORKDIR}/update-etc.service ${D}${systemd_unitdir}/system
 	ln -s /usr/lib/systemd/system/etckeeper.timer ${D}${sysconfdir}/systemd/system/timers.target.wants/etckeeper.timer
 }
 

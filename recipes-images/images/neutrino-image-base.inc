@@ -49,6 +49,8 @@ IMAGE_INSTALL += " \
 	e2fsprogs-tune2fs \
 	e2fsprogs-badblocks \
 	etckeeper \
+	exfat-utils \
+	fuse-exfat \
 	gptfdisk \
 	glibc-charmap-utf-8 \
 	glibc-binary-localedata-en-us \

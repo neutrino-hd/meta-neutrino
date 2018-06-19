@@ -1,0 +1,11 @@
+[Unit]
+Description=AutoMount Drive on %i
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/usr/bin/mount.sh add %i
+ExecStop=/usr/bin/mount.sh remove %i
+
+[Install]
+WantedBy=basic.target

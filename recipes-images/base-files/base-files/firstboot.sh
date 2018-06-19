@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "starting firstboot script"
-
+echo "Firstboot" > /dev/dbox/oled0
 rootdevice=$(sed -e 's/^.*root=//' -e 's/ .*$//' < /proc/cmdline)
 
 
@@ -33,5 +33,5 @@ echo "first boot script work done"
 #job done, remove it from systemd services
 systemctl disable firstboot.service
 echo "firstboot script disabled"
-echo "... reboot"
-systemctl reboot
+
+[ -f /usr/bin/etckeeper ] && /etc/etckeeper/update_etc.sh

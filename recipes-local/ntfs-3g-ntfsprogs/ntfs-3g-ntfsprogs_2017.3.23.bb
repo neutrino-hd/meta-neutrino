@@ -1,6 +1,6 @@
 DESCRIPTION = "The NTFS-3G driver is an open source, freely available NTFS driver for Linux with read and write support."
 HOMEPAGE = "http://www.ntfs-3g.org/"
-DEPENDS = "fuse libgcrypt"
+DEPENDS = "libgcrypt fuse"
 PROVIDES = "ntfsprogs ntfs-3g"
 LICENSE = "GPLv2 & LGPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=59530bdf33659b29e73d4adb9f9f6552 \
@@ -15,8 +15,12 @@ SRC_URI[sha256sum] = "3e5a021d7b761261836dcb305370af299793eedbded731df3d6943802e
 
 inherit autotools pkgconfig
 
-PACKAGECONFIG ??= ""
+PACKAGECONFIG ??= "uuid"
 PACKAGECONFIG[uuid] = "--with-uuid,--without-uuid,util-linux"
+
+EXTRA_OECONF += "--disable-static \
+		 --with-fuse=external \
+"
 
 # required or it calls ldconfig at install step
 EXTRA_OEMAKE = "LDCONFIG=echo"
