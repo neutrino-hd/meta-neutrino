@@ -1,6 +1,6 @@
 ##preferred versions
-PREFERRED_VERSION_linux-libc-headers = "4.15.7"
-PREFERRED_VERSION_nativesdk-linux-libc-headers = "4.15.7"
+PREFERRED_VERSION_linux-libc-headers = "4.10"
+PREFERRED_VERSION_nativesdk-linux-libc-headers = "4.10"
 
 ##preferred providers
 PREFERRED_PROVIDER_virtual/kernel = "linux-gfutures"
