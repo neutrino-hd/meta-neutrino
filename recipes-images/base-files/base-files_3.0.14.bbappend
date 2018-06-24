@@ -24,6 +24,7 @@ SRC_URI += "file://inputrc \
 	    file://fstrim.service \
 	    file://fstrim.timer \
 	    file://flash \
+	    file://imgbackup \
 	    file://locale.conf \
 	    file://local_cam.sh \
 	    file://net-umount.sh \
@@ -101,6 +102,7 @@ do_install_append () {
 	fi
 	install -m 0755 ${WORKDIR}/lcd.sh ${D}${bindir}
 	install -m 0755 ${WORKDIR}/flash ${D}${bindir}
+	install -m 0755 ${WORKDIR}/imgbackup ${D}${bindir}
         install -m 0755 ${WORKDIR}/mount.sh ${D}${bindir}
 	rm -rf ${D}${sysconfdir}/profile
 }

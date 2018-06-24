@@ -10,6 +10,7 @@ mountpoint -q /media/HDD && hdd_mount="/media/HDD"
 kernelname="kernel.bin"
 devbase="/dev/mmcblk0p"
 dev_display="/dev/dbox/oled0"
+rootdevice="$(sed -e 's/^.*root=//' -e 's/ .*$//' < /proc/cmdline)"
 
 function stop_services () {
 	pidof smbd >> /dev/null && systemctl stop smb
@@ -30,7 +31,7 @@ function stop_services () {
 	pidof sshd >> /dev/null && systemctl stop sshd.socket
 }
 
-[ -z $1 ] || [ $1 = "-h" ] || [ $1 = "--help" ] && printf '\n%s\n' "Give the destination partition number [1 - 4] as first argument.
+[ -z $1 ] || [ $1 = "-h" ] || [ $1 = "--help" ] && printf '\n\033[31m%s\n' "Give the destination partition number [1 - 4] as first argument.
 
 As second argument you can specify the path where the image is stored.
 If no second argument is given the image will be downloaded from
@@ -40,7 +41,7 @@ $imagesource
 
 if [[ $1 =~ ^[0-9]+$ ]]; then
 	if  [ $1 -lt 1 ] || [ $1 -gt 4 ]; then
-		printf '\n%s\n' "Choose a valid partition [1-4]" ; exit 1;
+		printf '\n\033[31m%s\n' "Choose a valid partition [1-4]" ; exit 1;
 	elif [ $1 = 1 ]; then
 		part=1; kernel=2; root=3
 	elif [ $1 = 2 ]; then
@@ -51,16 +52,27 @@ if [[ $1 =~ ^[0-9]+$ ]]; then
 		part=4; kernel=8; root=9
 	fi
 else
-	printf '\n%s\n' "Please give the partition number [1-4] as first argument" ; exit 1;
+	if [ $1 = "--restore" ];then
+		if echo $rootdevice | grep "3";then
+	                part=1; kernel=2; root=3
+                elif echo $rootdevice | grep "5";then
+                        part=2; kernel=4; root=5
+                elif echo $rootdevice | grep "7";then
+                        part=3; kernel=6; root=7
+                elif echo $rootdevice | grep "9";then
+                        part=4; kernel=8; root=9
+		fi
+	else		
+		printf '\n\033[31m%s\n' "Please give the partition number [1-4] as first argument" ; exit 1;
+	fi
 fi
 
-rootdevice="$(sed -e 's/^.*root=//' -e 's/ .*$//' < /proc/cmdline)"
 partition_sectorsize="$(gdisk -l $devbase$root | grep 'Total free space' | awk '{print $5}')"
-[ $partition_sectorsize -ne 1638333 ] && printf '\n%s\n' "The partition scheme is invalid ... use ofgwrite for flashing" && exit 2;
+[ $partition_sectorsize -ne 1638333 ] && printf '\n\033[31m%s\n' "The partition scheme is invalid ... use ofgwrite for flashing" && exit 2;
 
 reset
 
-if [ -z $2 ]; then
+if [ -z $2 ] && [ $1 != "--restore" ] || [ $2 = "--force" ]; then
 	imagebase="$hdd_mount/service/image"
 	imagedir="$imagebase/$machine"
 	imagefile="$imagebase/$image"
@@ -69,40 +81,51 @@ if [ -z $2 ]; then
 	imageversion_online="$url/imageversion"
 	[ ! -d $imagebase ] && mkdir -p $imagebase
 	space_available="$(df -Pk $imagebase | awk 'NR==2 {print $4}')"
-	[ $space_available -lt 1048576 ] && printf '\n%s\n' "You need at least 1G of free space on $hdd_mount" && exit 3;
-	[ ! -f $imageversion_local ] && touch $imageversion_local
-	md5_imageversion_online=$(curl -s $imageversion_online | md5sum | awk '{print $1}')
-	md5_imageversion_local=$(md5sum "$imageversion_local" | awk '{print $1}')
-	[ $md5_imageversion_online = $md5_imageversion_local ] && printf '\n%s\n' "No update available" && \
-	echo "No update available" > $dev_display && exit 4;
-	[ $rootdevice = $devbase$root ] && stop_services
+	[ $space_available -lt 1048576 ] && printf '\n\033[31m%s\n' "You need at least 1G of free space on $hdd_mount" && exit 3;
+	if [ -z $2 ]; then
+        	[ ! -f $imageversion_local ] && touch $imageversion_local
+		md5_imageversion_online=$(curl -s $imageversion_online | md5sum | awk '{print $1}')
+		md5_imageversion_local=$(md5sum "$imageversion_local" | awk '{print $1}')
+		[ $md5_imageversion_online = $md5_imageversion_local ] && printf '\n\033[32m%s\n' "No update available" && \
+		echo "No update available" > $dev_display && exit 4;
+	else
+                printf '\033[31m'
+	fi
 	echo "Downloading $image" > $dev_display
+	printf '\n\033[1m%s\n\033[0m' "Downloading $imagesource"
 	unpack="unzip -x $imagefile -d $imagebase"
-	curl $imagesource -o $imagefile || { printf '\n%s\n' "Downloading the image failed" ; exit 5; }
-	printf '\n%s\n'
+	curl $imagesource -o $imagefile || { printf '\n\033[31m%s\n' "Downloading the image failed" ; exit 5; }
 	[ -d $imagedir ] && rm -r $imagedir
 	echo "Decompressing $image" > $dev_display
-	$unpack || { printf '\n%s\n' "Unpacking the image failed" ; exit 6; }
+        printf '\n\033[1m%s\n\033[0m' "Decompressing  $image"
+	$unpack || { printf '\n\033[31m%s\n' "Unpacking the image failed" ; exit 6; }
 	cp -rf $imageversion $imageversion_local
 	[ -f $imagefile ] && rm $imagefile
 else
-	imagedir="$2"
+	if [ $1 = "--restore" ]; then
+		imagedir="$hdd_mount/service/image/backup/$machine"
+	elif [[ $1 =~ ^[1-4]+$ ]]; then	
+		imagedir="$2"
+	fi
 	[ ! -f $imagedir/$imagename ] && printf '\n%s\n' "$imagedir/$imagename not found" && exit 1;
 	[ ! -f $imagedir/$kernelname ] && printf '\n%s\n' "$imagedir/$kernelname not found" && exit 1;
 	space_available="$(df -Pk $imagedir | awk 'NR==2 {print $4}')"
-	[ $space_available -lt 1048576 ] && printf '\n%s\n' "You need at least 1G of free space on your device" && exit 1;
+	[ $space_available -lt 1048576 ] && printf '\n\033[31m%s\n' "You need at least 1G of free space on your device" && exit 1;
 fi
 
+[ $rootdevice = $devbase$root ] && stop_services
+
+printf '\n\033[1m%s\n\033[0m' "Writing image into partition $part"
 echo "Writing image into partition $part" > $dev_display
 
-printf '\n%s\n' "Writing kernel into $devbase$kernel"
+printf '\033[33m%s\033[37m%s\n' "Writing kernel into $devbase$kernel"
 pv < $imagedir/$kernelname > $devbase$kernel \
-|| { printf '\n%s\n' "Writing the kernel failed" ; exit 7; }
+|| { printf '\033[31m%s\n' "Writing the kernel failed" ; exit 7; }
 
-printf '\n%s\n' "Writing rootfs into $devbase$root"
+printf '\033[33m%s\033[37m%s\n' "Writing rootfs into $devbase$root"
 bzip2 -cd $imagedir/$imagename | pv > $devbase$root \
-|| { printf '\n%s\n' "Writing rootfs into $devbase$root failed" ; exit 8; }
-printf '\n%s\n' "Flash successful"
+|| { printf '\033[31m%s\n' "Writing rootfs into $devbase$root failed" ; exit 8; }
+printf '\n\033[1m\033[32m%s\033[0m\n' "Flash successful"
 
 [ $rootdevice = $devbase$root ] && echo "...Reboot" > $dev_display && \
 reboot="$(echo 1 > /proc/sys/kernel/sysrq && echo b > /proc/sysrq-trigger)"
