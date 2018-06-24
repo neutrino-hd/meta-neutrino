@@ -25,6 +25,9 @@ DEPENDS_append += " \
 	ncdu \
 	tmux \
 	fzf \
+	sshfs-fuse \
+	smbnetfs \
+	ifuse \
         settings-annie-19.2e \
 	settings-annie-19.2e-13.0e \ 
 	settings-annie-19.2e-13.0e-23.5e \
