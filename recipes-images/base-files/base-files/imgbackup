@@ -1,4 +1,4 @@
-#!/bin/sh
+##!/bin/sh
 
 machine="hd51"
 hdd_mount="/media/USB"
@@ -23,11 +23,11 @@ if ! [[ $1 =~ ^[1-4]+$ ]]; then
         fi
 fi
 
-[ ! -d $hdd_mount ] && printf '\n\033[31m%s\n' "Give the destination path as second argument" && exit 1;
+[ ! -d $hdd_mount ] && { printf '\n\033[31m%s\n' "Give the destination path as second argument" && exit 1; }
 
 if [[ $part_to_use =~ ^[0-9]+$ ]]; then
         if  [ $part_to_use -lt 1 ] || [ $1 -gt 4 ]; then
-                printf '\n\033[31m%s\n' "Choose a valid partition [1-4]"; exit 1;
+		{ printf '\n\033[31m%s\n' "Choose a valid partition [1-4]"; exit 1; }
         elif [ $part_to_use = 1 ]; then
                 part=1; kernel=2; root=3
         elif [ $part_to_use = 2 ]; then
@@ -41,20 +41,21 @@ fi
 
 reset
 
-[ -n $2 ] && space_available="$(df -Pk $2 | awk 'NR==2 {print $4}')"
-[ -z $2  ] && ! [[ $1 =~ ^[0-9]+$ ]] && space_available="$(df -Pk $1 | awk 'NR==2 {print $4}')"
-[ -z $2  ] && [[ $1 =~ ^[0-9]+$ ]] && space_available="$(df -Pk $hdd_mount | awk 'NR==2 {print $4}')"
-[ -z $2  ] && [ -z $1 ] && space_available="$(df -Pk $hdd_mount | awk 'NR==2 {print $4}')"
-[ $space_available -lt 1048576 ] && printf '\n\033[31m%s\n' "You need at least 1G of free space on your device" && exit 1;
+
+[ ! -z $2 ] && space_available="$(mountpoint -q $2 && df -Pk $2 | awk 'NR==2 {print $4}')"
+[ -z $2  ] && ! [[ $1 =~ ^[0-9]+$ ]] && space_available="$(mountpoint -q $1 && df -Pk $1 | awk 'NR==2 {print $4}')"
+[ -z $2  ] && [[ $1 =~ ^[0-9]+$ ]] && space_available="$(mountpoint -q $hdd_mount && df -Pk $hdd_mount | awk 'NR==2 {print $4}')"
+[ -z $2  ] && [ -z $1 ] && space_available="$(mountpoint -q $hdd_mount && df -Pk $hdd_mount | awk 'NR==2 {print $4}')"
+[ ! -z $space_available ] && [ $space_available -gt 1048576 ] || { printf '\n\033[31m%s\n' "You need at least 1G of free space on your device" && exit 1; }
 
 printf '\n\033[1m%s\n\033[0m' "Creating backup of partition $part" && echo "Creating backup of partition $part" > $dev_display
-destination="$2/backup/partition$part/$machine"
+[ -n $2 ] && destination="$2/backup/partition$part/$machine"
 [ -z $2  ] && ! [[ $1 =~ ^[0-9]+$ ]] && destination="$1/backup/partition$part/$machine"
 [ -z $2  ] && [[ $1 =~ ^[0-9]+$ ]] && destination="$servicedir/image/backup/partition$part/$machine"
 [ -z $2  ] && [ -z $1 ] && destination="$servicedir/image/backup/partition$part/$machine"
 
 [ -d "$destination" ] && rm -rf "$destination"
-mkdir -p "$destination"
+  mkdir -p "$destination"
 
 printf '\n\033[33m%s\033[37m%s\n' "Creating kernel backup in $destination/$kernelname " && echo "Creating kernel backup" > "$dev_display"
 pv < "$devbase$kernel" > "$destination/$kernelname"
