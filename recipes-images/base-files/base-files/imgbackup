@@ -1,4 +1,4 @@
-##!/bin/sh
+#!/bin/sh
 
 machine="hd51"
 hdd_mount="/media/USB"
@@ -41,7 +41,6 @@ fi
 
 reset
 
-
 [ ! -z $2 ] && space_available="$(mountpoint -q $2 && df -Pk $2 | awk 'NR==2 {print $4}')"
 [ -z $2  ] && ! [[ $1 =~ ^[0-9]+$ ]] && space_available="$(mountpoint -q $1 && df -Pk $1 | awk 'NR==2 {print $4}')"
 [ -z $2  ] && [[ $1 =~ ^[0-9]+$ ]] && space_available="$(mountpoint -q $hdd_mount && df -Pk $hdd_mount | awk 'NR==2 {print $4}')"
@@ -49,13 +48,13 @@ reset
 [ ! -z $space_available ] && [ $space_available -gt 1048576 ] || { printf '\n\033[31m%s\n' "You need at least 1G of free space on your device" && exit 1; }
 
 printf '\n\033[1m%s\n\033[0m' "Creating backup of partition $part" && echo "Creating backup of partition $part" > $dev_display
-[ -n $2 ] && destination="$2/backup/partition$part/$machine"
+[ ! -z $2 ] && destination="$2/backup/partition$part/$machine"
 [ -z $2  ] && ! [[ $1 =~ ^[0-9]+$ ]] && destination="$1/backup/partition$part/$machine"
 [ -z $2  ] && [[ $1 =~ ^[0-9]+$ ]] && destination="$servicedir/image/backup/partition$part/$machine"
 [ -z $2  ] && [ -z $1 ] && destination="$servicedir/image/backup/partition$part/$machine"
 
 [ -d "$destination" ] && rm -rf "$destination"
-  mkdir -p "$destination"
+mkdir -p "$destination"
 
 printf '\n\033[33m%s\033[37m%s\n' "Creating kernel backup in $destination/$kernelname " && echo "Creating kernel backup" > "$dev_display"
 pv < "$devbase$kernel" > "$destination/$kernelname"
