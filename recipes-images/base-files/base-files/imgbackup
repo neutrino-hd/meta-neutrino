@@ -4,7 +4,6 @@ machine="hd51"
 hdd_mount="/media/USB"
 mountpoint -q /media/HDD && hdd_mount="/media/HDD"
 servicedir="$hdd_mount/service"
-destination="$servicedir/image/backup/$machine"
 kernelname="kernel.bin"
 rootfsname="neutrino-image-$machine.ext4"
 devbase="/dev/mmcblk0p"
@@ -12,14 +11,14 @@ dev_display="/dev/dbox/oled0"
 part_to_use="$1"
 rootdevice="$(sed -e 's/^.*root=//' -e 's/ .*$//' < /proc/cmdline)"
 
-if [ -z $part_to_use ]; then
-        if echo $rootdevice | grep "3";then
+if ! [[ $1 =~ ^[1-4]+$ ]]; then
+        if echo $rootdevice | grep "3" >> /dev/null; then
                 part_to_use="1"
-        elif echo $rootdevice | grep "5";then
+        elif echo $rootdevice | grep "5" >> /dev/null; then
                 part_to_use="2"
-        elif echo $rootdevice | grep "7";then
+        elif echo $rootdevice | grep "7" >> /dev/null; then
                 part_to_use="3"
-        elif echo $rootdevice | grep "9";then
+        elif echo $rootdevice | grep "9" >> /dev/null; then
                 part_to_use="4"
         fi
 fi
@@ -38,16 +37,22 @@ if [[ $part_to_use =~ ^[0-9]+$ ]]; then
         elif [ $part_to_use = 4 ]; then
                 part=4; kernel=8; root=9
 	fi
-else
-    	printf '\n\033[31m%s\n' "Please give the partition number [1-4] as first argument" ; exit 1;
 fi
 
 reset
 
-space_available="$(df -Pk $hdd_mount | awk 'NR==2 {print $4}')"
+[ -n $2 ] && space_available="$(df -Pk $2 | awk 'NR==2 {print $4}')"
+[ -z $2  ] && ! [[ $1 =~ ^[0-9]+$ ]] && space_available="$(df -Pk $1 | awk 'NR==2 {print $4}')"
+[ -z $2  ] && [[ $1 =~ ^[0-9]+$ ]] && space_available="$(df -Pk $hdd_mount | awk 'NR==2 {print $4}')"
+[ -z $2  ] && [ -z $1 ] && space_available="$(df -Pk $hdd_mount | awk 'NR==2 {print $4}')"
 [ $space_available -lt 1048576 ] && printf '\n\033[31m%s\n' "You need at least 1G of free space on your device" && exit 1;
 
 printf '\n\033[1m%s\n\033[0m' "Creating backup of partition $part" && echo "Creating backup of partition $part" > $dev_display
+destination="$2/backup/partition$part/$machine"
+[ -z $2  ] && ! [[ $1 =~ ^[0-9]+$ ]] && destination="$1/backup/partition$part/$machine"
+[ -z $2  ] && [[ $1 =~ ^[0-9]+$ ]] && destination="$servicedir/image/backup/partition$part/$machine"
+[ -z $2  ] && [ -z $1 ] && destination="$servicedir/image/backup/partition$part/$machine"
+
 [ -d "$destination" ] && rm -rf "$destination"
 mkdir -p "$destination"
 
