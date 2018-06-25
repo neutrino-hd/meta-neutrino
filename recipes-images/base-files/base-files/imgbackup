@@ -59,7 +59,7 @@ pv < $devbase$root > $destination/$rootfsname
 
 [ -f "$servicedir/image/imageversion_partition_$part" ] && cp -f "$servicedir/image/imageversion_partition_$part" "$destination/imageversion"
 
-printf '\n\033[1m%s\033[0m\n' "Compressing $destination/$rootfsname" && echo "Compressing rootfs backup" > "$dev_display"
-bzip2 -z -v --fast "$destination/$rootfsname"
+printf '\n\033[33m%s\033[0m\n' "Compressing $destination/$rootfsname" && echo "Compressing rootfs backup" > "$dev_display"
+pv "$destination/$rootfsname" | bzip2 --fast  > "$destination/$rootfsname.bz2" && rm -f "$destination/$rootfsname"
 
 printf '\n\033[1m\033[32m%s\033[0m\n' "Backup successfully completed"  && echo "Backup successfully completed" > $dev_display && echo"" > "$dev_display"
