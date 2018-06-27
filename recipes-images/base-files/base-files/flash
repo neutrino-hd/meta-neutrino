@@ -123,7 +123,7 @@ if [ -z $2 ] || [ $2 = "--force" ]; then
 fi
 
 if [ $1 = "--restore" ]; then
-	imagedir="$hdd_mount/service/image/backup/$machine"
+	imagedir="$hdd_mount/service/image/backup/partition$part/$machine"
 elif [[ $1 =~ ^[1-4]+$ ]]; then	
 	imagedir="$2"
 fi
