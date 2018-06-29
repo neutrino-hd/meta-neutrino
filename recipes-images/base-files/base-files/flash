@@ -90,7 +90,7 @@ echo "Flash succeeded" > $dev_display
 
 if [ -z $2 ] || [ $2 = "--force" ]; then
 	case $1 in
-	1|4)
+	1|2|3|4)
 		imagedir="$imagebase/$machine"
 		imagefile="$imagebase/$image"
 		imageversion="$imagedir/imageversion"
