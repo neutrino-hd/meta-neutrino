@@ -11,6 +11,7 @@ IMAGE_INSTALL += " \
 	neutrino-plugin-rockpalast \
 	neutrino-plugin-startup \
 	neutrino-plugin-flash \
+	neutrino-plugin-backup \
 	neutrino-plugin-logo \
 	"
 
