@@ -12,6 +12,7 @@ IMAGE_INSTALL += " \
 	neutrino-plugin-startup \
 	neutrino-plugin-flash \
 	neutrino-plugin-backup \
+	neutrino-plugin-restore \
 	neutrino-plugin-logo \
 	"
 

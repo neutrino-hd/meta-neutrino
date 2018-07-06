@@ -33,7 +33,7 @@ function stop_services () {
 	pidof sshd >> /dev/null && systemctl stop sshd.socket
 }
 
-[ -z $1 ] || [ $1 = "-h" ] || [ $1 = "--help" ] && printf '\n\033[31m%s\n' "Give the destination partition number [1 - 4] as first argument.
+[[ $* = "-h" ]] || [[ $* = "--help" ]] && printf '\n\033[31m%s\n' "Give the destination partition number [1 - 4] as first argument.
 
 As second argument you can specify the path where the image is stored.
 If no second argument is given the image will be downloaded from
@@ -54,14 +54,14 @@ if [[ $1 =~ ^[0-9]+$ ]]; then
 		part=4; kernel=8; root=9
 	fi
 else
-	if [ $1 = "--restore" ];then
-		if echo $rootdevice | grep "3";then
+	if [[ -z $1 ]] || [[ -z $2 ]] || [[ $* = "--restore" ]] || [[ $* = "--force" ]]; then
+		if echo $rootdevice | grep "3"; then
 	                part=1; kernel=2; root=3
-                elif echo $rootdevice | grep "5";then
+                elif echo $rootdevice | grep "5"; then
                         part=2; kernel=4; root=5
-                elif echo $rootdevice | grep "7";then
+                elif echo $rootdevice | grep "7"; then
                         part=3; kernel=6; root=7
-                elif echo $rootdevice | grep "9";then
+                elif echo $rootdevice | grep "9"; then
                         part=4; kernel=8; root=9
 		fi
 	else		
@@ -70,13 +70,15 @@ else
 fi
 
 imageversion_local="$imagebase/imageversion_partition_$part"
+
 partition_sectorsize="$(gdisk -l $devbase$root | grep 'Total free space' | awk '{print $5}')"
 [ $partition_sectorsize -ne 1638333 ] && printf '\n\033[31m%s\n' "The partition scheme is invalid ... use ofgwrite for flashing" && exit 2;
+[ -z $2 ] ||  echo $2 | grep "/" >> /dev/null || [ $2 = "--force" ] || [ $2 = "--restore" ] || { printf '\n\033[31m%s\n' "Please choose a valid path" && exit 9; } 
 
 reset
 
 function write_image () {
-[ $rootdevice = $devbase$root ] && stop_services
+[[ $rootdevice = $devbase$root ]] && stop_services
 printf '\n\033[1m%s\n\033[0m' "Writing image into partition $part"
 echo "Writing image into partition $part" > $dev_display
 printf '\033[33m%s\033[37m%s\n' "Writing kernel into $devbase$kernel"
@@ -86,53 +88,66 @@ bzip2 -cd $imagedir/$imagename | pv > $devbase$root || { printf '\033[31m%s\n' "
 printf '\n\033[1m\033[32m%s\033[0m\n' "Flash successful"
 [ $rootdevice = $devbase$root ] && echo "...Reboot" > $dev_display && reboot="$(echo 1 > /proc/sys/kernel/sysrq && echo b > /proc/sysrq-trigger)"
 echo "Flash succeeded" > $dev_display
+exit 0;
 }
 
-if [ -z $2 ] || [ $2 = "--force" ]; then
+if [[ ! $1 = "--force" ]] && [[ ! $2 = "--force" ]]; then
+	if [[ $* = "--restore" ]] || [ ! -z $2 ]; then
+		for i in $1 $2; do
+  	      		case $i in
+        	        	--restore)
+                	        	imagedir="$imagebase/backup/partition$part/$machine"
+                		;;
+                		1|2|3|4)
+                        		imagedir="$2"
+                		;;
+                		/*)
+                   			imagedir="$2"
+                		;;
+                		"")
+                   			imagedir="$1"
+                		;;
+        		esac
+		done
+	imageversion="$imagedir/imageversion"
+	[[ -f $imageversion ]] && cp -rf $imageversion $imageversion_local
+        [ ! -f $imagedir/$imagename ] && { printf '\n%s\n' "$imagedir/$imagename not found" && exit 1; }
+        [ ! -f $imagedir/$kernelname ] && { printf '\n%s\n' "$imagedir/$kernelname not found" && exit 1; }
+        space_available="$(df -Pk $imagedir | awk 'NR==2 {print $4}')"
+        [ $space_available -lt 1048576 ] && { printf '\n\033[31m%s\n' "You need at least 1G of free space on your device" && exit 1; }
+        write_image
+	fi
+fi
+
+if [[ -z $1 ]] || [[ $* = "--force" ]] || [[ ! $* = "--restore" ]] || [[ $1 =~ ^[0-9]+$ ]]; then
 	case $1 in
-	1|2|3|4)
-		imagedir="$imagebase/$machine"
-		imagefile="$imagebase/$image"
-		imageversion="$imagedir/imageversion"
-		[ ! -d $imagebase ] && mkdir -p $imagebase
-		space_available="$(df -Pk $imagebase | awk 'NR==2 {print $4}')"
-		[ $space_available -lt 1048576 ] && printf '\n\033[31m%s\n' "You need at least 1G of free space on $hdd_mount" && exit 3;
-		if [ -z $2 ]; then
-        		[ ! -f $imageversion_local ] && touch $imageversion_local
-			md5_imageversion_online=$(curl -s $imageversion_online | md5sum | awk '{print $1}')
-			md5_imageversion_local=$(md5sum "$imageversion_local" | awk '{print $1}')
-			[ $md5_imageversion_online = $md5_imageversion_local ] && printf '\n\033[32m%s\n' "No update available" && \
-			echo "No update available" > $dev_display && exit 4;
-		else
-                	printf '\033[31m'
-		fi
-		echo "Downloading $image" > $dev_display
-		printf '\n\033[1m%s\n\033[0m' "Downloading $imagesource"
-		unpack="unzip -x $imagefile -d $imagebase"
-		curl $imagesource -o $imagefile || { printf '\n\033[31m%s\n' "Downloading the image failed" ; exit 5; }
-		[ -d $imagedir ] && rm -r $imagedir
-		echo "Decompressing $image" > $dev_display
-        	printf '\n\033[1m%s\n\033[0m' "Decompressing  $image"
-		$unpack || { printf '\n\033[31m%s\n' "Unpacking the image failed" ; exit 6; }
-		cp -rf $imageversion $imageversion_local
-		[ -f $imagefile ] && rm $imagefile
-		write_image
-        	exit 0
+		1|2|3|4|""|--force)
+			imagedir="$imagebase/$machine"
+			imagefile="$imagebase/$image"
+			imageversion="$imagedir/imageversion"
+			[ ! -d $imagebase ] && mkdir -p $imagebase
+			space_available="$(df -Pk $imagebase | awk 'NR==2 {print $4}')"
+			[ $space_available -lt 1048576 ] && printf '\n\033[31m%s\n' "You need at least 1G of free space on $hdd_mount" && exit 3;
+			if [[ -z $2 ]] && [[ ! $1 = "--force" ]]; then
+        			[ ! -f $imageversion_local ] && touch $imageversion_local
+				md5_imageversion_online=$(curl -s $imageversion_online | md5sum | awk '{print $1}')
+				md5_imageversion_local=$(md5sum "$imageversion_local" | awk '{print $1}')
+				[ $md5_imageversion_online = $md5_imageversion_local ] && { printf '\n\033[32m%s\n' "No update available" && \
+				echo "No update available" > $dev_display && exit 4; }
+			elif [[ $1 = "--force" ]] || [[ $2 = "--force" ]]; then
+                		printf '\033[31m'
+			fi
+			echo "Downloading $image" > $dev_display
+			printf '\n\033[1m%s\n\033[0m' "Downloading $imagesource"
+			unpack="unzip -x $imagefile -d $imagebase"
+			curl $imagesource -o $imagefile || { printf '\n\033[31m%s\n' "Downloading the image failed" ; exit 5; }
+			[ -d $imagedir ] && rm -r $imagedir
+			echo "Decompressing $image" > $dev_display
+        		printf '\n\033[1m%s\n\033[0m' "Decompressing  $image"
+			$unpack || { printf '\n\033[31m%s\n' "Unpacking the image failed" ; exit 6; }
+			[[ -f $imageversion ]] && cp -rf $imageversion $imageversion_local
+			[ -f $imagefile ] && rm $imagefile
+			write_image
 		;;
 	esac
 fi
-
-if [ $1 = "--restore" ]; then
-	imagedir="$hdd_mount/service/image/backup/partition$part/$machine"
-elif [[ $1 =~ ^[1-4]+$ ]]; then	
-	imagedir="$2"
-fi
-imageversion="$imagedir/imageversion"
-cp -rf $imageversion $imageversion_local
-[ ! -f $imagedir/$imagename ] && printf '\n%s\n' "$imagedir/$imagename not found" && exit 1;
-[ ! -f $imagedir/$kernelname ] && printf '\n%s\n' "$imagedir/$kernelname not found" && exit 1;
-space_available="$(df -Pk $imagedir | awk 'NR==2 {print $4}')"
-[ $space_available -lt 1048576 ] && printf '\n\033[31m%s\n' "You need at least 1G of free space on your device" && exit 1;
-
-write_image
-exit 0 ;
