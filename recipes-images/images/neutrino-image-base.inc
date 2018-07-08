@@ -36,6 +36,7 @@ DEPENDS_append += " \
 	settings-pathauf \
 	settings-matze-astra \
 	settings-matze-astra+hb \
+	links \
 "
 	
 IMAGE_INSTALL += " \
