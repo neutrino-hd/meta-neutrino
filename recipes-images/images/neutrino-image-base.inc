@@ -67,6 +67,7 @@ IMAGE_INSTALL += " \
 	gptfdisk \
 	gzip \
 	hdparm \
+	htop \
 	image-config \
 	ifupdown \ 
 	libswscale \
