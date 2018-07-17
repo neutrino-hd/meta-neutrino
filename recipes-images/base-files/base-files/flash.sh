@@ -87,6 +87,7 @@ pv < $imagedir/$kernelname > $devbase$kernel || { printf '\033[31m%s\n' "Writing
 printf '\033[33m%s\033[37m%s\n' "Writing rootfs into $devbase$root"
 bzip2 -cd $imagedir/$imagename | pv > $devbase$root || { printf '\033[31m%s\n' "Writing rootfs into $devbase$root failed" ; sleep 3; clear; exit 8; }
 printf '\n\033[1m\033[32m%s\033[0m\n' "Flash successful"
+printf '\033[1m\033[0m'
 [ $rootdevice = $devbase$root ] && echo "...Reboot" > $dev_display && reboot="$(echo 1 > /proc/sys/kernel/sysrq && echo b > /proc/sysrq-trigger)"
 echo "Flash succeeded" > $dev_display
 sleep 3
@@ -135,7 +136,7 @@ if [[ -z $1 ]] || [[ $* = "force" ]] || [[ ! $* = "restore" ]] || [[ $1 =~ ^[0-9
         			[ ! -f $imageversion_local ] && touch $imageversion_local
 				md5_imageversion_online=$(curl -s $imageversion_online | md5sum | awk '{print $1}')
 				md5_imageversion_local=$(md5sum "$imageversion_local" | awk '{print $1}')
-				[ $md5_imageversion_online = $md5_imageversion_local ] && { printf '\n\033[32m%s\n' "No update available" && \
+				[ $md5_imageversion_online = $md5_imageversion_local ] && { printf '\n\033[32m%s\n\033[0m' "No update available" && \
 				echo "No update available" > $dev_display; sleep 3; clear; exit 4; }
 			elif [[ $1 = "force" ]] || [[ $2 = "force" ]]; then
                 		printf '\033[31m'
