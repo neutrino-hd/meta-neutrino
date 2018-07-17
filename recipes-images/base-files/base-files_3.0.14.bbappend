@@ -31,6 +31,7 @@ SRC_URI += "file://inputrc \
 	    file://net-umount.service \
 	    file://mount.sh \
 	    file://mount@.service \
+	    file://vconsole.conf \
 "
 
 RDEPENDS_${PN}_append += "coreutils"
@@ -95,6 +96,7 @@ do_install_append () {
                 install -m 0755 ${WORKDIR}/net-umount.sh  ${D}${bindir}
                 ln -sf /lib/systemd/system/net-umount.service  ${D}${sysconfdir}/systemd/system/multi-user.target.wants
                 install -m 0644 ${WORKDIR}/mount@.service  ${D}${systemd_unitdir}/system
+		install -m 0644 ${WORKDIR}/vconsole.conf  ${D}${sysconfdir}
 	fi
 	install -m 0755 ${WORKDIR}/lcd.sh ${D}${bindir}
 	install -m 0755 ${WORKDIR}/flash ${D}${bindir}
