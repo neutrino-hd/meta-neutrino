@@ -30,7 +30,6 @@ function stop_services () {
 	pidof automount >> /dev/null && systemctl stop autofs
 	pidof ntpdate >> /dev/null && systemctl stop ntpdate
 	cd /etc && git status  >> /dev/null && systemctl -q stop etckeeper
-	pidof neutrino >> /dev/null && systemctl stop neutrino
 	pidof sshd >> /dev/null && systemctl stop sshd.socket
 }
 
