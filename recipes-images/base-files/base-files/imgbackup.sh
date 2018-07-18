@@ -61,8 +61,10 @@ pv < "$devbase$kernel" > "$destination/$kernelname"
 
 printf '\n\033[33m%s\033[37m%s\n' "Creating rootfs backup in $destination/$rootfsname" && echo "Creating rootfs backup" > "$dev_display"
 pv < "$devbase$root" > "$destination/$rootfsname"
+
+printf '\n\033[33m%s\033[37m%s\n' "Checking filesystem in $destination/$rootfsname" && echo "Checking filesystem" > "$dev_display"
 tune2fs -i0 -c0 "$destination/$rootfsname" >> /dev/null
-e2fsck -p "$destination/$rootfsname" >> /dev/null
+e2fsck -y "$destination/$rootfsname" >> /dev/null
 
 [ -f "$servicedir/image/imageversion_partition_$part" ] && cp -f "$servicedir/image/imageversion_partition_$part" "$destination/imageversion"
 
