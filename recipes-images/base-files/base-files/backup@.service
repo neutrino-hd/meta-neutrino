@@ -1,0 +1,11 @@
+[Unit]
+Description=backup partition %I
+
+[Service]
+ExecStart=/usr/bin/imgbackup.sh %I
+ExecStartPost=/bin/echo -e '\033[?17;0;0c'
+Type=oneshot
+RemainAfterExit=no
+StandardOutput=tty
+TTYPath=/dev/tty1
+

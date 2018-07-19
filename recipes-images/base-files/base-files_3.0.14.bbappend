@@ -11,6 +11,7 @@ SRC_URI += "file://inputrc \
 	    file://firstboot.service \
 	    file://firstboot.sh \
 	    file://-.mount \
+	    file://backup@.service \
 	    file://boot.mount \
 	    file://flash@.service \
 	    file://mnt-partition_1.mount \
@@ -101,6 +102,8 @@ do_install_append () {
                 ln -sf /lib/systemd/system/net-umount.service  ${D}${sysconfdir}/systemd/system/multi-user.target.wants
                 install -m 0644 ${WORKDIR}/mount@.service  ${D}${systemd_unitdir}/system
                 install -m 0644 ${WORKDIR}/flash@.service  ${D}${systemd_unitdir}/system
+                install -m 0644 ${WORKDIR}/restore@.service  ${D}${systemd_unitdir}/system
+                install -m 0644 ${WORKDIR}/backup@.service  ${D}${systemd_unitdir}/system
 		install -m 0644 ${WORKDIR}/vconsole.conf  ${D}${sysconfdir}
 	fi
 	install -m 0755 ${WORKDIR}/lcd.sh ${D}${bindir}
