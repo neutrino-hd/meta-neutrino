@@ -114,7 +114,7 @@ pv "$destination/$rootfsname" | bzip2 --fast  > "$destination/$rootfsname.bz2" &
 
 printf '\n\033[1m\033[32m%s\033[0m\n' "Backup successfully completed"  && echo "Backup successfully completed" > "$dev_display"
 
-[[ "$rootdevice" = "$devbase$root" ]] && stop_services
+[[ "$rootdevice" = "$devbase$root" ]] && start_services
 
 sleep 3;
 clear
