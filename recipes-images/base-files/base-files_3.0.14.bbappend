@@ -34,6 +34,7 @@ SRC_URI += "file://inputrc \
 	    file://net-umount.service \
 	    file://mount.sh \
 	    file://mount@.service \
+	    file://restore@.service \
 	    file://vconsole.conf \
 "
 
