@@ -2,7 +2,7 @@
 Description=restore partition %I
 
 [Service]
-ExecStart=/usr/bin/flash.sh %I restore
+ExecStart=/usr/bin/flash %I restore
 ExecStartPost=/bin/echo -e '\033[?17;0;0c'
 Type=oneshot
 RemainAfterExit=no

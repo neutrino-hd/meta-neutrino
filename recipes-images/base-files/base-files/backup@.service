@@ -2,7 +2,7 @@
 Description=backup partition %I
 
 [Service]
-ExecStart=/usr/bin/imgbackup.sh %I
+ExecStart=/usr/bin/imgbackup %I
 ExecStartPost=/bin/echo -e '\033[?17;0;0c'
 Type=oneshot
 RemainAfterExit=no

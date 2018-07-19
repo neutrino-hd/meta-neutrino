@@ -2,7 +2,7 @@
 Description=flash on partition %I
 
 [Service]
-ExecStart=/usr/bin/flash.sh %I
+ExecStart=/usr/bin/flash %I
 ExecStartPost=/bin/echo -e '\033[?17;0;0c'
 Type=oneshot
 RemainAfterExit=no
