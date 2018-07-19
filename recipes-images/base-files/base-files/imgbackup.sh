@@ -39,6 +39,44 @@ if [[ "$part_to_use" =~ ^[0-9]+$ ]]; then
 	fi
 fi
 
+function stop_services () {
+        pidof smbd >> /dev/null && systemctl stop smb
+        pidof nmbd >> /dev/null && systemctl stop nmb
+        pidof xupnpd >> /dev/null && systemctl stop xupnpd
+        pidof udpxy >> /dev/null && systemctl stop udpxy
+        netstat -tl | grep nfs >> /dev/null && systemctl stop nfs-server && systemctl stop nfs-mountd && systemctl stop nfs-statd
+        pidof oscam >> /dev/null && systemctl stop oscam
+        pidof cccam >> /dev/null && systemctl stop cccam
+        pidof gbox >> /dev/null && systemctl stop gbox
+        netstat -tl | grep webmin >> /dev/null && systemctl stop webmin
+        netstat -tl | grep sunrpc >> /dev/null && systemctl -q stop rpcbind
+        netstat -tl | grep ftp >> /dev/null && systemctl stop proftpd
+        pidof minidlnad >> /dev/null && systemctl stop minidlna
+        pidof automount >> /dev/null && systemctl stop autofs
+        pidof ntpdate >> /dev/null && systemctl stop ntpdate
+        cd /etc && git status  >> /dev/null && systemctl -q stop etckeeper
+        pidof sshd >> /dev/null && systemctl stop sshd.socket
+}
+
+function start_services () {
+        pidof smbd >> /dev/null || systemctl start smb
+        pidof nmbd >> /dev/null || systemctl start nmb
+        pidof xupnpd >> /dev/null || systemctl start xupnpd
+        pidof udpxy >> /dev/null||  systemctl start udpxy
+        netstat -tl | grep nfs >> /dev/null || systemctl start nfs-server && systemctl start nfs-mountd && systemctl start nfs-statd
+        pidof oscam >> /dev/null || systemctl start oscam
+        netstat -tl | grep webmin >> /dev/null || systemctl start webmin
+        netstat -tl | grep sunrpc >> /dev/null || systemctl -q start rpcbind
+        netstat -tl | grep ftp >> /dev/null || systemctl start proftpd
+        pidof minidlnad >> /dev/null || systemctl start minidlna
+        pidof automount >> /dev/null || systemctl start autofs
+        pidof ntpdate >> /dev/null || systemctl start ntpdate
+        cd /etc && git status  >> /dev/null && systemctl -q start etckeeper
+        pidof sshd >> /dev/null || systemctl start sshd.socket
+}
+
+
+
 clear
 
 [ ! -z "$2" ] && mountpoint -q "$2" && space_available="$(df -Pk $2 | awk 'NR==2 {print $4}')"
@@ -56,6 +94,8 @@ printf '\n\033[1m%s\n\033[0m' "Creating backup of partition $part" && echo "Crea
 [ -d "$destination" ] && rm -rf "$destination"
 mkdir -p "$destination"
 
+stop_services
+
 printf '\n\033[33m%s\033[37m%s\n' "Creating kernel backup in $destination/$kernelname " && echo "Creating kernel backup" > "$dev_display"
 pv < "$devbase$kernel" > "$destination/$kernelname"
 
@@ -72,6 +112,8 @@ printf '\n\033[33m%s\033[0m\n' "Compressing $destination/$rootfsname" && echo "C
 pv "$destination/$rootfsname" | bzip2 --fast  > "$destination/$rootfsname.bz2" && rm -f "$destination/$rootfsname"
 
 printf '\n\033[1m\033[32m%s\033[0m\n' "Backup successfully completed"  && echo "Backup successfully completed" > "$dev_display"
+
+start_services
 
 sleep 3;
 clear
