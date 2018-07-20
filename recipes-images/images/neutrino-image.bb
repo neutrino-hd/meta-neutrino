@@ -10,10 +10,6 @@ IMAGE_INSTALL += " \
 	neutrino-plugin-mediathek \
 	neutrino-plugin-rockpalast \
 	neutrino-plugin-startup \
-	neutrino-plugin-flash \
-	neutrino-plugin-backup \
-	neutrino-plugin-restore \
-	neutrino-plugin-shell \
 	neutrino-plugin-logo \
 	"
 

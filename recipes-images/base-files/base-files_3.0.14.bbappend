@@ -14,6 +14,7 @@ SRC_URI += "file://inputrc \
 	    file://backup@.service \
 	    file://boot.mount \
 	    file://flash@.service \
+	    file://getty-toggle \
 	    file://mnt-partition_1.mount \
 	    file://mnt-partition_2.mount \
             file://mnt-partition_3.mount \
@@ -103,6 +104,7 @@ do_install_append () {
                 install -m 0644 ${WORKDIR}/restore@.service  ${D}${systemd_unitdir}/system
                 install -m 0644 ${WORKDIR}/backup@.service  ${D}${systemd_unitdir}/system
 		install -m 0644 ${WORKDIR}/vconsole.conf  ${D}${sysconfdir}
+                install -m 0755 ${WORKDIR}/getty-toggle  ${D}${bindir}
 	fi
 	install -m 0755 ${WORKDIR}/lcd.sh ${D}${bindir}
 	install -m 0755 ${WORKDIR}/flash ${D}${bindir}

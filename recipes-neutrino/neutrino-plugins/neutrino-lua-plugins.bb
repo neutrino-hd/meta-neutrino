@@ -29,6 +29,10 @@ do_install () {
         install -m 644 ${WORKDIR}/yt_live.cfg ${D}/usr/share/tuxbox/plugins
         install -m 644 ${WORKDIR}/yt_live.png ${D}/usr/share/tuxbox/plugins/yt_live_hint.png
 	install -m 644 ${S}/xupnpd/* ${D}/usr/share/xupnpd/plugins/
+        install -m 644 ${S}/plugins/stb_restore/* ${D}/usr/share/tuxbox/plugins
+        install -m 644 ${S}/plugins/stb_shell/* ${D}/usr/share/tuxbox/plugins
+        install -m 644 ${S}/plugins/stb_flash/* ${D}/usr/share/tuxbox/plugins
+        install -m 644 ${S}/plugins/stb_backup/* ${D}/usr/share/tuxbox/plugins
 }
 
 FILES_${PN} += " \

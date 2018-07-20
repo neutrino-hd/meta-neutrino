@@ -1,0 +1,5 @@
+#!/bin/sh
+
+systemctl is-active --quiet getty@tty1 && systemctl stop getty@tty1 && exit 0
+systemctl is-active --quiet getty@tty1 || systemctl start getty@tty1 && exit 0
+

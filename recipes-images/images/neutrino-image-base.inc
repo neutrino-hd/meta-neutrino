@@ -37,6 +37,7 @@ DEPENDS_append += " \
 	settings-matze-astra \
 	settings-matze-astra+hb \
 	links \
+	v4l-utils \
 "
 	
 IMAGE_INSTALL += " \
