@@ -56,6 +56,7 @@ IMAGE_INSTALL += " \
 	etckeeper \
 	exfat-utils \
 	fuse-exfat \
+	fsarchiver \
 	gptfdisk \
 	glibc-charmap-utf-8 \
 	glibc-binary-localedata-en-us \
@@ -65,7 +66,6 @@ IMAGE_INSTALL += " \
         glibc-binary-localedata-cs-cz \
         glibc-binary-localedata-pl-pl \
         glibc-binary-localedata-es-es \
-	gptfdisk \
 	gzip \
 	hdparm \
 	htop \
