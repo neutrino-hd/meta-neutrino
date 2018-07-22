@@ -3,6 +3,7 @@
 machine="hd51"
 url="https://tuxbox-images.de/images/$machine"
 imagename="neutrino-image-$machine.ext4.bz2"
+image_dec="neutrino-image-$machine.ext4"
 image="neutrino-image_flash.zip"
 imagesource="$url/$image"
 hdd_mount="/media/USB"
@@ -85,7 +86,14 @@ echo "Writing image into partition $part" > $dev_display
 printf '\033[33m%s\033[37m%s\n' "Writing kernel into $devbase$kernel"
 pv < $imagedir/$kernelname > $devbase$kernel || { printf '\033[31m%s\n' "Writing the kernel failed" ; sleep 3; clear; exit 7; }
 printf '\033[33m%s\033[37m%s\n' "Writing rootfs into $devbase$root"
-bzip2 -cd $imagedir/$imagename | pv > $devbase$root || { printf '\033[31m%s\n' "Writing rootfs into $devbase$root failed" ; sleep 3; clear; exit 8; }
+
+if systemctl is-active restore@$part | grep "inactive" >> /dev/null; then
+       echo $* | grep "restore" >> /dev/null && fsarchiver restfs -o -j2 -v -a $imagedir/$image_dec.fsa id=0,dest=$devbase$root
+       echo $* | grep "restore" >> /dev/null || bzip2 -cd $imagedir/$imagename | pv > $devbase$root
+else
+	fsarchiver restfs -o -j2 -v -a $imagedir/$image_dec.fsa id=0,dest=$devbase$root
+fi
+
 printf '\n\033[1m\033[32m%s\033[0m\n' "Flash successful"
 printf '\033[1m\033[0m'
 [ $rootdevice = $devbase$root ] && echo "...Reboot" > $dev_display && reboot="$(echo 1 > /proc/sys/kernel/sysrq && echo b > /proc/sysrq-trigger)"
@@ -95,12 +103,15 @@ clear
 exit 0;
 }
 
+
 if [[ ! $1 = "force" ]] && [[ ! $2 = "force" ]]; then
 	if [[ $* = "restore" ]] || [ ! -z $2 ]; then
 		for i in $1 $2; do
   	      		case $i in
         	        	restore)
+					imagename="neutrino-image-hd51.ext4.fsa"
                 	        	imagedir="$imagebase/backup/partition$part/$machine"
+
                 		;;
                 		1|2|3|4)
                         		imagedir="$2"
@@ -109,7 +120,7 @@ if [[ ! $1 = "force" ]] && [[ ! $2 = "force" ]]; then
                    			imagedir="$2"
                 		;;
                 		"")
-                   			imagedir="$1"
+					imagedir="$1"
                 		;;
         		esac
 		done
@@ -151,6 +162,7 @@ if [[ -z $1 ]] || [[ $* = "force" ]] || [[ ! $* = "restore" ]] || [[ $1 =~ ^[0-9
 			$unpack || { printf '\n\033[31m%s\n' "Unpacking the image failed" ; sleep 3; clear; exit 6; }
 			[[ -f $imageversion ]] && cp -rf $imageversion $imageversion_local
 			[ -f $imagefile ] && rm $imagefile
+
 			write_image
 		;;
 	esac

@@ -5,6 +5,7 @@ After=firstboot.service
 
 [Service]
 Type=simple
+ExecStartPre=/bin/systemctl start media-HDD.mount
 ExecStart=/usr/bin/neutrino.sh
 
 [Install]
