@@ -45,6 +45,10 @@ SRC_URI += "file://inputrc \
 	    file://restore_2 \
 	    file://restore_3 \
 	    file://restore_4 \
+	    file://flash_1 \
+	    file://flash_2 \
+	    file://flash_3 \
+	    file://flash_4 \ 
 "
 
 RDEPENDS_${PN}_append += "coreutils"
@@ -122,5 +126,6 @@ do_install_append () {
         install -m 0755 ${WORKDIR}/mount.sh ${D}${bindir}
         install -m 0755 ${WORKDIR}/backup_* ${D}${bindir}
         install -m 0755 ${WORKDIR}/restore_* ${D}${bindir}
+        install -m 0755 ${WORKDIR}/flash_* ${D}${bindir}
 	rm -rf ${D}${sysconfdir}/profile
 }
