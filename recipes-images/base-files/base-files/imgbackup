@@ -60,24 +60,6 @@ function stop_services () {
 	sleep 5
 }
 
-function start_services () {
-        pidof smbd >> /dev/null || systemctl start smb
-        pidof nmbd >> /dev/null || systemctl start nmb
-        pidof xupnpd >> /dev/null || systemctl start xupnpd
-        pidof udpxy >> /dev/null||  systemctl start udpxy
-        netstat -tl | grep nfs >> /dev/null || systemctl start nfs-server && systemctl start nfs-mountd && systemctl start nfs-statd
-        pidof oscam >> /dev/null || systemctl start oscam
-        netstat -tl | grep webmin >> /dev/null || systemctl start webmin
-        netstat -tl | grep sunrpc >> /dev/null || systemctl -q start rpcbind
-        netstat -tl | grep ftp >> /dev/null || systemctl start proftpd
-        pidof minidlnad >> /dev/null || systemctl start minidlna
-        pidof automount >> /dev/null || systemctl start autofs
-        pidof ntpdate >> /dev/null || systemctl start ntpdate
-        cd /etc && git status  >> /dev/null && systemctl -q start etckeeper
-        pidof sshd >> /dev/null || systemctl start sshd.socket
-        pidof neutrino >> /dev/null || systemctl start neutrino
-}
-
 clear
 
 [ ! -z "$2" ] && mountpoint -q "$2" && space_available="$(df -Pk $2 | awk 'NR==2 {print $4}')"
@@ -101,20 +83,13 @@ printf '\n\033[33m%s\033[37m%s\n' "Creating kernel backup in $destination/$kerne
 pv < "$devbase$kernel" > "$destination/$kernelname"
 
 printf '\n\033[33m%s\033[37m%s\n' "Creating rootfs backup in $destination/$rootfsname" && echo "Creating rootfs backup" > "$dev_display"
-pv < "$devbase$root" > "$destination/$rootfsname"
-
-printf '\n\033[33m%s\033[37m%s\n' "Checking filesystem in $destination/$rootfsname" && echo "Checking filesystem" > "$dev_display"
-tune2fs -i0 -c0 "$destination/$rootfsname" >> /dev/null
-e2fsck -y "$destination/$rootfsname" >> /dev/null
+fsarchiver savefs -o -j2 -v -a -z3 "$destination/$rootfsname.fsa" "$devbase$root"
 
 [ -f "$servicedir/image/imageversion_partition_$part" ] && cp -f "$servicedir/image/imageversion_partition_$part" "$destination/imageversion"
 
-printf '\n\033[33m%s\033[0m\n' "Compressing $destination/$rootfsname" && echo "Compressing rootfs backup" > "$dev_display"
-pv "$destination/$rootfsname" | bzip2 --fast  > "$destination/$rootfsname.bz2" && rm -f "$destination/$rootfsname"
-
 printf '\n\033[1m\033[32m%s\033[0m\n' "Backup successfully completed"  && echo "Backup successfully completed" > "$dev_display"
 
-[[ "$rootdevice" = "$devbase$root" ]] && start_services
+[[ "$rootdevice" = "$devbase$root" ]] && systemctl --force --force reboot
 
 sleep 3;
 clear

@@ -15,6 +15,7 @@ SRC_URI += "file://inputrc \
 	    file://boot.mount \
 	    file://flash@.service \
 	    file://getty-toggle \
+	    file://media-HDD.mount \
 	    file://mnt-partition_1.mount \
 	    file://mnt-partition_2.mount \
             file://mnt-partition_3.mount \
@@ -36,6 +37,14 @@ SRC_URI += "file://inputrc \
 	    file://mount@.service \
 	    file://restore@.service \
 	    file://vconsole.conf \
+	    file://backup_1 \
+	    file://backup_2 \
+	    file://backup_3 \
+	    file://backup_4 \
+	    file://restore_1 \
+	    file://restore_2 \
+	    file://restore_3 \
+	    file://restore_4 \
 "
 
 RDEPENDS_${PN}_append += "coreutils"
@@ -75,6 +84,7 @@ do_install_append () {
                 ln -sf /lib/systemd/system/-.mount  ${D}${systemd_unitdir}/system/multi-user.target.wants
                 install -m 0644 ${WORKDIR}/boot.mount ${D}${systemd_unitdir}/system
                 ln -sf /lib/systemd/system/boot.mount  ${D}${systemd_unitdir}/system/multi-user.target.wants
+                install -m 0644 ${WORKDIR}/media-HDD.mount ${D}${systemd_unitdir}/system
                 install -m 0644 ${WORKDIR}/mnt-partition_1.mount ${D}${systemd_unitdir}/system
                 install -m 0644 ${WORKDIR}/mnt-partition_2.mount ${D}${systemd_unitdir}/system
                 install -m 0644 ${WORKDIR}/mnt-partition_3.mount ${D}${systemd_unitdir}/system
@@ -110,5 +120,7 @@ do_install_append () {
 	install -m 0755 ${WORKDIR}/flash ${D}${bindir}
 	install -m 0755 ${WORKDIR}/imgbackup ${D}${bindir}
         install -m 0755 ${WORKDIR}/mount.sh ${D}${bindir}
+        install -m 0755 ${WORKDIR}/backup_* ${D}${bindir}
+        install -m 0755 ${WORKDIR}/restore_* ${D}${bindir}
 	rm -rf ${D}${sysconfdir}/profile
 }

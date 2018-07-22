@@ -1,0 +1,44 @@
+systemctl stop smb
+systemctl stop nmb
+systemctl stop xupnpd
+systemctl stop udpxy
+systemctl stop nfs-server
+systemctl stop nfs-mountd
+systemctl stop nfs-statd
+systemctl stop oscam
+systemctl stop cccam
+systemctl stop gbox
+systemctl stop webmin
+systemctl stop rpcbind.socket
+systemctl stop rpcbind
+systemctl stop proftpd
+systemctl stop minidlna
+systemctl stop autofs
+systemctl stop ntpdate
+systemctl -q stop etckeeper
+systemctl stop dbus.socket
+systemctl stop dbus
+systemctl stop telnet
+systemctl stop mnt-partition_1.automount
+systemctl stop mnt-partition_1.mount
+systemctl stop mnt-partition_2.automount
+systemctl stop mnt-partition_2.mount
+systemctl stop mnt-partition_3.automount
+systemctl stop mnt-partition_3.mount
+systemctl stop mnt-partition_4.automount
+systemctl stop mnt-partition_4.mount
+mkdir -p /tmp/tmproot
+mkdir -p /tmp/tmproot/media/HDD
+mkdir -p /tmp/tmproot/lib/systemd/system/multi-user.target.wants
+mount -t tmpfs none /tmp/tmproot
+cp -ax / /tmp/tmproot
+rm -rf /tmp/tmproot/lib/systemd/system/mnt-partition*
+rm -rf /tmp/tmproot/lib/systemd/system/multi-user.target.wants\mnt-partition*
+rm -rf /tmp/tmproot/lib/systemd/system/mount@.service
+rm -rf /tmp/tmproot/lib/systemd/system/local-fs.target.wants/mount@.service
+
+ln -sf /lib/systemd/system/media-HDD.mount /tmp/tmproot/lib/systemd/system/multi-user.target.wants/
+cp -rf /tmp/tmproot/lib/systemd/system/backup@.service /tmp/tmproot/lib/systemd/system/backup@1.service
+ln -sf /lib/systemd/system/backup@1.service /tmp/tmproot/lib/systemd/system/multi-user.target.wants/
+ 
+systemctl switch-root --force /tmp/tmproot
