@@ -96,7 +96,7 @@ fi
 
 printf '\n\033[1m\033[32m%s\033[0m\n' "Flash successful"
 printf '\033[1m\033[0m'
-[ $rootdevice = $devbase$root ] && echo "...Reboot" > $dev_display && reboot="$(echo 1 > /proc/sys/kernel/sysrq && echo b > /proc/sysrq-trigger)"
+[ $rootdevice = $devbase$root ] && echo "...Reboot" > $dev_display && reboot="systemctl --force --force reboot"
 echo "Flash succeeded" > $dev_display
 sleep 3
 clear
