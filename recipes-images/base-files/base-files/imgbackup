@@ -23,11 +23,19 @@ if ! [[ $1 =~ ^[1-4]+$ ]]; then
         fi
 fi
 
-[  -z "$2" ] && [  -z "$1" ] && [ ! -d "$hdd_mount" ] && { printf '\n\033[31m%s\n' "Give the destination path an argument" && exit 1; }
+exit_done() {
+	sleep 3
+        clear
+	[ $rootdevice = $devbase$root ] && echo "...Reboot" > $dev_display && systemctl --force --force reboot
+        exit 0;
+}
+
+
+[  -z "$2" ] && [  -z "$1" ] && [ ! -d "$hdd_mount" ] && { printf '\n\033[31m%s\n' "Give the destination path an argument" && exit_done; }
 
 if [[ "$part_to_use" =~ ^[0-9]+$ ]]; then
         if  [ "$part_to_use" -lt 1 ] || [ $1 -gt 4 ]; then
-		{ printf '\n\033[31m%s\n' "Choose a valid partition [1-4]"; exit 1; }
+		{ printf '\n\033[31m%s\n' "Choose a valid partition [1-4]"; exit_done; }
         elif [ "$part_to_use" = 1 ]; then
                 part=1; kernel=2; root=3
         elif [ "$part_to_use" = 2 ]; then
@@ -66,7 +74,10 @@ clear
 [ -z "$2"  ] && [ ! -z "$1" ] && mountpoint -q "$1" && ! [[ "$1" =~ ^[0-9]+$ ]] && space_available="$(df -Pk $1 | awk 'NR==2 {print $4}')"
 [ -z "$2"  ] && mountpoint -q "$hdd_mount" && [[ "$1" =~ ^[0-9]+$ ]] && space_available="$(df -Pk $hdd_mount | awk 'NR==2 {print $4}')"
 [ -z "$2"  ] && mountpoint -q "$hdd_mount" && [ -z "$1" ] && space_available="$(df -Pk $hdd_mount | awk 'NR==2 {print $4}')"
-[ ! -z "$space_available" ] && [ "$space_available" -gt 1048576 ] || { printf '\n\033[31m%s\n' "You need at least 1G of free space on your device" && exit 1; }
+if [ ! -z "$space_available" ] && [ "$space_available" -lt 1048576 ]; then
+	printf '\n\033[31m%s\n' "You need at least 1G of free space on your device"
+	exit_done; 
+fi
 
 printf '\n\033[1m%s\n\033[0m' "Creating backup of partition $part" && echo "Creating backup of partition $part" > "$dev_display"
 [ ! -z "$2" ] && destination="$2/backup/partition$part/$machine"
@@ -89,7 +100,4 @@ fsarchiver savefs -o -j2 -v -a -z3 "$destination/$rootfsname.fsa" "$devbase$root
 
 printf '\n\033[1m\033[32m%s\033[0m\n' "Backup successfully completed"  && echo "Backup successfully completed" > "$dev_display"
 
-[[ "$rootdevice" = "$devbase$root" ]] && systemctl --force --force reboot
-
-sleep 3;
-clear
+exit_done;
