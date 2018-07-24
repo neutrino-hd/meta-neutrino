@@ -33,6 +33,7 @@ do_install () {
         install -m 644 ${S}/plugins/stb_shell/* ${D}/usr/share/tuxbox/plugins
         install -m 644 ${S}/plugins/stb_flash/* ${D}/usr/share/tuxbox/plugins
         install -m 644 ${S}/plugins/stb_backup/* ${D}/usr/share/tuxbox/plugins
+        install -m 644 ${S}/plugins/stb_startup/* ${D}/usr/share/tuxbox/plugins
 }
 
 FILES_${PN} += " \
