@@ -38,7 +38,13 @@ function stop_services () {
 exit_done() {
 	sleep 3
 	clear
-	[ $rootdevice = $devbase$root ] && echo "...Reboot" > $dev_display && systemctl --force --force reboot
+	if [ $rootdevice = $devbase$root ];then
+		if [ $no_update_available = "1" ];then
+			exit 0;
+		else
+			echo "...Reboot" > $dev_display && systemctl --force --force reboot
+		fi
+	fi
 	exit 0;
 }
 
@@ -152,7 +158,7 @@ if [[ -z $1 ]] || [[ $* = "force" ]] || [[ ! $* = "restore" ]] || [[ $1 =~ ^[0-9
 				md5_imageversion_online=$(curl -s $imageversion_online | md5sum | awk '{print $1}')
 				md5_imageversion_local=$(md5sum "$imageversion_local" | awk '{print $1}')
 				[ $md5_imageversion_online = $md5_imageversion_local ] && printf '\n\033[32m%s\n\033[0m' "No update available" && \
-				echo "No update available" > $dev_display && exit_done;
+				echo "No update available" > $dev_display && no_update_available="1"; exit_done;
 			elif [[ $1 = "force" ]] || [[ $2 = "force" ]]; then
                 		printf '\033[31m'
 			fi
