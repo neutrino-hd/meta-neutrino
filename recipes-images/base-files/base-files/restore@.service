@@ -2,7 +2,7 @@
 Description=restore partition %I
 
 [Service]
-ExecStartPre=/bin/systemctl start media-HDD.mount
+ExecStartPre=-/bin/sh -c '/usr/bin/mount.sh add sda1 >> /dev/null'
 ExecStart=/usr/bin/flash %I restore
 ExecStartPost=/bin/echo -e '\033[?17;0;0c'
 Type=oneshot
