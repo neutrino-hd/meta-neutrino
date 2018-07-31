@@ -36,14 +36,6 @@ SRC_URI += "file://inputrc \
 	    file://mount@.service \
 	    file://restore@.service \
 	    file://vconsole.conf \
-	    file://backup_1 \
-	    file://backup_2 \
-	    file://backup_3 \
-	    file://backup_4 \
-	    file://restore_1 \
-	    file://restore_2 \
-	    file://restore_3 \
-	    file://restore_4 \
 "
 
 RDEPENDS_${PN}_append += "coreutils"
@@ -118,7 +110,5 @@ do_install_append () {
 	install -m 0755 ${WORKDIR}/flash ${D}${bindir}
 	install -m 0755 ${WORKDIR}/imgbackup ${D}${bindir}
         install -m 0755 ${WORKDIR}/mount.sh ${D}${bindir}
-        install -m 0755 ${WORKDIR}/backup_* ${D}${bindir}
-        install -m 0755 ${WORKDIR}/restore_* ${D}${bindir}
 	rm -rf ${D}${sysconfdir}/profile
 }
