@@ -35,6 +35,7 @@ do_install () {
         install -m 644 ${S}/plugins/stb_backup/* ${D}/usr/share/tuxbox/plugins
         install -m 644 ${S}/plugins/stb_startup/* ${D}/usr/share/tuxbox/plugins
         install -m 644 ${S}/plugins/stb_move/* ${D}/usr/share/tuxbox/plugins
+        install -m 644 ${S}/plugins/stb_log/* ${D}/usr/share/tuxbox/plugins
 }
 
 FILES_${PN} += " \
