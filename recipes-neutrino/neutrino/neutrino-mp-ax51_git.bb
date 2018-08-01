@@ -14,6 +14,7 @@ PATCHTOOL = "git"
 SRC_URI = " \
 	file://neutrino.ttf \
 	file://neutrino.service \
+	file://neutrino-log.service \
 	file://neutrino.sh \
 	file://timezone.xml \
 	file://custom-poweroff.init \
