@@ -25,6 +25,7 @@ DEPENDS_append += " \
 	ncdu \
 	tmux \
 	fzf \
+	setserial \
 	sshfs-fuse \
 	smbnetfs \
 	ifuse \
@@ -71,6 +72,8 @@ IMAGE_INSTALL += " \
 	htop \
 	image-config \
 	ifupdown \ 
+	kernel-module-ftdi-sio \
+	kernel-module-usbserial \ 
 	libswscale \
 	libusb1 \
 	localedef \
