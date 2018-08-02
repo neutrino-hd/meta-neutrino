@@ -19,10 +19,6 @@ SRC_URI += "file://inputrc \
 	    file://mnt-partition_2.mount \
             file://mnt-partition_3.mount \
             file://mnt-partition_4.mount \
-            file://mnt-partition_1.automount \
-            file://mnt-partition_2.automount \
-            file://mnt-partition_3.automount \
-            file://mnt-partition_4.automount \
 	    file://dev-mmcblk0p10.swap \
 	    file://fstrim.service \
 	    file://fstrim.timer \
@@ -75,18 +71,11 @@ do_install_append () {
                 ln -sf /lib/systemd/system/-.mount  ${D}${systemd_unitdir}/system/multi-user.target.wants
                 install -m 0644 ${WORKDIR}/boot.mount ${D}${systemd_unitdir}/system
                 ln -sf /lib/systemd/system/boot.mount  ${D}${systemd_unitdir}/system/multi-user.target.wants
-                install -m 0644 ${WORKDIR}/mnt-partition_1.mount ${D}${systemd_unitdir}/system
-                install -m 0644 ${WORKDIR}/mnt-partition_2.mount ${D}${systemd_unitdir}/system
-                install -m 0644 ${WORKDIR}/mnt-partition_3.mount ${D}${systemd_unitdir}/system
-                install -m 0644 ${WORKDIR}/mnt-partition_4.mount ${D}${systemd_unitdir}/system
-                install -m 0644 ${WORKDIR}/mnt-partition_1.automount ${D}${systemd_unitdir}/system
-                ln -sf /lib/systemd/system/mnt-partition_1.automount  ${D}${systemd_unitdir}/system/multi-user.target.wants
-                install -m 0644 ${WORKDIR}/mnt-partition_2.automount  ${D}${systemd_unitdir}/system
-                ln -sf /lib/systemd/system/mnt-partition_2.automount  ${D}${systemd_unitdir}/system/multi-user.target.wants
-                install -m 0644 ${WORKDIR}/mnt-partition_3.automount  ${D}${systemd_unitdir}/system
-                ln -sf /lib/systemd/system/mnt-partition_3.automount  ${D}${systemd_unitdir}/system/multi-user.target.wants
-                install -m 0644 ${WORKDIR}/mnt-partition_4.automount  ${D}${systemd_unitdir}/system
-                ln -sf /lib/systemd/system/mnt-partition_4.automount  ${D}${systemd_unitdir}/system/multi-user.target.wants
+                install -m 0644 ${WORKDIR}/mnt-partition_*.mount ${D}${systemd_unitdir}/system
+                ln -sf /lib/systemd/system/mnt-partition_1.mount  ${D}${systemd_unitdir}/system/multi-user.target.wants
+                ln -sf /lib/systemd/system/mnt-partition_2.mount  ${D}${systemd_unitdir}/system/multi-user.target.wants
+                ln -sf /lib/systemd/system/mnt-partition_3.mount  ${D}${systemd_unitdir}/system/multi-user.target.wants
+                ln -sf /lib/systemd/system/mnt-partition_4.mount  ${D}${systemd_unitdir}/system/multi-user.target.wants
 		install -m 0644 ${WORKDIR}/dev-mmcblk0p10.swap  ${D}${systemd_unitdir}/system
                 ln -sf /lib/systemd/system/dev-mmcblk0p10.swap  ${D}${systemd_unitdir}/system/multi-user.target.wants
                 install -m 0644 ${WORKDIR}/locale.conf  ${D}${sysconfdir}
