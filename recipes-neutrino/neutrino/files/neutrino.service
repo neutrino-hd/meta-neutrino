@@ -5,6 +5,7 @@ After=firstboot.service
 
 [Service]
 Type=simple
+ExecStartPre=/bin/sh -c '/usr/sbin/fbset 1920x1080-60'
 ExecStart=/usr/bin/neutrino.sh
 
 [Install]

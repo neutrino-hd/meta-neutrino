@@ -56,6 +56,7 @@ IMAGE_INSTALL += " \
 	e2fsprogs-badblocks \
 	etckeeper \
 	exfat-utils \
+	fbset \
 	fuse-exfat \
 	fsarchiver \
 	gptfdisk \
