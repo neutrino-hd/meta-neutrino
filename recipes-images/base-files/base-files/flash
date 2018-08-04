@@ -108,6 +108,7 @@ if systemctl is-active restore@$part | grep "inactive" >> /dev/null; then
 	mountpoint -q /mnt/partition_"$part" && systemctl stop mnt-partition_"$part".mount
 	echo $* | grep "restore" >> /dev/null && fsarchiver restfs -o -j2 -v -a $imagedir/$image_dec.fsa id=0,dest=$devbase$root
 	echo $* | grep "restore" >> /dev/null || bzip2 -cd $imagedir/$imagename | pv > $devbase$root
+        mountpoint -q /mnt/partition_"$part" || systemctl start mnt-partition_"$part".mount
 else
 	fsarchiver restfs -o -j2 -v -a $imagedir/$image_dec.fsa id=0,dest=$devbase$root
 fi
