@@ -89,6 +89,7 @@ printf '\n\033[1m%s\n\033[0m' "Creating backup of partition $part" && echo "Crea
 mkdir -p "$destination"
 
 [[ "$rootdevice" = "$devbase$root" ]] && stop_services
+mountpoint -q /mnt/partition_"$part" && systemctl stop mnt-partition_"$part".mount
 
 printf '\n\033[33m%s\033[37m%s\n' "Creating kernel backup in $destination/$kernelname " && echo "Creating kernel backup" > "$dev_display"
 pv < "$devbase$kernel" > "$destination/$kernelname"
@@ -97,6 +98,7 @@ printf '\n\033[33m%s\033[37m%s\n' "Creating rootfs backup in $destination/$rootf
 fsarchiver savefs -o -j2 -v -a -z3 "$destination/$rootfsname.fsa" "$devbase$root"
 
 [ -f "$servicedir/image/imageversion_partition_$part" ] && cp -f "$servicedir/image/imageversion_partition_$part" "$destination/imageversion"
+mountpoint -q /mnt/partition_"$part" || systemctl start mnt-partition_"$part".mount
 
 printf '\n\033[1m\033[32m%s\033[0m\n' "Backup successfully completed"  && echo "Backup successfully completed" > "$dev_display"
 

@@ -5,7 +5,7 @@ Description=Mount Image Partitions
 What=/dev/mmcblk0p5
 Where=/mnt/partition_2
 Type=ext4
-Options=nofail,noauto,ro
+Options=nofail,noauto,rw
 
 [Install]
 WantedBy=multi-user.target
