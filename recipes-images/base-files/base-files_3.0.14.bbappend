@@ -6,8 +6,8 @@ SRC_URI += "file://inputrc \
 	    file://shells \
 	    file://gbox.service \
 	    file://cccam.service \
-	    file://lcd.sh \
-	    file://lcd.service \
+	    file://local.sh \
+	    file://local.service \
 	    file://firstboot.service \
 	    file://firstboot.sh \
 	    file://-.mount \
@@ -64,9 +64,9 @@ do_install_append () {
   		install -d ${D}${systemd_unitdir}/system
   		install -m 0644 ${WORKDIR}/gbox.service ${D}${systemd_unitdir}/system/gbox.service
                 install -m 0644 ${WORKDIR}/cccam.service ${D}${systemd_unitdir}/system/cccam.service
-  		install -m 0644 ${WORKDIR}/lcd.service ${D}${systemd_unitdir}/system/lcd.service
+  		install -m 0644 ${WORKDIR}/local.service ${D}${systemd_unitdir}/system/lcd.service
 		install -m 0755 ${WORKDIR}/local_cam.sh ${D}${bindir}
-		ln -sf /lib/systemd/system/lcd.service ${D}${systemd_unitdir}/system/multi-user.target.wants
+		ln -sf /lib/systemd/system/local.service ${D}${systemd_unitdir}/system/multi-user.target.wants
                 install -m 0644 ${WORKDIR}/-.mount ${D}${systemd_unitdir}/system
                 ln -sf /lib/systemd/system/-.mount  ${D}${systemd_unitdir}/system/multi-user.target.wants
                 install -m 0644 ${WORKDIR}/boot.mount ${D}${systemd_unitdir}/system
@@ -95,7 +95,7 @@ do_install_append () {
 		install -m 0644 ${WORKDIR}/vconsole.conf  ${D}${sysconfdir}
                 install -m 0755 ${WORKDIR}/getty-toggle  ${D}${bindir}
 	fi
-	install -m 0755 ${WORKDIR}/lcd.sh ${D}${bindir}
+	install -m 0755 ${WORKDIR}/local.sh ${D}${bindir}
 	install -m 0755 ${WORKDIR}/flash ${D}${bindir}
 	install -m 0755 ${WORKDIR}/imgbackup ${D}${bindir}
         install -m 0755 ${WORKDIR}/mount.sh ${D}${bindir}
