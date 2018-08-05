@@ -36,7 +36,7 @@ function stop_services () {
 }
 
 exit_done() {
-	clear
+#	clear
 	if [ $rootdevice = $devbase$root ];then
 		if [[ $no_update_available = "1" ]];then
 			printf '\n\033[32m%s\n\033[0m' "No update available"
@@ -96,6 +96,7 @@ clear
 
 function write_image () {
 [[ $rootdevice = $devbase$root ]] && stop_services
+mountpoint -q /mnt/partition_"$part" && systemctl stop mnt-partition_"$part".mount
 
 printf '\n\033[1m%s\n\033[0m' "Writing image into partition $part"
 echo "Writing image into partition $part" > $dev_display
@@ -105,15 +106,18 @@ pv < $imagedir/$kernelname > $devbase$kernel
 
 printf '\033[33m%s\033[37m%s\n' "Writing rootfs into $devbase$root"
 if systemctl is-active restore@$part | grep "inactive" >> /dev/null; then
-	mountpoint -q /mnt/partition_"$part" && systemctl stop mnt-partition_"$part".mount
-	echo $* | grep "restore" >> /dev/null && fsarchiver restfs -o -j2 -v -a $imagedir/$image_dec.fsa id=0,dest=$devbase$root
-	echo $* | grep "restore" >> /dev/null || bzip2 -cd $imagedir/$imagename | pv > $devbase$root
-        mountpoint -q /mnt/partition_"$part" || systemctl start mnt-partition_"$part".mount
+	if [[ $restore_image = "1" ]];then
+		fsarchiver restfs -o -j2 -v -a $imagedir/$image_dec.fsa id=0,dest=$devbase$root
+	else
+		bzip2 -cd $imagedir/$imagename | pv > $devbase$root
+	fi
+	mountpoint -q /mnt/partition_"$part" || systemctl start mnt-partition_"$part".mount
 else
 	fsarchiver restfs -o -j2 -v -a $imagedir/$image_dec.fsa id=0,dest=$devbase$root
 fi
 printf '\n\033[1m\033[32m%s\033[0m\n' "Flash successful"; printf '\033[1m\033[0m'
 echo "Flash succeeded" > $dev_display
+mountpoint -q /mnt/partition_"$part" && systemctl stop mnt-partition_"$part".mount
 exit_done
 }
 
@@ -124,7 +128,7 @@ if [[ ! $1 = "force" ]] && [[ ! $2 = "force" ]]; then
         	        	restore)
 					imagename="neutrino-image-hd51.ext4.fsa"
                 	        	imagedir="$imagebase/backup/partition$part/$machine"
-
+					restore_image="1"
                 		;;
                 		1|2|3|4)
                         		imagedir="$2"
