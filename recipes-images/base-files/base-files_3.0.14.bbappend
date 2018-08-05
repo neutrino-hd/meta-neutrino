@@ -62,9 +62,9 @@ do_install_append () {
 	install -d ${D}${localstatedir}/update ${D}${systemd_unitdir}/system/multi-user.target.wants ${D}${bindir} ${D}${sysconfdir}/systemd/system/multi-user.target.wants
 	if ${@bb.utils.contains('DISTRO_FEATURES','systemd','true','false',d)}; then
   		install -d ${D}${systemd_unitdir}/system
-  		install -m 0644 ${WORKDIR}/gbox.service ${D}${systemd_unitdir}/system/gbox.service
-                install -m 0644 ${WORKDIR}/cccam.service ${D}${systemd_unitdir}/system/cccam.service
-  		install -m 0644 ${WORKDIR}/local.service ${D}${systemd_unitdir}/system/lcd.service
+  		install -m 0644 ${WORKDIR}/gbox.service ${D}${systemd_unitdir}/system
+                install -m 0644 ${WORKDIR}/cccam.service ${D}${systemd_unitdir}/system
+  		install -m 0644 ${WORKDIR}/local.service ${D}${systemd_unitdir}/system
 		install -m 0755 ${WORKDIR}/local_cam.sh ${D}${bindir}
 		ln -sf /lib/systemd/system/local.service ${D}${systemd_unitdir}/system/multi-user.target.wants
                 install -m 0644 ${WORKDIR}/-.mount ${D}${systemd_unitdir}/system
