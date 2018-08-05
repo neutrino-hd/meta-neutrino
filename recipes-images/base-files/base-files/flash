@@ -36,7 +36,7 @@ function stop_services () {
 }
 
 exit_done() {
-#	clear
+	clear
 	if [ $rootdevice = $devbase$root ];then
 		if [[ $no_update_available = "1" ]];then
 			printf '\n\033[32m%s\n\033[0m' "No update available"
@@ -111,13 +111,12 @@ if systemctl is-active restore@$part | grep "inactive" >> /dev/null; then
 	else
 		bzip2 -cd $imagedir/$imagename | pv > $devbase$root
 	fi
-	mountpoint -q /mnt/partition_"$part" || systemctl start mnt-partition_"$part".mount
 else
 	fsarchiver restfs -o -j2 -v -a $imagedir/$image_dec.fsa id=0,dest=$devbase$root
 fi
 printf '\n\033[1m\033[32m%s\033[0m\n' "Flash successful"; printf '\033[1m\033[0m'
 echo "Flash succeeded" > $dev_display
-mountpoint -q /mnt/partition_"$part" && systemctl stop mnt-partition_"$part".mount
+mountpoint -q /mnt/partition_"$part" && systemctl start mnt-partition_"$part".mount
 exit_done
 }
 
