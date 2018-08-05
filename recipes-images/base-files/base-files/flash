@@ -116,7 +116,7 @@ else
 fi
 printf '\n\033[1m\033[32m%s\033[0m\n' "Flash successful"; printf '\033[1m\033[0m'
 echo "Flash succeeded" > $dev_display
-mountpoint -q /mnt/partition_"$part" && systemctl start mnt-partition_"$part".mount
+mountpoint -q /mnt/partition_"$part" || systemctl start mnt-partition_"$part".mount
 exit_done
 }
 
