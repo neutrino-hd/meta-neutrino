@@ -24,6 +24,7 @@ SRC_URI = " \
 	file://mount.mdev \
 	file://etc.tar.gz \
 	file://tobackup.conf \
+	file://update.jpg \
 "
 
 include neutrino.inc

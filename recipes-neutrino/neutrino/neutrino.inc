@@ -139,6 +139,7 @@ do_install_append() {
 		echo "${RELEASE_TEXT_LOCATION}" > ${D}/etc/update.urls
 	fi
 	cp -rf ${WORKDIR}/etc ${D}
+	install -m 644 ${WORKDIR}/update.jpg ${D}${datadir}/tuxbox/neutrino/icons
 }
 
 FILES_${PN} += "\

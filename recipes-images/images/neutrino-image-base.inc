@@ -58,7 +58,6 @@ IMAGE_INSTALL += " \
 	exfat-utils \
 	fbset \
 	fuse-exfat \
-	fsarchiver \
 	gptfdisk \
 	glibc-charmap-utf-8 \
 	glibc-binary-localedata-en-us \
@@ -72,6 +71,7 @@ IMAGE_INSTALL += " \
 	hdparm \
 	htop \
 	image-config \
+	imagemagick \
 	ifupdown \ 
 	kernel-module-ftdi-sio \
 	kernel-module-usbserial \ 

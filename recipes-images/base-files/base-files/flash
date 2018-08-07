@@ -32,11 +32,13 @@ function stop_services () {
 	pidof ntpdate >> /dev/null && systemctl stop ntpdate
 	cd /etc && git status  >> /dev/null && systemctl -q stop etckeeper
 	pidof sshd >> /dev/null && systemctl stop sshd.socket
-        pidof neutrino >> /dev/null && killall -9 neutrino
 }
 
+pidof neutrino >> /dev/null && killall -9 neutrino
+clear
+convert -resize 1920x1080 -gravity center -extent 1920x1080 /media/HDD/flash.jpg bgra:/dev/fb0
+
 exit_done() {
-	clear
 	if [ $rootdevice = $devbase$root ];then
 		if [[ $no_update_available = "1" ]];then
 			printf '\n\033[32m%s\n\033[0m' "No update available"
@@ -44,8 +46,11 @@ exit_done() {
 		else
 			echo "...Reboot" > $dev_display && systemctl --force --force reboot
 		fi
+	else
+		sleep 3
+		clear
+		systemctl start neutrino
 	fi
-	sleep 3
 	exit 0;
 }
 
@@ -92,28 +97,18 @@ partition_sectorsize="$(gdisk -l $devbase$root | grep 'Total free space' | awk '
 [ $partition_sectorsize -ne 1638333 ] && printf '\n\033[31m%s\n' "The partition scheme is invalid ... use ofgwrite for flashing" && exit 2;
 [ -z $2 ] ||  echo $2 | grep "/" >> /dev/null || [ $2 = "force" ] || [ $2 = "restore" ] || { printf '\n\033[31m%s\n' "Please choose a valid path" && exit 9; } 
 
-clear
-
 function write_image () {
 [[ $rootdevice = $devbase$root ]] && stop_services
 mountpoint -q /mnt/partition_"$part" && systemctl stop mnt-partition_"$part".mount
 
-printf '\n\033[1m%s\n\033[0m' "Writing image into partition $part"
+printf '\n\n\033[1m%s\n\033[0m' "Writing image into partition $part"
 echo "Writing image into partition $part" > $dev_display
 
-printf '\033[33m%s\033[37m%s\n' "Writing kernel into $devbase$kernel"
-pv < $imagedir/$kernelname > $devbase$kernel
+printf '\n\033[33m%s\033[37m%s\n' "Writing kernel into $devbase$kernel"
+pv -w 80 < $imagedir/$kernelname > $devbase$kernel
 
-printf '\033[33m%s\033[37m%s\n' "Writing rootfs into $devbase$root"
-if systemctl is-active restore@$part | grep "inactive" >> /dev/null; then
-	if [[ $restore_image = "1" ]];then
-		fsarchiver restfs -o -j2 -v -a $imagedir/$image_dec.fsa id=0,dest=$devbase$root
-	else
-		bzip2 -cd $imagedir/$imagename | pv > $devbase$root
-	fi
-else
-	fsarchiver restfs -o -j2 -v -a $imagedir/$image_dec.fsa id=0,dest=$devbase$root
-fi
+printf '\n\033[33m%s\033[37m%s\n' "Writing rootfs into $devbase$root"
+bzip2 -cd $imagedir/$imagename | pv -w 80 > $devbase$root
 printf '\n\033[1m\033[32m%s\033[0m\n' "Flash successful"; printf '\033[1m\033[0m'
 echo "Flash succeeded" > $dev_display
 mountpoint -q /mnt/partition_"$part" || systemctl start mnt-partition_"$part".mount
@@ -125,7 +120,6 @@ if [[ ! $1 = "force" ]] && [[ ! $2 = "force" ]]; then
 		for i in $1 $2; do
   	      		case $i in
         	        	restore)
-					imagename="neutrino-image-hd51.ext4.fsa"
                 	        	imagedir="$imagebase/backup/partition$part/$machine"
 					restore_image="1"
                 		;;
