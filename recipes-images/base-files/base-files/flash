@@ -11,6 +11,7 @@ mountpoint -q /media/HDD && hdd_mount="/media/HDD"
 imagebase="$hdd_mount/service/image"
 imageversion_online="$url/imageversion"
 kernelname="kernel.bin"
+picture_source="/usr/share/tuxbox/neutrino/icons"
 devbase="/dev/mmcblk0p"
 dev_display="/dev/dbox/oled0"
 rootdevice="$(sed -e 's/^.*root=//' -e 's/ .*$//' < /proc/cmdline)"
@@ -36,7 +37,7 @@ function stop_services () {
 
 pidof neutrino >> /dev/null && killall -9 neutrino
 clear
-convert -resize 1920x1080 -gravity center -extent 1920x1080 /media/HDD/flash.jpg bgra:/dev/fb0
+convert -resize 1920x1080 -gravity center -extent 1920x1080 $picture_source/update.jpg bgra:/dev/fb0
 
 exit_done() {
 	if [ $rootdevice = $devbase$root ];then

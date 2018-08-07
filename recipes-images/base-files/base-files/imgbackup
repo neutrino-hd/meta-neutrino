@@ -5,6 +5,7 @@ hdd_mount="/media/USB"
 mountpoint -q /media/HDD && hdd_mount="/media/HDD"
 servicedir="$hdd_mount/service"
 kernelname="kernel.bin"
+picture_source="/usr/share/tuxbox/neutrino/icons"
 rootfsname="neutrino-image-$machine.ext4"
 devbase="/dev/mmcblk0p"
 dev_display="/dev/dbox/oled0"
@@ -73,7 +74,7 @@ function stop_services () {
 
 pidof neutrino >> /dev/null && killall -9 neutrino
 clear
-convert -resize 1920x1080 -gravity center -extent 1920x1080 /media/HDD/flash.jpg bgra:/dev/fb0
+convert -resize 1920x1080 -gravity center -extent 1920x1080 $picture_source/update.jpg bgra:/dev/fb0
 
 [ ! -z "$2" ] && mountpoint -q "$2" && space_available="$(df -Pk $2 | awk 'NR==2 {print $4}')"
 [ -z "$2"  ] && [ ! -z "$1" ] && mountpoint -q "$1" && ! [[ "$1" =~ ^[0-9]+$ ]] && space_available="$(df -Pk $1 | awk 'NR==2 {print $4}')"
