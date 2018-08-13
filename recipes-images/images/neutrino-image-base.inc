@@ -40,6 +40,10 @@ DEPENDS_append += " \
 	links \
 	v4l-utils \
 "
+
+KERNEL_MODULES_INSTALLED += "kernel-module-ftdi-sio \
+			     kernel-module-usbserial \
+"
 	
 IMAGE_INSTALL += " \
 	autofs \
@@ -121,6 +125,7 @@ IMAGE_INSTALL += " \
 	${KERNEL_WIFI_DRIVERS} \
 	${EXTRA_KERNEL_WIFI_DRIVERS} \
 	${EXTERNAL_WIFI_DRIVERS} \
+	${KERNEL_MODULES_INSTALLED} \
 "
 
 EXTRAOPKGCONFIG = "neutrino-feed-config"
