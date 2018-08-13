@@ -54,10 +54,7 @@ IMAGE_INSTALL += " \
 	curl \
 	dvb-usb-drivers-meta \
 	dosfstools \
-	e2fsprogs-e2fsck \
-	e2fsprogs-mke2fs \
-	e2fsprogs-tune2fs \
-	e2fsprogs-badblocks \
+	e2fsprogs \
 	etckeeper \
 	exfat-utils \
 	fbset \
