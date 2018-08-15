@@ -31,7 +31,7 @@ DEPENDS_append += " \
 	smbnetfs \
 	ifuse \
         settings-annie-19.2e \
-	settings-annie-19.2e-13.0e \ 
+	settings-annie-19.2e-13.0e \
 	settings-annie-19.2e-13.0e-23.5e \
 	settings-annie-19.2e-13.0e-23.5e-28.2e \
 	settings-annie-19.2e-13.0e-23.5e-28.2e-26.0e-0.8w-5.0w \
@@ -75,9 +75,9 @@ IMAGE_INSTALL += " \
 	htop \
 	image-config \
 	imagemagick \
-	ifupdown \ 
+	ifupdown \
 	kernel-module-ftdi-sio \
-	kernel-module-usbserial \ 
+	kernel-module-usbserial \
 	libswscale \
 	libusb1 \
 	localedef \
