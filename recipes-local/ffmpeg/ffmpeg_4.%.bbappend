@@ -3,22 +3,18 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/ffmpeg:"
 DEPENDS_append += "libass rtmpdump libxml2 freetype"
 
 SRC_URI_append =  " \
-            file://ffmpeg-3.4.2-aac.patch \
-            file://ffmpeg-3.4.2-allow_to_choose_rtmp_impl_at_runtime.patch \
-            file://ffmpeg-3.4.2-buffer-size.patch \
-            file://ffmpeg-3.4.2-chunked_transfer_fix_eof.patch \
-            file://ffmpeg-3.4.2-dashdec_improvements.patch \
-            file://ffmpeg-3.4.2-fix-dash-build.patch \
-            file://ffmpeg-3.4.2-fix-edit-list-parsing.patch \
-            file://ffmpeg-3.4.2-fix-hls.patch \
-            file://ffmpeg-3.4.2-fix_mpegts.patch \
-            file://ffmpeg-3.4.2-hls_replace_key_uri.patch \
+            file://0001-ffmpeg-4.0.2-aac.patch \
+            file://0002-ffmpeg-4.0.2-allow_to_choose_rtmp_impl_at_runtime.patch \
+            file://0003-ffmpeg-4.0.2-buffer-size.patch \
+            file://0004-ffmpeg-4.0.2-fix-edit-list-parsing.patch \
+            file://0005-ffmpeg-4.0.2-fix-hls.patch \
+            file://0006-ffmpeg-4.0.2-fix_mpegts.patch \
+            file://0007-ffmpeg-4.0.2-hls_replace_key_uri.patch \
 "
 
 PACKAGECONFIG_append += "openssl"
 
 EXTRA_OECONF_append += " \
-            --disable-ffserver \
             --disable-ffplay \
             --enable-ffprobe \
             \
