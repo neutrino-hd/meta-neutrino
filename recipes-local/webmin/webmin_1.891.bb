@@ -27,8 +27,8 @@ SRC_URI = "https://download.webmin.com/devel/tarballs/webmin-${PV}.tar.gz \
 	   file://authentic_settings.js \
 "
 
-SRC_URI[md5sum] = "84b02a437720cb11393f9daad53a9212"
-SRC_URI[sha256sum] = "7330992bdd737659418d8e5010042332fc40b7f3978a2187f1bcb7d0e6fe3b6f"
+SRC_URI[md5sum] = "366ccdf3400c5d0d7f9bd3aef1b75163"
+SRC_URI[sha256sum] = "b3f49fe3001c38cebab500ff16dc8d0488fe7c46402e7cb5a41ec92de9f15427"
 
 inherit perlnative systemd
 
