@@ -4,8 +4,7 @@ After=neutrino.service
 Requires=systemd-modules-load.service 
 
 [Service]
-Type=oneshot
-RemainAfterExit=true
+Type=simple
 ExecStart=/bin/sh /etc/etckeeper/create_etc.sh
 
 [Install]
