@@ -3,7 +3,7 @@ HOMEPAGE = "http://pcsclite.alioth.debian.org/ccid.html"
 LICENSE = "LGPLv2.1+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=2d5025d4aa3495befef8f17206a5b0a1"
 
-DEPENDS = "virtual/libusb0 pcsc-lite"
+DEPENDS = "libusb1 pcsc-lite"
 RDEPENDS_${PN} = "pcsc-lite"
 
 SRC_URI = "https://alioth.debian.org/frs/download.php/file/4171/ccid-${PV}.tar.bz2 \
