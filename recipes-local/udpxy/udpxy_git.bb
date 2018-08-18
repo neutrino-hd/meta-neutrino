@@ -10,7 +10,7 @@ SRC_URI = " \
 	file://udpxy.default \
 "
 
-SRCREV = "612d2271b0d3ccb92f5e1c1c54aa3c0674af75cf"
+SRCREV = "${AUTOREV}"
 
 S = "${WORKDIR}/git/chipmunk"
 
@@ -18,7 +18,7 @@ inherit autotools systemd
 
 SYSTEMD_SERVICE_${PN} = "udpxy.service"
 
-CFLAGS_append += "-Wno-format-truncation"
+CFLAGS_append += "-Wno-format-truncation -Wno-stringop-truncation"
 
 do_configure_append () {
 	ln -sf ${S}/* ${WORKDIR}/build/
