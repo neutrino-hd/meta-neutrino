@@ -14,8 +14,8 @@ DESCRIPTION = "Kerberos is a system for authenticating users and services on a n
 HOMEPAGE = "http://web.mit.edu/Kerberos/"
 SECTION = "console/network"
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://${S}/../NOTICE;md5=3e12b8a065cca25dfdcac734fb3ec0b9"
-DEPENDS = "ncurses util-linux e2fsprogs e2fsprogs-native"
+LIC_FILES_CHKSUM = "file://${S}/../NOTICE;md5=7f95bc3d8d0351aa481d56d5e9de20c3"
+DEPENDS = "bison-native ncurses util-linux e2fsprogs e2fsprogs-native openssl"
 
 inherit autotools-brokensep binconfig perlnative systemd update-rc.d
 
@@ -30,19 +30,17 @@ SRC_URI = "http://web.mit.edu/kerberos/dist/${BPN}/${SHRT_VER}/${BP}.tar.gz \
            file://etc/default/krb5-admin-server \
            file://krb5-kdc.service \
            file://krb5-admin-server.service \
-           file://fix-CVE-2017-11368.patch;striplevel=2 \
-           file://CVE-2017-11462.patch;striplevel=2 \
 "
-SRC_URI[md5sum] = "8022f3a1cde8463e44fd35ef42731f85"
-SRC_URI[sha256sum] = "437c8831ddd5fde2a993fef425dedb48468109bb3d3261ef838295045a89eb45"
+SRC_URI[md5sum] = "848e9b80d6aaaa798e3f3df24b83c407"
+SRC_URI[sha256sum] = "214ffe394e3ad0c730564074ec44f1da119159d94281bbec541dc29168d21117"
 
 CVE_PRODUCT = "kerberos"
 
 S = "${WORKDIR}/${BP}/src"
 
-PACKAGECONFIG ??= "openssl"
+PACKAGECONFIG ??= ""
 PACKAGECONFIG[libedit] = "--with-libedit,--without-libedit,libedit"
-PACKAGECONFIG[openssl] = "--with-pkinit-crypto-impl=openssl,,openssl"
+PACKAGECONFIG[openssl] = "--with-crypto-impl=openssl,,openssl"
 PACKAGECONFIG[keyutils] = "--enable-keyutils,--disable-keyutils,keyutils"
 PACKAGECONFIG[ldap] = "--with-ldap,--without-ldap,openldap"
 PACKAGECONFIG[readline] = "--with-readline,--without-readline,readline"
@@ -53,6 +51,7 @@ CACHED_CONFIGUREVARS += "krb5_cv_attr_constructor_destructor=yes ac_cv_func_regc
                   ac_cv_file__etc_TIMEZONE=no"
 
 CFLAGS_append = " -fPIC -DDESTRUCTOR_ATTR_WORKS=1 -I${STAGING_INCDIR}/et"
+CFLAGS_append_riscv64 = " -D_REENTRANT -pthread"
 LDFLAGS_append = " -pthread"
 
 do_configure() {
@@ -79,11 +78,16 @@ do_install_append() {
         mkdir -p ${D}/${sysconfdir}/default/volatiles
         echo "d root root 0755 ${localstatedir}/run/krb5kdc none" \
               > ${D}${sysconfdir}/default/volatiles/87_krb5
+
+        echo "RUN_KADMIND=true" >> ${D}/${sysconfdir}/default/krb5-admin-server
     fi
     if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
         install -d ${D}${sysconfdir}/tmpfiles.d
         echo "d /run/krb5kdc - - - -" \
               > ${D}${sysconfdir}/tmpfiles.d/krb5.conf
+
+        mkdir -p ${D}/${sysconfdir}/default
+        install -m 0644 ${WORKDIR}/etc/default/* ${D}/${sysconfdir}/default
 
         install -d ${D}${systemd_system_unitdir}
         install -m 0644 ${WORKDIR}/krb5-admin-server.service ${D}${systemd_system_unitdir}
