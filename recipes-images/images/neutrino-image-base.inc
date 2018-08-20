@@ -22,6 +22,7 @@ DEPENDS_append += " \
 	mc \
 	libxslt \
 	dvbsnoop \
+	dvb-apps \
 	ncdu \
 	tmux \
 	fzf \
@@ -53,6 +54,7 @@ IMAGE_INSTALL += " \
 	cifs-utils \
 	curl \
 	dvb-usb-drivers-meta \
+	dvb-femon \
 	dosfstools \
 	e2fsprogs \
 	etckeeper \
