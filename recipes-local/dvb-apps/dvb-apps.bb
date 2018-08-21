@@ -12,6 +12,8 @@ LDFLAGS_libc-uclibc += "-liconv"
 
 S = "${WORKDIR}/${BPN}"
 
+TARGET_CC_ARCH += "${LDFLAGS}" 
+
 do_configure() {
     sed -i -e s:/usr/include:${STAGING_INCDIR}:g util/av7110_loadkeys/generate-keynames.sh 
 }
