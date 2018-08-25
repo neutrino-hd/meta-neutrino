@@ -35,7 +35,7 @@ SRC_URI[sha256sum] = "e0569a8a605d5dfb49f1fdd11db796f4d36fe0351c4a7f21387ef25301
 
 UPSTREAM_CHECK_REGEX = "samba\-(?P<pver>4\.8(\.\d+)+).tar.gz"
 
-inherit systemd waf-samba cpan-base perlnative update-rc.d
+inherit systemd waf-samba cpan-base perlnative update-rc.d ccache
 # remove default added RDEPENDS on perl
 RDEPENDS_${PN}_remove = "perl"
 
