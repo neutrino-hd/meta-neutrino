@@ -166,6 +166,7 @@ EXTRA_OECONF_append += " \
             --enable-decoder=mp3adu \
             --enable-decoder=mp3on4 \
             --enable-decoder=mpeg1video \
+	    --enable-decoder=mpeg2video \
             --enable-decoder=mpeg4 \
             --enable-decoder=nellymoser \
             --enable-decoder=opus \
