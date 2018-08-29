@@ -1,12 +1,21 @@
---- a/include/freetype/config/ftoption.h	2017-01-25 17:35:56.199632605 +0100
-+++ b/include/freetype/config/ftoption.h	2017-01-25 17:31:43.063341348 +0100
-@@ -92,7 +92,7 @@
-   /* This is done to allow FreeType clients to run unmodified, forcing     */
-   /* them to display normal gray-level anti-aliased glyphs.                */
+From 9bd9fbf7e940993218bda0eddb42d8dfae44f397 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sun, 24 Sep 2017 13:22:44 +0200
+
+---
+ include/freetype/config/ftoption.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/include/freetype/config/ftoption.h b/include/freetype/config/ftoption.h
+index 4bcab2a..1a39631 100644
+--- a/include/freetype/config/ftoption.h
++++ b/include/freetype/config/ftoption.h
+@@ -122,7 +122,7 @@ FT_BEGIN_HEADER
+   /* rendering technology that produces excellent output without LCD       */
+   /* filtering.                                                            */
    /*                                                                       */
 -/* #define FT_CONFIG_OPTION_SUBPIXEL_RENDERING */
 +#define FT_CONFIG_OPTION_SUBPIXEL_RENDERING
  
  
    /*************************************************************************/
-
