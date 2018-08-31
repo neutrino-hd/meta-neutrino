@@ -1,14 +1,24 @@
+From 2ded1bb9235a7e0b2f7c66f6e2ebaf5d4fe618c0 Mon Sep 17 00:00:00 2001
+From: Dexuan Cui <dexuan.cui@intel.com>
+Date: Sun, 15 Apr 2018 18:49:09 +0200
+Subject: [PATCH] add webmin recipe
+
 Upstream-Status: Inappropriate [config]
 
 XXX: need to work out a better fix.
 
 Signed-off-by: Dexuan Cui <dexuan.cui@intel.com>
 
-diff -Nru webmin-1.570.orig//net/net-lib.pl webmin-1.570/net/net-lib.pl
---- webmin-1.570.orig//net/net-lib.pl	2011-10-03 09:01:48.000000000 +0800
-+++ webmin-1.570/net/net-lib.pl	2011-10-28 13:52:56.138873664 +0800
-@@ -21,7 +21,8 @@
- 	do "$gconfig{'os_type'}-9.1-ALL-lib.pl";
+---
+ net/net-lib.pl | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/net/net-lib.pl b/net/net-lib.pl
+index 9948dc2b..2be7de50 100755
+--- a/net/net-lib.pl
++++ b/net/net-lib.pl
+@@ -26,7 +26,8 @@ elsif ($gconfig{'os_type'} eq 'debian-linux' && -d "/etc/netplan") {
+ 	do "netplan-lib.pl";
  	}
  else {
 -	do "$gconfig{'os_type'}-lib.pl";

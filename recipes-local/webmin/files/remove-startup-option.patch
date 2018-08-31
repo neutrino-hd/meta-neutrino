@@ -1,11 +1,23 @@
+From 0e409af2906201751bfd79f6bb6fe043ccb9181d Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sun, 15 Apr 2018 18:49:09 +0200
+Subject: [PATCH] add webmin recipe
+
 # Remove "start on boot" option from webmin configuration, as
 # end-users should not need to configure this from the web interface
 #
 # Upstream-status: Inappropriate
 #
 # Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
---- webmin-1.570.orig/webmin/index.cgi
-+++ webmin-1.570/webmin/index.cgi
+
+---
+ webmin/index.cgi | 14 --------------
+ 1 file changed, 14 deletions(-)
+
+diff --git a/webmin/index.cgi b/webmin/index.cgi
+index 7c566dc2..3917694c 100755
+--- a/webmin/index.cgi
++++ b/webmin/index.cgi
 @@ -79,20 +79,6 @@ print &ui_buttons_start();
  my %miniserv;
  &get_miniserv_config(\%miniserv);

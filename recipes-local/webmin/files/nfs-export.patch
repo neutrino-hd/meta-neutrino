@@ -1,6 +1,9 @@
+From 608a5f18ec96bd5409307f6d79db5bc9d1e8e5f1 Mon Sep 17 00:00:00 2001
+From: Yu Ke <ke.yu@intel.com>
+Date: Fri, 28 Oct 2011 14:40:51 +0800
+Subject: [PATCH] add webmin recipe
+
 commit e48f61d2f6df32a518bcb84db8c6eacfe5435c32
-Author: Yu Ke <ke.yu@intel.com>
-Date:   Fri Oct 28 14:40:51 2011 +0800
 
 NFS export: fix syntax issue
 
@@ -12,11 +15,15 @@ Upstream-Status: Pending
 
 Signed-off-by: Yu Ke <ke.yu@intel.com>
 
+---
+ exports/save_export.cgi | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
 diff --git a/exports/save_export.cgi b/exports/save_export.cgi
-index 3bc2f97..3e60298 100755
+index bcd4f886..0aa64b19 100755
 --- a/exports/save_export.cgi
 +++ b/exports/save_export.cgi
-@@ -40,7 +40,7 @@ else {
+@@ -50,7 +50,7 @@ else {
  			&error(&text('save_enetmask', $in{'netmask'}));
  		$exp{'host'} = $in{'network'}."/".$in{'netmask'};
  		}
@@ -25,9 +32,9 @@ index 3bc2f97..3e60298 100755
  	else {
  		$in{'host'} =~ /\*/ || &to_ipaddress($in{'host'}) ||
  			&error(&text('save_ehost', $in{'host'}));
-@@ -70,6 +70,11 @@ else {
- 
- 	delete($opts{'no_subtree_check'}); delete($opts{'subtree_check'});
+@@ -87,6 +87,11 @@ else {
+ 	delete($opts{'no_subtree_check'});
+ 	delete($opts{'subtree_check'});
  	$opts{'no_subtree_check'} = "" if ($in{'no_subtree_check'});
 +	if ($in{'no_subtree_check'}) {
 +		$opts{'no_subtree_check'} = "";
@@ -35,5 +42,5 @@ index 3bc2f97..3e60298 100755
 +		$opts{'subtree_check'} = "";
 +	}
  
- 	delete($opts{'nohide'}); delete($opts{'hide'});
- 	$opts{'nohide'} = "" if ($in{'nohide'});
+ 	delete($opts{'nohide'});
+ 	delete($opts{'hide'});

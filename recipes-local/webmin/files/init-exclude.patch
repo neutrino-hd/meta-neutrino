@@ -1,3 +1,8 @@
+From a1430217f37babedb78156aeedcdf6d5be9e5940 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sun, 15 Apr 2018 18:49:09 +0200
+Subject: [PATCH] add webmin recipe
+
 # Hack in support for an "exclude" config option for the init module, so
 # we can hide certain system services that shouldn't really be configurable
 # via the web interface
@@ -6,13 +11,14 @@
 #
 # Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
 # Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
+
 ---
  init/index.cgi   | 27 ++++++++++++++-------------
  init/init-lib.pl |  5 +++--
  2 files changed, 17 insertions(+), 15 deletions(-)
 
 diff --git a/init/index.cgi b/init/index.cgi
-index d48b793..30dafd4 100755
+index 5d1656b4..a199f649 100755
 --- a/init/index.cgi
 +++ b/init/index.cgi
 @@ -45,19 +45,20 @@ elsif ($init_mode eq "init" && $access{'bootup'}) {
@@ -50,10 +56,10 @@ index d48b793..30dafd4 100755
  	# For each action, look at /etc/rc*.d/* files to see if it is 
  	# started at boot
 diff --git a/init/init-lib.pl b/init/init-lib.pl
-index ead21ed..b41794b 100755
+index e2c3b834..8951e76c 100755
 --- a/init/init-lib.pl
 +++ b/init/init-lib.pl
-@@ -119,8 +119,9 @@ List boot time action names from init.d, such as httpd and cron.
+@@ -125,8 +125,9 @@ List boot time action names from init.d, such as httpd and cron.
  =cut
  sub list_actions
  {
@@ -64,7 +70,7 @@ index ead21ed..b41794b 100755
  opendir(DIR, $dir);
  foreach $f (sort { lc($a) cmp lc($b) } readdir(DIR)) {
  	if ($f eq "." || $f eq ".." || $f =~ /\.bak$/ || $f eq "functions" ||
-@@ -128,7 +129,7 @@ foreach $f (sort { lc($a) cmp lc($b) } readdir(DIR)) {
+@@ -134,7 +135,7 @@ foreach $f (sort { lc($a) cmp lc($b) } readdir(DIR)) {
  	    -d "$dir/$f" || $f =~ /\.swp$/ || $f eq "skeleton" ||
  	    $f =~ /\.lock$/ || $f =~ /\.dpkg-(old|dist)$/ ||
  	    $f =~ /^\.depend\./ || $f eq '.legacy-bootordering' ||
@@ -73,6 +79,3 @@ index ead21ed..b41794b 100755
  	if (@stbuf = stat("$dir/$f")) {
  		push(@rv, "$f $stbuf[1]");
  		}
---
-2.0.0
-

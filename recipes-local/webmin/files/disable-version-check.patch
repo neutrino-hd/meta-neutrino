@@ -1,15 +1,16 @@
-From b7f88c3e3088ec9cf96dae7942ea211a6f73ae1e Mon Sep 17 00:00:00 2001
+From 6f4bbfebd9458bd23b9a212071de9aff1952511e Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
 Date: Tue, 17 Apr 2018 01:18:05 +0200
-Subject: [PATCH 2/2] disable-version-check
+Subject: [PATCH] disable-version-check
 
 Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
 ---
  webmin/webmin-lib.pl | 44 ++++++++++++++++++++++----------------------
  1 file changed, 22 insertions(+), 22 deletions(-)
 
 diff --git a/webmin/webmin-lib.pl b/webmin/webmin-lib.pl
-index dedf96c..1d4a430 100755
+index 49f7c86c..a14aa081 100755
 --- a/webmin/webmin-lib.pl
 +++ b/webmin/webmin-lib.pl
 @@ -1120,28 +1120,28 @@ my %miniserv;
@@ -63,6 +64,3 @@ index dedf96c..1d4a430 100755
  
  # Password close to expiry
  my $warn_days = $config{'warn_days'};
--- 
-2.7.4
-

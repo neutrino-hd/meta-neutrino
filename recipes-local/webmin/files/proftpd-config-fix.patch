@@ -1,11 +1,18 @@
-Upstream-status: Inappropriate [configuration]
+From d505e890b4d5b3bcd225347672113aaf8c8782ac Mon Sep 17 00:00:00 2001
+From: Zhai Edwin <edwin.zhai@intel.com>
+Date: Sun, 15 Apr 2018 18:49:09 +0200
+Subject: [PATCH] Upstream-status: Inappropriate [configuration]
 
 Signed-off-by: Zhai Edwin <edwin.zhai@intel.com>
 
-Index: webmin-1.570/proftpd/config
-===================================================================
---- webmin-1.570.orig/proftpd/config	2011-10-25 20:18:37.000000000 +0800
-+++ webmin-1.570/proftpd/config	2011-10-25 20:21:13.000000000 +0800
+---
+ proftpd/config | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/proftpd/config b/proftpd/config
+index a0134c95..2e59da2e 100644
+--- a/proftpd/config
++++ b/proftpd/config
 @@ -1,6 +1,6 @@
 -proftpd_path=/usr/local/sbin/proftpd
 -proftpd_conf=/usr/local/etc/proftpd.conf

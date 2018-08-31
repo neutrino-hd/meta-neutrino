@@ -1,6 +1,23 @@
-diff -Nru webmin-1.570.bak/mediatomb/index.cgi webmin-1.570/mediatomb/index.cgi
---- webmin-1.570.bak/mediatomb/index.cgi	1969-12-31 16:00:00.000000000 -0800
-+++ webmin-1.570/mediatomb/index.cgi	2011-10-26 10:00:05.992522036 -0700
+From 57aed1272157a1c1d2c8bf3b7cd49e8618daf695 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sun, 15 Apr 2018 18:49:09 +0200
+
+---
+ mediatomb/index.cgi        | 13 +++++++++++++
+ mediatomb/lang/en          |  2 ++
+ mediatomb/mediatomb-lib.pl | 31 +++++++++++++++++++++++++++++++
+ mediatomb/module.info      |  3 +++
+ 4 files changed, 49 insertions(+)
+ create mode 100644 mediatomb/index.cgi
+ create mode 100644 mediatomb/lang/en
+ create mode 100644 mediatomb/mediatomb-lib.pl
+ create mode 100644 mediatomb/module.info
+
+diff --git a/mediatomb/index.cgi b/mediatomb/index.cgi
+new file mode 100644
+index 00000000..5d929f26
+--- /dev/null
++++ b/mediatomb/index.cgi
 @@ -0,0 +1,13 @@
 +#!/usr/bin/perl
 +# index.cgi
@@ -15,15 +32,19 @@ diff -Nru webmin-1.570.bak/mediatomb/index.cgi webmin-1.570/mediatomb/index.cgi
 +print &text('index_desc', $ipaddress),"<p>\n";
 +
 +ui_print_footer("/", $text{'index'});
-diff -Nru webmin-1.570.bak/mediatomb/lang/en webmin-1.570/mediatomb/lang/en
---- webmin-1.570.bak/mediatomb/lang/en	1969-12-31 16:00:00.000000000 -0800
-+++ webmin-1.570/mediatomb/lang/en	2011-10-26 10:01:13.340522186 -0700
+diff --git a/mediatomb/lang/en b/mediatomb/lang/en
+new file mode 100644
+index 00000000..a06509fb
+--- /dev/null
++++ b/mediatomb/lang/en
 @@ -0,0 +1,2 @@
 +index_title=MediaTomb
 +index_desc=MediaTomb is an open source (GPL) UPnP MediaServer with a nice web user interface. You can access it via <a href='http://$1:49153'>here</a>.
-diff -Nru webmin-1.570.bak/mediatomb/mediatomb-lib.pl webmin-1.570/mediatomb/mediatomb-lib.pl
---- webmin-1.570.bak/mediatomb/mediatomb-lib.pl	1969-12-31 16:00:00.000000000 -0800
-+++ webmin-1.570/mediatomb/mediatomb-lib.pl	2011-10-26 10:01:34.692522079 -0700
+diff --git a/mediatomb/mediatomb-lib.pl b/mediatomb/mediatomb-lib.pl
+new file mode 100644
+index 00000000..cd13abfa
+--- /dev/null
++++ b/mediatomb/mediatomb-lib.pl
 @@ -0,0 +1,31 @@
 +#!/usr/bin/perl
 +# mediatomb-lib.pl
@@ -56,9 +77,11 @@ diff -Nru webmin-1.570.bak/mediatomb/mediatomb-lib.pl webmin-1.570/mediatomb/med
 +return wantarray ? ( ) : undef;
 +}
 +
-diff -Nru webmin-1.570.bak/mediatomb/module.info webmin-1.570/mediatomb/module.info
---- webmin-1.570.bak/mediatomb/module.info	1969-12-31 16:00:00.000000000 -0800
-+++ webmin-1.570/mediatomb/module.info	2011-10-26 09:59:50.428528369 -0700
+diff --git a/mediatomb/module.info b/mediatomb/module.info
+new file mode 100644
+index 00000000..2f5e87a1
+--- /dev/null
++++ b/mediatomb/module.info
 @@ -0,0 +1,3 @@
 +desc=MediaTomb
 +category=others
