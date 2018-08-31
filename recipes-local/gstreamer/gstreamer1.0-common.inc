@@ -10,9 +10,7 @@ UPSTREAM_CHECK_GITTAGREGEX = "(?P<pver>(\d+(\.\d+)+))"
 
 SRCREV_FORMAT = "base"
 
-inherit gitpkgv
 PV = "1.12.3+git${SRCPV}"
-PKGV = "1.12.3+git${GITPKGV}"
 
 GST_BRANCH ?= "1.12"
 

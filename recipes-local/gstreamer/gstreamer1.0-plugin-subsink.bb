@@ -10,12 +10,9 @@ SRCREV = "${AUTOREV}"
 
 S = "${WORKDIR}/git"
 
-inherit gitpkgv
-
 GSTVERSION = "1.0"
 
 PV = "${GSTVERSION}+git${SRCPV}"
-PKGV = "${GSTVERSION}+git${GITPKGV}"
 PR = "r0"
 
 # added to have al m4 macro's into build when using bitbake with -b option.
