@@ -1,8 +1,16 @@
+From 7af5f56ff6ab4d1ea339b126ba8c89498f265ac7 Mon Sep 17 00:00:00 2001
+From: flk <f_l_k@t-online.de>
+Date: Mon, 11 Dec 2017 10:11:15 +0100
+
+---
+ include/ieee80211.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
 diff --git a/include/ieee80211.h b/include/ieee80211.h
-index fc293c4..d2e2bec 100644
+index 8ed08a9..58c4bd3 100644
 --- a/include/ieee80211.h
 +++ b/include/ieee80211.h
-@@ -1314,18 +1314,18 @@ enum ieee80211_state {
+@@ -1390,18 +1390,18 @@ enum ieee80211_state {
  (((Addr[2]) & 0xff) == 0xff) && (((Addr[3]) & 0xff) == 0xff) && (((Addr[4]) & 0xff) == 0xff) && \
  (((Addr[5]) & 0xff) == 0xff))
  #else
