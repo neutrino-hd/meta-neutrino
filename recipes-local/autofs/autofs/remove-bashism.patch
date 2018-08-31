@@ -1,4 +1,4 @@
-From 79034f969bbd12215d65b4337dfd38a13d02d4ef Mon Sep 17 00:00:00 2001
+From 8b6a67f12f7a0e07415d3f113e9ef0114ee2a8e2 Mon Sep 17 00:00:00 2001
 From: Robert Yang <liezhi.yang@windriver.com>
 Date: Sat, 13 Sep 2014 20:19:28 -0700
 Subject: [PATCH] autofs.init.in: remove bashism
@@ -9,9 +9,10 @@ Upstream-Status: Pending
 
 Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
 Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+
 ---
- redhat/autofs.init.in |   12 ++++++------
- samples/rc.autofs.in  |   10 +++++-----
+ redhat/autofs.init.in | 12 ++++++------
+ samples/rc.autofs.in  | 10 +++++-----
  2 files changed, 11 insertions(+), 11 deletions(-)
 
 diff --git a/redhat/autofs.init.in b/redhat/autofs.init.in
@@ -115,6 +116,3 @@ index 487669f..e96cde1 100644
  	pid=`pidof $prog`
  	if [ -z $pid ]; then
  		echo $"$prog not running"
--- 
-1.7.9.5
-

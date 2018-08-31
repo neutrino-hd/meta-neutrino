@@ -1,13 +1,22 @@
+From 025e43f98996a1a12f48d69e7f9a0387923836ba Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Wed, 21 Feb 2018 16:18:52 +0100
+Subject: [PATCH] update to current yocto master
+
 Use pkg-config first to look for external libnsl which is now
 split out from glibc, if it does not exist then see if its provided
 by glibc itself.
 
 -Khem
 
-Index: autofs-5.1.2/configure.in
-===================================================================
---- autofs-5.1.2.orig/configure.in
-+++ autofs-5.1.2/configure.in
+---
+ configure.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure.in b/configure.in
+index 9cf73b8..1016c71 100644
+--- a/configure.in
++++ b/configure.in
 @@ -186,7 +186,7 @@ fi
  #
  # glibc/libc 6 new libraries

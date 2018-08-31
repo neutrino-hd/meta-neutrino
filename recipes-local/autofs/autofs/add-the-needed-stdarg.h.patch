@@ -1,14 +1,18 @@
-[PATCH] add the needed stdarg.h
+From 73d7516332cdce86683c6ea2932d139b455d61b9 Mon Sep 17 00:00:00 2001
+From: Roy Li <rongqing.li@windriver.com>
+Date: Sun, 24 Sep 2017 13:22:44 +0200
+Subject: [PATCH] [PATCH] add the needed stdarg.h
 
 Upstream-status: Pending
 
 Signed-off-by: Roy Li <rongqing.li@windriver.com>
+
 ---
- lib/defaults.c |    1 +
+ lib/defaults.c | 1 +
  1 file changed, 1 insertion(+)
 
 diff --git a/lib/defaults.c b/lib/defaults.c
-index 2b03ea2..5728e67 100644
+index 0e48a78..667f35d 100644
 --- a/lib/defaults.c
 +++ b/lib/defaults.c
 @@ -16,6 +16,7 @@
@@ -19,6 +23,3 @@ index 2b03ea2..5728e67 100644
  #include <ctype.h>
  #include <string.h>
  #include <sys/utsname.h>
--- 
-1.7.10.4
-

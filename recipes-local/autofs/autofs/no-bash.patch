@@ -1,17 +1,26 @@
-Index: autofs-5.0.7/samples/auto.net
-===================================================================
---- autofs-5.0.7.orig/samples/auto.net	2012-07-24 23:05:26.000000000 -0700
-+++ autofs-5.0.7/samples/auto.net	2012-10-28 10:44:25.035991715 -0700
+From 92501ceaa066c1af2f98117e36a5fe3c3b1a3ed4 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sun, 24 Sep 2017 13:22:44 +0200
+
+---
+ samples/auto.net | 2 +-
+ samples/auto.smb | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/samples/auto.net b/samples/auto.net
+index 0384f61..61215f6 100755
+--- a/samples/auto.net
++++ b/samples/auto.net
 @@ -1,4 +1,4 @@
 -#!/bin/bash
 +#!/bin/sh
  
  # This file must be executable to work! chmod 755!
  
-Index: autofs-5.0.7/samples/auto.smb
-===================================================================
---- autofs-5.0.7.orig/samples/auto.smb	2012-07-24 23:05:26.000000000 -0700
-+++ autofs-5.0.7/samples/auto.smb	2012-10-28 10:44:25.035991715 -0700
+diff --git a/samples/auto.smb b/samples/auto.smb
+index 6af5d85..d296b81 100755
+--- a/samples/auto.smb
++++ b/samples/auto.smb
 @@ -1,4 +1,4 @@
 -#!/bin/bash
 +#!/bin/sh
