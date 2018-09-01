@@ -32,6 +32,7 @@ DEPENDS += " \
 	fontconfig \
 	libpng \
 	tremor \
+	zlib \
 "
 
 S = "${WORKDIR}/git"
