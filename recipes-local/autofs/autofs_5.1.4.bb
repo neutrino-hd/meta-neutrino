@@ -68,6 +68,9 @@ do_install_append () {
     if [ -d ${D}${localstatedir}/run ]; then
         rmdir ${D}${localstatedir}/run
     fi
+    install -d ${D}${sysconfdir}
+    install -m 644 ${WORKDIR}/auto.master ${D}/${sysconfdir}/auto.master
+    install -m 644 ${WORKDIR}/auto.nfs ${D}/${sysconfdir}/auto.nfs
 }
 SECURITY_CFLAGS = "${SECURITY_NO_PIE_CFLAGS}"
 
@@ -77,4 +80,3 @@ RPROVIDES_${PN} += "${PN}-systemd"
 RREPLACES_${PN} += "${PN}-systemd"
 RCONFLICTS_${PN} += "${PN}-systemd"
 SYSTEMD_SERVICE_${PN} = "autofs.service"
-
