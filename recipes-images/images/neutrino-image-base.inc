@@ -40,6 +40,7 @@ DEPENDS_append += " \
 	sshfs-fuse \
 	tmux \
 	v4l-utils \
+	weston \
 "
 
 KERNEL_MODULES_INSTALLED += "kernel-module-ftdi-sio \
