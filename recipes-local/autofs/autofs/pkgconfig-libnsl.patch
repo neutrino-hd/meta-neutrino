@@ -1,7 +1,7 @@
-From 025e43f98996a1a12f48d69e7f9a0387923836ba Mon Sep 17 00:00:00 2001
-From: Markus Volk <f_l_k@t-online.de>
-Date: Wed, 21 Feb 2018 16:18:52 +0100
-Subject: [PATCH] update to current yocto master
+From e3ae56cf0bb4063c31295f45d04e3c504f4b6cc7 Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 24 Apr 2017 20:41:25 -0700
+Subject: [PATCH] autofs: Upgrade to 5.1.2 release
 
 Use pkg-config first to look for external libnsl which is now
 split out from glibc, if it does not exist then see if its provided

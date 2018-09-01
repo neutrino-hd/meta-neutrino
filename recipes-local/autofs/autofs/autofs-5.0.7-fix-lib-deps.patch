@@ -1,4 +1,4 @@
-From 8e72c6918b841ae49174d3f3d75421d839399fbb Mon Sep 17 00:00:00 2001
+From 080626108c9ab70e2489752ef2a14006d0564b0c Mon Sep 17 00:00:00 2001
 From: Joe MacDonald <joe.macdonald@windriver.com>
 Date: Tue, 18 Jun 2013 10:05:21 -0400
 Subject: [PATCH] Fix the dependency issue

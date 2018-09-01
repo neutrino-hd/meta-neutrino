@@ -1,6 +1,6 @@
-From f28d4760943aa651af7f9a2b100dcdcf2a4655d6 Mon Sep 17 00:00:00 2001
+From c500d9906f163bf716c872d37403b9de02ef0a86 Mon Sep 17 00:00:00 2001
 From: Amy Fong <amy.fong@windriver.com>
-Date: Sun, 24 Sep 2017 13:22:44 +0200
+Date: Fri, 18 Jan 2013 12:13:32 -0500
 Subject: [PATCH] autofs: fails to compile with openldap disabled
 
 As of 5.0.6, it appears that changes were introduced so that

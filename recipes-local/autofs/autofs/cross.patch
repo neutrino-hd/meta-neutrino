@@ -1,6 +1,6 @@
-From cd6264d1ab6e6ba0c02a64917c43484fe34fe1a6 Mon Sep 17 00:00:00 2001
-From: Markus Volk <f_l_k@t-online.de>
-Date: Sun, 24 Sep 2017 13:22:44 +0200
+From b9b44cd82caceeb638cc6a862b5bb90b93ad6c6a Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sat, 5 Jan 2013 19:53:10 -0800
 
 ---
  aclocal.m4   | 2 ++

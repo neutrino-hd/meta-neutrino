@@ -1,6 +1,6 @@
-From 73d7516332cdce86683c6ea2932d139b455d61b9 Mon Sep 17 00:00:00 2001
+From df5d45b2d7ad7e7b5f0542a816d08b0409a529a1 Mon Sep 17 00:00:00 2001
 From: Roy Li <rongqing.li@windriver.com>
-Date: Sun, 24 Sep 2017 13:22:44 +0200
+Date: Tue, 19 Aug 2014 11:31:35 +0800
 Subject: [PATCH] [PATCH] add the needed stdarg.h
 
 Upstream-status: Pending

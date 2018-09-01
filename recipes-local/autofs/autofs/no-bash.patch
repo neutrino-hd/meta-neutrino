@@ -1,6 +1,6 @@
-From 92501ceaa066c1af2f98117e36a5fe3c3b1a3ed4 Mon Sep 17 00:00:00 2001
-From: Markus Volk <f_l_k@t-online.de>
-Date: Sun, 24 Sep 2017 13:22:44 +0200
+From a3007d7ea930823926611081bb873ddd771325cb Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sat, 5 Jan 2013 19:53:10 -0800
 
 ---
  samples/auto.net | 2 +-

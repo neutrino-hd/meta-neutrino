@@ -1,6 +1,6 @@
-From 8ee8d44f89e08fecc22756f3ee7be93c3a6d97e1 Mon Sep 17 00:00:00 2001
+From 971d48a00ef82880c34e89778bf430a01360ebd5 Mon Sep 17 00:00:00 2001
 From: Roy Li <rongqing.li@windriver.com>
-Date: Wed, 21 Feb 2018 16:18:52 +0100
+Date: Mon, 18 May 2015 16:28:36 +0800
 Subject: [PATCH] [PATCH] fix the YACC rule to fix a building failure
 
 Upstream-Statu: Pending
