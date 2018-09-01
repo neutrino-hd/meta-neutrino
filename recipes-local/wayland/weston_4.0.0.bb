@@ -21,6 +21,7 @@ inherit autotools pkgconfig useradd distro_features_check
 
 DEPENDS = "libxkbcommon gdk-pixbuf pixman cairo glib-2.0 jpeg"
 DEPENDS += "wayland wayland-protocols libinput pango wayland-native"
+RDEPENDS_${PN} += "weston-init"
 
 WESTON_MAJOR_VERSION = "${@'.'.join(d.getVar('PV').split('.')[0:1])}"
 

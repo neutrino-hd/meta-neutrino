@@ -1,12 +1,12 @@
 [Unit]
 Description=Weston Wayland Compositor
-RequiresMountsFor=/run
+RequiresMountsFor=/media
 
 [Service]
 User=root
 EnvironmentFile=-/etc/default/weston
 ExecStart=/usr/bin/weston-start -v -e -- $OPTARGS
+ExecStopPost=/bin/sh -c "/usr/bin/clear > /dev/tty0"
 
 [Install]
 WantedBy=multi-user.target
-
