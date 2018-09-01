@@ -19,26 +19,26 @@ set_root_passwd() {
 
 DEPENDS_append += " \
 	dropbear \
-	mc \
-	libxslt \
-	dvbsnoop \
 	dvb-apps \
-	ncdu \
-	tmux \
+	dvbsnoop \
 	fzf \
-	setserial \
-	sshfs-fuse \
-	smbnetfs \
 	ifuse \
-        settings-annie-19.2e \
+	libxslt \
+	links \
+	mc \
+	ncdu \
+	setserial \
+	settings-annie-19.2e \
 	settings-annie-19.2e-13.0e \
 	settings-annie-19.2e-13.0e-23.5e \
 	settings-annie-19.2e-13.0e-23.5e-28.2e \
 	settings-annie-19.2e-13.0e-23.5e-28.2e-26.0e-0.8w-5.0w \
-	settings-pathauf \
 	settings-matze-astra \
 	settings-matze-astra+hb \
-	links \
+	settings-pathauf \
+	smbnetfs \
+	sshfs-fuse \
+	tmux \
 	v4l-utils \
 "
 
@@ -53,39 +53,37 @@ IMAGE_INSTALL += " \
 	ca-certificates \
 	cifs-utils \
 	curl \
-	dvb-usb-drivers-meta \
-	dvb-femon \
 	dosfstools \
+	dvb-femon \
+	dvb-usb-drivers-meta \
 	e2fsprogs \
 	etckeeper \
 	exfat-utils \
 	fbset \
 	fuse-exfat \
-	gptfdisk \
-	glibc-charmap-utf-8 \
 	glibc-binary-localedata-en-us \
-        glibc-binary-localedata-de-de \
-        glibc-binary-localedata-fr-fr \
-        glibc-binary-localedata-ru-ru \
-        glibc-binary-localedata-cs-cz \
-        glibc-binary-localedata-pl-pl \
-        glibc-binary-localedata-es-es \
+	glibc-binary-localedata-cs-cz \
+	glibc-binary-localedata-de-de \
+	glibc-binary-localedata-es-es \
+	glibc-binary-localedata-fr-fr \
+	glibc-binary-localedata-pl-pl \
+	glibc-binary-localedata-ru-ru \
+	glibc-charmap-utf-8 \
+	gptfdisk \
 	gzip \
 	hdparm \
 	htop \
+	ifupdown \
 	image-config \
 	imagemagick \
-	ifupdown \
-	kernel-module-ftdi-sio \
-	kernel-module-usbserial \
 	libswscale \
 	libusb1 \
 	localedef \
 	minidlna \
 	nano \
-	ni-logos \
 	nfs-utils \
 	nfs-utils-client \
+	ni-logos \
 	ntfs-3g \
 	ntfsprogs \
 	ntpdate \
@@ -97,6 +95,7 @@ IMAGE_INSTALL += " \
 	oscam \
 	parted \
 	procps \
+	proftpd \
 	pv \
 	rpcbind \
 	rsync \
@@ -109,22 +108,21 @@ IMAGE_INSTALL += " \
 	usbutils \
 	util-linux \
 	util-linux-blkid \
-	util-linux-mount \
-	util-linux-umount \
-	util-linux-swaponoff \
 	util-linux-fstrim \
-	virtual/libstb-hal \
+	util-linux-mount \
+	util-linux-swaponoff \
+	util-linux-umount \
 	virtual/dvb-driver \
+	virtual/libstb-hal \
 	virtual/screengrabber \
-	proftpd \
 	webmin \
 	wpa-supplicant \
 	xupnpd \
 	zsh \
-	${KERNEL_WIFI_DRIVERS} \
+        ${EXTERNAL_WIFI_DRIVERS} \
 	${EXTRA_KERNEL_WIFI_DRIVERS} \
-	${EXTERNAL_WIFI_DRIVERS} \
 	${KERNEL_MODULES_INSTALLED} \
+	${KERNEL_WIFI_DRIVERS} \
 "
 
 EXTRAOPKGCONFIG = "neutrino-feed-config"
