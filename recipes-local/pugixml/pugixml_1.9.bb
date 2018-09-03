@@ -18,10 +18,8 @@ SRC_URI[sha256sum] = "d156d35b83f680e40fd6412c4455fdd03544339779134617b9b28d19e1
 
 S = "${WORKDIR}/${PN}-${PV}"
 
-inherit autotools pkgconfig gettext
+inherit cmake pkgconfig gettext
 
-do_compile () {
-    oe_runmake
-    rm -f *.o
+do_configure_prepend () {
+        sed -i "s|\/\/ #define PUGIXML_HAS_LONG_LONG|#define PUGIXML_HAS_LONG_LONG|" ${S}/src/pugiconfig.hpp
 }
-
