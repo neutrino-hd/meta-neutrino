@@ -10,7 +10,6 @@ PR = "r0"
 TARGET_CC_ARCH += "${LDFLAGS}"
 
 SRC_URI = "http://github.com/zeux/pugixml/releases/download/v${PV}/pugixml-${PV}.tar.gz \
-           file://001_Makefile.patch \
 "
 
 SRC_URI[md5sum] = "7286ee2ed11376b6b780ced19fae0b64"
