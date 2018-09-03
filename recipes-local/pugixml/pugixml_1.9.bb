@@ -10,7 +10,7 @@ PR = "r0"
 TARGET_CC_ARCH += "${LDFLAGS}"
 
 SRC_URI = "http://github.com/zeux/pugixml/releases/download/v${PV}/pugixml-${PV}.tar.gz \
-	   file://001_Makefile.patch \
+           file://001_Makefile.patch \
 "
 
 SRC_URI[md5sum] = "7286ee2ed11376b6b780ced19fae0b64"
@@ -18,10 +18,9 @@ SRC_URI[sha256sum] = "d156d35b83f680e40fd6412c4455fdd03544339779134617b9b28d19e1
 
 S = "${WORKDIR}/${PN}-${PV}"
 
-inherit autotools pkgconfig gettext
+inherit cmake pkgconfig gettext
 
-do_compile () {
-    oe_runmake
-    rm -f *.o
+do_configure_prepend () {
+        sed -i "s|\/\/ #define PUGIXML_HAS_LONG_LONG|#define PUGIXML_HAS_LONG_LONG|" ${S}/src/pugiconfig.hpp
 }
 
