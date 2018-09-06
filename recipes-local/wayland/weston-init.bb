@@ -18,10 +18,7 @@ do_install() {
 	sed -i 's,@LOCALSTATEDIR@,${localstatedir},g' ${D}${bindir}/weston-start
 }
 
-inherit allarch update-rc.d distro_features_check systemd
-
-# rdepends on weston which depends on virtual/egl
-REQUIRED_DISTRO_FEATURES = "opengl"
+inherit allarch update-rc.d systemd
 
 RDEPENDS_${PN} = "weston kbd"
 
@@ -29,3 +26,4 @@ INITSCRIPT_NAME = "weston"
 INITSCRIPT_PARAMS = "start 9 5 2 . stop 20 0 1 6 ."
 
 SYSTEMD_SERVICE_${PN} = "weston.service"
+SYSTEMD_AUTO_ENABLE = "disable"

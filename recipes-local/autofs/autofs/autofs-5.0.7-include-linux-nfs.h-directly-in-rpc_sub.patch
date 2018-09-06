@@ -1,4 +1,4 @@
-From a429fdd458e52d719e18977b50ebfd6027b37abc Mon Sep 17 00:00:00 2001
+From 2256b8aa98cff15ddf2a8d36496e6c9125927901 Mon Sep 17 00:00:00 2001
 From: Andreas Oberritter <obi@opendreambox.org>
 Date: Wed, 13 Mar 2013 16:17:08 +0100
 Subject: [PATCH] autofs-5.0.7: include linux/nfs.h directly in rpc_subs.h

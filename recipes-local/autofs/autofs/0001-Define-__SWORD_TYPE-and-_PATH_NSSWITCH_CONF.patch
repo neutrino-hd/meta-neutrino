@@ -1,4 +1,4 @@
-From 6ff8acd41d4fa88f69c7fe2283fd4b16c82dfb9b Mon Sep 17 00:00:00 2001
+From 987c8f4a718cdd6b764592ba7510090a59623959 Mon Sep 17 00:00:00 2001
 From: Khem Raj <raj.khem@gmail.com>
 Date: Fri, 31 Mar 2017 19:10:57 -0700
 Subject: [PATCH] Define __SWORD_TYPE and _PATH_NSSWITCH_CONF

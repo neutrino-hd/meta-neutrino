@@ -1,7 +1,7 @@
-From b59b3306d1f58a08d2e53a41075e31b23d18d979 Mon Sep 17 00:00:00 2001
-From: Markus Volk <f_l_k@t-online.de>
-Date: Sun, 24 Sep 2017 13:22:44 +0200
-Subject: [PATCH] initial commit
+From 2cbc576ea1fbd1cbf4579d64b30e41d762084e7f Mon Sep 17 00:00:00 2001
+From: "yanjun.zhu" <yanjun.zhu@windriver.com>
+Date: Tue, 15 Jan 2013 12:45:44 +0800
+Subject: [PATCH] autofs: do not check for modprobe
 
 Description: Loading autofs module is #ifdef'ed in the source, so
  there is no need to check for /proc (which is only used

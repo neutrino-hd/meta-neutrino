@@ -1,4 +1,4 @@
-From a37d1832672cfd6e2f817ba8294deef143f58c74 Mon Sep 17 00:00:00 2001
+From 745e355ac8b595a27e1fcca75bf01d3e244f4a5f Mon Sep 17 00:00:00 2001
 From: Khem Raj <raj.khem@gmail.com>
 Date: Thu, 7 Sep 2017 22:22:31 -0700
 Subject: [PATCH] modules/lookup_multi.c: Replace __S_IEXEC with S_IEXEC

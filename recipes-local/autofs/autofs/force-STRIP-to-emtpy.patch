@@ -1,6 +1,6 @@
-From 734c23954008bb61251af594da0c69b381fe593e Mon Sep 17 00:00:00 2001
+From 3cbee00fe5725b87abdae80cfa2ee735e4513ca6 Mon Sep 17 00:00:00 2001
 From: Roy Li <rongqing.li@windriver.com>
-Date: Sun, 24 Sep 2017 13:22:44 +0200
+Date: Tue, 19 Aug 2014 11:31:35 +0800
 Subject: [PATCH] [PATCH] force STRIP to emtpy
 
 otherwise the generate file will be stripped

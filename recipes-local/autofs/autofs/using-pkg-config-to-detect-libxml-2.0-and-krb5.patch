@@ -1,6 +1,6 @@
-From c497f721a36d46df820d287bd489bea2c11aab81 Mon Sep 17 00:00:00 2001
+From dabcbdae38038a8e4ad2c4286112381c407c5ce7 Mon Sep 17 00:00:00 2001
 From: Roy Li <rongqing.li@windriver.com>
-Date: Sun, 24 Sep 2017 13:22:44 +0200
+Date: Tue, 19 Aug 2014 11:31:35 +0800
 Subject: [PATCH] using pkg-config to detect libxml-2.0 and krb5
 
 Upstream-status: Pending
