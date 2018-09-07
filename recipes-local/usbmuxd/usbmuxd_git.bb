@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://COPYING.GPLv2;md5=ebb5c50ab7cab4baeffba14977030c07 \
 
 DEPENDS = "udev libusb1"
 
-inherit cmake pkgconfig gitpkgv
+inherit cmake pkgconfig
 
 SRCREV = "919587580c5e77f3936f3432115d2e10c7bac7c5"
 SRC_URI = "git://git.sukimashita.com/usbmuxd.git;protocol=http"
