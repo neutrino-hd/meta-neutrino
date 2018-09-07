@@ -8,8 +8,6 @@ DEPENDS = "udev libusb1"
 
 inherit cmake pkgconfig gitpkgv
 
-PKGV = "${GITPKGVTAG}"
-
 SRCREV = "919587580c5e77f3936f3432115d2e10c7bac7c5"
 SRC_URI = "git://git.sukimashita.com/usbmuxd.git;protocol=http"
 

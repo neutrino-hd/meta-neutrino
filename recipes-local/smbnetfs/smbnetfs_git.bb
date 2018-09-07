@@ -17,8 +17,6 @@ REQUIRED_DISTRO_FEATURES = "pam"
 
 inherit autotools gitpkgv pkgconfig
 
-PKGV = "${GITPKGVTAG}"
-
 SRCREV = "bc6b94b015fdaf7c4dab56ccb996eecea8bc4373"
 
 SRC_URI = "git://smbnetfs.git.sourceforge.net/gitroot/smbnetfs/smbnetfs;branch=master \
