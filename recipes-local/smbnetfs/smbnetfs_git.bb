@@ -15,9 +15,7 @@ DEPENDS_append_libc-musl = " libexecinfo"
 inherit distro_features_check
 REQUIRED_DISTRO_FEATURES = "pam"
 
-inherit autotools gitpkgv pkgconfig
-
-PKGV = "${GITPKGVTAG}"
+inherit autotools pkgconfig
 
 SRCREV = "bc6b94b015fdaf7c4dab56ccb996eecea8bc4373"
 
