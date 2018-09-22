@@ -1,6 +1,6 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/ffmpeg:"
 
-DEPENDS_append += "libass rtmpdump libxml2 freetype"
+DEPENDS_append += "libass libxml2 freetype"
 
 SRC_URI_append =  " \
             file://0001-ffmpeg-4.0.2-aac.patch \
@@ -287,7 +287,6 @@ EXTRA_OECONF_append += " \
             --disable-libxcb-shm \
             --disable-libxcb-xfixes \
             --disable-libxcb-shape \
-            --enable-librtmp \
             --enable-libxml2 \
             \
 "
