@@ -29,17 +29,17 @@ do_install () {
         install -m 644 ${WORKDIR}/yt_live.cfg ${D}/usr/share/tuxbox/plugins
         install -m 644 ${WORKDIR}/yt_live.png ${D}/usr/share/tuxbox/plugins/yt_live_hint.png
 	install -m 644 ${S}/xupnpd/* ${D}/usr/share/xupnpd/plugins/
-        install -m 644 ${S}/plugins/stb_restore/* ${D}/usr/share/tuxbox/plugins
+        install -m 644 ${S}/plugins/stb_restore/stb-restore.lua ${D}/usr/share/tuxbox/plugins
         install -m 644 ${S}/plugins/stb_shell/* ${D}/usr/share/tuxbox/plugins
-        install -m 644 ${S}/plugins/stb_flash/* ${D}/usr/share/tuxbox/plugins
-        install -m 644 ${S}/plugins/stb_backup/* ${D}/usr/share/tuxbox/plugins
+        install -m 644 ${S}/plugins/stb_flash/stb-flash.lua ${D}/usr/share/tuxbox/plugins
+        install -m 644 ${S}/plugins/stb_backup/stb-backup.lua ${D}/usr/share/tuxbox/plugins
         install -m 644 ${S}/plugins/stb_startup/* ${D}/usr/share/tuxbox/plugins
-        install -m 644 ${S}/plugins/stb_move/* ${D}/usr/share/tuxbox/plugins
+        install -m 644 ${S}/plugins/stb_move/stb-move.lua ${D}/usr/share/tuxbox/plugins
         install -m 644 ${S}/plugins/stb_log/* ${D}/usr/share/tuxbox/plugins
-        install -m 644 ${S}/plugins/stb_local-flash/* ${D}/usr/share/tuxbox/plugins
+        install -m 644 ${S}/plugins/stb_local-flash/stb-local-flash.lua ${D}/usr/share/tuxbox/plugins
+        install -m 644 ${S}/plugins/stb_plugins/* ${D}/usr/share/tuxbox/plugins
 }
 
 FILES_${PN} += " \
 	/usr \
 "
-
