@@ -136,7 +136,7 @@ if [[ ! $1 = "force" ]] && [[ ! $2 = "force" ]]; then
         		esac
 		done
 	imageversion="$imagedir/imageversion"
-	[[ -f $imageversion ]] && cp -rf $imageversion $imageversion_local
+	[[ -f $imageversion ]] && [[ -d $imagebase ]] && cp -rf $imageversion $imageversion_local
         [ ! -f $imagedir/$imagename ] && printf '\n%s\n' "$imagedir/$imagename not found" && exit_done
         [ ! -f $imagedir/$kernelname ] && printf '\n%s\n' "$imagedir/$kernelname not found" && exit_done
         space_available="$(df -Pk $imagedir | awk 'NR==2 {print $4}')"
@@ -174,7 +174,7 @@ if [[ -z $1 ]] || [[ $* = "force" ]] || [[ ! $* = "restore" ]] || [[ $1 =~ ^[0-9
 			echo "Decompressing $image" > $dev_display
         		printf '\n\033[1m%s\n\033[0m' "Decompressing  $image"
 			$unpack || exit_done;
-			[[ -f $imageversion ]] && cp -rf $imageversion $imageversion_local
+			[[ -f $imageversion ]] && [[ -d $imagebase ]] && cp -rf $imageversion $imageversion_local
 			[ -f $imagefile ] && rm $imagefile
 
 			write_image

@@ -24,7 +24,6 @@ DEPENDS_append += " \
 	fzf \
 	ifuse \
 	libxslt \
-	links \
 	mc \
 	ncdu \
 	setserial \
