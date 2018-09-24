@@ -25,6 +25,7 @@ SRC_URI = "https://download.webmin.com/devel/tarballs/webmin-${PV}.tar.gz \
 	   file://proftpd_config \
 	   file://authentic_settings-root \
 	   file://authentic_settings.js \
+	   file://webmin \
 "
 
 SRC_URI[md5sum] = "b209369bcd315122b6330992494a2ab0"
@@ -81,7 +82,6 @@ WEBMIN_PASSWORD ?= "root"
 do_install() {
     install -d ${D}${sysconfdir}
     install -d ${D}${sysconfdir}/webmin
-
     install -d ${D}${systemd_unitdir}/system
     install -m 0644 ${WORKDIR}/webmin.service ${D}${systemd_unitdir}/system
     sed -i -e 's,@SYSCONFDIR@,${sysconfdir},g' \
@@ -126,13 +126,15 @@ do_install() {
 
 do_install_append() {
 	echo "lang_root=de.UTF-8" >> ${D}${sysconfdir}/webmin/config
-	install -d ${D}${sysconfdir}/webmin/authentic-theme
+	install -d ${D}${sysconfdir}/webmin/authentic-theme#
+	install -d ${D}${sysconfdir}/pam.d
 	install -m 644 ${WORKDIR}/samba_config ${D}${sysconfdir}/webmin/samba/config
         install -m 644 ${WORKDIR}/exports_config ${D}${sysconfdir}/webmin/exports/config
         install -m 644 ${WORKDIR}/smart_config ${D}${sysconfdir}/webmin/smart-status/config
         install -m 644 ${WORKDIR}/proftpd_config ${D}${sysconfdir}/webmin/proftpd/config
         install -m 644 ${WORKDIR}/authentic_settings-root ${D}${sysconfdir}/webmin/authentic-theme/settings-root
         install -m 644 ${WORKDIR}/authentic_settings.js ${D}${sysconfdir}/webmin/authentic-theme/settings.js
+        install -m 644 ${WORKDIR}/webmin ${D}${sysconfdir}/pam.d
 }
 
 SYSTEMD_SERVICE_${PN} = "webmin.service"
@@ -151,7 +153,7 @@ RDEPENDS_${PN} += "webmin-module-system-status libnet-ssleay-perl perl-module-fi
 webmin-module-change-user webmin-module-net webmin-module-pam webmin-module-shell webmin-module-smart-status webmin-module-sshd webmin-module-status webmin-module-time \
 webmin-module-system-status webmin-module-webmin webmin-module-webminlog webmin-module-updown webmin-module-acl webmin-module-servers webmin-module-filemin \
 webmin-module-fdisk webmin-module-exports webmin-module-useradmin webmin-module-passwd webmin-module-proc webmin-module-proftpd webmin-module-webmincron \
-webmin-module-software perl-module-json-pp libauthen-pam-perl \
+webmin-module-software perl-module-json-pp libauthen-pam-perl shared-mime-info \
 "
 
 RRECOMMENDS_${PN}-module-proc = "procps"

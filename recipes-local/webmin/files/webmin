@@ -1,0 +1,8 @@
+auth	  required     pam_sepermit.so
+#### auth       sufficient   pam_sss.so use_first_pass
+auth	   sufficient   pam_sss.so
+auth	   required     pam_unix.so nullok
+
+account    include	password-auth
+
+password   include	password-auth
