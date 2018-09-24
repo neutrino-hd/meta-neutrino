@@ -126,7 +126,7 @@ do_install() {
 
 do_install_append() {
 	echo "lang_root=de.UTF-8" >> ${D}${sysconfdir}/webmin/config
-	install -d ${D}${sysconfdir}/webmin/authentic-theme#
+	install -d ${D}${sysconfdir}/webmin/authentic-theme
 	install -d ${D}${sysconfdir}/pam.d
 	install -m 644 ${WORKDIR}/samba_config ${D}${sysconfdir}/webmin/samba/config
         install -m 644 ${WORKDIR}/exports_config ${D}${sysconfdir}/webmin/exports/config
