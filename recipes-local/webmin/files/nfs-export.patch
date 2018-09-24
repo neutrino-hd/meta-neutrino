@@ -1,4 +1,4 @@
-From 608a5f18ec96bd5409307f6d79db5bc9d1e8e5f1 Mon Sep 17 00:00:00 2001
+From 41e9aaeeecf160c66abbf1e117ee848c33dbc206 Mon Sep 17 00:00:00 2001
 From: Yu Ke <ke.yu@intel.com>
 Date: Fri, 28 Oct 2011 14:40:51 +0800
 Subject: [PATCH] add webmin recipe

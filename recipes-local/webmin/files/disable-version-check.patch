@@ -1,4 +1,4 @@
-From 6f4bbfebd9458bd23b9a212071de9aff1952511e Mon Sep 17 00:00:00 2001
+From a5878c7a8c918e8d3c555e0ce4bdf0e600d66ef3 Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
 Date: Tue, 17 Apr 2018 01:18:05 +0200
 Subject: [PATCH] disable-version-check

@@ -1,4 +1,4 @@
-From 7ade62a659a71369fc0e91dcb8f4320d4dec7c27 Mon Sep 17 00:00:00 2001
+From cd29d110559bfe31c7fa6360f4e216f80dfaa1df Mon Sep 17 00:00:00 2001
 From: Kevin Strasser <kevin.strasser@linux.intel.com>
 Date: Wed, 1 Aug 2012 11:51:26 -0700
 Subject: [PATCH] nfs export: remove nfsd check

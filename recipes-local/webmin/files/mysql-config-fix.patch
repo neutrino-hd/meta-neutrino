@@ -1,4 +1,4 @@
-From 32bac02a8b084e50b14711d030216ba6e02b2aa5 Mon Sep 17 00:00:00 2001
+From 3ea30f2583306301db1e003b9c4e2a526f5dc6ae Mon Sep 17 00:00:00 2001
 From: Diego Rondini <diego.ml@zoho.com>
 Date: Thu, 18 Feb 2016 15:44:06 +0100
 Subject: [PATCH] Adjust Mysql config defaults

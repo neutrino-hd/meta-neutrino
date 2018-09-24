@@ -1,4 +1,4 @@
-From 954467bbf761c58ed74b1eb3f486310a645650f2 Mon Sep 17 00:00:00 2001
+From 8288df5f1b86c5a27041f908422feadbc0546790 Mon Sep 17 00:00:00 2001
 From: Robert Yang <liezhi.yang@windriver.com>
 Date: Tue, 2 Sep 2014 00:11:05 -0700
 Subject: [PATCH] ajaxterm/ajaxterm/qweb.py: fix hardcode of python2.3

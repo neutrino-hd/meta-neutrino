@@ -1,4 +1,4 @@
-From 43c0607ff0052973cb024787de03adb796598ae9 Mon Sep 17 00:00:00 2001
+From 138f9605a79d18e3391287e1796a68542694dcde Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
 Date: Tue, 17 Apr 2018 01:15:40 +0200
 Subject: [PATCH] net-generic
@@ -20,11 +20,11 @@ index 00000000..dbca8d85
 +do 'linux-lib.pl'
 +
 diff --git a/net/module.info b/net/module.info
-index d0efa23c..5098e490 100644
+index fdd0ac08..1de633ee 100644
 --- a/net/module.info
 +++ b/net/module.info
 @@ -1,7 +1,7 @@
- version=1.891
+ version=1.892
  longdesc=Configure boot time and active interfaces, DNS, routing and /etc/hosts.
  name=Networking
 -os_support=solaris coherent-linux redhat-linux/5.0-* mandrake-linux united-linux suse-linux/6.0-* open-linux unixware turbo-linux/4.0 freebsd/3.2-* openbsd debian-linux/2.2-* cobalt-linux/2.2-* msc-linux gentoo-linux macos/1.5-* trustix-linux slackware-linux/8.0-* openmamba-linux cygwin windows pardus-linux
