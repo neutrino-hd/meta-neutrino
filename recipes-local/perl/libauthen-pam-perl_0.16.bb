@@ -1,7 +1,7 @@
 
 DESCRIPTION = "Authen::PAM - Perl interface to PAM library"
 SECTION = "libs"
-LICENSE = "Artistic|GPLv1+"
+LICENSE = "Artistic-1.0 | GPL-1.0+"
 LIC_FILES_CHKSUM = "file://README;md5=8c11a6fcccff2c21bbbd34543655908d"
 DEPENDS = "libpam"
 RDEPENDS_${PN} = "perl-module-posix"
