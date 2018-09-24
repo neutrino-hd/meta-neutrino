@@ -7,7 +7,8 @@ DEPENDS = "libpam"
 RDEPENDS_${PN} = "perl-module-posix"
 PR = "r2"
 
-SRC_URI = "http://search.cpan.org/CPAN/authors/id/N/NI/NIKIP/Authen-PAM-${PV}.tar.gz;name=authen-pam-perl-${PV}"
+SRC_URI = "http://search.cpan.org/CPAN/authors/id/N/NI/NIKIP/Authen-PAM-${PV}.tar.gz;name=authen-pam-perl-${PV} \
+	   file://dotinc.patch"
 SRC_URI[authen-pam-perl-0.16.md5sum] = "7278471dfa694d9ef312bc92d7099af2"
 SRC_URI[authen-pam-perl-0.16.sha256sum] = "0e949bd9a2a9df0f829971030fe9169cbaf6cec78b92faf22f547ff6c6155c9b"
 
