@@ -5,18 +5,16 @@ LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://../LICENSE;md5=193ff0a3bc8b0d2cb0d1d881586d3388"
 
 DEPENDS += "lua openssl"
-SRCREV = "6578ceb40ee5a1b62a89f87e5303942d860fd90e"
+SRCREV = "fe39cdc41c84d5b365e3da766167c7c9551e3b2f"
 SRC_URI = "\
 	git://github.com/clark15b/xupnpd.git;branch=master \
-	file://0002-ui_restart-fix-xupnpd-install-path.patch \
-	file://xupnpd.service \
-	file://xupnpd_cst.diff \
+	file://xupnpd.patch \
 	file://xupnpd-dont-bind-daemon-to-specific-ip-address.patch \
-	file://xupnpd-fix-memleak-on-coolstream-boxes.patch \
-"
+	file://xupnpd.service \
+"	
 
 PV = "${SRCPV}"
-PR = "1"
+
 S = "${WORKDIR}/git/src"
 
 inherit base systemd
