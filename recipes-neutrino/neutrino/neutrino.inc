@@ -71,6 +71,8 @@ EXTRA_OECONF = " \
         --with-plugindir_var=/etc/neutrino/plugins \
 	--with-webtvdir=/usr/share/tuxbox/plugins/webtv \
 	--with-webtvdir_var=/etc/neutrino/plugins/webtv \
+        --with-webradiodir=/usr/share/tuxbox/plugins/webradio \
+        --with-webradiodir_var=/etc/neutrino/plugins/webradio \
 	--with-luaplugindir=/usr/share/tuxbox/plugins \
 	--with-gamesdir=/etc/neutrino/plugins \
 	--with-tmdb-dev-key="${TMDB_DEV_KEY}" \
@@ -133,7 +135,8 @@ do_install_prepend () {
 }
 
 do_install_append() {
-	install -d ${D}/share ${D}${sysconfdir}/neutrino/bin ${D}${sysconfdir}/neutrino/plugins/luaplugins ${D}${sysconfdir}/neutrino/plugins/webtv
+	install -d ${D}/share ${D}${sysconfdir}/neutrino/bin ${D}${sysconfdir}/neutrino/plugins/luaplugins
+	install -d ${D}${sysconfdir}/neutrino/plugins/webradio ${D}${sysconfdir}/neutrino/plugins/webtv
 	ln -s ${datadir}/tuxbox ${D}/share/
 	ln -s ${datadir}/fonts  ${D}/share/
 	if [ ! -z ${RELEASE_TEXT_LOCATION} ];then
