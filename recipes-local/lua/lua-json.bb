@@ -1,18 +1,19 @@
 DESCRIPTION = "Simple JSON Encode/Decode in Pure Lua"
 LICENSE = "CC-BY-3.0"
 LIC_FILES_CHKSUM = " \
-	file://JSON.lua;beginline=1;endline=16;md5=e06eabfd75688389044020b8796f0a65 \
+	file://JSON.lua;beginline=1;endline=16;md5=47b3a45c4ad6038f261c8a6670f02fb5 \
 "
 HOMEPAGE = "http://regex.info/blog/lua/json/"
 DEPENDS="lua"
 
 SRC_URI = " \
-	file://JSON.lua \
+	http://regex.info/code/JSON.lua \
 "
 
-inherit allarch
+SRC_URI[md5sum] = "dc70adca6d27ec74b4547913ecd5957d"
+SRC_URI[sha256sum] = "abea53010e9e6897095623967eee6b6d74b7f8da13442176dcef04e01160e4f2"
 
-PV = "20141223.14"
+inherit allarch
 
 S = "${WORKDIR}"
 
