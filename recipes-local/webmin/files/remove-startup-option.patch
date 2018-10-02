@@ -1,4 +1,4 @@
-From 7d9703e26653a37846e6face4874c981a26588d0 Mon Sep 17 00:00:00 2001
+From 5987b3570cd535391485df770e27d280da7d6d9d Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
 Date: Sun, 15 Apr 2018 18:49:09 +0200
 Subject: [PATCH] add webmin recipe
@@ -15,7 +15,7 @@ Subject: [PATCH] add webmin recipe
  1 file changed, 14 deletions(-)
 
 diff --git a/webmin/index.cgi b/webmin/index.cgi
-index 7c566dc2..3917694c 100755
+index 7c566dc..3917694 100755
 --- a/webmin/index.cgi
 +++ b/webmin/index.cgi
 @@ -79,20 +79,6 @@ print &ui_buttons_start();

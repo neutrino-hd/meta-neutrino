@@ -1,4 +1,4 @@
-From cd29d110559bfe31c7fa6360f4e216f80dfaa1df Mon Sep 17 00:00:00 2001
+From 5cc30c8d10ef560a5c6d77900c71a35c90423027 Mon Sep 17 00:00:00 2001
 From: Kevin Strasser <kevin.strasser@linux.intel.com>
 Date: Wed, 1 Aug 2012 11:51:26 -0700
 Subject: [PATCH] nfs export: remove nfsd check
@@ -16,7 +16,7 @@ Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/exports/exports-lib.pl b/exports/exports-lib.pl
-index 3ab6c913..4a3fb74d 100755
+index 3ab6c91..4a3fb74 100755
 --- a/exports/exports-lib.pl
 +++ b/exports/exports-lib.pl
 @@ -301,7 +301,7 @@ return !&has_command("rpc.nfsd") && !&has_command("nfsd") &&

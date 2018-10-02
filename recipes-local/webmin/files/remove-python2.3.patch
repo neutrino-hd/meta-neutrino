@@ -1,4 +1,4 @@
-From 8288df5f1b86c5a27041f908422feadbc0546790 Mon Sep 17 00:00:00 2001
+From eae1a5c56245817ffba5644f2d93720482dc19c0 Mon Sep 17 00:00:00 2001
 From: Robert Yang <liezhi.yang@windriver.com>
 Date: Tue, 2 Sep 2014 00:11:05 -0700
 Subject: [PATCH] ajaxterm/ajaxterm/qweb.py: fix hardcode of python2.3
@@ -12,7 +12,7 @@ Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/ajaxterm/ajaxterm/qweb.py b/ajaxterm/ajaxterm/qweb.py
-index 20c50923..c658a6ba 100644
+index 20c5092..c658a6b 100644
 --- a/ajaxterm/ajaxterm/qweb.py
 +++ b/ajaxterm/ajaxterm/qweb.py
 @@ -1,4 +1,4 @@

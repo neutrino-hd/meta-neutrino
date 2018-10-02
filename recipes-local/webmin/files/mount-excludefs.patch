@@ -1,4 +1,4 @@
-From 68691d4e55a79a6f94c86884df11ebd15dd80157 Mon Sep 17 00:00:00 2001
+From 69399c29963f2ceddd3210fcb87f91d9272edd08 Mon Sep 17 00:00:00 2001
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 Date: Sun, 15 Apr 2018 18:49:09 +0200
 Subject: [PATCH] Add excludefs config option to mount module
@@ -16,7 +16,7 @@ Upstream-status: Pending
  1 file changed, 2 insertions(+)
 
 diff --git a/mount/index.cgi b/mount/index.cgi
-index e53b4685..b45221a5 100755
+index e53b468..b45221a 100755
 --- a/mount/index.cgi
 +++ b/mount/index.cgi
 @@ -33,10 +33,12 @@ elsif ($config{'sort_mode'} == 1) {

@@ -1,4 +1,4 @@
-From 334f8da124f075d30f98cb57c7650fec96edb81f Mon Sep 17 00:00:00 2001
+From ada04f1c4507bdcd062e12b4d0ba5a46a41a4194 Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
 Date: Sun, 15 Apr 2018 18:49:09 +0200
 
@@ -15,7 +15,7 @@ Date: Sun, 15 Apr 2018 18:49:09 +0200
 
 diff --git a/mediatomb/index.cgi b/mediatomb/index.cgi
 new file mode 100644
-index 00000000..5d929f26
+index 0000000..5d929f2
 --- /dev/null
 +++ b/mediatomb/index.cgi
 @@ -0,0 +1,13 @@
@@ -34,7 +34,7 @@ index 00000000..5d929f26
 +ui_print_footer("/", $text{'index'});
 diff --git a/mediatomb/lang/en b/mediatomb/lang/en
 new file mode 100644
-index 00000000..a06509fb
+index 0000000..a06509f
 --- /dev/null
 +++ b/mediatomb/lang/en
 @@ -0,0 +1,2 @@
@@ -42,7 +42,7 @@ index 00000000..a06509fb
 +index_desc=MediaTomb is an open source (GPL) UPnP MediaServer with a nice web user interface. You can access it via <a href='http://$1:49153'>here</a>.
 diff --git a/mediatomb/mediatomb-lib.pl b/mediatomb/mediatomb-lib.pl
 new file mode 100644
-index 00000000..cd13abfa
+index 0000000..cd13abf
 --- /dev/null
 +++ b/mediatomb/mediatomb-lib.pl
 @@ -0,0 +1,31 @@
@@ -79,7 +79,7 @@ index 00000000..cd13abfa
 +
 diff --git a/mediatomb/module.info b/mediatomb/module.info
 new file mode 100644
-index 00000000..2f5e87a1
+index 0000000..2f5e87a
 --- /dev/null
 +++ b/mediatomb/module.info
 @@ -0,0 +1,3 @@

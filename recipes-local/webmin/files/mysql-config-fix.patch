@@ -1,4 +1,4 @@
-From 3ea30f2583306301db1e003b9c4e2a526f5dc6ae Mon Sep 17 00:00:00 2001
+From 79df038ca12232997f7ce6cefc640148842b4ded Mon Sep 17 00:00:00 2001
 From: Diego Rondini <diego.ml@zoho.com>
 Date: Thu, 18 Feb 2016 15:44:06 +0100
 Subject: [PATCH] Adjust Mysql config defaults
@@ -12,7 +12,7 @@ Signed-off-by: Diego Rondini <diego.ml@zoho.com>
  1 file changed, 9 insertions(+), 9 deletions(-)
 
 diff --git a/mysql/config b/mysql/config
-index e5b6fb38..77bfe695 100644
+index e5b6fb3..77bfe69 100644
 --- a/mysql/config
 +++ b/mysql/config
 @@ -1,13 +1,13 @@

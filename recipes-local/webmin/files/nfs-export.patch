@@ -1,4 +1,4 @@
-From 41e9aaeeecf160c66abbf1e117ee848c33dbc206 Mon Sep 17 00:00:00 2001
+From 81d1ae883db2c5e8350cd2035699c1b319e2c626 Mon Sep 17 00:00:00 2001
 From: Yu Ke <ke.yu@intel.com>
 Date: Fri, 28 Oct 2011 14:40:51 +0800
 Subject: [PATCH] add webmin recipe
@@ -20,7 +20,7 @@ Signed-off-by: Yu Ke <ke.yu@intel.com>
  1 file changed, 6 insertions(+), 1 deletion(-)
 
 diff --git a/exports/save_export.cgi b/exports/save_export.cgi
-index bcd4f886..0aa64b19 100755
+index bcd4f88..0aa64b1 100755
 --- a/exports/save_export.cgi
 +++ b/exports/save_export.cgi
 @@ -50,7 +50,7 @@ else {

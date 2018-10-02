@@ -1,4 +1,4 @@
-From a5878c7a8c918e8d3c555e0ce4bdf0e600d66ef3 Mon Sep 17 00:00:00 2001
+From 489bd334d9ded7e3be770f778d115b8ac9d514d0 Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
 Date: Tue, 17 Apr 2018 01:18:05 +0200
 Subject: [PATCH] disable-version-check
@@ -10,7 +10,7 @@ Signed-off-by: Markus Volk <f_l_k@t-online.de>
  1 file changed, 22 insertions(+), 22 deletions(-)
 
 diff --git a/webmin/webmin-lib.pl b/webmin/webmin-lib.pl
-index 49f7c86c..a14aa081 100755
+index 49f7c86..a14aa08 100755
 --- a/webmin/webmin-lib.pl
 +++ b/webmin/webmin-lib.pl
 @@ -1120,28 +1120,28 @@ my %miniserv;
