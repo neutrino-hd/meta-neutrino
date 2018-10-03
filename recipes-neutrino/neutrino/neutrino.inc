@@ -19,7 +19,6 @@ DEPENDS += " \
 	libid3tag \
 	libjpeg-turbo \
 	pugixml \
-	libmad \
 	libpng \
 	libsigc++-2.0\
 	lua \
@@ -28,12 +27,13 @@ DEPENDS += " \
 	openthreads \
 	virtual/libstb-hal \
 	virtual/libiconv \
-	libvorbis \
 	fontconfig \
 	libpng \
 	tremor \
 	zlib \
 "
+
+RDEPENDS_${PN} = "streamripper"
 
 S = "${WORKDIR}/git"
 
