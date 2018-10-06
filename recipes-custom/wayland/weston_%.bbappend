@@ -6,3 +6,6 @@ EXTRA_OECONF = "--enable-setuid-install \
 		"
 
 PACKAGECONFIG ??= "fbdev clients launch"
+
+RDEPENDS_${PN} += "weston-init"
+
