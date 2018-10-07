@@ -1,2 +1,2 @@
-HDD  -rw,soft,intr,vers=3 localhost:/media/HDD
+hdd  -rw,soft,intr,vers=3 localhost:/media/hdd
 

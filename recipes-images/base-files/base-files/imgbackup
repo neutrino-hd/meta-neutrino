@@ -1,8 +1,8 @@
 #!/bin/sh
 
 machine="hd51"
-hdd_mount="/media/USB"
-mountpoint -q /media/HDD && hdd_mount="/media/HDD"
+hdd_mount="/media/usb"
+mountpoint -q /media/hdd && hdd_mount="/media/hdd"
 servicedir="$hdd_mount/service"
 kernelname="kernel.bin"
 picture_source="/usr/share/tuxbox/neutrino/icons"

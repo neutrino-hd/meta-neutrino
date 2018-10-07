@@ -29,8 +29,8 @@ do_mount()
                	LABEL="$(udevadm info --query=property --name=${DEVICE} | grep ID_VENDOR= | cut -d= -f2)"
         fi
 
-        udevadm info --query=property --name=${DEVICE} | grep ID_PATH | grep "platform-f0470300.ehci-usb-0:1.3:1.0-scsi-0:0:0:0" && LABEL="USB"
-        udevadm info --query=property --name=${DEVICE} | grep ID_BUS | grep "ata" && LABEL="HDD"
+        udevadm info --query=property --name=${DEVICE} | grep ID_PATH | grep "platform-f0470300.ehci-usb-0:1.3:1.0-scsi-0:0:0:0" && LABEL="usb"
+        udevadm info --query=property --name=${DEVICE} | grep ID_BUS | grep "ata" && LABEL="hdd"
 
        	MOUNT_POINT="/media/${LABEL}"
 
