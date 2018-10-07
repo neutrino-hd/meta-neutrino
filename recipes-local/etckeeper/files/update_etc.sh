@@ -2,7 +2,7 @@
 
 rootdevice=$(sed -e 's/^.*root=//' -e 's/ .*$//' < /proc/cmdline)
 dev="usb"
-mountpoint -q /media/HDD && dev="hdd"
+mountpoint -q /media/hdd && dev="hdd"
 
 if [ $rootdevice = /dev/mmcblk0p3 ]; then
 	GIT__URL="/media/$dev/service/partition1/git/etc.git"
