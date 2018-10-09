@@ -52,6 +52,7 @@ IMAGE_INSTALL += " \
 	bzip2 \
 	ca-certificates \
 	cifs-utils \
+	crossplatform-iptvplayer \
 	curl \
 	dosfstools \
 	dvb-femon \
