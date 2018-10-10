@@ -18,6 +18,7 @@ set_root_passwd() {
 }
 
 DEPENDS_append += " \
+	crossplatform-iptvplayer \
 	dropbear \
 	dvb-apps \
 	dvbsnoop \
@@ -52,7 +53,6 @@ IMAGE_INSTALL += " \
 	bzip2 \
 	ca-certificates \
 	cifs-utils \
-	crossplatform-iptvplayer \
 	curl \
 	dosfstools \
 	dvb-femon \
