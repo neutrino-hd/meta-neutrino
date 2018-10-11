@@ -8,7 +8,7 @@ SECTION = "console/utils"
 DEPENDS = "ncurses"
 #RDEPENDS_${PN} = "ncurses-terminfo"
 
-SRC_URI = "http://www.nano-editor.org/dist/v2.9/nano-${PV}.tar.gz"
+SRC_URI = "http://www.nano-editor.org/dist/v3/nano-${PV}.tar.gz"
 
 inherit autotools gettext
 
