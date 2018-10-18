@@ -22,29 +22,28 @@ S = "${WORKDIR}/git"
 inherit autotools-brokensep systemd
 
 do_configure_prepend () {
-        sed -i "s|GIT_USER|${GIT_USER}|" ${WORKDIR}/update_etc.sh
-        sed -i "s|MAIL|${MAIL}|" ${WORKDIR}/update_etc.sh
-        sed -i "s|GIT_USER|${GIT_USER}|" ${WORKDIR}/create_etc.sh
-        sed -i "s|MAIL|${MAIL}|" ${WORKDIR}/create_etc.sh
+	sed -i "s|GIT_USER|${GIT_USER}|" ${WORKDIR}/update_etc.sh
+	sed -i "s|MAIL|${MAIL}|" ${WORKDIR}/update_etc.sh
+	sed -i "s|GIT_USER|${GIT_USER}|" ${WORKDIR}/create_etc.sh
+	sed -i "s|MAIL|${MAIL}|" ${WORKDIR}/create_etc.sh
 }
 
 do_install_append () {
-        install -d ${D}${systemd_unitdir}/system/timers.target.wants
-        install -m 644 ${WORKDIR}/etckeeper.conf ${D}/etc/etckeeper
-        install -m 755 ${WORKDIR}/update_etc.sh ${D}/etc/etckeeper/update_etc.sh
-        install -m 755 ${WORKDIR}/create_etc.sh ${D}/etc/etckeeper/create_etc.sh
+	install -d ${D}${systemd_unitdir}/system/timers.target.wants
+	install -m 644 ${WORKDIR}/etckeeper.conf ${D}/etc/etckeeper
+	install -m 755 ${WORKDIR}/update_etc.sh ${D}/etc/etckeeper/update_etc.sh
+	install -m 755 ${WORKDIR}/create_etc.sh ${D}/etc/etckeeper/create_etc.sh
 }
 
 do_install_append () {
-        install -d ${D}${systemd_unitdir}/system/timers.target.wants
-        install -m 644 ${WORKDIR}/etckeeper.conf ${D}/etc/etckeeper
-        install -m 755 ${WORKDIR}/update_etc.sh ${D}/etc/etckeeper/update_etc.sh
-        install -m 755 ${WORKDIR}/create_etc.sh ${D}/etc/etckeeper/create_etc.sh
-        install -m 644 ${WORKDIR}/create-etc.service ${D}${systemd_unitdir}/system
-        ln -s /usr/lib/systemd/system/etckeeper.timer ${D}${systemd_unitdir}/system/timers.target.wants/etckeeper.timer
+	install -d ${D}${systemd_unitdir}/system/timers.target.wants
+	install -m 644 ${WORKDIR}/etckeeper.conf ${D}/etc/etckeeper
+	install -m 755 ${WORKDIR}/update_etc.sh ${D}/etc/etckeeper/update_etc.sh
+	install -m 755 ${WORKDIR}/create_etc.sh ${D}/etc/etckeeper/create_etc.sh
+	ln -s /usr/lib/systemd/system/etckeeper.timer ${D}${systemd_unitdir}/system/timers.target.wants/etckeeper.timer
 }
 
 FILES_${PN}_append += "/lib/systemd \
-                       /usr/share/bash-completion \
-                       /usr/lib/ \
+		       /usr/share/bash-completion \
+		       /usr/lib/ \
 "
