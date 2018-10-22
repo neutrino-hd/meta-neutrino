@@ -11,7 +11,7 @@ GO_IMPORT = "github.com/mattn/go-shellwords"
 SRC_URI = "git://${GO_IMPORT} \
 "
 
-SRCREV = "39dbbfa24bbc39559b61cae9b20b0e8db0e55525"
+SRCREV = "${AUTOREV}"
 
 inherit go
 

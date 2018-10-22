@@ -11,7 +11,7 @@ GO_IMPORT = "github.com/mattn/go-isatty"
 SRC_URI = "git://${GO_IMPORT} \
 "
 
-SRCREV = "6ca4dbf54d38eea1a992b3c722a76a5d1c4cb25c"
+SRCREV = "${AUTOREV}"
 
 inherit go
 

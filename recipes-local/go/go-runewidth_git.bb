@@ -11,7 +11,7 @@ GO_IMPORT = "github.com/mattn/go-runewidth"
 SRC_URI = "git://${GO_IMPORT} \
 "
 
-SRCREV = "ce7b0b5c7b45a81508558cd1dba6bb1e4ddb51bb"
+SRCREV = "${AUTOREV}"
 
 inherit go
 

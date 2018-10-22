@@ -18,6 +18,6 @@ SRC_URI = "\
 	git://github.com/golang/text.git;protocol=https;name=text;destsuffix=${PN}-${PV}/src/golang.org/x/text \
 	"
 
-SRCREV_net = "07b51741c1d6423d4a6abab1c49940ec09cb1aaf"
-SRCREV_crypto = "a548aac93ed489257b9d959b40fe1e8c1e20778c"
-SRCREV_text = "d69c40b4be55797923cec7457fac7a244d91a9b6"
+SRCREV_net = "${AUTOREV}"
+SRCREV_crypto = "${AUTOREV}"
+SRCREV_text = "${AUTOREV}"

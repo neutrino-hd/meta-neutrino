@@ -11,7 +11,7 @@ GO_IMPORT = "github.com/lucasb-eyer/go-colorful"
 SRC_URI = "git://${GO_IMPORT} \
 "
 
-SRCREV = "231272389856c976b7500c4fffcc52ddf06ff4eb"
+SRCREV = "${AUTOREV}"
 
 inherit go
 

@@ -13,7 +13,7 @@ GO_IMPORT = "github.com/gdamore/encoding"
 SRC_URI = "git://${GO_IMPORT} \
 "
 
-SRCREV = "b23993cbb6353f0e6aa98d0ee318a34728f628b9"
+SRCREV = "${AUTOREV}"
 
 inherit go
 
