@@ -14,6 +14,4 @@ S ="${WORKDIR}/git"
 
 inherit cmake pythonnative
 
-EXTRA_OECONF = "--prefix ${prefix}"
-
 BBCLASSEXTEND = "native"
