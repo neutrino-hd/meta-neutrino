@@ -98,10 +98,10 @@ mkdir -p "$destination"
 mountpoint -q /mnt/partition_"$part" && systemctl stop mnt-partition_"$part".mount
 
 printf '\n\033[33m%s\033[37m%s\n' "Creating kernel backup in $destination/$kernelname " && echo "Creating kernel backup" > "$dev_display"
-pv -w 80 < "$devbase$kernel" > "$destination/$kernelname"
+pv -w 100 < "$devbase$kernel" > "$destination/$kernelname"
 
 printf '\n\033[33m%s\033[37m%s\n' "Creating rootfs backup in $destination/$rootfsname" && echo "Creating rootfs backup" > "$dev_display"
-e2image -ra "$devbase$root" - | pv -w 80 -s800M | bzip2 --fast > "$destination/$rootfsname.bz2"
+e2image -ra "$devbase$root" - | pv -w 100 -s800M | bzip2 --fast > "$destination/$rootfsname.bz2"
 
 [ -f "$servicedir/image/imageversion_partition_$part" ] && cp -f "$servicedir/image/imageversion_partition_$part" "$destination/imageversion"
 mountpoint -q /mnt/partition_"$part" || systemctl start mnt-partition_"$part".mount
