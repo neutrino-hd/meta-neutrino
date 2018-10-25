@@ -40,7 +40,7 @@ do_install_append () {
 	install -m 644 ${WORKDIR}/etckeeper.conf ${D}/etc/etckeeper
 	install -m 755 ${WORKDIR}/update_etc.sh ${D}/etc/etckeeper/update_etc.sh
 	install -m 755 ${WORKDIR}/create_etc.sh ${D}/etc/etckeeper/create_etc.sh
-	ln -s /usr/lib/systemd/system/etckeeper.timer ${D}${systemd_unitdir}/system/timers.target.wants/etckeeper.timer
+	ln -s /lib/systemd/system/etckeeper.timer ${D}${systemd_unitdir}/system/timers.target.wants/etckeeper.timer
 }
 
 FILES_${PN}_append += "/lib/systemd \
