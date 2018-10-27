@@ -21,6 +21,7 @@ DEPENDS_append += " \
 	crossplatform-iptvplayer \
 	dropbear \
 	dvb-apps \
+	dvb-usb-drivers-meta \
 	dvbsnoop \
 	fzf \
 	ifuse \
@@ -56,7 +57,6 @@ IMAGE_INSTALL += " \
 	curl \
 	dosfstools \
 	dvb-femon \
-	dvb-usb-drivers-meta \
 	e2fsprogs \
 	etckeeper \
 	exfat-utils \
