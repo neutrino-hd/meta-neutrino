@@ -18,9 +18,5 @@ do_install_append() {
 pkg_postinst_ontarget_${PN}() {
 #!/bin/sh
 
-if pdbedit -L | grep root >> /dev/null;then
-        exit
-else
-    	smbpasswd -n -a root
-fi
+pdbedit -L | grep root >> /dev/null || smbpasswd -n -a root
 }
