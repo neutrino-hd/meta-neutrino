@@ -79,6 +79,7 @@ IMAGE_INSTALL += " \
 	imagemagick \
 	libswscale \
 	libusb1 \
+	links \
 	localedef \
 	minidlna \
 	nano \
