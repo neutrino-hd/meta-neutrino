@@ -1,0 +1,26 @@
+From 692202149be70edd43d46405646a4c58c7bbbc73 Mon Sep 17 00:00:00 2001
+From: Satbaby <Jacek Jendrzej>
+Date: Wed, 31 Oct 2018 10:40:22 +0100
+Subject: [PATCH] libdvbsi++-fix-descriptorLenghth
+
+Signed-off-by: MarkusVolk <f_l_k@t-online.de>
+---
+ src/descriptor.cpp | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/src/descriptor.cpp b/src/descriptor.cpp
+index 8c914a9..beaf4d7 100644
+--- a/src/descriptor.cpp
++++ b/src/descriptor.cpp
+@@ -17,6 +17,9 @@ Descriptor::Descriptor(const uint8_t * const buffer)
+ 	descriptorTag = buffer[0];
+ 	descriptorLength = buffer[1];
+ 
++	if (!descriptorLength)
++		descriptorLength = 1;
++
+ 	dataBytes.resize(descriptorLength);
+ 	memcpy(&dataBytes[0], &buffer[2], descriptorLength);
+ 
+-- 
+2.7.4

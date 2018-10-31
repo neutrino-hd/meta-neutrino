@@ -10,6 +10,7 @@ SRC_URI = " \
            file://libdvbsi++-fix-unaligned-access-on-SuperH.patch \
            file://libdvbsi++-src-time_date_section.cpp-fix-sectionLength-check.patch \
 	   file://libdvbsi++-content_identifier_descriptor.patch \
+	   file://libdvbsi++-fix-descriptorLenghth.patch \
 "
 
 SRCREV = "${AUTOREV}"
@@ -17,6 +18,3 @@ SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git"
 
 inherit autotools pkgconfig
-
-CPPFLAGS_libc-uclibc = "-D_GLIBCXX_USE_CXX11_ABI=0"
-
