@@ -12,6 +12,7 @@ SRC_URI = "http://links.twibright.com/download/links-${PV}.tar.bz2 \
 	   file://links-2.17-hd51-input.patch \
 	   file://links.cfg \
 	   file://bookmarks \
+	   file://bookmarks.html \
 "
 
 S = "${WORKDIR}/links-${PV}"
@@ -42,6 +43,7 @@ do_install_append() {
 	install -m 0644 ${WORKDIR}/bookmarks ${D}/etc/neutrino/config
         install -m 0644 ${WORKDIR}/links.cfg ${D}/usr/share/tuxbox/plugins
 	touch ${D}/etc/neutrino/config/links/links.his
+        install -m 0644 ${WORKDIR}/bookmarks.html ${D}/etc/neutrino/config/links
 }
 
 FILES_${PN} += "/usr"
