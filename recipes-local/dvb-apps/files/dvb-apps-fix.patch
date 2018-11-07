@@ -1,0 +1,11 @@
+--- a/util/scan/Makefile	2018-11-07 21:12:14.761095554 +0100
++++ b/util/scan/Makefile	2018-11-07 21:13:49.379246517 +0100
+@@ -25,7 +25,7 @@
+ $(objects): atsc_psip_section.c atsc_psip_section.h
+ 
+ atsc_psip_section.c atsc_psip_section.h:
+-	perl section_generate.pl atsc_psip_section.pl
++	perl section_generate.pl ./atsc_psip_section.pl
+ 
+ include ../../Make.rules
+ 
