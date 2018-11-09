@@ -5,8 +5,7 @@ SRC_URI_append += "git://github.com/TangoCash/neutrino-mp-cst-next.git;protocol=
 "
 
 
-EXTRA_OECONF_append += "--with-boxtype=hd51 \
-						--with-stb-hal-includes=${STAGING_INCDIR}/libstb-hal \
-						--enable-reschange \
-						--disable-tangos \				
+EXTRA_OECONF_append += "--enable-reschange \
+			--disable-tangos \				
+                        --with-stb-hal-includes=${STAGING_INCDIR}/libstb-hal \
 "
