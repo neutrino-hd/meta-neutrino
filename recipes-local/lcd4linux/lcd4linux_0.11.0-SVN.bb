@@ -10,7 +10,7 @@ PR = "r2"
 
 EXTRA_OECONF = " \
     --with-ncurses=${STAGING_LIBDIR}/..\
-    --without-x\
+    --without-x \
 "
 
 SRC_URI = "svn://ssl.bulix.org/svn/lcd4linux/;module=trunk;protocol=https;rev=1200 \
@@ -40,7 +40,5 @@ CONFFILES_${PN} += "${sysconfdir}/lcd4linux.conf"
 do_install_append() {
     install -d ${D}${sysconfdir} ${D}${systemd_unitdir}/system
     install -m 0600 ${S}/lcd4linux.conf.sample  ${D}${sysconfdir}/lcd4linux.conf
-    install -d ${D}/${INIT_D_DIR}
     install -m 0755 ${WORKDIR}/lcd4linux.service ${D}${systemd_unitdir}/system/lcd4linux.service
 }
-
