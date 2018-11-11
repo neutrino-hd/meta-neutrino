@@ -25,6 +25,7 @@ DEPENDS_append += " \
 	dvbsnoop \
 	fzf \
 	ifuse \
+	lcd4linux \
 	libxslt \
 	mc \
 	ncdu \
