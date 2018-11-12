@@ -5,18 +5,20 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=80
 DEPENDS = "libusb1 libusb-compat ncurses readline jpeg dbus-glib sqlite3"
 RDEPENDS_${PN} = "jpeg"
 
-PV = "0.11.0-SVN"
-PR = "r2"
+PV = "0.11.0"
+PR = "r3"
 
 EXTRA_OECONF = " \
     --with-ncurses=${STAGING_LIBDIR}/..\
     --without-x \
 "
 
-SRC_URI = "svn://ssl.bulix.org/svn/lcd4linux/;module=trunk;protocol=https;rev=1200 \
-	   file://lcd4linux.service"
+SRC_URI = "git://github.com/TangoCash/lcd4linux.git;protocol=https \
+	   file://lcd4linux.service \
+"
 
-S =  "${WORKDIR}/trunk"
+SRCREV = "${AUTOREV}"
+S =  "${WORKDIR}/git"
 
 addtask setlibtool before do_configure after do_patch
 
