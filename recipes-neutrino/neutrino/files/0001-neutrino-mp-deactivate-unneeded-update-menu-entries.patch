@@ -1,0 +1,46 @@
+From 386aa76a71a517accddf86a78fb021abe2662bc6 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Mon, 12 Nov 2018 08:58:44 +0100
+Subject: [PATCH] deactivate unneeded update menu entries
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ src/gui/update_menue.cpp | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/src/gui/update_menue.cpp b/src/gui/update_menue.cpp
+index 7214634..fd3073e 100644
+--- a/src/gui/update_menue.cpp
++++ b/src/gui/update_menue.cpp
+@@ -91,21 +91,21 @@ int CSoftwareUpdate::showSoftwareUpdate()
+ 	CFlashUpdate flash;
+ 	//online update
+ 	if (file_exists(g_settings.softupdate_url_file.c_str())) {
+-		update_item = new CMenuForwarder(LOCALE_FLASHUPDATE_CHECKUPDATE_INTERNET, true, NULL, &flash, "inet", inetkey);
++/*		update_item = new CMenuForwarder(LOCALE_FLASHUPDATE_CHECKUPDATE_INTERNET, true, NULL, &flash, "inet", inetkey);
+ 		update_item->setHint("", LOCALE_MENU_HINT_SOFTUPDATE_CHECK);
+-		softUpdate.addItem(update_item);
++		softUpdate.addItem(update_item);*/
+ 	}
+ 
+ 	//local update
+-	update_item = new CMenuForwarder(LOCALE_FLASHUPDATE_CHECKUPDATE_LOCAL, true, NULL, &flash, "local", CRCInput::RC_green);
++/*	update_item = new CMenuForwarder(LOCALE_FLASHUPDATE_CHECKUPDATE_LOCAL, true, NULL, &flash, "local", CRCInput::RC_green);
+ 	update_item->setHint("", LOCALE_MENU_HINT_SOFTUPDATE_CHECK_LOCAL);
+-	softUpdate.addItem(update_item);
++	softUpdate.addItem(update_item);*/
+ 
+ 	//settings
+-	CUpdateSettings update_settings;
+-	mf = new CMenuForwarder(LOCALE_FLASHUPDATE_SETTINGS, true, NULL, &update_settings, NULL, CRCInput::RC_yellow);
++/*	CUpdateSettings update_settings;
++	mf = new CMenuForwarder(LOCALE_FLASHUPDATE_SETTINGS, true, NULL, &update_settings, NULL, CRCInput::RC_yellow);
+ 	mf->setHint("", LOCALE_MENU_HINT_SOFTUPDATE_SETTINGS);
+-	softUpdate.addItem(mf);
++	softUpdate.addItem(mf);*/
+ 
+ #if !HAVE_ARM_HARDWARE
+ 	softUpdate.addItem(GenericMenuSeparatorLine);
+-- 
+2.1.4
+

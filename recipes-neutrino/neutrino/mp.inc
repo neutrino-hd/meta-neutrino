@@ -1,5 +1,6 @@
 
 SRC_URI_append += "git://github.com/tuxbox-neutrino/gui-neutrino.git;protocol=https \
+		   file://0001-neutrino-mp-deactivate-unneeded-update-menu-entries.patch \
 "
 
 DEFAULT_THEME ?= "Neutrino-3.0"
