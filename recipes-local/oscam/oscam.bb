@@ -35,6 +35,7 @@ EXTRA_OECMAKE = " \
 		 -DCS_SVN_VERSION="${SRCPV}" \
 		 -DDEFAULT_CS_CONFDIR="/etc/neutrino/config" \
 		 -DWEBIF=1 \
+		 -DLCDSUPPORT=1 \
 		 -DUSE_LIBCRYPTO=1 \
 		 -DUSE_LIBUSB=1 \
 		 -DUSE_STAPI=0 \
