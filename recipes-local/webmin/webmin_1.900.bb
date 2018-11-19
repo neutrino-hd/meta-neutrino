@@ -3,7 +3,7 @@ HOMEPAGE = "http://www.webmin.com"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://LICENCE;md5=0373ac9f611e542ddebe1ec6394afc3c"
 
-SRC_URI = "https://download.webmin.com/devel/tarballs/webmin-${PV}.tar.gz \
+SRC_URI = "https://github.com/webmin/webmin/archive/${PV}.tar.gz \
            file://setup.sh \
            file://init-exclude.patch \
            file://net-generic.patch \
@@ -23,13 +23,11 @@ SRC_URI = "https://download.webmin.com/devel/tarballs/webmin-${PV}.tar.gz \
 	   file://exports_config \
 	   file://smart_config \
 	   file://proftpd_config \
-	   file://authentic_settings-root \
-	   file://authentic_settings.js \
 	   file://webmin \
 "
 
-SRC_URI[md5sum] = "578da034628eb1cb005b7e20cbdd1e3c"
-SRC_URI[sha256sum] = "61a53864d1d02304933b282b2f456aab8d29f7f0ad7e7041b37dd1c32cc36155"
+SRC_URI[md5sum] = "4ca0164e4208dc42294b017e72c42e80"
+SRC_URI[sha256sum] = "44269655a736d14e41f1a95663b1c7d6f908bd5248ae5f4c4caad0a26998fe1b"
 
 inherit perlnative systemd
 
@@ -125,16 +123,18 @@ do_install() {
 }
 
 do_install_append() {
-	echo "lang_root=de.UTF-8" >> ${D}${sysconfdir}/webmin/config
-	install -d ${D}${sysconfdir}/webmin/authentic-theme
 	install -d ${D}${sysconfdir}/pam.d
 	install -m 644 ${WORKDIR}/samba_config ${D}${sysconfdir}/webmin/samba/config
         install -m 644 ${WORKDIR}/exports_config ${D}${sysconfdir}/webmin/exports/config
         install -m 644 ${WORKDIR}/smart_config ${D}${sysconfdir}/webmin/smart-status/config
         install -m 644 ${WORKDIR}/proftpd_config ${D}${sysconfdir}/webmin/proftpd/config
-        install -m 644 ${WORKDIR}/authentic_settings-root ${D}${sysconfdir}/webmin/authentic-theme/settings-root
-        install -m 644 ${WORKDIR}/authentic_settings.js ${D}${sysconfdir}/webmin/authentic-theme/settings.js
         install -m 644 ${WORKDIR}/webmin ${D}${sysconfdir}/pam.d
+	rm -rf ${D}/usr/libexec/webmin/shellinabox/cgi-bin # remove precompiled x86 binaries
+	echo "theme_root=authentic-theme" >> ${D}${sysconfdir}/webmin/config
+        echo "theme=authentic-theme" >> ${D}${sysconfdir}/webmin/config
+        echo "preroot=authentic-theme" >> ${D}${sysconfdir}/webmin/miniserv.conf
+	echo "preroot_root=authentic-theme" >> ${D}${sysconfdir}/webmin/miniserv.conf
+        echo "lang=de" >> ${D}${sysconfdir}/webmin/config
 }
 
 SYSTEMD_SERVICE_${PN} = "webmin.service"
@@ -143,13 +143,13 @@ SYSTEMD_AUTO_ENABLE_${PN} = "enable"
 DEPENDS += "perl smartmontools procps mdadm"
 
 # FIXME: some of this should be figured out automatically
-RDEPENDS_${PN} += "perl perl-module-socket perl-module-exporter perl-module-exporter-heavy perl-module-carp perl-module-strict"
+RDEPENDS_${PN} += "perl perl-module-socket perl-module-exporter perl-module-exporter-heavy perl-module-carp perl-module-strict webmin-theme-authentic-theme"
 RDEPENDS_${PN} += "perl-module-warnings perl-module-xsloader perl-module-posix perl-module-autoloader perl-module-digest-md5"
 RDEPENDS_${PN} += "perl-module-fcntl perl-module-tie-hash perl-module-vars perl-module-time-local perl-module-config perl-module-constant"
 RDEPENDS_${PN} += "perl-module-file-glob perl-module-file-copy perl-module-sdbm-file perl-module-feature smartmontools"
 
 PACKAGES_DYNAMIC += "webmin-module-* webmin-theme-*"
-RDEPENDS_${PN} += "webmin-module-system-status libnet-ssleay-perl perl-module-file-path webmin-module-mount gnupg webmin-module-samba webmin-theme-authentic-theme \
+RDEPENDS_${PN} += "webmin-module-system-status libnet-ssleay-perl perl-module-file-path webmin-module-mount gnupg webmin-module-samba \
 webmin-module-change-user webmin-module-net webmin-module-pam webmin-module-shell webmin-module-smart-status webmin-module-sshd webmin-module-status webmin-module-time \
 webmin-module-system-status webmin-module-webmin webmin-module-webminlog webmin-module-updown webmin-module-acl webmin-module-servers webmin-module-filemin \
 webmin-module-fdisk webmin-module-exports webmin-module-useradmin webmin-module-passwd webmin-module-proc webmin-module-proftpd webmin-module-webmincron \
@@ -160,7 +160,6 @@ RRECOMMENDS_${PN}-module-proc = "procps"
 RRECOMMENDS_${PN}-module-raid = "mdadm"
 RRECOMMENDS_${PN}-module-filemin = "perl-module-perlio perl-module-perlio-encoding"
 RRECOMMENDS_${PN}-module-exports = "perl-module-file-basename perl-module-file-path perl-module-cwd perl-module-file-spec perl-module-file-spec-unix"
-RRECOMMENDS_${PN}-theme-authentic-theme = "perl-module-lib perl-module-overload perl-module-bytes perl-module-encode perl-module-encode-unicode perl-module-utf8 perl-module-unicore perl-module-file-find"
 RRECOMMENDS_${PN}-module-fdisk = "parted"
 RRECOMMENDS_${PN}-module-lvm = "lvm2"
 
@@ -187,3 +186,5 @@ python populate_packages_prepend() {
 package_do_pkgconfig() {
     :
 }
+
+INSANE_SKIP_${PN}-module-shellinabox += "file-rdeps already-stripped"

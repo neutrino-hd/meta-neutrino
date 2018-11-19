@@ -20,15 +20,15 @@ index 0000000..dbca8d8
 +do 'linux-lib.pl'
 +
 diff --git a/net/module.info b/net/module.info
-index d7a380d..82cbca9 100644
---- a/net/module.info
-+++ b/net/module.info
+-- a/net/module.info     2018-11-17 16:01:57.056603421 +0100
++++ b/net/module.info 2018-11-17 16:05:06.136609923 +0100
 @@ -1,7 +1,7 @@
- version=1.893
- longdesc=Configure boot time and active interfaces, DNS, routing and /etc/hosts.
+ risk=low medium high
  name=Networking
+ category=net
 -os_support=solaris coherent-linux redhat-linux/5.0-* mandrake-linux united-linux suse-linux/6.0-* open-linux unixware turbo-linux/4.0 freebsd/3.2-* openbsd debian-linux/2.2-* cobalt-linux/2.2-* msc-linux gentoo-linux macos/1.5-* trustix-linux slackware-linux/8.0-* openmamba-linux cygwin windows pardus-linux
 +os_support=generic-linux solaris coherent-linux redhat-linux/5.0-* mandrake-linux united-linux suse-linux/6.0-* open-linux unixware turbo-linux/4.0 freebsd/3.2-* openbsd debian-linux/2.2-* cobalt-linux/2.2-* msc-linux gentoo-linux macos/1.5-* trustix-linux slackware-linux/8.0-* openmamba-linux cygwin windows pardus-linux
- readonly=1
  desc=Network Configuration
- category=net
+ longdesc=Configure boot time and active interfaces, DNS, routing and /etc/hosts.
+ readonly=1
+
