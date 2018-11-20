@@ -9,7 +9,6 @@ SRC_URI += "file://inputrc \
 	    file://local.sh \
 	    file://local.service \
 	    file://firstboot.service \
-	    file://firstboot.sh \
 	    file://-.mount \
 	    file://backup@.service \
 	    file://boot.mount \
@@ -22,8 +21,6 @@ SRC_URI += "file://inputrc \
 	    file://dev-mmcblk0p10.swap \
 	    file://fstrim.service \
 	    file://fstrim.timer \
-	    file://flash \
-	    file://imgbackup \
 	    file://locale.conf \
 	    file://local_cam.sh \
 	    file://net-umount.sh \
@@ -80,7 +77,6 @@ do_install_append () {
 		install -m 0644 ${WORKDIR}/dev-mmcblk0p10.swap  ${D}${systemd_unitdir}/system
                 ln -sf /lib/systemd/system/dev-mmcblk0p10.swap  ${D}${systemd_unitdir}/system/multi-user.target.wants
                 install -m 0644 ${WORKDIR}/locale.conf  ${D}${sysconfdir}
-         	install -m 0755 ${WORKDIR}/firstboot.sh  ${D}${sbindir}
 		install -m 0644 ${WORKDIR}/firstboot.service  ${D}${sysconfdir}/systemd/system
                 ln -sf /etc/systemd/system/firstboot.service  ${D}${sysconfdir}/systemd/system/multi-user.target.wants
                 install -m 0644 ${WORKDIR}/fstrim.service  ${D}${systemd_unitdir}/system
@@ -96,9 +92,6 @@ do_install_append () {
 		install -m 0644 ${WORKDIR}/vconsole.conf  ${D}${sysconfdir}
                 install -m 0755 ${WORKDIR}/getty-toggle  ${D}${bindir}
 	fi
-	install -m 0755 ${WORKDIR}/local.sh ${D}${bindir}
-	install -m 0755 ${WORKDIR}/flash ${D}${bindir}
-	install -m 0755 ${WORKDIR}/imgbackup ${D}${bindir}
         install -m 0755 ${WORKDIR}/mount.sh ${D}${bindir}
 	rm -rf ${D}${sysconfdir}/profile
 	install -m 0644 ${WORKDIR}/ttyUSB.conf ${D}${sysconfdir}/modules-load.d

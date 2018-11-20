@@ -5,8 +5,6 @@ RDEPENDS_${PN} += "git findutils util-linux-mountpoint perl-module-file-glob gli
 
 SRC_URI = "git://github.com/neutrino-hd/etckeeper.git;protocol=https \
            file://etckeeper.conf \
-           file://create_etc.sh \
-           file://update_etc.sh \
 "
 
 
@@ -21,25 +19,9 @@ S = "${WORKDIR}/git"
 
 inherit autotools-brokensep systemd
 
-do_configure_prepend () {
-	sed -i "s|GIT_USER|${GIT_USER}|" ${WORKDIR}/update_etc.sh
-	sed -i "s|MAIL|${MAIL}|" ${WORKDIR}/update_etc.sh
-	sed -i "s|GIT_USER|${GIT_USER}|" ${WORKDIR}/create_etc.sh
-	sed -i "s|MAIL|${MAIL}|" ${WORKDIR}/create_etc.sh
-}
-
 do_install_append () {
 	install -d ${D}${systemd_unitdir}/system/timers.target.wants
 	install -m 644 ${WORKDIR}/etckeeper.conf ${D}/etc/etckeeper
-	install -m 755 ${WORKDIR}/update_etc.sh ${D}/etc/etckeeper/update_etc.sh
-	install -m 755 ${WORKDIR}/create_etc.sh ${D}/etc/etckeeper/create_etc.sh
-}
-
-do_install_append () {
-	install -d ${D}${systemd_unitdir}/system/timers.target.wants
-	install -m 644 ${WORKDIR}/etckeeper.conf ${D}/etc/etckeeper
-	install -m 755 ${WORKDIR}/update_etc.sh ${D}/etc/etckeeper/update_etc.sh
-	install -m 755 ${WORKDIR}/create_etc.sh ${D}/etc/etckeeper/create_etc.sh
 	ln -s /lib/systemd/system/etckeeper.timer ${D}${systemd_unitdir}/system/timers.target.wants/etckeeper.timer
 }
 
@@ -51,4 +33,3 @@ FILES_${PN}_append += "/lib/systemd \
 pkg_postinst_ontarget_${PN} () {
 	/usr/bin/etckeeper init
 }
-
