@@ -6,7 +6,6 @@ SRC_URI += "file://inputrc \
 	    file://shells \
 	    file://gbox.service \
 	    file://cccam.service \
-	    file://local.sh \
 	    file://local.service \
 	    file://firstboot.service \
 	    file://-.mount \
