@@ -135,6 +135,7 @@ do_install_append() {
         echo "preroot=authentic-theme" >> ${D}${sysconfdir}/webmin/miniserv.conf
 	echo "preroot_root=authentic-theme" >> ${D}${sysconfdir}/webmin/miniserv.conf
         echo "lang=de" >> ${D}${sysconfdir}/webmin/config
+        echo "show=*" > ${D}${sysconfdir}/webmin/system-status/root.acl
 }
 
 SYSTEMD_SERVICE_${PN} = "webmin.service"
