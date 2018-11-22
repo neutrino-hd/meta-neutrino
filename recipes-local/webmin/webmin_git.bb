@@ -155,7 +155,7 @@ RDEPENDS_${PN} += "webmin-module-system-status libnet-ssleay-perl perl-module-fi
 webmin-module-change-user webmin-module-net webmin-module-pam webmin-module-shell webmin-module-smart-status webmin-module-sshd webmin-module-status webmin-module-time \
 webmin-module-system-status webmin-module-webmin webmin-module-webminlog webmin-module-updown webmin-module-acl webmin-module-servers webmin-module-filemin \
 webmin-module-fdisk webmin-module-exports webmin-module-useradmin webmin-module-passwd webmin-module-proc webmin-module-proftpd webmin-module-webmincron \
-webmin-module-software perl-module-json-pp shared-mime-info \
+webmin-module-software perl-module-json-pp shared-mime-info webmin-module-init \
 "
 
 RRECOMMENDS_${PN}-module-proc = "procps"
