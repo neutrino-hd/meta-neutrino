@@ -43,6 +43,9 @@ DEPENDS_append += " \
 	tmux \
 	v4l-utils \
 	weston \
+	python-pyusb \
+	python-imaging \
+	package-index \
 "
 
 KERNEL_MODULES_INSTALLED += "kernel-module-ftdi-sio \
@@ -122,7 +125,6 @@ IMAGE_INSTALL += " \
 	wpa-supplicant \
 	xupnpd \
 	zsh \
-        ${EXTERNAL_WIFI_DRIVERS} \
 	${EXTRA_KERNEL_WIFI_DRIVERS} \
 	${KERNEL_MODULES_INSTALLED} \
 	${KERNEL_WIFI_DRIVERS} \
