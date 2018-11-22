@@ -43,8 +43,6 @@ DEPENDS_append += " \
 	tmux \
 	v4l-utils \
 	weston \
-	python-pyusb \
-	python-imaging \
 	package-index \
 "
 
