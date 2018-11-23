@@ -2,16 +2,11 @@ SUMMARY = "LCD4Linux is a small program that grabs information from the kernel a
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
-DEPENDS = "libusb1 libusb-compat ncurses readline jpeg dbus-glib sqlite3"
+DEPENDS = "libusb1 libusb-compat libpng readline jpeg dbus-glib sqlite3"
 RDEPENDS_${PN} = "jpeg"
 
 PV = "0.11.0"
 PR = "r3"
-
-EXTRA_OECONF = " \
-    --with-ncurses=${STAGING_LIBDIR}/..\
-    --without-x \
-"
 
 SRC_URI = "git://github.com/TangoCash/lcd4linux.git;protocol=https \
 	   file://lcd4linux.service \
@@ -33,6 +28,15 @@ do_setlibtool_arm (){
 do_setlibtool_aarch64 (){
     perl -pi -e "s#LIBTOOL=libtool#LIBTOOL=\${STAGING_BINDIR_CROSS}\/aarch64-oe-linux-libtool#" ${S}/Makefile.am
 }
+
+EXTRE_OECONF += "\
+	--with-drivers='DPF,SamsungSPF,VUSOLO4K,PNG' \
+	--with-plugins='all,!apm,!asterisk,!dbus,!dvb,!gps,!hddtemp,!huawei,!imon,!isdn,!kvv,!mpd,!mpris_dbus,!mysql,!pop3,!ppp,!python,!qnaplog,!raspi,!sample,!seti,!w1retap,!wireless,!xmms' \
+	--without-x \
+	--without-ncurses \
+"
+
+LDFLAGS_append += "-lcurses"
 
 inherit autotools systemd gettext pkgconfig
 
