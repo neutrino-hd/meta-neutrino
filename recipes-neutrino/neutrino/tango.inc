@@ -1,7 +1,5 @@
 
 SRC_URI_append += "git://github.com/TangoCash/neutrino-mp-cst-next.git;protocol=https \
-		   file://0001-do-jpgs-for-osd-video-grabs-to-improve-yweb-performa.patch \
-                   file://workaround_hdd_format.patch \
 "
 
 
