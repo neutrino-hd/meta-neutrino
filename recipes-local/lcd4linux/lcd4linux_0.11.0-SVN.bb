@@ -2,7 +2,7 @@ SUMMARY = "LCD4Linux is a small program that grabs information from the kernel a
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
-DEPENDS = "libusb1 libusb-compat libpng readline jpeg dbus-glib sqlite3"
+DEPENDS = "libusb1 libusb-compat gd ncurses readline jpeg dbus-glib sqlite3"
 RDEPENDS_${PN} = "jpeg"
 
 PV = "0.11.0"
@@ -30,10 +30,10 @@ do_setlibtool_aarch64 (){
 }
 
 EXTRE_OECONF += "\
+	--with-ncurses=${STAGING_LIBDIR}/..\
 	--with-drivers='DPF,SamsungSPF,VUSOLO4K,PNG' \
 	--with-plugins='all,!apm,!asterisk,!dbus,!dvb,!gps,!hddtemp,!huawei,!imon,!isdn,!kvv,!mpd,!mpris_dbus,!mysql,!pop3,!ppp,!python,!qnaplog,!raspi,!sample,!seti,!w1retap,!wireless,!xmms' \
 	--without-x \
-	--without-ncurses \
 "
 
 LDFLAGS_append += "-lcurses"
