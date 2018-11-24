@@ -14,7 +14,7 @@ SRC_URI = " \
 	file://neutrino.ttf \
 	file://neutrino.service \
 	file://neutrino-log.service \
-	file://neutrino.sh \
+	file://neutrino.sh_${FLAVOUR} \
 	file://timezone.xml \
 	file://custom-poweroff.init \
 	file://COPYING.GPL \

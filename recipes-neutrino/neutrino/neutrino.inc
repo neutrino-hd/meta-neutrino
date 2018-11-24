@@ -116,7 +116,7 @@ do_install_prepend () {
 	install -d ${D}${sysconfdir}/neutrino/plugins	
 	install -m 0644 ${WORKDIR}/neutrino.service ${D}${systemd_unitdir}/system/
 	install -m 0644 ${WORKDIR}/neutrino-log.service  ${D}${systemd_unitdir}/system
-	install -m 0755 ${WORKDIR}/neutrino.sh ${D}${bindir}/   
+	install -m 0755 ${WORKDIR}/neutrino.sh_${FLAVOUR} ${D}${bindir}/neutrino.sh   
 	install -m 755 ${WORKDIR}/pre-wlan0.sh ${D}${sysconfdir}/network/
 	install -m 755 ${WORKDIR}/post-wlan0.sh ${D}${sysconfdir}/network/
 	install -m 644 ${WORKDIR}/timezone.xml ${D}${sysconfdir}/timezone.xml
