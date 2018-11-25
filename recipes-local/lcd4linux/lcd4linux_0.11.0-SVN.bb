@@ -3,13 +3,14 @@ LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
 DEPENDS = "libusb1 libusb-compat gd ncurses readline jpeg dbus-glib sqlite3"
-RDEPENDS_${PN} = "jpeg"
+RDEPENDS_${PN} = "jpeg inotify-tools"
 
 PV = "0.11.0"
 PR = "r3"
 
 SRC_URI = "git://github.com/TangoCash/lcd4linux.git;protocol=https \
 	   file://lcd4linux.service \
+	   file://lcd4linux_wait_for_neutrino.sh \
 "
 
 SRCREV = "${AUTOREV}"
@@ -46,5 +47,6 @@ CONFFILES_${PN} += "${sysconfdir}/lcd4linux.conf"
 do_install_append() {
     install -d ${D}${sysconfdir} ${D}${systemd_unitdir}/system
     install -m 0600 ${S}/lcd4linux.conf.sample  ${D}${sysconfdir}/lcd4linux.conf
-    install -m 0755 ${WORKDIR}/lcd4linux.service ${D}${systemd_unitdir}/system/lcd4linux.service
+    install -m 0755 ${WORKDIR}/lcd4linux.service ${D}${systemd_unitdir}/system
+    install -m 0755 ${WORKDIR}/lcd4linux_wait_for_neutrino.sh ${D}${bindir}
 }
