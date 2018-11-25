@@ -4,6 +4,7 @@ Description=daemon for driving LCD based displays
 [Service]
 Type=forking
 EnvironmentFile=-/etc/default/lcd4linux
+ExecStartPre=/usr/bin/lcd4linux_wait_for_neutrino.sh
 ExecStart=/usr/bin/lcd4linux $ARGS
 User=root
 PIDFile=/var/run/lcd4linux.pid
