@@ -3,13 +3,13 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/ffmpeg:"
 DEPENDS_append += "libass libxml2 freetype rtmpdump"
 
 SRC_URI_append =  " \
-            file://0001-ffmpeg-4.0.2-aac.patch \
-            file://0002-ffmpeg-4.0.2-allow_to_choose_rtmp_impl_at_runtime.patch \
-            file://0003-ffmpeg-4.0.2-buffer-size.patch \
-            file://0004-ffmpeg-4.0.2-fix-edit-list-parsing.patch \
-            file://0005-ffmpeg-4.0.2-fix-hls.patch \
-            file://0006-ffmpeg-4.0.2-fix_mpegts.patch \
-            file://0007-ffmpeg-4.0.2-hls_replace_key_uri.patch \
+	file://ffmpeg-4.1-allow_to_choose_rtmp_impl_at_runtime.patch \
+	file://ffmpeg-4.1-fix_hls.patch \
+	file://ffmpeg-4.1-hls_replace_key_uri.patch \
+	file://ffmpeg-4.1-optimize_aac.patch \
+	file://ffmpeg-4.1-fix_edit_list_parsing.patch \
+	file://ffmpeg-4.1-fix_mpegts.patch \
+	file://ffmpeg-4.1-increase_buffer_size.patch \
 "
 
 PACKAGECONFIG_append += "openssl"

@@ -1,13 +1,3 @@
-From 90aa7aea0baa100719456e6a5b6e6682a5401aa0 Mon Sep 17 00:00:00 2001
-From: Markus Volk <f_l_k@t-online.de>
-Date: Sat, 14 Oct 2017 17:39:14 +0200
-
----
- libavformat/avio.h    |  6 ------
- libavformat/aviobuf.c | 12 +++++-------
- libavformat/utils.c   | 19 +++++++++++++++++++
- 3 files changed, 24 insertions(+), 13 deletions(-)
-
 diff --git a/libavformat/avio.h b/libavformat/avio.h
 index 75912ce..56f0a4d 100644
 --- a/libavformat/avio.h
