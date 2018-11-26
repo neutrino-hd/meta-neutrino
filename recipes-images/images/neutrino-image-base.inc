@@ -23,6 +23,7 @@ DEPENDS_append += " \
 	dvb-apps \
 	dvb-usb-drivers-meta \
 	dvbsnoop \
+	ethtool \
 	fzf \
 	ifuse \
 	lcd4linux \
