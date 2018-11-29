@@ -9,8 +9,9 @@ PV = "0.11.0"
 PR = "r3"
 
 SRC_URI = "git://github.com/TangoCash/lcd4linux.git;protocol=https \
-	   file://lcd4linux.service \
-	   file://lcd4linux_wait_for_neutrino.sh \
+       file://lcd4linux.service \
+       file://lcd4linux_wait_for_neutrino.sh \
+       file://lcd4linux_${FLAVOUR}.tar.gz \
 "
 
 SRCREV = "${AUTOREV}"
@@ -31,10 +32,10 @@ do_setlibtool_aarch64 (){
 }
 
 EXTRE_OECONF += "\
-	--with-ncurses=${STAGING_LIBDIR}/..\
-	--with-drivers='DPF,SamsungSPF,VUSOLO4K,PNG' \
-	--with-plugins='all,!apm,!asterisk,!dbus,!dvb,!gps,!hddtemp,!huawei,!imon,!isdn,!kvv,!mpd,!mpris_dbus,!mysql,!pop3,!ppp,!python,!qnaplog,!raspi,!sample,!seti,!w1retap,!wireless,!xmms' \
-	--without-x \
+    --with-ncurses=${STAGING_LIBDIR}/..\
+    --with-drivers='DPF,SamsungSPF,VUSOLO4K,PNG' \
+    --with-plugins='all,!apm,!asterisk,!dbus,!dvb,!gps,!hddtemp,!huawei,!imon,!isdn,!kvv,!mpd,!mpris_dbus,!mysql,!pop3,!ppp,!python,!qnaplog,!raspi,!sample,!seti,!w1retap,!wireless,!xmms' \
+    --without-x \
 "
 
 LDFLAGS_append += "-lcurses"
@@ -49,4 +50,8 @@ do_install_append() {
     install -m 0600 ${S}/lcd4linux.conf.sample  ${D}${sysconfdir}/lcd4linux.conf
     install -m 0755 ${WORKDIR}/lcd4linux.service ${D}${systemd_unitdir}/system
     install -m 0755 ${WORKDIR}/lcd4linux_wait_for_neutrino.sh ${D}${bindir}
+    cp -rf ${WORKDIR}${sysconfdir} ${D}
+    cp -rf ${WORKDIR}${prefix} ${D}
 }
+
+FILES_${PN} += "/usr"

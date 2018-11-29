@@ -135,10 +135,8 @@ do_install_prepend () {
 }
 
 do_install_append() {
-	install -d ${D}/share ${D}${sysconfdir}/neutrino/bin ${D}${sysconfdir}/neutrino/plugins/luaplugins
+	install -d ${D}${sysconfdir}/neutrino/bin ${D}${sysconfdir}/neutrino/plugins/luaplugins
 	install -d ${D}${sysconfdir}/neutrino/plugins/webradio ${D}${sysconfdir}/neutrino/plugins/webtv
-	ln -s ${datadir}/tuxbox ${D}/share/
-	ln -s ${datadir}/fonts  ${D}/share/
 	if [ ! -z ${RELEASE_TEXT_LOCATION} ];then
 		echo "${RELEASE_TEXT_LOCATION}" > ${D}/etc/update.urls
 	fi
@@ -149,7 +147,6 @@ do_install_append() {
 FILES_${PN} += "\
 	${VERSION_FILE} \
 	/etc \
-	/share \
 	/usr/share \
 	/lib \
 "
