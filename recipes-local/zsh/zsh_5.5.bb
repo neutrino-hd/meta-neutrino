@@ -48,7 +48,6 @@ do_configure () {
 }
 
 pkg_postinst_ontarget_${PN} () {
-    echo "L! /home/root/.zshrc - - - - /etc/zsh/zshrc" >> /etc/tmpfiles.d/00-create-volatile.conf
     chsh -s /bin/zsh
 }
 

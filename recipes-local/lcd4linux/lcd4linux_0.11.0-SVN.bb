@@ -10,7 +10,6 @@ PR = "r3"
 
 SRC_URI = "git://github.com/TangoCash/lcd4linux.git;protocol=https \
        file://lcd4linux.service \
-       file://lcd4linux_wait_for_neutrino.sh \
        file://lcd4linux_${FLAVOUR}.tar.gz \
 "
 
@@ -43,13 +42,13 @@ LDFLAGS_append += "-lcurses"
 inherit autotools systemd gettext pkgconfig
 
 SYSTEMD_SERVICE_${PN} = "lcd4linux.service"
+SYSTEMD_AUTO_ENABLE_${PN} = "disable"
+
 CONFFILES_${PN} += "${sysconfdir}/lcd4linux.conf"
 
 do_install_append() {
     install -d ${D}${sysconfdir} ${D}${systemd_unitdir}/system
-    install -m 0600 ${S}/lcd4linux.conf.sample  ${D}${sysconfdir}/lcd4linux.conf
     install -m 0755 ${WORKDIR}/lcd4linux.service ${D}${systemd_unitdir}/system
-    install -m 0755 ${WORKDIR}/lcd4linux_wait_for_neutrino.sh ${D}${bindir}
     cp -rf ${WORKDIR}${sysconfdir} ${D}
     cp -rf ${WORKDIR}${prefix} ${D}
 }
