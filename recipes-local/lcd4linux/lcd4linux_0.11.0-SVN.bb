@@ -3,7 +3,7 @@ LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
 DEPENDS = "libusb1 libusb-compat gd ncurses readline jpeg dbus-glib sqlite3"
-RDEPENDS_${PN} = "jpeg inotify-tools"
+RDEPENDS_${PN} = "jpeg"
 
 PV = "0.11.0"
 PR = "r3"
