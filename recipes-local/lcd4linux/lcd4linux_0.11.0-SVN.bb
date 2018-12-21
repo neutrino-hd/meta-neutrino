@@ -3,14 +3,13 @@ LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
 DEPENDS = "libusb1 libusb-compat gd ncurses readline jpeg dbus-glib sqlite3"
-RDEPENDS_${PN} = "jpeg"
+RDEPENDS_${PN} = "jpeg samsunglcd4linux"
 
 PV = "0.11.0"
 PR = "r3"
 
 SRC_URI = "git://github.com/TangoCash/lcd4linux.git;protocol=https \
        file://lcd4linux.service \
-       file://lcd4linux_${FLAVOUR}.tar.gz \
 "
 
 SRCREV = "${AUTOREV}"
@@ -44,13 +43,10 @@ inherit autotools systemd gettext pkgconfig
 SYSTEMD_SERVICE_${PN} = "lcd4linux.service"
 SYSTEMD_AUTO_ENABLE_${PN} = "disable"
 
-CONFFILES_${PN} += "${sysconfdir}/lcd4linux.conf"
-
 do_install_append() {
-    install -d ${D}${sysconfdir} ${D}${systemd_unitdir}/system
+    install -d ${D}${systemd_unitdir}/system
     install -m 0755 ${WORKDIR}/lcd4linux.service ${D}${systemd_unitdir}/system
-    cp -rf ${WORKDIR}${sysconfdir} ${D}
-    cp -rf ${WORKDIR}${prefix} ${D}
+    rm -rf ${D}${sysconfdir}
 }
 
 FILES_${PN} += "/usr"
