@@ -5,14 +5,12 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=80
 DEPENDS = "libusb1 libusb-compat gd ncurses readline jpeg dbus-glib sqlite3"
 RDEPENDS_${PN} = "jpeg samsunglcd4linux"
 
-PV = "0.11.0"
-PR = "r3"
-
 SRC_URI = "git://github.com/TangoCash/lcd4linux.git;protocol=https \
        file://lcd4linux.service \
 "
 
 SRCREV = "${AUTOREV}"
+PV = "${SRCPV}"
 S =  "${WORKDIR}/git"
 
 addtask setlibtool before do_configure after do_patch
