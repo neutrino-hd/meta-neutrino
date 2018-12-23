@@ -10,7 +10,7 @@ SRC_URI = "git://github.com/horsti58/SamsungLCD4Linux;protocol=https \
 "
 
 SRCREV = "${AUTOREV}"
-S =  "${WORKDIR}/git/Tango"
+S =  "${WORKDIR}/git/${FLAVOUR}"
 
 do_install() {
 	install -d ${D}/usr
