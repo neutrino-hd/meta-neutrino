@@ -1,6 +1,4 @@
-
 SRC_URI_append += "git://github.com/tuxbox-neutrino/gui-neutrino.git;protocol=https \
-		   file://0001-neutrino-mp-deactivate-unneeded-update-menu-entries.patch;apply=no \
 "
 
 DEFAULT_THEME ?= "Neutrino-3.0"
@@ -10,3 +8,6 @@ EXTRA_OECONF_append += "--with-default-theme=${DEFAULT_THEME} \
 "
 
 do_install_append += "mv -f ${D}${sysconfdir}/neutrino/config/bad_package_pattern.list.sample ${D}${sysconfdir}/neutrino/config/bad_package_pattern.list"
+
+
+
