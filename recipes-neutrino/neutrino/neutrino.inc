@@ -57,7 +57,6 @@ EXTRA_OECONF = " \
 	--enable-upnp \
 	--enable-mdev \
 	--enable-fribidi \
-	--enable-lcd4linux \
 	--enable-pugixml \
 	--enable-giflib \
 	--with-tremor \
