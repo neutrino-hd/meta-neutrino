@@ -1,7 +1,4 @@
 SRC_URI_append += "git://github.com/tuxbox-neutrino/gui-neutrino.git;protocol=https \
-                   file://0001-neutrino-mp-deactivate-unneeded-update-menu-entries.patch;apply=no \
-                   file://0001-hdd_menu.cpp-allow-fuse-filesystems-also-avoid-hardc.patch;apply=yes \
-                   file://0001-add-lcd4linux-support.patch \
 "
 
 DEFAULT_THEME ?= "Neutrino-3.0"
