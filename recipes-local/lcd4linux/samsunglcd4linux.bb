@@ -12,11 +12,15 @@ PV = "${SRCPV}"
 
 include ${FLAVOUR}.inc
 
+do_configure() {
+	sed -i "s|\/var\/lcd|\/usr\/share\/lcd|" ${S}/etc/lcd4linux.conf
+}
+
 do_install() {
 	install -d ${D}/usr
 	cp -rf ${S}/etc ${D}
 	cp -rf ${S}/share ${D}/usr
-	[ -d ${S}/var/lcd ] && cp -rf ${S}/var/lcd ${D}/usr/share/lcd
+	[ -d ${S}/var/lcd ] && cp -rf ${S}/var/lcd/* ${D}/usr/share/lcd/
 	chmod 600 ${D}/${sysconfdir}/lcd4linux.conf
 }
 
