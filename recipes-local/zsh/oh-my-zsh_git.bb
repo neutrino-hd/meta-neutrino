@@ -14,7 +14,7 @@ SRC_URI = "git://github.com/robbyrussell/oh-my-zsh.git;protocol=https \
 	   file://zshrc \
 "
 
-SRCREV = "4fec0a46e73479cf3b9e7f953750af5ed5df87ac"
+SRCREV = "2614b7ecdfe8b8f0cbeafffefb5925196f4011d4"
 PV = "${SRCPV}"
 PR = "1"
 
