@@ -4,7 +4,7 @@ HOMEPAGE = "http://links.twibright.com/"
 SECTION = "console/network"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=b0c80473f97008e42e29a9f80fcc55ff"
-DEPENDS = "jpeg libpng flex openssl zlib gpm"
+DEPENDS = "jpeg libpng flex openssl zlib"
 
 SRC_URI = "http://links.twibright.com/download/links-${PV}.tar.bz2 \
            file://links-2.17.patch \
@@ -28,12 +28,12 @@ EXTRA_OECONF = "--enable-graphics \
 		--with-libjpeg \
                 --without-libtiff \
 		--without-svgalib \
-		--without-lzma \
 		--with-fb \
 		--enable-graphics \
                 --without-directfb \
 		--without-pmshell \
 		--without-atheos \
+		--without-gpm \
                 --without-x \
 "
 
