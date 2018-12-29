@@ -3,4 +3,6 @@ require python-twisted.inc
 
 RDEPENDS_${PN}-core += "${PYTHON_PN}-contextlib"
 
-SRC_URI_append += "file://fix-writing-after-channel-is-closed.patch"
+RDEPENDS_${PN} += " \
+    ${PN}-news \
+"
