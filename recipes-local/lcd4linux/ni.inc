@@ -1,1 +1,1 @@
-S =  "${WORKDIR}/git/ni/800x600"
+S =  "${WORKDIR}/git/ni"
