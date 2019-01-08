@@ -7,15 +7,15 @@ DEPENDS = "libusb1 openssl pcsc-lite"
 
 DEPENDS_APPEND_libc-uclibc += "virtual/libstb-hal"
 
-SRC_URI = "svn://www.streamboard.tv/svn/oscam-addons;protocol=http;module=modern;scmdata=keep \
+SRC_URI = "svn://www.streamboard.tv/svn/oscam;protocol=http;module=trunk;scmdata=keep \
 	   file://oscam.service \
 	   file://oscam.conf \
 "
 
-SRCREV = "1532"
+SRCREV = "11447"
 PV = "svn${SRCREV}"
 
-S = "${WORKDIR}/modern"
+S = "${WORKDIR}/trunk"
 B = "${S}"	
 
 INHIBIT_PACKAGE_STRIP = "1"
@@ -23,13 +23,6 @@ INHIBIT_PACKAGE_STRIP = "1"
 inherit cmake systemd
 
 SYSTEMD_SERVICE_${PN} = "oscam.service"
-
-do_configure_append_coolstream-hd2 () {
-	if [ ${BOXTYPE} = "kronos" ];then
-		sed -i "s|^#define MAX_COOL_DMX.*|#define MAX_COOL_DMX 3|" ${S}/module-dvbapi-coolapi.c
-	fi
-}
-
 
 EXTRA_OECMAKE = " \
 		 -DCS_SVN_VERSION="${SRCPV}" \
@@ -54,12 +47,6 @@ EXTRA_OECMAKE = " \
 		 -DCARDREADER_SMARGO=1 \
 	 	 -DWITH_SSL=1 \
 		 -DHAVE_PCSC=1 \
-"
-
-EXTRA_OECMAKE_append_coolstream-hd1 += "-DOSCAM_SYSTEM_NAME=Coolstream \
-"
-
-EXTRA_OECMAKE_append_coolstream-hd2 += "-DOSCAM_SYSTEM_NAME=CST2 \
 "
 
 EXTRA_OECMAKE_append_hd51 += "-DOSCAM_SYSTEM_NAME=tuxbox \
