@@ -56,7 +56,7 @@ do_install () {
 	install -d ${D}/usr/bin ${D}${systemd_system_unitdir} ${D}${sysconfdir}/neutrino/config ${D}/${sysconfdir}/keys
 	install -m 755 ${WORKDIR}/build/oscam ${D}/usr/bin/oscam.internal
         install -m 644 ${WORKDIR}/oscam.service ${D}${systemd_system_unitdir}
-	install -m 644 ${WORKDIR}/oscam.conf ${D}${sysconfdir}/neutrino/config
+	install -m 644 ${WORKDIR}/oscam.conf ${D}${sysconfdir}/neutrino/config/oscam.conf.sample
 }
 
 pkg_postinst_ontarget_${PN} () {
