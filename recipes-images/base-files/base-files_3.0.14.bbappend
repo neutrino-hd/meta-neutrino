@@ -8,16 +8,9 @@ SRC_URI += "file://inputrc \
 	    file://cccam.service \
 	    file://local.service \
 	    file://firstboot.service \
-	    file://-.mount \
 	    file://backup@.service \
-	    file://boot.mount \
 	    file://flash@.service \
 	    file://getty-toggle \
-	    file://mnt-partition_1.mount \
-	    file://mnt-partition_2.mount \
-            file://mnt-partition_3.mount \
-            file://mnt-partition_4.mount \
-	    file://dev-mmcblk0p10.swap \
 	    file://fstrim.service \
 	    file://fstrim.timer \
 	    file://locale.conf \
@@ -64,17 +57,6 @@ do_install_append () {
   		install -m 0644 ${WORKDIR}/local.service ${D}${systemd_unitdir}/system
 		install -m 0755 ${WORKDIR}/local_cam.sh ${D}${bindir}
 		ln -sf /lib/systemd/system/local.service ${D}${systemd_unitdir}/system/multi-user.target.wants
-                install -m 0644 ${WORKDIR}/-.mount ${D}${systemd_unitdir}/system
-                ln -sf /lib/systemd/system/-.mount  ${D}${systemd_unitdir}/system/multi-user.target.wants
-                install -m 0644 ${WORKDIR}/boot.mount ${D}${systemd_unitdir}/system
-                ln -sf /lib/systemd/system/boot.mount  ${D}${systemd_unitdir}/system/multi-user.target.wants
-                install -m 0644 ${WORKDIR}/mnt-partition_*.mount ${D}${systemd_unitdir}/system
-                ln -sf /lib/systemd/system/mnt-partition_1.mount  ${D}${systemd_unitdir}/system/multi-user.target.wants
-                ln -sf /lib/systemd/system/mnt-partition_2.mount  ${D}${systemd_unitdir}/system/multi-user.target.wants
-                ln -sf /lib/systemd/system/mnt-partition_3.mount  ${D}${systemd_unitdir}/system/multi-user.target.wants
-                ln -sf /lib/systemd/system/mnt-partition_4.mount  ${D}${systemd_unitdir}/system/multi-user.target.wants
-		install -m 0644 ${WORKDIR}/dev-mmcblk0p10.swap  ${D}${systemd_unitdir}/system
-                ln -sf /lib/systemd/system/dev-mmcblk0p10.swap  ${D}${systemd_unitdir}/system/multi-user.target.wants
                 install -m 0644 ${WORKDIR}/locale.conf  ${D}${sysconfdir}
 		install -m 0644 ${WORKDIR}/firstboot.service  ${D}${sysconfdir}/systemd/system
                 ln -sf /etc/systemd/system/firstboot.service  ${D}${sysconfdir}/systemd/system/multi-user.target.wants
