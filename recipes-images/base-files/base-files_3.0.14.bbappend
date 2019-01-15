@@ -62,6 +62,7 @@ do_install_append () {
                 install -m 0644 ${WORKDIR}/fstrim.service  ${D}${systemd_unitdir}/system
                 install -m 0644 ${WORKDIR}/fstrim.timer  ${D}${systemd_unitdir}/system
                 ln -sf /lib/systemd/system/fstrim.timer  ${D}${systemd_unitdir}/system/multi-user.target.wants
+                install -m 0755 ${WORKDIR}/net-umount.sh  ${D}${bindir}
 		install -m 0644 ${WORKDIR}/net-umount.service  ${D}${systemd_unitdir}/system
                 ln -sf /lib/systemd/system/net-umount.service  ${D}${sysconfdir}/systemd/system/multi-user.target.wants
                 install -m 0644 ${WORKDIR}/mount@.service  ${D}${systemd_unitdir}/system
@@ -71,7 +72,6 @@ do_install_append () {
 		install -m 0644 ${WORKDIR}/vconsole.conf  ${D}${sysconfdir}
                 install -m 0755 ${WORKDIR}/getty-toggle  ${D}${bindir}
 	fi
-        install -m 0755 ${WORKDIR}/mount.sh ${D}${bindir}
 	rm -rf ${D}${sysconfdir}/profile
 	install -m 0644 ${WORKDIR}/ttyUSB.conf ${D}${sysconfdir}/modules-load.d
 }
