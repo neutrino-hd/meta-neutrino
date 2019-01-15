@@ -31,6 +31,7 @@ do_mount()
 
         udevadm info --query=property --name=${DEVICE} | grep ID_PATH | grep "platform-f0470300.ehci-usb-0:1.3:1.0-scsi-0:0:0:0" && LABEL="usb"
         udevadm info --query=property --name=${DEVICE} | grep ID_BUS | grep "ata" && LABEL="hdd"
+	udevadm info --query=property --name=${DEVICE} | grep DEVNAME | grep "mmcblk" && LABEL="sdcard"
 
        	MOUNT_POINT="/media/${LABEL}"
 
