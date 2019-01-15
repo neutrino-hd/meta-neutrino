@@ -17,7 +17,6 @@ SRC_URI += "file://inputrc \
 	    file://local_cam.sh \
 	    file://net-umount.sh \
 	    file://net-umount.service \
-	    file://mount.sh \
 	    file://mount@.service \
 	    file://restore@.service \
 	    file://vconsole.conf \
@@ -64,7 +63,6 @@ do_install_append () {
                 install -m 0644 ${WORKDIR}/fstrim.timer  ${D}${systemd_unitdir}/system
                 ln -sf /lib/systemd/system/fstrim.timer  ${D}${systemd_unitdir}/system/multi-user.target.wants
 		install -m 0644 ${WORKDIR}/net-umount.service  ${D}${systemd_unitdir}/system
-                install -m 0755 ${WORKDIR}/net-umount.sh  ${D}${bindir}
                 ln -sf /lib/systemd/system/net-umount.service  ${D}${sysconfdir}/systemd/system/multi-user.target.wants
                 install -m 0644 ${WORKDIR}/mount@.service  ${D}${systemd_unitdir}/system
                 install -m 0644 ${WORKDIR}/flash@.service  ${D}${systemd_unitdir}/system
