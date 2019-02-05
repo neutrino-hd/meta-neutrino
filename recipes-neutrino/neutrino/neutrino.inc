@@ -14,6 +14,7 @@ DEPENDS += " \
 	gettext \
 	giflib \
 	glib-2.0 \
+	libass \
 	libbluray \
 	libdvbsi++ \
 	libid3tag \
@@ -92,7 +93,7 @@ N_CFLAGS = "-Wall -Wextra -Wshadow -g -O2 -fno-strict-aliasing -rdynamic -DENABL
 
 N_CXXFLAGS = "${N_CFLAGS}"
 
-N_LDFLAGS += "-Wl,--hash-style=gnu -Wl,-rpath-link, ${STAGING_LIBDIR} -lcurl -ldl"
+N_LDFLAGS += "-Wl,--hash-style=gnu -Wl,-rpath-link, ${STAGING_LIBDIR} -lcurl -ldl -lass"
 N_CPPFLAGS = "-DDYNAMIC_LUAPOSIX -D__KERNEL_STRICT_NAMES -D__STDC_CONSTANT_MACROS"
 
 CPPFLAGS = "${N_CPPFLAGS}"
