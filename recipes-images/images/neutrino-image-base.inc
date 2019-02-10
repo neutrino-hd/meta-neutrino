@@ -88,7 +88,6 @@ IMAGE_INSTALL += " \
 	nano \
 	nfs-utils \
 	nfs-utils-client \
-	ni-logos \
 	ntfs-3g \
 	ntfsprogs \
 	ntpdate \
