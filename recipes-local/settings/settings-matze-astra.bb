@@ -21,7 +21,7 @@ FILES_${PN} = "\
     /etc/neutrino/config/zapit \
 "
 
-SRC_URI[md5sum] = "cbf0f3171ee0f1f221cc093e2dd43661"
-SRC_URI[sha256sum] = "358bcffb9a0da97df987a21806a2a6087874f0d88c8b759ce00fb3a4f0760de4"
+SRC_URI[md5sum] = "734c18a76977ccd8c332db13788c6fe3"
+SRC_URI[sha256sum] = "8eee16a2eb836179686614aaecdb43cadafdde3a61c4f040b03743d354ee417b"
 
 BB_STRICT_CHECKSUM = "0"
