@@ -9,6 +9,7 @@ IMAGE_INSTALL += " \
 	neutrino-plugin-rss \
 	neutrino-plugin-mediathek \
 	neutrino-plugin-rockpalast \
+	neutrino-plugin-settingsupdater \
 	"
 
 
