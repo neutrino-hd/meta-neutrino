@@ -38,7 +38,6 @@ SRC_URI_append = " \
 	file://blank_480.mpg \
 	file://blank_576.mpg \
 	file://timer-wakeup.init \
-	file://0001-fix-for-openssl-1.1.x.patch \
 "
 
 S = "${WORKDIR}/git"
