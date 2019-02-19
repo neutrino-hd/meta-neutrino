@@ -66,17 +66,6 @@
  
  #ifdef t8c
  #if SIZEOF_UNSIGNED_LONG >= 8 || defined(__x86_64__) || defined(__aarch64__)
---- a/configure
-+++ b/configure
-@@ -8399,7 +8399,7 @@
- fi
- done
- 
--	if test "$ac_cv_header_linux_fb_h" = yes && test "$ac_cv_header_linux_kd_h" = yes && test "$ac_cv_header_linux_vt_h" = yes && test "$ac_cv_header_sys_mman_h" = yes && test "$ac_cv_header_sys_ioctl_h" = yes && test "$cf_have_gpm" = yes; then
-+	if test "$ac_cv_header_linux_fb_h" = yes && test "$ac_cv_header_linux_kd_h" = yes && test "$ac_cv_header_linux_vt_h" = yes && test "$ac_cv_header_sys_mman_h" = yes && test "$ac_cv_header_sys_ioctl_h" = yes; then
- 		cat >> confdefs.h <<\EOF
- #define GRDRV_FB 1
- EOF
 --- a/configure.in
 +++ b/configure.in
 @@ -1050,7 +1050,7 @@
