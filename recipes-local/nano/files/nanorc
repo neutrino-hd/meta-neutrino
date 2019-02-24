@@ -168,7 +168,7 @@
  set tabstospaces
 
 ## Save automatically on exit; don't prompt.
- set tempfile
+# set tempfile
 
 ## Snip whitespace at the end of lines when justifying or hard-wrapping.
  set trimblanks
