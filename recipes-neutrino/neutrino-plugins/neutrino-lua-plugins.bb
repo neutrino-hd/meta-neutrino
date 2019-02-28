@@ -40,6 +40,7 @@ do_install () {
         install -m 644 ${S}/plugins/stb_plugins/* ${D}/usr/share/tuxbox/plugins
         install -m 644 ${S}/plugins/logoupdater/* ${D}/usr/share/tuxbox/plugins
         install -m 644 ${S}/plugins/mtv/* ${D}/usr/share/tuxbox/plugins
+        install -m 644 ${S}/plugins/settingsupdater/* ${D}/usr/share/tuxbox/plugins
 }
 
 FILES_${PN} += " \
