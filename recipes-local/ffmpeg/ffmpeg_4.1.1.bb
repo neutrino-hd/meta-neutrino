@@ -27,8 +27,8 @@ SRC_URI = "https://www.ffmpeg.org/releases/${BP}.tar.xz \
            file://mips64_cpu_detection.patch \
            "
 
-SRC_URI[md5sum] = "b011c94e075c2d0cd7c914730f55f9a9"
-SRC_URI[sha256sum] = "a38ec4d026efb58506a99ad5cd23d5a9793b4bf415f2c4c2e9c1bb444acd1994"
+SRC_URI[md5sum] = "720fc84617a2c38aeae79aff3689a567"
+SRC_URI[sha256sum] = "373749824dfd334d84e55dff406729edfd1606575ee44dd485d97d45ea4d2d86"
 
 # Build fails when thumb is enabled: https://bugzilla.yoctoproject.org/show_bug.cgi?id=7717
 ARM_INSTRUCTION_SET_armv4 = "arm"
@@ -156,3 +156,4 @@ INSANE_SKIP_${MLPREFIX}libavresample = "textrel"
 INSANE_SKIP_${MLPREFIX}libswscale = "textrel"
 INSANE_SKIP_${MLPREFIX}libswresample = "textrel"
 INSANE_SKIP_${MLPREFIX}libpostproc = "textrel"
+
