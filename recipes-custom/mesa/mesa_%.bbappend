@@ -1,4 +1,4 @@
-ANY_OF_DISTRO_FEATURES = ""
+ANY_OF_DISTRO_FEATURES_class-target = ""
 
 DEPENDS_append += "libdrm elfutils"
 

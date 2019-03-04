@@ -12,8 +12,8 @@ SRC_URI = "svn://www.streamboard.tv/svn/oscam;protocol=http;module=trunk;scmdata
 	   file://oscam.conf \
 "
 
-SRCREV = "11447"
-PV = "svn${SRCREV}"
+SRCREV = "${AUTOREV}"
+PV = "${SRCPV}"
 
 S = "${WORKDIR}/trunk"
 B = "${S}"	
