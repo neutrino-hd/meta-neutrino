@@ -6,8 +6,8 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=09aea93dd1e6793fa3d0cd94f846d459"
 SRC_URI = "https://github.com/authentic-theme/authentic-theme/archive/${PV}.tar.gz \
 "
 
-SRC_URI[md5sum] = "ee228ceb439499f12092d5e6e84ffcd6"
-SRC_URI[sha256sum] = "4ecf078b1af3e4d12c9f757637aa451cdd1b57b97393166952fc8ddcab3c0380"
+SRC_URI[md5sum] = "03fdcb4f0ca3026da68db3f0885c6608"
+SRC_URI[sha256sum] = "7f9fc3c6bbb4dc096b7b0d4b7e5d2bc4684a36b1ba3cdc112e9bcca1eca625b9"
 
 RDEPENDS_${PN} = " \
 	perl \

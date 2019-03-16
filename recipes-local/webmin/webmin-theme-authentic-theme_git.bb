@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=09aea93dd1e6793fa3d0cd94f846d459"
 
 SRC_URI = "git://github.com/authentic-theme/authentic-theme.git;protocol=https \
 " 
-SRCREV = "${AUTOREV}"
+SRCREV = "1a342382c9af6ea490f8e51a374ea5151db44b7a"
 
 S = "${WORKDIR}/git"
 
