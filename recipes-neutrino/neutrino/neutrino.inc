@@ -80,6 +80,7 @@ EXTRA_OECONF = " \
 	--with-omdb-api-key="${OMDB_API_KEY}" \
 	--with-youtube-dev-key="${YT_DEV_KEY}" \
 	--with-shoutcast-dev-key="${SHOUTCAST_DEV_KEY}" \
+	--with-weather-dev-key="$(WEATHER_DEV_KEY)" \
         --disable-tmdb-key-manage \
         --disable-omdb-key-manage \
         --disable-youtube-key-manage \
