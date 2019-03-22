@@ -85,6 +85,7 @@ EXTRA_OECONF = " \
         --disable-omdb-key-manage \
         --disable-youtube-key-manage \
         --disable-shoutcast-key-manage \
+	--disable-weather-key-manage \
 "
 
 VERSION_FILE = "${N_PREFIX}/.version"
