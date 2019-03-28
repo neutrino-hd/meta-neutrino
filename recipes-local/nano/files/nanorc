@@ -131,7 +131,7 @@
  set rebinddelete
 
 ## Fix numeric keypad key confusion problem.
- set rebindkeypad
+#  set rebindkeypad
 
 ## Do extended regular expression searches by default.
 # set regexp
@@ -277,6 +277,7 @@
 ## If you would like nano to have keybindings that are more "usual",
 ## such as ^O for Open, ^F for Find, ^H for Help, and ^Q for Quit,
 ## then uncomment these:
+bind ^A cancel all
 bind ^Q exit all
 bind ^H help all
 bind ^H exit help
@@ -304,4 +305,4 @@ bind ^U undo main
 bind ^E redo main
 unbind M-J main
 unbind M-T main
-#set multibuffer
+
