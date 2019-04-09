@@ -14,7 +14,7 @@ case $ACTION in
 			while read a b c; do
 				FSTABDEV=`readlink -f $a`
 				test x$FSTABDEV = x$REALDEV || continue
-				mount $b
+				systemctl start mount@$b
 				break
 			done < /etc/fstab
 			exit
@@ -31,7 +31,7 @@ case $ACTION in
 			while read a b c; do
 				FSTABDEV=`readlink -f $a`
 				test x$FSTABDEV = x$REALDEV || continue
-				umount $b
+				systemctl stop mount@$b
 				break
 			done < /proc/mounts
 			exit
