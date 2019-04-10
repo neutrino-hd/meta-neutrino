@@ -1,12 +1,14 @@
- #!/bin/sh
-
+#!/bin/sh
+ 
 case $ACTION in
- 	add)
- 		/bin/systemctl start mount@$MDEV
- 		;;
- 	remove)
- 		/bin/systemctl stop mount@$MDEV
- 		;;
+	add)
+		/bin/udevadm trigger --action=add /dev/$MDEV
+ 		/bin/udevadm settle
+	 	;;
+	remove)
+		/bin/udevadm trigger --action=remove /dev/$MDEV
+		/bin/udevadm settle
+		;;
 	*)  echo "$0: unknown ACTION $ACTION"
 		;;
 esac

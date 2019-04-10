@@ -1,0 +1,28 @@
+From fffea3dd3fbc5d3f7857c629d22f4a0813b0f011 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Wed, 10 Apr 2019 19:40:33 +0200
+Subject: [PATCH] fix
+
+is_mounted seems to sometimes come late here. it should be save to assume the device is mounted at this point
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ src/gui/hdd_menu.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/gui/hdd_menu.cpp b/src/gui/hdd_menu.cpp
+index 7c27d62..9e38937 100644
+--- a/src/gui/hdd_menu.cpp
++++ b/src/gui/hdd_menu.cpp
+@@ -479,7 +479,7 @@ int CHDDMenuHandler::handleMsg(const neutrino_msg_t msg, neutrino_msg_data_t dat
+ 			return messages_return::handled;
+ 
+ 		bool added = it->second == "add";
+-		bool mounted = is_mounted(dev.c_str());
++		bool mounted = true;
+ 		std::string tmp = dev.substr(0, 2);
+ 
+ 		if (added && !mounted && tmp != "sr") {
+-- 
+2.1.4
+
