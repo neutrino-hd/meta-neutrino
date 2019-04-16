@@ -4,7 +4,7 @@ Requires=local-fs.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/sbin/firstboot.sh
+ExecStart=/bin/sh -c "/usr/sbin/firstboot.sh"
 
 [Install]
 WantedBy=basic.target
