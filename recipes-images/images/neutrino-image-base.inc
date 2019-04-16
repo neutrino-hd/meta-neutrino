@@ -61,6 +61,7 @@ IMAGE_INSTALL += " \
 	dosfstools \
 	dvb-femon \
 	e2fsprogs \
+	e2fsprogs-resize2fs \
 	etckeeper \
 	exfat-utils \
 	fbset \
