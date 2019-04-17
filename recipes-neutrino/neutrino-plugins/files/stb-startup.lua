@@ -166,8 +166,10 @@ until msg == RC['home'] or colorkey or i == t
 chooser:hide()
 
 if colorkey then
-	if isdir("/mnt/userdata/" .. devbase .. root) then
+	if isdir("/mnt/" .. devbase .. root) then
 		-- found image folder
+        elseif isdir("/mnt/userdata/" .. devbase .. root) then
+                -- found image folder
 	else
 		local ret = hintbox.new { title = caption, icon = "settings", text = locale[lang].empty_partition };
 		ret:paint();
