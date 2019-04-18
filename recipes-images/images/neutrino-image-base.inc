@@ -106,6 +106,7 @@ IMAGE_INSTALL += " \
 	rsync \
 	samba \
 	sed \
+	tar \
 	tzdata \
 	tzdata-europe \
 	udev-extraconf \
