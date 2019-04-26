@@ -12,7 +12,6 @@ SRC_URI = "git://github.com/tuxbox-neutrino/plugin-scripts-lua.git;protocol=http
 		   file://0001-ard-mediathek-disable-hds.patch \
 		   file://yt_live.tar.gz \
 		   file://webtv.tar.gz \
-		   file://stb-startup.lua \
 "
 
 SRCREV = "${AUTOREV}"
@@ -36,8 +35,6 @@ do_install () {
         install -m 644 ${S}/plugins/stb_log/* ${D}/usr/share/tuxbox/plugins
         install -m 644 ${S}/plugins/stb_local-flash/stb-local-flash.lua ${D}/usr/share/tuxbox/plugins
         install -m 644 ${S}/plugins/stb_plugins/* ${D}/usr/share/tuxbox/plugins
-        install -m 644 ${S}/plugins/stb_startup/* ${D}/usr/share/tuxbox/plugins
-        cp -f ${WORKDIR}/stb-startup.lua ${D}/usr/share/tuxbox/plugins
         install -m 644 ${S}/plugins/logoupdater/* ${D}/usr/share/tuxbox/plugins
         install -m 644 ${S}/plugins/mtv/* ${D}/usr/share/tuxbox/plugins
         install -m 644 ${S}/plugins/settingsupdater/* ${D}/usr/share/tuxbox/plugins
