@@ -6,7 +6,6 @@ SRC_URI += "file://inputrc \
 	    file://shells \
 	    file://gbox.service \
 	    file://cccam.service \
-	    file://local.service \
 	    file://firstboot.service \
 	    file://backup@.service \
 	    file://flash@.service \
@@ -20,7 +19,6 @@ SRC_URI += "file://inputrc \
 	    file://mount@.service \
 	    file://restore@.service \
 	    file://vconsole.conf \
-	    file://ttyUSB.conf \
 "
 
 RDEPENDS_${PN}_append += "coreutils"
@@ -53,9 +51,7 @@ do_install_append () {
   		install -d ${D}${systemd_unitdir}/system ${D}${sysconfdir}/modules-load.d
   		install -m 0644 ${WORKDIR}/gbox.service ${D}${systemd_unitdir}/system
                 install -m 0644 ${WORKDIR}/cccam.service ${D}${systemd_unitdir}/system
-  		install -m 0644 ${WORKDIR}/local.service ${D}${systemd_unitdir}/system
 		install -m 0755 ${WORKDIR}/local_cam.sh ${D}${bindir}
-		ln -sf /lib/systemd/system/local.service ${D}${systemd_unitdir}/system/multi-user.target.wants
                 install -m 0644 ${WORKDIR}/locale.conf  ${D}${sysconfdir}
 		install -m 0644 ${WORKDIR}/firstboot.service  ${D}${sysconfdir}/systemd/system
                 ln -sf /etc/systemd/system/firstboot.service  ${D}${sysconfdir}/systemd/system/multi-user.target.wants
@@ -73,5 +69,4 @@ do_install_append () {
                 install -m 0755 ${WORKDIR}/getty-toggle  ${D}${bindir}
 	fi
 	rm -rf ${D}${sysconfdir}/profile
-	install -m 0644 ${WORKDIR}/ttyUSB.conf ${D}${sysconfdir}/modules-load.d
 }
