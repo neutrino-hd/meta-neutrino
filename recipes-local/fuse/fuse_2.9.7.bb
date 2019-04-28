@@ -14,15 +14,11 @@ SRC_URI = "https://github.com/libfuse/libfuse/releases/download/${BP}/${BP}.tar.
            file://gold-unversioned-symbol.patch \
            file://aarch64.patch \
            file://0001-fuse-fix-the-return-value-of-help-option.patch \
-           file://fuse.conf \
 "
 SRC_URI[md5sum] = "9bd4ce8184745fd3d000ca2692adacdb"
 SRC_URI[sha256sum] = "832432d1ad4f833c20e13b57cf40ce5277a9d33e483205fc63c78111b3358874"
 
-inherit autotools pkgconfig update-rc.d systemd
-
-INITSCRIPT_NAME = "fuse"
-INITSCRIPT_PARAMS = "start 3 S . stop 20 0 6 ."
+inherit autotools pkgconfig systemd
 
 SYSTEMD_SERVICE_${PN} = ""
 
@@ -57,12 +53,6 @@ do_install_append() {
     # contains anything, but it's not needed if sysvinit is not in DISTRO_FEATURES
     if ${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', 'false', 'true', d)}; then
         rm -rf ${D}${sysconfdir}/init.d/
-    fi
-
-    # Install systemd related configuration file
-    if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
-        install -d ${D}${sysconfdir}/modules-load.d
-        install -m 0644 ${WORKDIR}/fuse.conf ${D}${sysconfdir}/modules-load.d
     fi
 }
 

@@ -47,9 +47,7 @@ DEPENDS_append += " \
 	weston \
 "
 
-KERNEL_MODULES_INSTALLED += "kernel-module-ftdi-sio \
-			     kernel-module-usbserial \
-"
+KERNEL_MODULES_INSTALLED += ""
 	
 IMAGE_INSTALL += " \
 	autofs \
