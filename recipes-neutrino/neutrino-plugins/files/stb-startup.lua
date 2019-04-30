@@ -214,12 +214,12 @@ if res == "yes" then
 				end
 			end
 		end
-		file = io.open(bootfile, 'w')
-		for i, v in ipairs(startup_lines) do
-			file:write(v, "\n")
-		end
-		file:close()
 	end
+	file = io.open(bootfile, 'w')
+	for i, v in ipairs(startup_lines) do
+		file:write(v, "\n")
+	end
+	file:close()
 	reboot()
 end
 
