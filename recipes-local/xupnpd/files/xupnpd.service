@@ -5,7 +5,7 @@ Wants=udpxy.service
 
 [Service]
 ExecStart=/bin/sh -c '/usr/bin/xupnpd > /var/log/xupnpd.log'
-PIDFile=/var/run/xupnpd.pid
+PIDFile=/run/xupnpd.pid
 ExecStop=/bin/kill -TERM $MAINPID
 TimeoutStopSec=3
 Restart=always
