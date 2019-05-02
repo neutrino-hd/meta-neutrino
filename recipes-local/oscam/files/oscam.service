@@ -5,11 +5,11 @@ Requires=network.target
 
 [Service]
 Type=forking
-PIDFile=/var/run/oscam.pid
+PIDFile=/run/oscam.pid
 ExecStartPre=/usr/bin/local_cam.sh
-ExecStart=/usr/bin/oscam -b -B /var/run/oscam.pid
+ExecStart=/usr/bin/oscam -b -B /run/oscam.pid
 ExecStartPost=/usr/bin/pzapit -rz
-ExecStop=/usr/bin/rm /var/run/oscam.pid
+ExecStop=/usr/bin/rm /run/oscam.pid
 TimeoutStopSec=1
 Restart=always
 RestartSec=5
