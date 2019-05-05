@@ -38,11 +38,9 @@ do_custom_baseissueinstall() {
 	printf "\n%s" '  /_/\\___/\\__/\\__/\\___/ /_/   \\___/_/\\_\\\\_, /' 		>> ${D}${sysconfdir}/issue.net
 	printf "\n%s" '                                       /___/'			>> ${D}${sysconfdir}/issue
 	printf "\n%s" '                                       /___/'			>> ${D}${sysconfdir}/issue.net
-	printf "\n\nNeutrino-HD image (based on Yocto ${DISTRO} ${DISTRO_VERSION})" 	>> ${D}${sysconfdir}/issue
-	printf "\n\nNeutrino-HD image (based on Yocto ${DISTRO} ${DISTRO_VERSION}) " 	>> ${D}${sysconfdir}/issue.net
+	printf "\n\ntuxbox-neutrino ${DISTRO_VERSION_NUMBER_MAJOR}.${DISTRO_VERSION_NUMBER_MINOR}.${DISTRO_VERSION_NUMBER_MICRO}" >> ${D}${sysconfdir}/issue
+	printf "\n\ntuxbox neutrino ${DISTRO_VERSION_NUMBER_MAJOR}.${DISTRO_VERSION_NUMBER_MINOR}.${DISTRO_VERSION_NUMBER_MICRO}" >> ${D}${sysconfdir}/issue.net
 	printf "\\\n \\\l\n"								>> ${D}${sysconfdir}/issue
-	echo >> ${D}${sysconfdir}/issue
-	echo >> ${D}${sysconfdir}/issue.net
 }
 
 do_install_append () {

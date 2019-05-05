@@ -137,6 +137,7 @@ do_install_prepend () {
 	fi
 	echo "distro=yocto ${DISTRO}" > ${D}${sysconfdir}/image-version
 	echo "imageversion=${DISTRO_VERSION_NUMBER_MAJOR}.${DISTRO_VERSION_NUMBER_MINOR}.${DISTRO_VERSION_NUMBER_MICRO}" >> ${D}${sysconfdir}/image-version
+	touch ${D}/usr/bin/enigma2
 }
 
 do_install_append() {
