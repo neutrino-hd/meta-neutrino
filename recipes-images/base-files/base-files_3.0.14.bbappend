@@ -38,12 +38,10 @@ do_custom_baseissueinstall() {
 	printf "\n%s" '  /_/\\___/\\__/\\__/\\___/ /_/   \\___/_/\\_\\\\_, /' 		>> ${D}${sysconfdir}/issue.net
 	printf "\n%s" '                                       /___/'			>> ${D}${sysconfdir}/issue
 	printf "\n%s" '                                       /___/'			>> ${D}${sysconfdir}/issue.net
-	printf "\n\ntuxbox-neutrino ${DISTRO_VERSION_NUMBER_MAJOR}.${DISTRO_VERSION_NUMBER_MINOR}.${DISTRO_VERSION_NUMBER_MICRO}" >> ${D}${sysconfdir}/issue
-	printf "\n\ntuxbox neutrino ${DISTRO_VERSION_NUMBER_MAJOR}.${DISTRO_VERSION_NUMBER_MINOR}.${DISTRO_VERSION_NUMBER_MICRO}" >> ${D}${sysconfdir}/issue.net
-	printf "\\\n \\\l\n" >> ${D}${sysconfdir}/issue
-	printf "\\\n \\\l\n" >> ${D}${sysconfdir}/issue.net
-	printf "\n" >> ${D}${sysconfdir}/issue
-	printf "\n" >> ${D}${sysconfdir}/issue.net
+	printf "\n\ntuxbox-neutrino ${DISTRO_VERSION_NUMBER_MAJOR}.${DISTRO_VERSION_NUMBER_MINOR}.${DISTRO_VERSION_NUMBER_MICRO} " >> ${D}${sysconfdir}/issue
+	printf "\n\ntuxbox-neutrino ${DISTRO_VERSION_NUMBER_MAJOR}.${DISTRO_VERSION_NUMBER_MINOR}.${DISTRO_VERSION_NUMBER_MICRO} " >> ${D}${sysconfdir}/issue.net
+	printf "\\\n \\\l\n\n" >> ${D}${sysconfdir}/issue
+	printf "\\\n \\\l\n\n" >> ${D}${sysconfdir}/issue.net
 }
 
 do_install_append () {
