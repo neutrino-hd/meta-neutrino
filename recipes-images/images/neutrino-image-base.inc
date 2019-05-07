@@ -122,6 +122,7 @@ IMAGE_INSTALL += " \
 	webmin \
 	wpa-supplicant \
 	xupnpd \
+	zip \
 	zsh \
 	${EXTRA_KERNEL_WIFI_DRIVERS} \
 	${KERNEL_MODULES_INSTALLED} \
