@@ -73,12 +73,14 @@ IMAGE_INSTALL += " \
 	glibc-binary-localedata-ru-ru \
 	glibc-charmap-utf-8 \
 	gptfdisk \
+	grep \
 	gzip \
 	hdparm \
 	htop \
 	ifupdown \
 	image-config \
 	imagemagick \
+	less \
 	libswscale \
 	libusb1 \
 	links \
