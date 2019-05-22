@@ -9,41 +9,42 @@ S = "${WORKDIR}/git"
 PR = "r1"
 
 SRC_URI = "git://github.com/tuxbox-neutrino/plugin-scripts-lua.git;protocol=https \
-		   file://0001-ard-mediathek-disable-hds.patch \
-		   file://yt_live.tar.gz \
-		   file://webtv.tar.gz \
+                   file://0001-ard-mediathek-disable-hds.patch \
+                   file://yt_live.tar.gz \
+                   file://webtv.tar.gz \
 "
 
 SRCREV = "${AUTOREV}"
 
 do_install () {
-	install -d ${D}/usr/share/tuxbox/plugins/webtv ${D}/usr/share/xupnpd/plugins ${D}/usr/share/tuxbox/plugins/webradio
-	install -m 644 ${S}/plugins/webtv/* ${D}/usr/share/tuxbox/plugins/webtv
-        install -m 644 ${S}/plugins/LocalTV/* ${D}/usr/share/tuxbox/plugins
-	install -m 644 ${S}/plugins/netzkino/* ${D}/usr/share/tuxbox/plugins
-	install -m 644 ${S}/plugins/ard_mediathek/* ${D}/usr/share/tuxbox/plugins
-        install -m 644 ${WORKDIR}/webtv_ora.xml ${D}/usr/share/tuxbox/plugins/webtv
-        install -m 644 ${WORKDIR}/webtv_localtv.xml ${D}/usr/share/tuxbox/plugins/webtv
-        install -m 644 ${WORKDIR}/yt_live.cfg ${D}/usr/share/tuxbox/plugins
-        install -m 644 ${WORKDIR}/yt_live.png ${D}/usr/share/tuxbox/plugins/yt_live_hint.png
-	install -m 644 ${S}/xupnpd/* ${D}/usr/share/xupnpd/plugins/
-        install -m 644 ${S}/plugins/stb_restore/stb-restore.lua ${D}/usr/share/tuxbox/plugins
-        install -m 644 ${S}/plugins/stb_shell/* ${D}/usr/share/tuxbox/plugins
-        install -m 644 ${S}/plugins/stb_flash/stb-flash.lua ${D}/usr/share/tuxbox/plugins
-        install -m 644 ${S}/plugins/stb_backup/stb-backup.lua ${D}/usr/share/tuxbox/plugins
-        install -m 644 ${S}/plugins/stb_move/stb-move.lua ${D}/usr/share/tuxbox/plugins
-        install -m 644 ${S}/plugins/stb_log/* ${D}/usr/share/tuxbox/plugins
-        install -m 644 ${S}/plugins/stb_local-flash/stb-local-flash.lua ${D}/usr/share/tuxbox/plugins
-        install -m 644 ${S}/plugins/stb_plugins/* ${D}/usr/share/tuxbox/plugins
-        install -m 644 ${S}/plugins/stb_startup/stb-startup.lua ${D}/usr/share/tuxbox/plugins
-        install -m 644 ${S}/plugins/stb_startup/stb-startup_hint.png ${D}/usr/share/tuxbox/plugins
-        install -m 644 ${S}/plugins/stb_startup/stb-startup.cfg ${D}/usr/share/tuxbox/plugins
-        install -m 644 ${S}/plugins/logoupdater/* ${D}/usr/share/tuxbox/plugins
-        install -m 644 ${S}/plugins/mtv/* ${D}/usr/share/tuxbox/plugins
-        install -m 644 ${S}/plugins/settingsupdater/* ${D}/usr/share/tuxbox/plugins
-	install -m 644 ${S}/plugins/heizoelpreise/* ${D}/usr/share/tuxbox/plugins
+        install -d ${D}/var/tuxbox/plugins/webtv ${D}/var/xupnpd/plugins ${D}/var/tuxbox/plugins
+        install -m 644 ${S}/plugins/webtv/* ${D}/var/tuxbox/plugins/webtv
+        install -m 644 ${S}/plugins/LocalTV/* ${D}/var/tuxbox/plugins
+        install -m 644 ${S}/plugins/netzkino/* ${D}/var/tuxbox/plugins
+        install -m 644 ${S}/plugins/ard_mediathek/* ${D}/var/tuxbox/plugins
+        install -m 644 ${WORKDIR}/webtv_ora.xml ${D}/var/tuxbox/plugins/webtv
+        install -m 644 ${WORKDIR}/webtv_localtv.xml ${D}/var/tuxbox/plugins/webtv
+        install -m 644 ${WORKDIR}/yt_live.cfg ${D}/var/tuxbox/plugins
+        install -m 644 ${WORKDIR}/yt_live.png ${D}/var/tuxbox/plugins/yt_live_hint.png
+        install -m 644 ${S}/xupnpd/* ${D}/var/xupnpd/plugins/
+        install -m 644 ${S}/plugins/stb_restore/stb-restore.lua ${D}/var/tuxbox/plugins
+        install -m 644 ${S}/plugins/stb_shell/* ${D}/var/tuxbox/plugins
+        install -m 644 ${S}/plugins/stb_flash/stb-flash.lua ${D}/var/tuxbox/plugins
+        install -m 644 ${S}/plugins/stb_backup/stb-backup.lua ${D}/var/tuxbox/plugins
+        install -m 644 ${S}/plugins/stb_move/stb-move.lua ${D}/var/tuxbox/plugins
+        install -m 644 ${S}/plugins/stb_log/* ${D}/var/tuxbox/plugins
+        install -m 644 ${S}/plugins/stb_local-flash/stb-local-flash.lua ${D}/var/tuxbox/plugins
+        install -m 644 ${S}/plugins/stb_plugins/* ${D}/var/tuxbox/plugins
+        install -m 644 ${S}/plugins/stb_startup/stb-startup.lua ${D}/var/tuxbox/plugins
+        install -m 644 ${S}/plugins/stb_startup/stb-startup_hint.png ${D}/var/tuxbox/plugins
+        install -m 644 ${S}/plugins/stb_startup/stb-startup.cfg ${D}/var/tuxbox/plugins
+        install -m 644 ${S}/plugins/logoupdater/* ${D}/var/tuxbox/plugins
+        install -m 644 ${S}/plugins/mtv/* ${D}/var/tuxbox/plugins
+        install -m 644 ${S}/plugins/settingsupdater/* ${D}/var/tuxbox/plugins
+        install -m 644 ${S}/plugins/heizoelpreise/* ${D}/var/tuxbox/plugins
 }
 
 FILES_${PN} += " \
-	/usr \
+        /var \
 "
+

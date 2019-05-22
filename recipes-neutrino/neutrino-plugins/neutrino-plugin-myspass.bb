@@ -13,12 +13,12 @@ SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git/var/plugins"
 
 do_install () {
-	install -d ${D}/usr/share/tuxbox/plugins
-	install -m 755 ${S}/myspass.lua ${D}/usr/share/tuxbox/plugins
-	install -m 644 ${S}/myspass.cfg ${D}/usr/share/tuxbox/plugins
-	install -m 644 ${S}/myspass.png ${D}/usr/share/tuxbox/plugins
+	install -d ${D}/var/tuxbox/plugins
+	install -m 755 ${S}/myspass.lua ${D}/var/tuxbox/plugins
+	install -m 644 ${S}/myspass.cfg ${D}/var/tuxbox/plugins
+	install -m 644 ${S}/myspass.png ${D}/var/tuxbox/plugins
 }
 
 do_install_append () {
-echo "integration=2" >> ${D}/usr/share/tuxbox/plugins/myspass.cfg
+echo "integration=2" >> ${D}/var/tuxbox/plugins/myspass.cfg
 }

@@ -14,13 +14,13 @@ B = "${WORKDIR}/build"
 inherit pythonnative
 
 do_configure() {
-        install -d ${B}/usr/share/E2emulator ${B}/usr/share/E2emulator/Plugins/Extensions/IPTVPlayer ${B}/usr/share/tuxbox/plugins ${B}/usr/bin
+        install -d ${B}/usr/share/E2emulator ${B}/usr/share/E2emulator/Plugins/Extensions/IPTVPlayer ${B}/var/tuxbox/plugins ${B}/usr/bin
 	cp -rf ${S}/E2emulator ${B}/usr/share
         cp -rf ${S}/IPTVplayer/* ${B}/usr/share/E2emulator/Plugins/Extensions/IPTVPlayer
         cp -rf ${S}/IPTVdaemon/* ${B}/usr/share/E2emulator/Plugins/Extensions/IPTVPlayer
         cp -rf ${S}/addon4cmdline/* ${B}/usr/share/E2emulator/Plugins/Extensions/IPTVPlayer
         chmod 755 ${B}/usr/share/E2emulator/Plugins/Extensions/IPTVPlayer/cmdlineIPTV.sh
-        cp -rf ${S}/addon4neutrino/neutrinoIPTV/* ${B}/usr/share/tuxbox/plugins/
+        cp -rf ${S}/addon4neutrino/neutrinoIPTV/* ${B}/var/tuxbox/plugins/
         ln -sf /usr/share/E2emulator/Plugins/Extensions/IPTVPlayer/cmdlineIPTV.sh ${B}/usr/bin
 }
 
