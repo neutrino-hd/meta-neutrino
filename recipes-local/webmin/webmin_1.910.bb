@@ -26,8 +26,8 @@ SRC_URI = "https://github.com/webmin/webmin/archive/${PV}.tar.gz \
 	   file://webmin \
 "
 
-SRC_URI[md5sum] = "4ca0164e4208dc42294b017e72c42e80"
-SRC_URI[sha256sum] = "44269655a736d14e41f1a95663b1c7d6f908bd5248ae5f4c4caad0a26998fe1b"
+SRC_URI[md5sum] = "2d5fb2d9d45e9c54a6aa2f47a883da78"
+SRC_URI[sha256sum] = "528e88b45e1ed580fd677d6be2a2ecdefe9f02dddaf1c60b06b69d4a71cfafcc"
 
 inherit perlnative systemd
 
