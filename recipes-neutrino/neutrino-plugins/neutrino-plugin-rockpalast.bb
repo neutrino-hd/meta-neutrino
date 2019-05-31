@@ -13,10 +13,10 @@ SRC_URI = "file://rockpalast.tar.gz \
 "
 
 do_install () {
-	install -d ${D}/var/tuxbox/plugins
-	install -m 644 ${S}/rockpalast.cfg ${D}/var/tuxbox/plugins
-	install -m 644 ${S}/rockpalast.lua ${D}/var/tuxbox/plugins
-	install -m 644 ${S}/rockpalast_hint.png ${D}/var/tuxbox/plugins
+	install -d ${D}/usr/share/tuxbox/plugins
+	install -m 644 ${S}/rockpalast.cfg ${D}/usr/share/tuxbox/plugins
+	install -m 644 ${S}/rockpalast.lua ${D}/usr/share/tuxbox/plugins
+	install -m 644 ${S}/rockpalast_hint.png ${D}/usr/share/tuxbox/plugins
 }
 
-FILES_${PN} = "/var"
+FILES_${PN} = "/usr"

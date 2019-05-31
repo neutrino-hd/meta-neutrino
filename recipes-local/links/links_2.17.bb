@@ -38,10 +38,10 @@ EXTRA_OECONF = "--enable-graphics \
 "
 
 do_install_append() {
-	install -d ${D}/var/tuxbox/plugins -d ${D}/etc/neutrino/config/links
-	ln -sf /usr/bin/links ${D}/var/tuxbox/plugins/links.so
+	install -d ${D}/usr/share/tuxbox/plugins -d ${D}/etc/neutrino/config/links
+	ln -sf /usr/bin/links ${D}/usr/share/tuxbox/plugins/links.so
 	install -m 0644 ${WORKDIR}/bookmarks ${D}/etc/neutrino/config
-        install -m 0644 ${WORKDIR}/links.cfg ${D}/var/tuxbox/plugins
+        install -m 0644 ${WORKDIR}/links.cfg ${D}/usr/share/tuxbox/plugins
 	touch ${D}/etc/neutrino/config/links/links.his
         install -m 0644 ${WORKDIR}/bookmarks.html ${D}/etc/neutrino/config/links
 }
