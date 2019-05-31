@@ -68,13 +68,13 @@ EXTRA_OECONF = " \
 	--exec_prefix=${N_EXEC_PREFIX} \
 	--includedir=${N_PREFIX}/include \
 	--with-configdir=/etc/neutrino/config \
-	--with-plugindir=/usr/share/tuxbox/plugins \
+	--with-plugindir=/usr/share/tuxbox/neutrino/plugins \
         --with-plugindir_var=/etc/neutrino/plugins \
-	--with-webtvdir=/usr/share/tuxbox/plugins/webtv \
+	--with-webtvdir=/usr/share/tuxbox/neutrino/plugins/webtv \
 	--with-webtvdir_var=/etc/neutrino/plugins/webtv \
-        --with-webradiodir=/usr/share/tuxbox/plugins/webradio \
+        --with-webradiodir=/usr/share/tuxbox/neutrino/plugins/webradio \
         --with-webradiodir_var=/etc/neutrino/plugins/webradio \
-	--with-luaplugindir=/usr/share/tuxbox/plugins \
+	--with-luaplugindir=/usr/share/tuxbox/neutrino/plugins \
 	--with-gamesdir=/etc/neutrino/plugins \
 	--with-tmdb-dev-key="${TMDB_DEV_KEY}" \
 	--with-omdb-api-key="${OMDB_API_KEY}" \
@@ -184,7 +184,7 @@ pkg_postinst_ontarget_${PN} () {
 	# pic2m2v is only available on platforms that use "real" libstb-hal
 	if which pic2m2v >/dev/null 2>&1; then
 		# neutrino icon path
-		I=/usr/share/tuxbox/neutrino/icons
+		I=/usr/share/tuxbox/neutrino/neutrino/icons
 		pic2m2v $I/mp3.jpg $I/radiomode.jpg $I/scan.jpg $I/shutdown.jpg $I/start.jpg
 	fi
 	ln -sf /usr/.version /.version
