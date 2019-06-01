@@ -17,7 +17,7 @@ SRC_URI = "git://git.kernel.org/pub/scm/boot/dracut/dracut.git;protocol=http \
 
 DEPENDS += "kmod"
 DEPENDS_append_libc-musl = " fts"
-
+RDEPENDS_${PN} += "binutils"
 inherit bash-completion pkgconfig
 
 S = "${WORKDIR}/git"

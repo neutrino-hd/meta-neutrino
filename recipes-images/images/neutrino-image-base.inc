@@ -19,6 +19,7 @@ set_root_passwd() {
 
 DEPENDS_append += " \
 	crossplatform-iptvplayer \
+	dracut \
 	dropbear \
 	dvb-apps \
 	dvb-usb-drivers-meta \
@@ -26,7 +27,6 @@ DEPENDS_append += " \
 	ethtool \
 	fzf \
 	ifuse \
-	lcd4linux \
 	libxslt \
 	mc \
 	ncdu \
@@ -105,6 +105,7 @@ IMAGE_INSTALL += " \
 	rpcbind \
 	rsync \
 	samba \
+	samsunglcd4linux \
 	sed \
 	tar \
 	tzdata \
