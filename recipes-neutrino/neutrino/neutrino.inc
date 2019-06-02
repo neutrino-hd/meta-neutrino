@@ -184,7 +184,7 @@ pkg_postinst_ontarget_${PN} () {
 	# pic2m2v is only available on platforms that use "real" libstb-hal
 	if which pic2m2v >/dev/null 2>&1; then
 		# neutrino icon path
-		I=/usr/share/tuxbox/neutrino/neutrino/icons
+		I=/usr/share/tuxbox/neutrino/icons
 		pic2m2v $I/mp3.jpg $I/radiomode.jpg $I/scan.jpg $I/shutdown.jpg $I/start.jpg
 	fi
 	ln -sf /usr/.version /.version
