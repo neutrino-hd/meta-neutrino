@@ -6,7 +6,6 @@ IMAGE_INSTALL += " \
 	virtual/neutrino \
 	neutrino-plugins \
 	neutrino-lua-plugins \
-	neutrino-plugin-rss \
 	neutrino-plugin-mediathek \
 	neutrino-plugin-rockpalast \
 	"

@@ -22,6 +22,7 @@ do_install () {
         install -m 644 ${S}/plugins/LocalTV/* ${D}/usr/share/tuxbox/neutrino/plugins
 	install -m 644 ${S}/plugins/netzkino/* ${D}/usr/share/tuxbox/neutrino/plugins
 	install -m 644 ${S}/plugins/ard_mediathek/* ${D}/usr/share/tuxbox/neutrino/plugins
+        cp -rf ${S}/plugins/rss/* ${D}/usr/share/tuxbox/neutrino/plugins
         install -m 644 ${WORKDIR}/webtv_ora.xml ${D}/usr/share/tuxbox/neutrino/plugins/webtv
         install -m 644 ${WORKDIR}/webtv_localtv.xml ${D}/usr/share/tuxbox/neutrino/plugins/webtv
         install -m 644 ${WORKDIR}/yt_live.cfg ${D}/usr/share/tuxbox/neutrino/plugins
