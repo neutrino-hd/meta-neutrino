@@ -1,7 +1,7 @@
 SUMMARY = "Web-based administration interface"
 HOMEPAGE = "http://www.webmin.com"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://LICENCE;md5=0373ac9f611e542ddebe1ec6394afc3c"
+LIC_FILES_CHKSUM = "file://LICENCE;md5=0a6446108c96d0819d21e40b48109507"
 
 SRC_URI = "https://github.com/webmin/webmin/archive/${PV}.tar.gz \
            file://setup.sh \
@@ -26,8 +26,10 @@ SRC_URI = "https://github.com/webmin/webmin/archive/${PV}.tar.gz \
 	   file://webmin \
 "
 
-SRC_URI[md5sum] = "2d5fb2d9d45e9c54a6aa2f47a883da78"
-SRC_URI[sha256sum] = "528e88b45e1ed580fd677d6be2a2ecdefe9f02dddaf1c60b06b69d4a71cfafcc"
+RDEPENDS-${PN}-module += "perl"
+
+SRC_URI[md5sum] = "7de6df4f8b53e7044d06a35965091ef7"
+SRC_URI[sha256sum] = "d6f633cc24329f42af0fc4aae2c8b6dde59dce20fc260f13abd8a6cdd33d84cd"
 
 inherit perlnative systemd
 
@@ -189,3 +191,5 @@ package_do_pkgconfig() {
 }
 
 INSANE_SKIP_${PN}-module-shellinabox += "file-rdeps already-stripped"
+
+INSANE_SKIP += "file-rdeps"

@@ -11,7 +11,7 @@ SRC_URI_append += "file://telnet.service \
 				   file://resolv.conf \
 "
 
-
+BUSYBOX_SPLIT_SUID = "0"
 
 do_install_append() {
 	install -d ${D}${systemd_unitdir}/system/multi-user.target.wants/

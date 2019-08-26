@@ -21,3 +21,4 @@ SRC_URI = "\
 SRCREV_net = "${AUTOREV}"
 SRCREV_crypto = "${AUTOREV}"
 SRCREV_text = "${AUTOREV}"
+SRCREV_FORMAT = "git"

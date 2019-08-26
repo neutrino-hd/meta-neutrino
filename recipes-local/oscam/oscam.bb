@@ -7,7 +7,7 @@ DEPENDS = "libusb1 openssl pcsc-lite"
 
 DEPENDS_APPEND_libc-uclibc += "virtual/libstb-hal"
 
-SRC_URI = "svn://www.streamboard.tv/svn/oscam;protocol=http;module=trunk;scmdata=keep \
+SRC_URI = "git://github.com/TangoCash/oscam.git;protocol=https \
 	   file://oscam.service \
 	   file://oscam.conf \
 "
@@ -15,8 +15,7 @@ SRC_URI = "svn://www.streamboard.tv/svn/oscam;protocol=http;module=trunk;scmdata
 SRCREV = "${AUTOREV}"
 PV = "${SRCPV}"
 
-S = "${WORKDIR}/trunk"
-B = "${S}"	
+S = "${WORKDIR}/git"	
 
 INHIBIT_PACKAGE_STRIP = "1"
 

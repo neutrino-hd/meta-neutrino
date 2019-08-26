@@ -11,7 +11,7 @@ SRCREV_msgbox = "${AUTOREV}"
 SRCREV_input = "${AUTOREV}"
 SRCREV_tuxwetter = "${AUTOREV}"
 SRCREV_shellexec = "${AUTOREV}"
-
+SRCREV_FORMAT = "autotools"
 PV = "8"
 
 SRC_URI = "git://github.com/neutrino-hd/neutrino-hd-plugins.git;branch=master;protocol=https;name=autotools \
