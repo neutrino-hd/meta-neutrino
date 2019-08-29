@@ -7,17 +7,18 @@ LIC_FILES_CHKSUM = "file://tools/tdbdump.c;endline=18;md5=b59cd45aa8624578126a8c
                     file://include/tdb.h;endline=27;md5=f5bb544641d3081821bcc1dd58310be6"
 
 SRC_URI = "https://samba.org/ftp/tdb/tdb-${PV}.tar.gz \
-           file://do-not-check-xsltproc-manpages.patch \
            file://tdb-Add-configure-options-for-packages.patch \
+           file://0001-waf-add-support-of-cross_compile.patch \
 "
 
-SRC_URI[md5sum] = "7d06d8709188e07df853d9e91db88927"
-SRC_URI[sha256sum] = "6a3fc2616567f23993984ada3cea97d953a27669ffd1bfbbe961f26e0cf96cc5"
+SRC_URI[md5sum] = "b2c05ad68334368d3258a63db709f254"
+SRC_URI[sha256sum] = "9040b2cce4028e392f063f91bbe76b8b28fecc2b7c0c6071c67b5eb3168e004a"
 
 PACKAGECONFIG ??= "\
     ${@bb.utils.filter('DISTRO_FEATURES', 'acl', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'xattr', 'attr', '', d)} \
 "
+
 PACKAGECONFIG[acl] = "--with-acl,--without-acl,acl"
 PACKAGECONFIG[attr] = "--with-attr,--without-attr,attr"
 PACKAGECONFIG[libaio] = "--with-libaio,--without-libaio,libaio"
@@ -29,16 +30,28 @@ S = "${WORKDIR}/tdb-${PV}"
 
 inherit waf-samba
 
+#cross_compile cannot use preforked process, since fork process earlier than point subproces.popen
+#to cross Popen
+export WAF_NO_PREFORK="yes"
+
 EXTRA_OECONF += "--disable-rpath \
                  --bundled-libraries=NONE \
                  --builtin-libraries=replace \
                  --with-libiconv=${STAGING_DIR_HOST}${prefix}\
                 "
 
-PACKAGES += "tdb-tools python-tdb python-tdb-dbg"
+do_install_append() {
+     # add this link for cross check python module existence. eg: on x86-64 host, check python module
+     # under recipe-sysroot which is mips64.
+     cd ${D}${PYTHON_SITEPACKAGES_DIR}; ln -s tdb.*.so tdb.so
+}
+
+PACKAGES += "tdb-tools python3-tdb"
+
+RPROVIDES_${PN}-dbg += "python3-tdb-dbg"
 
 FILES_${PN} = "${libdir}/*.so.*"
 FILES_tdb-tools = "${bindir}/*"
-FILES_python-tdb = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/*"
-FILES_python-tdb-dbg = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/.debug/*"
-RDEPENDS_python-tdb = "python"
+FILES_python3-tdb = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/*"
+RDEPENDS_python3-tdb = "python3"
+INSANE_SKIP_${MLPREFIX}python3-tdb = "dev-so"
