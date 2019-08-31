@@ -1,6 +1,19 @@
+From 4c369db701adfa2b98a8d2bd32b3ca10f9635ba2 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sat, 14 Oct 2017 17:39:14 +0200
+
+---
+ libavcodec/aacdec_template.c | 2 +-
+ libavcodec/aacps.c           | 2 +-
+ libavcodec/fft_template.c    | 4 ++--
+ libavcodec/mdct_template.c   | 2 +-
+ 4 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/libavcodec/aacdec_template.c b/libavcodec/aacdec_template.c
+index 28765c7..b04be52 100644
 --- a/libavcodec/aacdec_template.c
 +++ b/libavcodec/aacdec_template.c
-@@ -2483,7 +2483,7 @@
+@@ -2482,7 +2482,7 @@ static int decode_extension_payload(AACContext *ac, GetBitContext *gb, int cnt,
   * @param   decode  1 if tool is used normally, 0 if tool is used in LTP.
   * @param   coef    spectral coefficients
   */
@@ -9,6 +22,43 @@
                        IndividualChannelStream *ics, int decode)
  {
      const int mmm = FFMIN(ics->tns_max_bands, ics->max_sfb);
+diff --git a/libavcodec/aacps.c b/libavcodec/aacps.c
+index d5dca64..d3cbda6 100644
+--- a/libavcodec/aacps.c
++++ b/libavcodec/aacps.c
+@@ -659,7 +659,7 @@ static void map_val_20_to_34(INTFLOAT par[PS_MAX_NR_IIDICC])
+     par[ 1] = AAC_HALF_SUM(par[ 0], par[ 1]);
+ }
+ 
+-static void decorrelation(PSContext *ps, INTFLOAT (*out)[32][2], const INTFLOAT (*s)[32][2], int is34)
++static void __attribute__((optimize(0))) decorrelation(PSContext *ps, INTFLOAT (*out)[32][2], const INTFLOAT (*s)[32][2], int is34)
+ {
+     LOCAL_ALIGNED_16(INTFLOAT, power, [34], [PS_QMF_TIME_SLOTS]);
+     LOCAL_ALIGNED_16(INTFLOAT, transient_gain, [34], [PS_QMF_TIME_SLOTS]);
+diff --git a/libavcodec/fft_template.c b/libavcodec/fft_template.c
+index 20a62e4..99054a0 100644
+--- a/libavcodec/fft_template.c
++++ b/libavcodec/fft_template.c
+@@ -562,7 +562,7 @@ static void fft##n(FFTComplex *z)\
+     pass(z,FFT_NAME(ff_cos_##n),n4/2);\
+ }
+ 
+-static void fft4(FFTComplex *z)
++static void __attribute__((optimize(0))) fft4(FFTComplex *z)
+ {
+     FFTDouble t1, t2, t3, t4, t5, t6, t7, t8;
+ 
+@@ -576,7 +576,7 @@ static void fft4(FFTComplex *z)
+     BF(z[2].im, z[0].im, t2, t5);
+ }
+ 
+-static void fft8(FFTComplex *z)
++static void __attribute__((optimize(0))) fft8(FFTComplex *z)
+ {
+     FFTDouble t1, t2, t3, t4, t5, t6;
+ 
+diff --git a/libavcodec/mdct_template.c b/libavcodec/mdct_template.c
+index e0ad9f1..8e8c6ec 100644
 --- a/libavcodec/mdct_template.c
 +++ b/libavcodec/mdct_template.c
 @@ -102,7 +102,7 @@ av_cold int ff_mdct_init(FFTContext *s, int nbits, int inverse, double scale)
@@ -20,34 +70,3 @@
  {
      int k, n8, n4, n2, n, j;
      const uint16_t *revtab = s->revtab;
---- a/libavcodec/aacps.c
-+++ b/libavcodec/aacps.c
-@@ -659,7 +659,7 @@
-     par[ 1] = AAC_HALF_SUM(par[ 0], par[ 1]);
- }
- 
--static void decorrelation(PSContext *ps, INTFLOAT (*out)[32][2], const INTFLOAT (*s)[32][2], int is34)
-+static void __attribute__((optimize(0))) decorrelation(PSContext *ps, INTFLOAT (*out)[32][2], const INTFLOAT (*s)[32][2], int is34)
- {
-     LOCAL_ALIGNED_16(INTFLOAT, power, [34], [PS_QMF_TIME_SLOTS]);
-     LOCAL_ALIGNED_16(INTFLOAT, transient_gain, [34], [PS_QMF_TIME_SLOTS]);
---- a/libavcodec/fft_template.c
-+++ b/libavcodec/fft_template.c
-@@ -538,7 +538,7 @@
-     pass(z,FFT_NAME(ff_cos_##n),n4/2);\
- }
- 
--static void fft4(FFTComplex *z)
-+static void __attribute__((optimize(0))) fft4(FFTComplex *z)
- {
-     FFTDouble t1, t2, t3, t4, t5, t6, t7, t8;
- 
-@@ -552,7 +552,7 @@
-     BF(z[2].im, z[0].im, t2, t5);
- }
- 
--static void fft8(FFTComplex *z)
-+static void __attribute__((optimize(0))) fft8(FFTComplex *z)
- {
-     FFTDouble t1, t2, t3, t4, t5, t6;
- 

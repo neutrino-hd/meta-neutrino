@@ -1,15 +1,15 @@
-From 90aa7aea0baa100719456e6a5b6e6682a5401aa0 Mon Sep 17 00:00:00 2001
+From e9cd9378925923f2038fa915b29514c99cfa74c0 Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
 Date: Sat, 14 Oct 2017 17:39:14 +0200
 
 ---
  libavformat/avio.h    |  6 ------
- libavformat/aviobuf.c | 12 +++++-------
+ libavformat/aviobuf.c | 10 ++++------
  libavformat/utils.c   | 19 +++++++++++++++++++
- 3 files changed, 24 insertions(+), 13 deletions(-)
+ 3 files changed, 23 insertions(+), 12 deletions(-)
 
 diff --git a/libavformat/avio.h b/libavformat/avio.h
-index 75912ce..56f0a4d 100644
+index dcb8dcd..c609666 100644
 --- a/libavformat/avio.h
 +++ b/libavformat/avio.h
 @@ -290,12 +290,6 @@ typedef struct AVIOContext {
@@ -26,7 +26,7 @@ index 75912ce..56f0a4d 100644
      /**
       * Threshold to favor readahead over seek.
 diff --git a/libavformat/aviobuf.c b/libavformat/aviobuf.c
-index e752d0e..108f089 100644
+index 2d01102..340bd67 100644
 --- a/libavformat/aviobuf.c
 +++ b/libavformat/aviobuf.c
 @@ -33,7 +33,7 @@
@@ -46,7 +46,7 @@ index e752d0e..108f089 100644
      s->buffer_size = buffer_size;
      s->buf_ptr     = buffer;
      s->buf_ptr_max = buffer;
-@@ -570,15 +569,15 @@
+@@ -570,15 +569,15 @@ static void fill_buffer(AVIOContext *s)
      }
  
      /* make buffer smaller in case it ended up large after probing */
@@ -74,7 +74,7 @@ index e752d0e..108f089 100644
      s->buf_ptr = s->buf_ptr_max = buffer;
      url_resetbuf(s, s->write_flag ? AVIO_FLAG_WRITE : AVIO_FLAG_READ);
 diff --git a/libavformat/utils.c b/libavformat/utils.c
-index c25eab4..02ce5e2 100644
+index 6c6f4e1..70e7739 100644
 --- a/libavformat/utils.c
 +++ b/libavformat/utils.c
 @@ -138,6 +138,25 @@ FF_ENABLE_DEPRECATION_WARNINGS

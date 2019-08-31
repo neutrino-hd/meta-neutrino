@@ -1,9 +1,20 @@
+From c57070c7f329ab6150b6e0f4f6416398957b1956 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Wed, 21 Feb 2018 16:18:52 +0100
+Subject: [PATCH] update to current yocto master
+
 Taapat: disable log to fix freezing on edit list parsing intruduced in:
 http://git.videolan.org/gitweb.cgi/ffmpeg.git/?p=ffmpeg.git;a=commitdiff;h=ca6cae73db207f17a0d5507609de12842d8f0ca3
 
+---
+ libavformat/mov.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/libavformat/mov.c b/libavformat/mov.c
+index 327a25b..71d34d6 100644
 --- a/libavformat/mov.c
 +++ b/libavformat/mov.c
-@@ -3558,8 +3558,10 @@
+@@ -3558,8 +3558,10 @@ static void mov_fix_index(MOVContext *mov, AVStream *st)
  
              if (ctts_data_old && ctts_index_old < ctts_count_old) {
                  curr_ctts = ctts_data_old[ctts_index_old].duration;
