@@ -13,7 +13,7 @@ RDEPENDS_${PN}-dev += "bash"
 inherit go
 
 SRC_URI = "\
-	git://github.com/golang/sys.git;protocol=https;name=sys;destsuffix=${PN}-${PV}/src/golang.org/x/sys \
+	git://github.com/golang/sys.git;protocol=https;name=sys;destsuffix=${BPN}-${PV}/src/golang.org/x/sys \
 	"
 
 SRCREV_sys = "${AUTOREV}"

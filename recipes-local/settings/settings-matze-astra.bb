@@ -1,7 +1,7 @@
 
 DESCRIPTION = "Settings for Neutrino made by Matze - Astra only"
 LICENSE = "BSD-2-Clause"
-LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/BSD-2-Clause;md5=8bef8e6712b1be5aa76af1ebde9d6378"
+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/BSD-2-Clause;md5=cb641bc04cda31daea161b1bc15da69f"
 HOMEPAGE = "http://matzesetting.brinkster.net/"
 
 S = "${WORKDIR}"
@@ -20,8 +20,5 @@ do_install () {
 FILES_${PN} = "\
     /etc/neutrino/config/zapit \
 "
-
-SRC_URI[md5sum] = "16fdda8f3f75fa0e4fe7b2f64911053d"
-SRC_URI[sha256sum] = "10129248bf84c401fe5e0ccad67bf0f643e320887d52ff9ede89d642d72a8f9a"
 
 BB_STRICT_CHECKSUM = "0"
