@@ -25,3 +25,5 @@ FILES_${PN} += "${libdir}/lua/5.2/*.so"
 FILES_${PN} += "${datadir}/lua/5.2/*.lua"
 
 BBCLASSEXTEND = "native"
+
+INSANE_SKIP += "src-uri-bad"

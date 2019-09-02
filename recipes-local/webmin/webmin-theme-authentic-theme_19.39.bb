@@ -33,3 +33,5 @@ FILES_${PN} = " \
 	/usr \
 	/etc \	
 "
+
+INSANE_SKIP_${PN} += "src-uri-bad"

@@ -192,4 +192,4 @@ package_do_pkgconfig() {
 
 INSANE_SKIP_${PN}-module-shellinabox += "file-rdeps already-stripped"
 
-INSANE_SKIP += "file-rdeps"
+INSANE_SKIP += "file-rdeps src-uri-bad"
