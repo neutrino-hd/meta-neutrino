@@ -9,6 +9,7 @@ HOMEPAGE = "http://libgd.bitbucket.org/"
 
 SECTION = "libs"
 LICENSE = "GD"
+LICENSE_PATH += "${LAYERDIR}/files/custom-licenses"
 LIC_FILES_CHKSUM = "file://COPYING;md5=07384b3aa2e0d39afca0d6c40286f545"
 
 DEPENDS = "freetype libpng jpeg zlib tiff"
