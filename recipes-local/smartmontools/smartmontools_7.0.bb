@@ -1,6 +1,6 @@
 SUMMARY = "Control and monitor storage systems using S.M.A.R.T"
-DESCRIPTION = \
-"The smartmontools package contains two utility programs (smartctl \
+DESCRIPTION = "\
+The smartmontools package contains two utility programs (smartctl \
 and smartd) to control and monitor storage systems using the Self-\
 Monitoring, Analysis and Reporting Technology System (SMART) built \
 into most modern ATA and SCSI hard disks. In many cases, these \
@@ -13,17 +13,17 @@ LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 SRC_URI = "${SOURCEFORGE_MIRROR}/smartmontools/smartmontools-${PV}.tar.gz \
-    file://initd.smartd \
-    file://smartmontools.default \
-    file://smartd.service \
-"
+           file://initd.smartd \
+           file://smartmontools.default \
+           file://smartd.service \
+           "
 
 PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'libcap-ng selinux', d)}"
 PACKAGECONFIG[libcap-ng] = "--with-libcap-ng=yes,--with-libcap-ng=no,libcap-ng"
 PACKAGECONFIG[selinux] = "--with-selinux=yes,--with-selinux=no,libselinux"
 
-SRC_URI[md5sum] = "9ae2c6e7131cd2813edcc65cbe5f223f"
-SRC_URI[sha256sum] = "51f43d0fb064fccaf823bbe68cf0d317d0895ff895aa353b3339a3b316a53054"
+SRC_URI[md5sum] = "b2a80e4789af23d67dfe1e88a997abbf"
+SRC_URI[sha256sum] = "e5e1ac2786bc87fdbd6f92d0ee751b799fbb3e1a09c0a6a379f9eb64b3e8f61c"
 
 inherit autotools update-rc.d systemd
 
