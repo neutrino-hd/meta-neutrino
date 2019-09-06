@@ -11,7 +11,7 @@ SRCREV ?= "${AUTOREV}"
 PV = "${SRCPV}"
 
 SRC_URI = " \
-	git://bitbucket.org/neutrino-images/ni-rtmpdump;protocol=https \
+	git://github.com/neutrino-images/ni-rtmpdump.git;protocol=https \
 	file://0001-Add-my-modifications-to-some-files.patch \
 "
 

@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=8ca43cbc842c2336e835926c2166c28b"
 DEPENDS = "glib-2.0 tremor libogg"
 
 SRC_URI = "\
-    git://bitbucket.org/neutrino-images/ni-streamripper.git;protocol=https \
+    git://github.com/neutrino-images/ni-streamripper.git;protocol=https \
 "
 
 SRCREV = "${AUTOREV}"

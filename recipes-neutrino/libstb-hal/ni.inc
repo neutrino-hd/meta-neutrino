@@ -1,2 +1,2 @@
-SRC_URI += "git://bitbucket.org/neutrino-images/ni-libstb-hal/;protocol=https \
+SRC_URI += "git://github.com/neutrino-images/ni-libstb-hal;protocol=https \
 "
