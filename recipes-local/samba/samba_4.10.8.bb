@@ -32,12 +32,12 @@ SRC_URI_append_libc-musl = " \
            file://0001-samba-fix-musl-lib-without-innetgr.patch \
           "
 
-SRC_URI[md5sum] = "9782cac8ef06049942be5f5c93b954be"
-SRC_URI[sha256sum] = "9efbeb52db1203dc779b118f1c48c161e569f7a6af5101e745497ee6296eef42"
+SRC_URI[md5sum] = "f3c722bbcd903479008fa1b529f56365"
+SRC_URI[sha256sum] = "c41f05fb567f7359998b451543501c7690a2bf6551d658a76bd6916316a410f4"
 
 UPSTREAM_CHECK_REGEX = "samba\-(?P<pver>4\.10(\.\d+)+).tar.gz"
 
-inherit systemd waf-samba cpan-base perlnative update-rc.d
+inherit systemd waf-samba cpan-base perlnative update-rc.d ccache
 # remove default added RDEPENDS on perl
 RDEPENDS_${PN}_remove = "perl"
 
