@@ -1,6 +1,6 @@
 DESCRIPTION = "The NTFS-3G driver is an open source, freely available NTFS driver for Linux with read and write support."
 HOMEPAGE = "http://www.ntfs-3g.org/"
-DEPENDS = "libgcrypt fuse"
+DEPENDS = "fuse libgcrypt"
 PROVIDES = "ntfsprogs ntfs-3g"
 LICENSE = "GPLv2 & LGPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=59530bdf33659b29e73d4adb9f9f6552 \
@@ -8,14 +8,18 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=59530bdf33659b29e73d4adb9f9f6552 \
 
 SRC_URI = "http://tuxera.com/opensource/ntfs-3g_ntfsprogs-${PV}.tgz \
            file://0001-libntfs-3g-Makefile.am-fix-install-failed-while-host.patch \
+           ${@bb.utils.contains('DISTRO_FEATURES','usrmerge','file://0001-Make-build-support-usrmerge.patch','',d)} \
 "
 S = "${WORKDIR}/ntfs-3g_ntfsprogs-${PV}"
 SRC_URI[md5sum] = "d97474ae1954f772c6d2fa386a6f462c"
 SRC_URI[sha256sum] = "3e5a021d7b761261836dcb305370af299793eedbded731df3d6943802e1262d5"
 
+UPSTREAM_CHECK_URI = "https://www.tuxera.com/community/open-source-ntfs-3g/"
+UPSTREAM_CHECK_REGEX = "ntfs-3g_ntfsprogs-(?P<pver>\d+(\.\d+)+)\.tgz"
+
 inherit autotools pkgconfig
 
-PACKAGECONFIG ??= "uuid"
+PACKAGECONFIG ??= ""
 PACKAGECONFIG[uuid] = "--with-uuid,--without-uuid,util-linux"
 
 # required or it calls ldconfig at install step
