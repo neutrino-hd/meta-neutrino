@@ -8,12 +8,12 @@ RDEPENDS_${PN} += "lua"
 PR = "r1"
 S = "${WORKDIR}/lua-expat-1f41c74ce686"
 
-SRC_URI = "http://code.matthewwild.co.uk/lua-expat/archive/1f41c74ce686.tar.gz \
+SRC_URI = "https://matthewwild.co.uk/projects/luaexpat/luaexpat-${PV}.tar.gz \
            file://expat_${PV}-make.patch \
            "
 
-SRC_URI[md5sum] = "9da3eb618aaf1547a1a75504c8185cee"
-SRC_URI[sha256sum] = "efe74a0ff7375ee5fe459aefff723c0efd5ebba7d05de34f7ebc334147c0731b"
+SRC_URI[md5sum] = "3c20b5795e7107f847f8da844fbfe2da"
+SRC_URI[sha256sum] = "d060397960d87b2c89cf490f330508b7def1a0677bdc120531c571609fc57dc3"
 
 LDFLAGS = "-llua"
 
