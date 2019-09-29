@@ -12,8 +12,8 @@ TARGET_CC_ARCH += "${LDFLAGS}"
 SRC_URI = "http://github.com/zeux/pugixml/releases/download/v${PV}/pugixml-${PV}.tar.gz \
 "
 
-SRC_URI[md5sum] = "7286ee2ed11376b6b780ced19fae0b64"
-SRC_URI[sha256sum] = "d156d35b83f680e40fd6412c4455fdd03544339779134617b9b28d19e11fdba6"
+SRC_URI[md5sum] = "f97237e9908201c6d8536210747b66af"
+SRC_URI[sha256sum] = "55f399fbb470942410d348584dc953bcaec926415d3462f471ef350f29b5870a"
 
 S = "${WORKDIR}/${PN}-${PV}"
 
