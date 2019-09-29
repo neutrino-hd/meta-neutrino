@@ -5,8 +5,8 @@ HOMEPAGE = "https://www.github.com/keplerproject"
 DEPENDS += "expat lua"
 RDEPENDS_${PN} += "lua"
 
-PR = "r1"
-S = "${WORKDIR}/lua-expat-1f41c74ce686"
+S = "${WORKDIR}/luaexpat-${PV}"
+
 
 SRC_URI = "https://matthewwild.co.uk/projects/luaexpat/luaexpat-${PV}.tar.gz \
            file://expat_${PV}-make.patch \
