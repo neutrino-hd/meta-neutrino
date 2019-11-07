@@ -28,7 +28,7 @@ do_install() {
 }
 
 USERADD_PACKAGES = "${PN}"
-USERADD_PARAM_${PN} = "-u 1200 -r -s /bin/bash netflix"
+USERADD_PARAM_${PN} = "-u 1200 -d /home/netflix -r -s /bin/bash netflix"
 GROUPADD_PARAM_${PN} = "-g 44 video; -g 29 audio; -g 19 input"
 
 do_install_append () {
