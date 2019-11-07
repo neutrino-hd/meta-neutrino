@@ -1,0 +1,12 @@
+[Unit]
+Description=QtWebflix
+Requires=networking.service
+
+[Service]
+Type=simple
+ExecStart=/bin/sh -c "/usr/bin/qtwebflix -platform eglfs"
+Restart=always
+User=netflix
+
+[Install]
+WantedBy=multi-user.target

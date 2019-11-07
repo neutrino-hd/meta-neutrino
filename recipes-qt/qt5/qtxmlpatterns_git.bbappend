@@ -1,0 +1,3 @@
+inherit ccache
+
+BB_DANGLINGAPPENDS_WARNONLY = "1"
