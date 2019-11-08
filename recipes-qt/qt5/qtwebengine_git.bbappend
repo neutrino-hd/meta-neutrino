@@ -1,6 +1,5 @@
 inherit ccache
 
-BB_DANGLINGAPPENDS_WARNONLY = "1"
 
 PACKAGECONFIG_append += "ffmpeg libwebp opus vpx"
 

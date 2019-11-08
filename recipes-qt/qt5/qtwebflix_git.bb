@@ -53,5 +53,3 @@ patchelf --replace-needed ${STAGING_LIBDIR}/libGLESv2.so ${libdir}/libGLESv2.so 
 
 
 PATH_prepend = "${STAGING_DIR_NATIVE}${OE_QMAKE_PATH_QT_BINS}:"
-
-BB_DANGLINGAPPENDS_WARNONLY = "1"

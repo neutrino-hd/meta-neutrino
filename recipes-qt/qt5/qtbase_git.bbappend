@@ -3,12 +3,10 @@ RDEPENDS_${PN} += "patchelf virtual/libgles2"
 
 PACKAGECONFIG_remove = "${PACKAGECONFIG_GL}"
 
-PACKAGECONFIG += "freetype udev eglfs dbus release accessibility optimize-size gles2 openssl journald libinput"
+PACKAGECONFIG += "freetype udev eglfs dbus release accessibility optimize-size gles2 openssl journald libinput xkbcommon"
 
 
 inherit ccache pkgconfig
-
-BB_DANGLINGAPPENDS_WARNONLY = "1"
 
 
 pkg_postinst_ontarget_${PN}() {
