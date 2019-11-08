@@ -5,8 +5,8 @@ LIC_FILES_CHKSUM = "file://LICENSE.md;md5=84dcc94da3adb52b53ae4fa38fe49e5d"
 DEPENDS = "qtwebengine"
 
 SRCREV_qtwebflix = "${AUTOREV}"
-SRCREV_qtdbusextended = "${AUTOREV}"
-SRCREV_qtmpris = "${AUTOREV}"
+SRCREV_qtdbusextended = "34971431233dc408553245001148d34a09836df1"
+SRCREV_qtmpris = "7251898353f1f5804c9480172ad7df88c4fe7eb6"
 SRCREV_FORMAT = "qtwebflix"
 
 
@@ -32,7 +32,7 @@ USERADD_PARAM_${PN} = "-u 1200 -d /home/netflix -r -s /bin/bash netflix"
 GROUPADD_PARAM_${PN} = "-g 44 video; -g 29 audio; -g 19 input"
 
 do_install_append () {
-    install -d -m 755 ${D}${datadir}/netflix
+    install -d -m 755 ${D}${datadir}/netflix -d -m755 -o netflix ${D}/home/netflix
     chown -R netflix ${D}${datadir}/netflix
     chgrp -R netflix ${D}${datadir}/netflix
 }
@@ -41,6 +41,7 @@ do_install_append () {
 FILES_${PN} = "/usr/bin/qtwebflix \
 				/usr/share \
 				/lib/systemd/system \
+				/home \
 "
 
 RDEPENDS_${PN} += "qtwebengine"
