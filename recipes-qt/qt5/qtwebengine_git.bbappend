@@ -1,7 +1,7 @@
 inherit ccache
 
 
-PACKAGECONFIG_append += "ffmpeg libwebp opus vpx"
+PACKAGECONFIG_append += "ffmpeg libwebp opus"
 
 pkg_postinst_ontarget_${PN}() {
 		patchelf --replace-needed ${STAGING_LIBDIR}/libGLESv2.so ${libdir}/libGLESv2.so /usr/lib/libQt*

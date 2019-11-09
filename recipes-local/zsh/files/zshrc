@@ -17,3 +17,6 @@ export LANG="de_DE.UTF-8"
 
 alias zshconfig="nano ~/.zshrc"
 alias ohmyzsh="nano ~/.oh-my-zsh"
+
+export QTWEBENGINE_DISABLE_SANDBOX=1
+export QT_QPA_PLATFORM=eglfs

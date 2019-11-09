@@ -19,7 +19,7 @@ SRC_URI = "git://github.com/gort818/qtwebflix.git;protocol=https;name=qtwebflix 
 
 S = "${WORKDIR}/git"
 
-inherit qmake5 useradd
+inherit qmake5
 
 do_install() {
 	install -d ${D}/usr/bin -d ${D}${systemd_unitdir}/system/multi-user.target.wants
@@ -27,21 +27,9 @@ do_install() {
 	install -m644 ${WORKDIR}/qtwebflix.service ${D}${systemd_unitdir}/system/qtwebflix.service
 }
 
-USERADD_PACKAGES = "${PN}"
-USERADD_PARAM_${PN} = "-u 1200 -d /home/netflix -r -s /bin/bash netflix"
-GROUPADD_PARAM_${PN} = "-g 44 video; -g 29 audio; -g 19 input"
-
-do_install_append () {
-    install -d -m 755 ${D}${datadir}/netflix -d -m755 -o netflix ${D}/home/netflix
-    chown -R netflix ${D}${datadir}/netflix
-    chgrp -R netflix ${D}${datadir}/netflix
-}
-
 
 FILES_${PN} = "/usr/bin/qtwebflix \
-				/usr/share \
 				/lib/systemd/system \
-				/home \
 "
 
 RDEPENDS_${PN} += "qtwebengine"
