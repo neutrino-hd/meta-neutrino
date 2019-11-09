@@ -9,7 +9,7 @@ Environment=QTWEBENGINE_DISABLE_SANDBOX=1
 Environment=QT_QPA_PLATFORM=eglfs
 ExecStartPre=/bin/sh -c "echo encoder > /proc/stb/avs/0/input"
 ExecStart=/bin/sh -c "/usr/bin/qtwebflix"
-Restart=always
+Restart=on-abort
 
 [Install]
 WantedBy=multi-user.target
