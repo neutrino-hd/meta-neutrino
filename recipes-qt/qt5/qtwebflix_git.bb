@@ -14,6 +14,10 @@ SRC_URI = "git://github.com/gort818/qtwebflix.git;protocol=https;name=qtwebflix 
            git://github.com/nemomobile/qtdbusextended.git;destsuffix=git/lib/qtdbusextended;branch=master;name=qtdbusextended;protocol=https \
            git://git.merproject.org/mer-core/qtmpris.git;destsuffix=git/lib/qtmpris;branch=master;name=qtmpris;protocol=https \
            file://qtwebflix.service \
+           file://browser.service \
+           file://ardmediathek.service \
+           file://zdfmediathek.service \
+           file://artemediathek.service \
 "
 
 
@@ -22,9 +26,13 @@ S = "${WORKDIR}/git"
 inherit qmake5
 
 do_install() {
-	install -d ${D}/usr/bin -d ${D}${systemd_unitdir}/system/multi-user.target.wants
+	install -d ${D}/usr/bin -d ${D}${systemd_unitdir}/system
 	install -m755 ${B}/qtwebflix ${D}/usr/bin
 	install -m644 ${WORKDIR}/qtwebflix.service ${D}${systemd_unitdir}/system/qtwebflix.service
+	install -m644 ${WORKDIR}/browser.service ${D}${systemd_unitdir}/system/browser.service
+	install -m644 ${WORKDIR}/ardmediathek.service ${D}${systemd_unitdir}/system/ardmediathek.service
+	install -m644 ${WORKDIR}/zdfmediathek.service ${D}${systemd_unitdir}/system/zdfmediathek.service
+	install -m644 ${WORKDIR}/artemediathek.service ${D}${systemd_unitdir}/system/artemediathek.service
 }
 
 
