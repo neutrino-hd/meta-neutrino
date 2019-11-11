@@ -20,3 +20,4 @@ alias ohmyzsh="nano ~/.oh-my-zsh"
 
 export QTWEBENGINE_DISABLE_SANDBOX=1
 export QT_QPA_PLATFORM=eglfs
+export QT_MESSAGE_PATTERN="`echo -e "\033[34m%{function}\033[0m: %{message}"`"
