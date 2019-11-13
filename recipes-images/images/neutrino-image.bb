@@ -7,7 +7,6 @@ IMAGE_INSTALL += " \
 	neutrino-plugins \
 	neutrino-lua-plugins \
 	neutrino-plugin-mediathek \
-	neutrino-plugin-rockpalast \
 	"
 
 
