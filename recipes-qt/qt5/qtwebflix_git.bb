@@ -18,6 +18,8 @@ SRC_URI = "git://github.com/gort818/qtwebflix.git;protocol=https;name=qtwebflix 
            file://ardmediathek.service \
            file://zdfmediathek.service \
            file://artemediathek.service \
+	   file://3satmediathek.service \
+	   file://youtube.service \
 "
 
 
@@ -33,11 +35,13 @@ do_install() {
 	install -m644 ${WORKDIR}/ardmediathek.service ${D}${systemd_unitdir}/system/ardmediathek.service
 	install -m644 ${WORKDIR}/zdfmediathek.service ${D}${systemd_unitdir}/system/zdfmediathek.service
 	install -m644 ${WORKDIR}/artemediathek.service ${D}${systemd_unitdir}/system/artemediathek.service
+        install -m644 ${WORKDIR}/3satmediathek.service ${D}${systemd_unitdir}/system/3satmediathek.service
+        install -m644 ${WORKDIR}/youtube.service ${D}${systemd_unitdir}/system/youtube.service
 }
 
 
 FILES_${PN} = "/usr/bin/qtwebflix \
-				/lib/systemd/system \
+	       /lib/systemd/system \
 "
 
 RDEPENDS_${PN} += "qtwebengine"
