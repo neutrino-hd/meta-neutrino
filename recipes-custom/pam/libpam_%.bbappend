@@ -4,4 +4,5 @@ do_install_append() {
 	echo "QTWEBENGINE_CHROMIUM_FLAGS=--lang=de-DE"
 	echo "QT_QPA_EGLFS_WIDTH=1920" >> ${D}${sysconfdir}/environment
 	echo "QT_QPA_EGLFS_HEIGHT=1080" >> ${D}${sysconfdir}/environment
+	echo "QT_SCALE_FACTOR=2" >> ${D}${sysconfdir}/environment
 }

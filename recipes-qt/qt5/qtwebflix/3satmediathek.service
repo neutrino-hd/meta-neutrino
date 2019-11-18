@@ -10,6 +10,7 @@ Environment=QT_QPA_PLATFORM=eglfs
 Environment=QTWEBENGINE_CHROMIUM_FLAGS=--lang=de-DE
 Environment=QT_QPA_EGLFS_WIDTH=1920
 Environment=QT_QPA_EGLFS_HEIGHT=1080
+Environment=QT_SCALE_FACTOR=2
 ExecStartPre=/bin/sh -c "/bin/systemctl stop neutrino"
 ExecStartPre=/bin/sh -c "echo encoder > /proc/stb/avs/0/input"
 ExecStart=/bin/sh -c "/usr/bin/qtwebflix -p https://www.3sat.de"
