@@ -2,8 +2,7 @@ do_install_append() {
 	echo "QTWEBENGINE_DISABLE_SANDBOX=1" >> ${D}${sysconfdir}/environment
 	echo "QT_QPA_PLATFORM=eglfs" >> ${D}${sysconfdir}/environment
 	echo "QTWEBENGINE_CHROMIUM_FLAGS=--lang=de-DE"
-	echo "QT_QPA_EGLFS_WIDTH=1920" >> ${D}${sysconfdir}/environment
-	echo "QT_QPA_EGLFS_HEIGHT=1080" >> ${D}${sysconfdir}/environment
-	echo "QT_SCALE_FACTOR=2" >> ${D}${sysconfdir}/environment
+	echo "QT_QPA_EGLFS_WIDTH=1280" >> ${D}${sysconfdir}/environment
+	echo "QT_QPA_EGLFS_HEIGHT=720" >> ${D}${sysconfdir}/environment
 	echo "XKB_DEFAULT_LAYOUT=de" >> ${D}${sysconfdir}/environment
 }
