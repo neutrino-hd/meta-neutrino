@@ -5,13 +5,7 @@ Requires=networking.service
 
 [Service]
 Type=simple
-Environment=QTWEBENGINE_DISABLE_SANDBOX=1
-Environment=QT_QPA_PLATFORM=eglfs
-Environment=QTWEBENGINE_CHROMIUM_FLAGS=--lang=de-DE
-Environment=QT_QPA_EGLFS_WIDTH=1920
-Environment=QT_QPA_EGLFS_HEIGHT=1080
-Environment=QT_SCALE_FACTOR=2
-Environment=XKB_DEFAULT_LAYOUT=de
+EnvironmentFile=-/etc/environment
 ExecStartPre=/bin/sh -c "/bin/systemctl stop neutrino"
 ExecStartPre=/bin/sh -c "echo encoder > /proc/stb/avs/0/input"
 ExecStart=/bin/sh -c "/usr/bin/qtwebflix -p https://www.3sat.de"
