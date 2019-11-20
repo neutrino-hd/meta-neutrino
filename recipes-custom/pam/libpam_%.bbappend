@@ -5,4 +5,5 @@ do_install_append() {
 	echo "QT_QPA_EGLFS_WIDTH=1280" >> ${D}${sysconfdir}/environment
 	echo "QT_QPA_EGLFS_HEIGHT=720" >> ${D}${sysconfdir}/environment
 	echo "XKB_DEFAULT_LAYOUT=de" >> ${D}${sysconfdir}/environment
+	echo "TERM=linux" >> ${D}${sysconfdir}/environment
 }
