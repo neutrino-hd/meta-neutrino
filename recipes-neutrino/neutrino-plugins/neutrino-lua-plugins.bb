@@ -46,6 +46,7 @@ do_install () {
 	install -m 644 ${S}/plugins/settingsupdater/* ${D}/usr/share/tuxbox/neutrino/plugins
 	install -m 644 ${S}/plugins/heizoelpreise/* ${D}/usr/share/tuxbox/neutrino/plugins
 	install -m 644 ${S}/plugins/browser/* ${D}/usr/share/tuxbox/neutrino/plugins		
+	install -m 644 ${S}/plugins/rcu_switcher/* ${D}/usr/share/tuxbox/neutrino/plugins
 }
 
 FILES_${PN} += " \
