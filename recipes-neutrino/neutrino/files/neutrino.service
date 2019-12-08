@@ -5,9 +5,8 @@ After=firstboot.service
 
 [Service]
 Type=simple
-ExecStartPre=/bin/sh -c '/usr/sbin/fbset 1920x1080-60'
 ExecStart=/usr/bin/neutrino.sh
-ExecStartPost=/bin/sh -c /etc/etckeeper/create_etc.sh
+ExecStartPost=-/etc/etckeeper/create_etc.sh
 
 [Install]
 WantedBy=multi-user.target
