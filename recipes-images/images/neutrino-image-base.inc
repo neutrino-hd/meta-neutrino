@@ -18,49 +18,14 @@ set_root_passwd() {
    rm ${IMAGE_ROOTFS}/tmp/*
 }
 
-DEPENDS_append += " \
-	crossplatform-iptvplayer \
-	dracut \
-	dropbear \
-	dvb-apps \
-	dvb-usb-drivers-meta \
-	dvbsnoop \
-	ethtool \
-	fzf \
-	ifuse \
-	libxslt \
-	mc \
-	ncdu \
-	setserial \
-	settings-annie-19.2e \
-	settings-annie-19.2e-13.0e \
-	settings-annie-19.2e-13.0e-23.5e \
-	settings-annie-19.2e-13.0e-23.5e-28.2e \
-	settings-annie-19.2e-13.0e-23.5e-28.2e-26.0e-0.8w-5.0w \
-	settings-matze-astra \
-	settings-matze-astra+hb \
-	settings-pathauf \
-	smbnetfs \
-	sshfs-fuse \
-	tmux \
-	v4l-utils \
-	vim \
-	weston \
-"
-
 KERNEL_MODULES_INSTALLED += ""
-	
-IMAGE_INSTALL += " \
-	autofs \
+
+
+BIG_IMAGE_FILES = " \
 	bash \
 	bzip2 \
-	ca-certificates \
 	cifs-utils \
-	curl \
-	dosfstools \
 	dvb-femon \
-	e2fsprogs \
-	e2fsprogs-resize2fs \
 	etckeeper \
 	exfat-utils \
 	fbset \
@@ -76,61 +41,105 @@ IMAGE_INSTALL += " \
 	gptfdisk \
 	grep \
 	gzip \
-	hdparm \
 	htop \
-	ifupdown \
 	image-config \
 	imagemagick \
+	links \
+	localedef \
+	ntfs-3g \
+	ntfsprogs \
+	oh-my-zsh \
+	procps \
+	proftpd \
+	samba \
+	sed \
+	usbutils \
+	util-linux \
+	util-linux-fstrim \
+	webmin \
+	wpa-supplicant \
+	zsh \
+"
+
+KERNEL_WIFI_DRIVERS = " \
+	firmware-carl9170 \
+	firmware-htc7010 \
+	firmware-htc9271 \
+	firmware-rt2870 \
+	firmware-rt73 \
+	firmware-rtl8712u \
+	firmware-zd1211 \
+	\
+	kernel-module-ath9k-htc \
+	kernel-module-carl9170 \
+	kernel-module-r8712u \
+	kernel-module-rt2500usb \
+	kernel-module-rt2800usb \
+	kernel-module-rt73usb \
+	kernel-module-rtl8187 \
+	kernel-module-zd1211rw \
+	"
+
+EXTRA_KERNEL_WIFI_DRIVERS = " \
+	firmware-rtl8192cu \
+	\
+	kernel-module-r8188eu \
+	kernel-module-rtl8192cu \
+	"
+
+EXTERNAL_WIFI_DRIVERS = " \
+	firmware-rtl8192cu \
+	\
+	rtl8192cu \
+	rtl8188eu \
+	rtl8192eu \
+	"
+
+IMAGE_INSTALL += " \
+	autofs \
+	ca-certificates \
+	curl \
+	dosfstools \
+	e2fsprogs \
+	e2fsprogs-resize2fs \
+	hdparm \
+	ifupdown \
 	less \
 	libswscale \
 	libusb1 \
-	links \
-	localedef \
 	minidlna \
 	nano \
 	nfs-utils \
 	nfs-utils-client \
-	ntfs-3g \
-	ntfsprogs \
 	ntpdate \
 	ofgwrite \
-	oh-my-zsh \
 	openssh \
 	openssl \
 	opkg \
 	oscam \
 	parted \
-	procps \
-	proftpd \
 	pv \
 	rpcbind \
 	rsync \
-	samba \
 	samsunglcd4linux \
-	sed \
 	tar \
 	tzdata \
 	tzdata-europe \
 	udev-extraconf \
 	udpxy \
-	usbutils \
-	util-linux \
 	util-linux-blkid \
-	util-linux-fstrim \
 	util-linux-mount \
 	util-linux-swaponoff \
 	util-linux-umount \
 	virtual/dvb-driver \
 	virtual/libstb-hal \
 	virtual/screengrabber \
-	webmin \
-	wpa-supplicant \
+	virtual/neutrino \
+	neutrino-plugins \
+	neutrino-lua-plugins \
+	neutrino-plugin-mediathek \
 	xupnpd \
 	zip \
-	zsh \
-	${EXTRA_KERNEL_WIFI_DRIVERS} \
-	${KERNEL_MODULES_INSTALLED} \
-	${KERNEL_WIFI_DRIVERS} \
 "
 
 EXTRAOPKGCONFIG = "neutrino-feed-config"
