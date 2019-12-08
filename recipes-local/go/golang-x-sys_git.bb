@@ -16,4 +16,4 @@ SRC_URI = "\
 	git://github.com/golang/sys.git;protocol=https;name=sys;destsuffix=${BPN}-${PV}/src/golang.org/x/sys \
 	"
 
-SRCREV_sys = "${AUTOREV}"
+SRCREV_sys = "ce4227a45e2eb77e5c847278dcc6a626742e2945"
