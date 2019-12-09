@@ -38,7 +38,6 @@ BIG_IMAGE_FILES = " \
 	glibc-binary-localedata-pl-pl \
 	glibc-binary-localedata-ru-ru \
 	glibc-charmap-utf-8 \
-	gptfdisk \
 	grep \
 	gzip \
 	htop \
@@ -99,6 +98,8 @@ IMAGE_INSTALL += " \
 	dosfstools \
 	e2fsprogs \
 	e2fsprogs-resize2fs \
+	findutils \
+	gptfdisk \
 	hdparm \
 	ifupdown \
 	less \
