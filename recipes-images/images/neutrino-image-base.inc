@@ -76,7 +76,6 @@ KERNEL_WIFI_DRIVERS = " \
 	kernel-module-rt2500usb \
 	kernel-module-rt2800usb \
 	kernel-module-rt73usb \
-	kernel-module-rt8187 \
 	kernel-module-zd1211rw \
 	"
 
