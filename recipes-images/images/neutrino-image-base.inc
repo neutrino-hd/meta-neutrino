@@ -76,7 +76,7 @@ KERNEL_WIFI_DRIVERS = " \
 	kernel-module-rt2500usb \
 	kernel-module-rt2800usb \
 	kernel-module-rt73usb \
-	kernel-module-rtl8187 \
+	kernel-module-rt8187 \
 	kernel-module-zd1211rw \
 	"
 
@@ -88,10 +88,8 @@ EXTRA_KERNEL_WIFI_DRIVERS = " \
 	"
 
 EXTERNAL_WIFI_DRIVERS = " \
-	firmware-rtl8192cu \
-	\
 	rtl8192cu \
-	rtl8188eu \
+	rt8188eu \
 	rtl8192eu \
 	"
 

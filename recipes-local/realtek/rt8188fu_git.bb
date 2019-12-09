@@ -1,17 +1,17 @@
-SUMMARY = "Driver for Realtek USB wireless device 8192eu"
-HOMEPAGE = "http://www.realtek.com/"
+SUMMARY = "Realtek rtl8188fu"
+HOMEPAGE = "http://www.realtek.com.tw"
+SECTION = "kernel/modules"
 LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://README.md;md5=3de16b8559dfb7e7295238b96e262cde"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
 
 DEPENDS ="bc-native"
 
-SRC_URI = "git://github.com/atvcaptain/RTL8192EU.git"
-
-SRCREV = "${AUTOREV}"
-
-S = "${WORKDIR}/git"
-
 inherit module
+SRCREV = "${AUTOREV}"
+SRC_URI = "git://github.com/atvcaptain/rtl8188fu.git \
+    file://add-5.1-support.patch \
+    file://add-5.2-support.patch \
+"
 
 EXTRA_OEMAKE = "LINUX_SRC=${STAGING_KERNEL_DIR} KDIR=${STAGING_KERNEL_DIR}"
 
@@ -33,6 +33,7 @@ do_compile () {
 }
 
 do_install() {
-        install -d ${D}${nonarch_base_libdir}/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless
-        install -m 0644 ${S}/8192eu.ko ${D}${nonarch_base_libdir}/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless
+    install -d ${D}${nonarch_base_libdir}/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless
+    install -m 0644 ${S}/rtl8188fu.ko ${D}${nonarch_base_libdir}/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless
+
 }
