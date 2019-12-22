@@ -10,7 +10,6 @@ SRC_URI = "https://samba.org/ftp/talloc/talloc-${PV}.tar.gz \
            file://options-2.2.0.patch \
            file://0001-waf-add-support-of-cross_compile.patch \
 "
-
 SRC_URI[md5sum] = "8416b153547add81cd1a4d24e598c890"
 SRC_URI[sha256sum] = "75d5bcb34482545a82ffb06da8f6c797f963a0da450d0830c669267b14992fc6"
 
