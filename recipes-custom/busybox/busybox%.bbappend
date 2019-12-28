@@ -9,6 +9,8 @@ SRC_URI_append += "file://telnet.service \
 				   file://remove.cfg \
                                    file://simple.script \
 				   file://resolv.conf \
+				   file://ash.cfg \
+				   file://wget.cfg \
 "
 
 BUSYBOX_SPLIT_SUID = "0"
