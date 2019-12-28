@@ -48,6 +48,7 @@ BIG_IMAGE_FILES = " \
 	ntfs-3g \
 	ntfsprogs \
 	oh-my-zsh \
+	parted \
 	procps \
 	proftpd \
 	samba \
@@ -115,7 +116,6 @@ IMAGE_INSTALL += " \
 	openssl \
 	opkg \
 	oscam \
-	parted \
 	pv \
 	rpcbind \
 	rsync \
