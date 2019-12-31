@@ -1,0 +1,4 @@
+export EDITOR="nano"
+export LANG="de_DE.UTF-8"
+export TERM=linux
+alias ls="ls -lha --color"
