@@ -1,0 +1,13 @@
+[Unit]
+Description=busybox ftpd daemon running through tcpsvd
+After=network.target
+ConditionPathExists=!/usr/sbin/proftpd
+
+[Service]
+Type=simple
+ExecStart=/bin/sh -c "tcpsvd -vE 0.0.0.0 21 ftpd /"
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
