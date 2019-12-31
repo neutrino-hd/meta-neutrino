@@ -7,10 +7,11 @@ SRC_URI_append += "file://telnet.service \
 				   file://dos2unix.cfg \
 				   file://ether-wake.cfg \
 				   file://remove.cfg \
-                                   file://simple.script \
+				   file://simple.script \
 				   file://resolv.conf \
 				   file://ash.cfg \
 				   file://wget.cfg \
+				   file://ftpd.cfg \
 "
 
 BUSYBOX_SPLIT_SUID = "0"
