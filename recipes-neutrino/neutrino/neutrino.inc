@@ -34,7 +34,7 @@ DEPENDS += " \
 	zlib \
 "
 
-RDEPENDS_${PN} = "streamripper"
+RDEPENDS_${PN} = "streamripper virtual/libstb-hal lua luaposix lua-expat ffmpeg"
 
 S = "${WORKDIR}/git"
 
