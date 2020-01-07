@@ -3,7 +3,7 @@ HOMEPAGE = "http://www.webmin.com"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://LICENCE;md5=0a6446108c96d0819d21e40b48109507"
 
-SRC_URI = "https://github.com/webmin/webmin/archive/${PV}.tar.gz \
+SRC_URI = "${SOURCEFORGE_MIRROR}/webadmin/webmin-1.940.tar.gz \
            file://setup.sh \
            file://init-exclude.patch \
            file://net-generic.patch \
@@ -28,8 +28,8 @@ SRC_URI = "https://github.com/webmin/webmin/archive/${PV}.tar.gz \
 
 RDEPENDS-${PN}-module += "perl"
 
-SRC_URI[md5sum] = "7de6df4f8b53e7044d06a35965091ef7"
-SRC_URI[sha256sum] = "d6f633cc24329f42af0fc4aae2c8b6dde59dce20fc260f13abd8a6cdd33d84cd"
+SRC_URI[md5sum] = "7e5c8f75aaeebb2995b88176f65d1360"
+SRC_URI[sha256sum] = "ce76c58eab03ac376a51ed4486736c663fc192d5c83edc45fa0350b3d5c43478"
 
 inherit perlnative systemd
 
@@ -55,6 +55,7 @@ do_configure() {
     [ -f exports/config-debian-linux ] && mv exports/config-debian-linux exports/config-generic-linux
     sed -i "s/killall -HUP rpc.nfsd && //" exports/config-generic-linux
     sed -i "s/netstd_nfs/nfsserver/g" exports/config-generic-linux
+    sed -i "s/os_support=.*/os_support=generic-linux/" net/module.info
 
     # Fix insane naming that causes problems at packaging time (must be done before deleting below)
     find . -name "*\**" | while read from
