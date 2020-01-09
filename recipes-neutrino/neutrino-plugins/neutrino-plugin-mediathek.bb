@@ -16,7 +16,6 @@ SRC_URI = "git://github.com/neutrino-mediathek/mediathek.git;branch=master;proto
 
 SRCREV = "${AUTOREV}"
 PV = "${SRCPV}"
-PKGV = "${GITPKGVTAG}"
 
 S = "${WORKDIR}/git"
 
