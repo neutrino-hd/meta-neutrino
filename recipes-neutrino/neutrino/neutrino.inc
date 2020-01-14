@@ -90,14 +90,13 @@ EXTRA_OECONF = " \
 
 VERSION_FILE = "${N_PREFIX}/.version"
 
-N_CFLAGS = "-Wall -Wextra -Wshadow -g -O2 -fno-strict-aliasing -rdynamic -DENABLE_FREESATEPG -DNEW_LIBCURL \
+N_CFLAGS = "-Wall -Wextra -Wshadow -Wno-psabi -g -O2 -fno-strict-aliasing -rdynamic -DENABLE_FREESATEPG -DNEW_LIBCURL \
 -I${S}/lib/libcoolstream2 -I${STAGING_INCDIR}/freetype2 -I${STAGING_INCDIR}/sigc++-2.0 -I${STAGING_INCDIR}/glib-2.0 -I${STAGING_LIBDIR}/glib-2.0/include"
 
 N_CXXFLAGS = "${N_CFLAGS}"
 
 N_LDFLAGS += "-Wl,--hash-style=gnu -Wl,-rpath-link, ${STAGING_LIBDIR} -lcurl -ldl -lass"
 N_CPPFLAGS = "-DDYNAMIC_LUAPOSIX -D__KERNEL_STRICT_NAMES -D__STDC_CONSTANT_MACROS"
-
 CPPFLAGS = "${N_CPPFLAGS}"
 
 do_configure_prepend() {
