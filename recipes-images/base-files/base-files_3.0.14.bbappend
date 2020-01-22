@@ -19,6 +19,7 @@ SRC_URI += "file://inputrc \
 	    file://mount@.service \
 	    file://restore@.service \
 	    file://vconsole.conf \
+	    file://ttyUSB.conf \
 "
 
 RDEPENDS_${PN}_append += "coreutils"
@@ -68,4 +69,5 @@ do_install_append () {
                 install -m 0755 ${WORKDIR}/getty-toggle  ${D}${bindir}
 	fi
 	rm -rf ${D}${sysconfdir}/profile
+	install -m 0644 ${WORKDIR}/ttyUSB.conf ${D}${sysconfdir}/modules-load.d
 }
