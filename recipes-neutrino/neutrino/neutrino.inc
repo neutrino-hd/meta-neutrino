@@ -63,6 +63,7 @@ EXTRA_OECONF = " \
 	--with-tremor \
 	--enable-flac \
 	--enable-ffmpegdec \
+	--enable-lua \
 	--with-target=native \
 	--prefix=${N_PREFIX} \
 	--exec_prefix=${N_EXEC_PREFIX} \
