@@ -69,6 +69,7 @@ EXTRA_OECONF = " \
 	--exec_prefix=${N_EXEC_PREFIX} \
 	--includedir=${N_PREFIX}/include \
 	--with-configdir=/etc/neutrino/config \
+	--with-controldir_var=/etc/neutrino/config \
 	--with-plugindir=/usr/share/tuxbox/neutrino/plugins \
         --with-plugindir_var=/etc/neutrino/plugins \
 	--with-webtvdir=/usr/share/tuxbox/neutrino/plugins/webtv \
