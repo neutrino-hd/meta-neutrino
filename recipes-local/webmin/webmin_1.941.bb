@@ -3,12 +3,12 @@ HOMEPAGE = "http://www.webmin.com"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://LICENCE;md5=0a6446108c96d0819d21e40b48109507"
 
-SRC_URI = "${SOURCEFORGE_MIRROR}/webadmin/webmin-1.940.tar.gz \
+SRC_URI = "${SOURCEFORGE_MIRROR}/webadmin/webmin-${PV}.tar.gz \
            file://setup.sh \
            file://init-exclude.patch \
            file://net-generic.patch \
            file://remove-startup-option.patch \
-           file://disable-version-check.patch \
+           file://disable-version-check.patch;apply=no \
            file://nfs-export.patch \
            file://exports-lib.pl.patch \
            file://mount-excludefs.patch \
@@ -28,8 +28,8 @@ SRC_URI = "${SOURCEFORGE_MIRROR}/webadmin/webmin-1.940.tar.gz \
 
 RDEPENDS-${PN}-module += "perl"
 
-SRC_URI[md5sum] = "7e5c8f75aaeebb2995b88176f65d1360"
-SRC_URI[sha256sum] = "ce76c58eab03ac376a51ed4486736c663fc192d5c83edc45fa0350b3d5c43478"
+SRC_URI[md5sum] = "bb8f63068a86a14269726f4d934b8d38"
+SRC_URI[sha256sum] = "3a19228d92556c7722c6fe56c9d4b73d477a19845b0dae3f018fc7fc0306b29a"
 
 inherit perlnative systemd
 
