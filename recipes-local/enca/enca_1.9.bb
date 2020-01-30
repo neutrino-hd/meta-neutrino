@@ -7,15 +7,15 @@ DEPENDS += "gettext-native"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=24b9569831c46d4818450b55282476b4"
 
-SRC_URI = "http://www.sourcefiles.org/Networking/Tools/Miscellanenous/enca-${PV}.tar.bz2 \
+SRC_URI = "https://github.com/nijel/enca/archive/${PV}.tar.gz \
     file://configure-hack.patch \
     file://dont-run-tests.patch \
     file://configure-remove-dumbness.patch \
     file://makefile-remove-tools.patch \
-    file://libenca-003-iconv.patch "
+    file://libenca-003-iconv.patch"
 
-SRC_URI[md5sum] = "b3581e28d68d452286fb0bfe58bed3b3"
-SRC_URI[sha256sum] = "02acfef2b24a9c842612da49338138311f909f1cd33933520c07b8b26c410f4d"
+SRC_URI[md5sum] = "ef13d984d3584a7c01672f5c049bf7af"
+SRC_URI[sha256sum] = "5e8cf1df262a3430e063d1ce8aa349f6987a8d78d64ce8f374c0b79bfd14bb77"
 
 inherit autotools
 
@@ -35,3 +35,4 @@ do_compile() {
     oe_runmake
 }
 
+INSANE_SKIP_${PN} = "src-uri-bad"
