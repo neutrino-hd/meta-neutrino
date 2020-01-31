@@ -1,0 +1,52 @@
+From 1e654674a352453dfa5490f6c52f53ff2603360c Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Fri, 31 Jan 2020 18:42:57 +0100
+Subject: [PATCH] udpxrec.c: fix Wstringop-truncation
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ udpxrec.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/udpxrec.c b/udpxrec.c
+index c58ceb5..3f56ac1 100644
+--- a/udpxrec.c
++++ b/udpxrec.c
+@@ -527,7 +527,7 @@ int udpxrec_main( int argc, char* const argv[] )
+     int rc = 0, ch = 0, custom_log = 0, no_daemon = 0;
+     static const char OPTMASK[] = "vb:e:M:p:B:n:m:l:c:R:u:T";
+     time_t now = time(NULL);
+-    char now_buf[ 32 ] = {0}, sel_buf[ 32 ] = {0}, app_finfo[80] = {0};
++    char now_buf[ 33 ] = {0}, sel_buf[ 33 ] = {0}, app_finfo[80] = {0};
+ 
+     extern int optind, optopt;
+     extern const char IPv4_ALL[];
+@@ -558,10 +558,10 @@ int udpxrec_main( int argc, char* const argv[] )
+                         else {
+                             if( g_recopt.bg_time < now ) {
+                                 (void)strncpy( now_buf, Zasctime(localtime( &now )),
+-                                        sizeof(now_buf) );
++                                        sizeof(now_buf)-1 );
+                                 (void)strncpy( sel_buf,
+                                         Zasctime(localtime( &g_recopt.bg_time )),
+-                                        sizeof(sel_buf) );
++                                        sizeof(sel_buf)-1 );
+ 
+                                 (void) fprintf( stderr,
+                                         "Selected %s time is in the past, "
+@@ -588,10 +588,10 @@ int udpxrec_main( int argc, char* const argv[] )
+                         else {
+                             if( g_recopt.end_time < now ) {
+                                 (void)strncpy( now_buf, Zasctime(localtime( &now )),
+-                                        sizeof(now_buf) );
++                                        sizeof(now_buf)-1 );
+                                 (void)strncpy( sel_buf,
+                                         Zasctime(localtime( &g_recopt.end_time )),
+-                                        sizeof(sel_buf) );
++                                        sizeof(sel_buf)-1 );
+ 
+                                 (void) fprintf( stderr,
+                                         "Selected %s time is in the past, "
+-- 
+2.20.1
+

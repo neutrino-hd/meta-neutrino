@@ -8,6 +8,7 @@ SRC_URI = " \
 	file://GPL-3.0 \
 	file://udpxy.service \
 	file://udpxy.default \
+	file://0001-udrec.c-fix-Wstringop-truncation.patch \
 "
 
 SRCREV = "${AUTOREV}"
@@ -17,8 +18,6 @@ S = "${WORKDIR}/git/chipmunk"
 inherit autotools systemd
 
 SYSTEMD_SERVICE_${PN} = "udpxy.service"
-
-CFLAGS_append += "-Wno-format-truncation -Wno-stringop-truncation"
 
 do_configure_append () {
 	ln -sf ${S}/* ${WORKDIR}/build/
