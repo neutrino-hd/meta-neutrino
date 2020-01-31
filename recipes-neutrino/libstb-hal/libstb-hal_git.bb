@@ -55,6 +55,8 @@ EXTRA_OECONF += "\
 	--enable-shared \
 "
 
+EXTRA_OEMAKE += "'ARFLAGS=rc'"
+
 do_configure_prepend() {
 	export AUTOMAKE="automake --foreign --add-missing"
 }

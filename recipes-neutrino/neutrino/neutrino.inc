@@ -90,6 +90,8 @@ EXTRA_OECONF = " \
 	--disable-weather-key-manage \
 "
 
+EXTRA_OEMAKE += "'ARFLAGS=rc'"
+
 VERSION_FILE = "${N_PREFIX}/.version"
 
 N_CFLAGS = "-Wall -Wextra -Wshadow -Wno-psabi -g -O2 -fno-strict-aliasing -rdynamic -DENABLE_FREESATEPG -DNEW_LIBCURL \
