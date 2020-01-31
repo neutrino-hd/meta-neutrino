@@ -46,6 +46,7 @@ EXTRA_OECMAKE = " \
                  -DCARDREADER_SC8IN1=1 \
                  -DCARDREADER_SMARGO=1 \
                  -DWITH_SSL=1 \
+                 -DWITH_NEUTRINO=1 \                
                  -DHAVE_PCSC=1 \
 "
 
