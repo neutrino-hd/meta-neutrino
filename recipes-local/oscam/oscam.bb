@@ -7,7 +7,7 @@ DEPENDS = "libusb1 openssl pcsc-lite"
 
 DEPENDS_APPEND_libc-uclibc += "virtual/libstb-hal"
 
-SRC_URI = "svn://www.streamboard.tv/svn/oscam;protocol=http;module=trunk;scmdata=keep \
+SRC_URI = "git://github.com/Schimmelreiter/oscam-smod.git;protocol=https \
            file://oscam.service \
            file://oscam.conf \
 "
@@ -15,8 +15,7 @@ SRC_URI = "svn://www.streamboard.tv/svn/oscam;protocol=http;module=trunk;scmdata
 SRCREV = "${AUTOREV}"
 PV = "${SRCPV}"
 
-S = "${WORKDIR}/trunk"
-B = "${S}"
+S = "${WORKDIR}/git"
 
 INHIBIT_PACKAGE_STRIP = "1"
 
@@ -48,6 +47,7 @@ EXTRA_OECMAKE = " \
                  -DWITH_SSL=1 \
                  -DWITH_NEUTRINO=1 \                
                  -DHAVE_PCSC=1 \
+		 -DWITH_EMU=0 \
 "
 
 EXTRA_OECMAKE_append_hd51 += "-DOSCAM_SYSTEM_NAME=tuxbox \
