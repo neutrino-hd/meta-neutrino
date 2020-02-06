@@ -20,6 +20,7 @@ SRC_URI += "file://inputrc \
 	    file://restore@.service \
 	    file://vconsole.conf \
 	    file://ttyUSB.conf \
+	    file://bluetooth.conf \
 "
 
 RDEPENDS_${PN}_append += "coreutils"
@@ -70,4 +71,5 @@ do_install_append () {
 	fi
 	rm -rf ${D}${sysconfdir}/profile
 	install -m 0644 ${WORKDIR}/ttyUSB.conf ${D}${sysconfdir}/modules-load.d
+	install -m 0644 ${WORKDIR}/bluetooth.conf ${D}${sysconfdir}/modules-load.d
 }

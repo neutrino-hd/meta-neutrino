@@ -23,6 +23,7 @@ KERNEL_MODULES_INSTALLED += ""
 
 BIG_IMAGE_FILES = " \
 	bash \
+	bluez5 \
 	bzip2 \
 	cifs-utils \
 	dvb-femon \
