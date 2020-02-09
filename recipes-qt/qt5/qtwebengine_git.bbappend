@@ -1,5 +1,7 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/qtwebengine:"
 
+SRC_URI_append = "file://0001-qtwebengine-set-user-agent.patch"
+
 inherit ccache
 
 PACKAGECONFIG_append += "ffmpeg libwebp opus libvpx proprietary-codecs pepper-plugins webrtc"

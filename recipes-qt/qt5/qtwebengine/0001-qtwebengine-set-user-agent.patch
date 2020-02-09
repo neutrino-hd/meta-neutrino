@@ -1,0 +1,26 @@
+From 9ccd5f63e6b9d9f5ead0458e86808a1e1f844a07 Mon Sep 17 00:00:00 2001
+From: Markus Volk <flk@linux.fritz.box>
+Date: Sun, 9 Feb 2020 11:47:31 +0100
+Subject: [PATCH] qtwebengine: set user agent
+
+Signed-off-by: Markus Volk <flk@linux.fritz.box>
+---
+ src/core/content_browser_client_qt.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/core/content_browser_client_qt.cpp b/src/core/content_browser_client_qt.cpp
+index 6d1bf07a..2a86bb5e 100644
+--- a/src/core/content_browser_client_qt.cpp
++++ b/src/core/content_browser_client_qt.cpp
+@@ -792,7 +792,7 @@ bool ContentBrowserClientQt::ShouldUseProcessPerSite(content::BrowserContext* br
+ std::string ContentBrowserClientQt::getUserAgent()
+ {
+     // Mention the Chromium version we're based on to get passed stupid UA-string-based feature detection (several WebRTC demos need this)
+-    return content::BuildUserAgentFromProduct("QtWebEngine/" QTWEBENGINECORE_VERSION_STR " Chrome/" CHROMIUM_VERSION);
++    return content::BuildUserAgentFromProduct("Chrome/" CHROMIUM_VERSION);
+ }
+ 
+ std::string ContentBrowserClientQt::GetProduct() const
+-- 
+2.23.0
+
