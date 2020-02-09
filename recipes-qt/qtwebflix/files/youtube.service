@@ -1,0 +1,19 @@
+[Unit]
+Description=QtWebflix
+Requires=networking.service
+
+
+[Service]
+Type=simple
+EnvironmentFile=-/etc/environment
+ExecStartPre=/bin/sh -c "/bin/systemctl stop neutrino"
+ExecStartPre=/bin/sh -c "echo encoder > /proc/stb/avs/0/input"
+ExecStart=/bin/sh -c "/usr/bin/qtwebflix -p https://www.youtube.com/?gl=DE"
+ExecStop=/bin/sh -c "echo -e '\033[?17;0;0c' > /dev/tty1"
+ExecStop=/bin/sh -c "setterm -blank 0 > /dev/tty1"
+ExecStop=/bin/sh -c "/bin/systemctl start neutrino"
+Restart=on-failure
+RemainAfterExit=no
+
+[Install]
+WantedBy=multi-user.target

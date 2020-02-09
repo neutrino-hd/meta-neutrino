@@ -11,4 +11,5 @@ do_install_append() {
 	echo "QT_LOGGING_RULES=qt.qpa.*=true" >> ${D}${sysconfdir}/environment
 	echo "#QT_QPA_GENERIC_PLUGINS=evdevmouse" >> ${D}${sysconfdir}/environment
 	echo "#QT_QPA_EVDEV_MOUSE_PARAMETERS=/dev/input/event1:grab" >> ${D}${sysconfdir}/environment
+	echo "QTWEBENGINE_CHROMIUM_FLAGS='--enable-gpu-rasterization --num-raster-threads=4'" >> ${D}${sysconfdir}/environment
 }

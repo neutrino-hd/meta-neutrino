@@ -1,7 +1,10 @@
+FILESEXTRAPATHS_prepend := "${THISDIR}/qtwebengine:"
+
 inherit ccache
 
+PACKAGECONFIG_append += "ffmpeg libwebp opus libvpx proprietary-codecs pepper-plugins webrtc"
 
-PACKAGECONFIG_append += "ffmpeg libwebp opus libvpx proprietary-codecs pepper-plugins"
+DEPENDS += "libnss-mdns"
 
 pkg_postinst_ontarget_${PN}() {
 		patchelf --replace-needed ${STAGING_LIBDIR}/libGLESv2.so libGLESv2.so /usr/lib/libQt*
