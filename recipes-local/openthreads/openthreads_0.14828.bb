@@ -25,7 +25,7 @@ EXTRA_OECMAKE += "-DCMAKE_BUILD_TYPE=Release \
 "
 
 do_install_append() {
-	mv ${D}/usr/lib64 ${D}/usr/lib
+	[ -d ${D}/usr/lib64 ] && mv ${D}/usr/lib64 ${D}/usr/lib || exit 0;
 }
 
 ARM_INSTRUCTION_SET = "arm"
