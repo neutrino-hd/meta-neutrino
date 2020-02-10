@@ -15,7 +15,7 @@ set_root_passwd() {
        < ${IMAGE_ROOTFS}/etc/shadow \
        > ${IMAGE_ROOTFS}/etc/shadow.new;
    mv ${IMAGE_ROOTFS}/etc/shadow.new ${IMAGE_ROOTFS}/etc/shadow ;
-   rm ${IMAGE_ROOTFS}/tmp/*
+   rm -rf ${IMAGE_ROOTFS}/tmp/*
 }
 
 KERNEL_MODULES_INSTALLED += ""
