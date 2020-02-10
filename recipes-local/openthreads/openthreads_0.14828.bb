@@ -24,4 +24,8 @@ EXTRA_OECMAKE += "-DCMAKE_BUILD_TYPE=Release \
                   -D_OPENTHREADS_ATOMIC_USE_GCC_BUILTINS=1 \
 "
 
+do_install_append() {
+	mv ${D}/usr/lib64 ${D}/usr/lib
+}
+
 ARM_INSTRUCTION_SET = "arm"
