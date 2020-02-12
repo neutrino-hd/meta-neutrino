@@ -5,13 +5,13 @@ LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
 
 SRC_URI = "hg://linuxtv.org/hg;module=dvb-apps;protocol=http \
-	   file://dvb-apps-fix.patch \
-"
+           file://dvb-apps-fix.patch \
+           file://0001-add-missing-define.patch \
+           "
 
 SRCREV = "3fc7dfa68484"
 
 DEPENDS += "virtual/libiconv"
-LDFLAGS_libc-uclibc += "-liconv"
 
 S = "${WORKDIR}/${BPN}"
 

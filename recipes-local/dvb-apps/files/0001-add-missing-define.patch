@@ -1,0 +1,32 @@
+From a9dae5e4cf97d9f4277d432a46bbaa48d61e3a74 Mon Sep 17 00:00:00 2001
+From: Markus Volk <flk@linux.fritz.box>
+Date: Wed, 12 Feb 2020 08:48:55 +0100
+Subject: [PATCH] add missing define
+
+---
+ util/dst-utils/dst_test.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/util/dst-utils/dst_test.c b/util/dst-utils/dst_test.c
+index 74385de..77a8a5b 100644
+--- a/util/dst-utils/dst_test.c
++++ b/util/dst-utils/dst_test.c
+@@ -29,12 +29,17 @@
+ #include <sys/ioctl.h>
+ #include <errno.h>
+ #include <stdint.h>
+-
+ #include <linux/dvb/dmx.h>
+ #include <linux/dvb/ca.h>
+ #include <libdvben50221/en50221_app_tags.h>
+ 
+ #define CA_NODE "/dev/dvb/adapter0/ca0"
++#define CA_SET_PID        _IOW('o', 135, ca_pid_t)
++
++typedef struct ca_pid {
++        unsigned int pid;
++        int index;              /* -1 == disable*/
++} ca_pid_t;
+ 
+ static int dst_comms(int cafd, uint32_t tag, uint32_t function, struct ca_msg *msg)
+ {
