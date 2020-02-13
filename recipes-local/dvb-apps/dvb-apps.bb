@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"
 
 SRC_URI = "hg://linuxtv.org/hg;module=dvb-apps;protocol=http \
            file://dvb-apps-fix.patch \
-           file://0001-add-missing-define.patch \
+           file://0001-dst_test.c-add-missing-defines.patch \
            "
 
 SRCREV = "3fc7dfa68484"
