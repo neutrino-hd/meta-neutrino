@@ -139,6 +139,7 @@ do_install_prepend () {
 		echo "${IMAGE_LOCATION} ${RELEASE_STATE}${DISTRO_VERSION_NUMBER_MAJOR}${DISTRO_VERSION_NUMBER_MINOR}${DISTRO_VERSION_NUMBER_MICRO}`date +%Y%m%d%H%M` MD5 ${HASH} ${DISTRO_VERSION}" > ${RELEASE_TEXT_LOCATION_HOST}
 	fi
 	echo "distro=yocto ${FLAVOUR}" > ${D}${sysconfdir}/image-version
+	echo "machine=${MACHINE" > ${D}${sysconfdir}/image-version
 	echo "imageversion=${DISTRO_VERSION_NUMBER_MAJOR}.${DISTRO_VERSION_NUMBER_MINOR}.${DISTRO_VERSION_NUMBER_MICRO}" >> ${D}${sysconfdir}/image-version
 	touch ${D}/usr/bin/enigma2
 }
