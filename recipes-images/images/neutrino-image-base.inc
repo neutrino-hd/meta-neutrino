@@ -97,8 +97,6 @@ EXTERNAL_WIFI_DRIVERS = " \
 EXTRA_KERNEL_MODULES = " \
 	kernel-module-ftdi-sio \
 	kernel-module-usbserial \
-	kernel-module-btusb \
-	kernel-module-hidp \
 	"
 
 IMAGE_INSTALL += " \

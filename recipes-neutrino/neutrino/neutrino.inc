@@ -139,7 +139,7 @@ do_install_prepend () {
 		echo "${IMAGE_LOCATION} ${RELEASE_STATE}${DISTRO_VERSION_NUMBER_MAJOR}${DISTRO_VERSION_NUMBER_MINOR}${DISTRO_VERSION_NUMBER_MICRO}`date +%Y%m%d%H%M` MD5 ${HASH} ${DISTRO_VERSION}" > ${RELEASE_TEXT_LOCATION_HOST}
 	fi
 	echo "distro=yocto ${FLAVOUR}" > ${D}${sysconfdir}/image-version
-	echo "machine=${MACHINE}" > ${D}${sysconfdir}/image-version
+	echo "machine=${MACHINE}" >> ${D}${sysconfdir}/image-version
 	echo "imageversion=${DISTRO_VERSION_NUMBER_MAJOR}.${DISTRO_VERSION_NUMBER_MINOR}.${DISTRO_VERSION_NUMBER_MICRO}" >> ${D}${sysconfdir}/image-version
 	touch ${D}/usr/bin/enigma2
 }
@@ -151,7 +151,11 @@ do_install_append() {
 		echo "${RELEASE_TEXT_LOCATION}" > ${D}/etc/update.urls
 	fi
 	cp -rf ${WORKDIR}/etc ${D}
-	install -m 644 ${WORKDIR}/update.jpg ${D}${datadir}/tuxbox/neutrino/icons
+	install -m 644 ${WORKDIR}/update_download.jpg ${D}${datadir}/tuxbox/neutrino/icons
+	install -m 644 ${WORKDIR}/update_decompress.jpg ${D}${datadir}/tuxbox/neutrino/icons
+	install -m 644 ${WORKDIR}/update_kernel.jpg ${D}${datadir}/tuxbox/neutrino/icons
+	install -m 644 ${WORKDIR}/update_rootfs.jpg ${D}${datadir}/tuxbox/neutrino/icons
+	install -m 644 ${WORKDIR}/update_done.jpg ${D}${datadir}/tuxbox/neutrino/icons
 }
 
 FILES_${PN} += "\
