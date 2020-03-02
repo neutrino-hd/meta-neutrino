@@ -136,7 +136,6 @@ IMAGE_INSTALL += " \
 	util-linux-mount \
 	util-linux-swaponoff \
 	util-linux-umount \
-	virtual/dvb-driver \
 	virtual/screengrabber \
 	virtual/neutrino \
 	neutrino-plugins \
