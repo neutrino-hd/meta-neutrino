@@ -94,11 +94,6 @@ EXTERNAL_WIFI_DRIVERS = " \
 	rtl8192eu \
 	"
 
-EXTRA_KERNEL_MODULES = " \
-	kernel-module-ftdi-sio \
-	kernel-module-usbserial \
-	"
-
 IMAGE_INSTALL += " \
 	autofs \
 	ca-certificates \
