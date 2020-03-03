@@ -60,7 +60,6 @@ BIG_IMAGE_FILES = " \
 	webmin \
 	wpa-supplicant \
 	zsh \
-	${EXTRA_KERNEL_MODULES} \
 "
 
 KERNEL_WIFI_DRIVERS = " \
