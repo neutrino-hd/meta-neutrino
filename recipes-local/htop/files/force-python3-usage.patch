@@ -1,0 +1,8 @@
+--- a/scripts/MakeHeader.py	2020-08-03 21:06:42.220505746 +0200
++++ b/scripts/MakeHeader.py	2020-08-03 21:06:53.692264721 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python3
+ import os, sys, string, io
+ try:
+    from StringIO import StringIO
