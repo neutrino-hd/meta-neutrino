@@ -10,7 +10,7 @@ RDEPENDS_${PN} = "lua-json luaposix"
 
 PV = "0.12"
 
-SRC_URI = "git://github.com/neutrino-mediathek/mediathek.git;branch=master;protocol=https \
+SRC_URI = "git://github.com/knicko007/mediathek.git;branch=master;protocol=https \
 		   file://0001-Makefile-add-dummy-clean-target.patch \
 "
 
