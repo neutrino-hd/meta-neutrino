@@ -9,7 +9,7 @@ LICENSE_${PN}-dbg = "BSD & GPLv3+"
 LICENSE_${PN}-spy = "GPLv3+"
 LICENSE_${PN}-spy-dev = "GPLv3+"
 LIC_FILES_CHKSUM = "file://COPYING;md5=628c01ba985ecfa21677f5ee2d5202f6"
-DEPENDS = "udev"
+DEPENDS = "udev perl-native"
 
 SRC_URI = "https://pcsclite.apdu.fr/files/pcsc-lite-${PV}.tar.bz2"
 
