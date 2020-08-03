@@ -1,0 +1,26 @@
+From 9fa624525479acccc0bda67a30a2b7b8e37896a3 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Thu, 5 Mar 2020 00:58:28 +0100
+Subject: [PATCH] = dvbdate.c:fix for glibc 2.31
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ util/dvbdate/dvbdate.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/util/dvbdate/dvbdate.c b/util/dvbdate/dvbdate.c
+index f0df437..f7f4fc2 100644
+--- a/util/dvbdate/dvbdate.c
++++ b/util/dvbdate/dvbdate.c
+@@ -309,7 +309,7 @@ int atsc_scan_date(time_t *rx_time, unsigned int to)
+  */
+ int set_time(time_t * new_time)
+ {
+-	if (stime(new_time)) {
++	if (clock_settime(CLOCK_REALTIME, new_time)) {
+ 		perror("Unable to set time");
+ 		return -1;
+ 	}
+

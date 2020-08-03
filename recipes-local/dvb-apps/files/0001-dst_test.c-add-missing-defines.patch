@@ -1,15 +1,16 @@
-From bf714f0b687d12e3149c54f343e6dcaa39c61511 Mon Sep 17 00:00:00 2001
+From dd6ea29286a360185bd98dd8465d93a9b90faf3e Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
 Date: Thu, 13 Feb 2020 06:55:33 +0100
 Subject: [PATCH] dst_test.c: add missing defines
 
 Signed-off-by: Markus Volk <f_l_k@t-online.de>
+
 ---
  util/dst-utils/dst_test.c | 9 ++++++++-
  1 file changed, 8 insertions(+), 1 deletion(-)
 
 diff --git a/util/dst-utils/dst_test.c b/util/dst-utils/dst_test.c
-index 74385de..b0fcce1 100644
+index 3f4b52b..494516e 100644
 --- a/util/dst-utils/dst_test.c
 +++ b/util/dst-utils/dst_test.c
 @@ -29,12 +29,19 @@
@@ -31,8 +32,5 @@ index 74385de..b0fcce1 100644
 +} ca_pid_t;
 +#endif
  
- static int dst_comms(int cafd, uint32_t tag, uint32_t function, struct ca_msg *msg)
- {
--- 
-2.20.1
-
+ #ifndef CA_SET_PID
+ typedef struct ca_pid {
