@@ -3,24 +3,12 @@ LICENSE = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
 
-DEPENDS = "freetype ffmpeg zlib libxml2 virtual/libiconv openssl libpng curl giflib libjpeg-turbo"
+DEPENDS = "freetype ffmpeg zlib libxml2 virtual/libiconv openssl libpng curl giflib libjpeg-turbo neutrino-mp"
 
-SRCREV_autotools = "${AUTOREV}"
-SRCREV_tuxcom = "${AUTOREV}"
-SRCREV_msgbox = "${AUTOREV}"
-SRCREV_input = "${AUTOREV}"
-SRCREV_tuxwetter = "${AUTOREV}"
-SRCREV_shellexec = "${AUTOREV}"
-SRCREV_FORMAT = "autotools"
-PV = "8"
+SRCREV = "${AUTOREV}"
+PV = "9"
 
-SRC_URI = "git://github.com/neutrino-hd/neutrino-hd-plugins.git;branch=master;protocol=https;name=autotools \
-	   git://github.com/tuxbox-neutrino/plugin-tuxcom.git;destsuffix=git/tuxcom;branch=master;name=tuxcom \
-	   git://github.com/tuxbox-neutrino/plugin-msgbox.git;destsuffix=git/msgbox;branch=master;name=msgbox \
-	   git://github.com/tuxbox-neutrino/plugin-input.git;destsuffix=git/input;branch=master;name=input \
-	   git://github.com/tuxbox-neutrino/plugin-shellexec.git;destsuffix=git/shellexec;branch=master;name=shellexec \
-	   git://github.com/tuxbox-neutrino/plugin-tuxwetter.git;destsuffix=git/tuxwetter;branch=master;name=tuxwetter \
-"
+SRC_URI = "git://github.com/MarkusVolk/neutrino-plugins-max.git;protocol=https"
 
 S = "${WORKDIR}/git"
 
@@ -34,6 +22,8 @@ EXTRA_OECONF += " \
 	--with-target=native \
 	--with-plugindir=/usr/share/tuxbox/neutrino/plugins \
 	--with-boxtype=armbox \
+	--with-boxmodel=${MACHINE} \
+	--disable-logoview \
 "
 
 EXTRA_OECONF += "--with-configdir=/etc/neutrino/config"
@@ -62,7 +52,4 @@ FILES_${PN} = "/usr \
 "
 
 FILES_${PN}-dbg += "/usr/share/tuxbox/neutrino/plugins/.debug"
-
-SRC_URI[md5sum] = "f04cf2dddc22af9f12685f4d4dda0067"
-SRC_URI[sha256sum] = "f3ad02f2e43afca3da474bfeccd70808ca9651858893eff0b90891067284b0b8"
 
