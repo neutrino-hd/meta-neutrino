@@ -26,6 +26,11 @@ SRC_URI = "${SAMBA_MIRROR}/stable/samba-${PV}.tar.gz \
            file://0001-waf-add-support-of-cross_compile.patch \
            file://0001-lib-replace-wscript-Avoid-generating-nested-main-fun.patch \
            file://0002-util_sec.c-Move-__thread-variable-to-global-scope.patch \
+           file://0001-Add-options-to-configure-the-use-of-libbsd.patch \
+           file://0001-nsswitch-nsstest.c-Avoid-nss-function-conflicts-with.patch \
+           file://0001-util-Simplify-input-validation.patch \
+           file://0002-util-Fix-build-on-FreeBSD-by-avoiding-NSS_BUFLEN_PAS.patch \
+           file://0003-util-Reallocate-larger-buffer-if-getpwuid_r-returns-.patch \
            "
 SRC_URI_append_libc-musl = " \
            file://samba-pam.patch \
@@ -34,17 +39,18 @@ SRC_URI_append_libc-musl = " \
            file://0001-samba-fix-musl-lib-without-innetgr.patch \
           "
 
-SRC_URI[md5sum] = "eebd021de840312d7e08959e8a3d0ba1"
-SRC_URI[sha256sum] = "609f4232e04c6eaad0e3b8e00cd837683a960ebb95c1fe3349e968d1d1dff894"
+SRC_URI[md5sum] = "f69cac9ba5035ee60257520a209a0a83"
+SRC_URI[sha256sum] = "03dc9758e7bfa2faf7cdeb45b4d40997e2ee16a41e71996aa666bc069e70ba3e"
 
 UPSTREAM_CHECK_REGEX = "samba\-(?P<pver>4\.10(\.\d+)+).tar.gz"
 
-inherit systemd waf-samba cpan-base perlnative update-rc.d features_check
+inherit systemd waf-samba cpan-base perlnative update-rc.d
 # remove default added RDEPENDS on perl
 RDEPENDS_${PN}_remove = "perl"
 
-DEPENDS += "readline virtual/libiconv zlib popt libtalloc libtdb libtevent libldb libbsd libaio libpam libtasn1 jansson"
+DEPENDS += "readline virtual/libiconv zlib popt libtalloc libtdb libtevent libldb libaio libpam libtasn1 jansson"
 
+inherit features_check
 REQUIRED_DISTRO_FEATURES = "pam"
 
 DEPENDS_append_libc-musl = " libtirpc"
@@ -90,6 +96,7 @@ PACKAGECONFIG[archive] = "--with-libarchive, --without-libarchive, libarchive"
 PACKAGECONFIG[libunwind] = ", , libunwind"
 PACKAGECONFIG[gpgme] = ",--without-gpgme,,"
 PACKAGECONFIG[lmdb] = ",--without-ldb-lmdb,lmdb,"
+PACKAGECONFIG[libbsd] = "--with-libbsd, --without-libbsd, libbsd"
 
 # Building the AD (Active Directory) DC (Domain Controller) requires GnuTLS,
 # And ad-dc doesn't work with mitkrb5 for versions prior to 4.7.0 according to:
