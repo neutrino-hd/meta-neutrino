@@ -22,9 +22,10 @@ PACKAGECONFIG[libfreetype] = "--enable-libfreetype,--disable-libfreetype,freetyp
 PACKAGECONFIG[librtmp] = "--enable-librtmp,--disable-librtmp,rtmpdump"
 PACKAGECONFIG[wavpack] = "--enable-libwavpack,--disable-libwavpack,wavpack"
 PACKAGECONFIG[x265] = "--enable-libx265,--disable-libx265,x265"
+PACKAGECONFIG[webp] = "--enable-libwebp,--disable-libwebp,libwebp"
 
-PACKAGECONFIG_append = " libass libbluray libfreetype librtmp libvorbis \
-                        mp3lame openssl vpx wavpack x265"
+PACKAGECONFIG_append = " libass libbluray libfreetype librtmp libvorbis libwebp \
+                        mp3lame openssl webp wavpack x265"
 
 MIPSFPU = "${@bb.utils.contains('TARGET_FPU', 'soft', '--disable-mipsfpu', '--enable-mipsfpu', d)}"
 
