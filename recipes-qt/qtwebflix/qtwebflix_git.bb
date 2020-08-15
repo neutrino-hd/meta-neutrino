@@ -48,9 +48,4 @@ FILES_${PN} = "/usr/bin/qtwebflix \
 
 RDEPENDS_${PN} += "qtwebengine qtflashplayer qtwidevine upower libnss-mdns"
 
-pkg_postinst_ontarget_${PN}() {
-patchelf --replace-needed ${STAGING_LIBDIR}/libGLESv2.so libGLESv2.so /usr/bin/qtwebflix
-patchelf --replace-needed ${STAGING_LIBDIR}/libEGL.so libEGL.so /usr/bin/qtwebflix
-}
-
 PATH_prepend = "${STAGING_DIR_NATIVE}${OE_QMAKE_PATH_QT_BINS}:"

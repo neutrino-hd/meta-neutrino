@@ -6,11 +6,7 @@ SRC_URI_remove = "file://chromium/0021-chromium-Fix-build-on-32bit-arches-with-6
 
 inherit ccache
 
-PACKAGECONFIG_append += "ffmpeg libwebp opus libvpx proprietary-codecs pepper-plugins webrtc"
+PACKAGECONFIG_append += "libwebp opus ffmpeg proprietary-codecs pepper-plugins webrtc"
 
-DEPENDS += "libnss-mdns"
-
-pkg_postinst_ontarget_${PN}() {
-		patchelf --replace-needed ${STAGING_LIBDIR}/libGLESv2.so libGLESv2.so /usr/lib/libQt*
-		patchelf --replace-needed ${STAGING_LIBDIR}/libEGL.so libEGL.so /usr/lib/libQt*
-}
+DEPENDS_append = "libnss-mdns"
+ 

@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSE.FDL;md5=6d9f2a9af4c8b8c3c769f6cc1b6aaf7e \
 "
 
-DEPENDS += "qtwebengine patchelf-native"
+DEPENDS += "qtwebengine"
 RDEPENDS_${PN} += "qtquickcontrols qtquickcontrols2 qtgraphicaleffects qtvirtualkeyboard"
 PACKAGES += "${PN}-examples"
 
@@ -30,12 +30,6 @@ do_install() {
     install -m 0755 src/qtwebbrowser ${D}${bindir}/qtwebbrowser
     cp -R --no-dereference --preserve=mode,links ${S}/* ${D}${datadir}/examples/webengine/webbrowser/.
 }
-
-pkg_postinst_ontarget_${PN}() {
-		patchelf --replace-needed ${STAGING_LIBDIR}/libGLESv2.so libGLESv2.so /usr/bin/qtwebbrowser
-		patchelf --replace-needed ${STAGING_LIBDIR}/libEGL.so libEGL.so /usr/bin/qtwebbrowser
-}
-
 
 FILES_${PN} +=  "${bindir}/qtwebbrowser"
 FILES_${PN}-examples +=  "${datadir}/examples/webengine/webbrowser/*"
