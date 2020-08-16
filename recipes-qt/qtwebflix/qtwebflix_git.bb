@@ -20,9 +20,10 @@ SRC_URI = "git://github.com/gort818/qtwebflix.git;protocol=https;name=qtwebflix 
            file://ardmediathek.service \
            file://zdfmediathek.service \
            file://artemediathek.service \
-	   file://3satmediathek.service \
-	   file://youtube.service \
-"
+           file://3satmediathek.service \
+           file://youtube.service \
+           file://0001-mainwindow.cpp-spoof-in-ChromeOS-useragent-to-fix-pl.patch \
+           "
 
 
 S = "${WORKDIR}/git"
