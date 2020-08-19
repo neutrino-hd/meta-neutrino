@@ -23,9 +23,11 @@ PACKAGECONFIG[librtmp] = "--enable-librtmp,--disable-librtmp,rtmpdump"
 PACKAGECONFIG[wavpack] = "--enable-libwavpack,--disable-libwavpack,wavpack"
 PACKAGECONFIG[x265] = "--enable-libx265,--disable-libx265,x265"
 PACKAGECONFIG[webp] = "--enable-libwebp,--disable-libwebp,libwebp"
+PACKAGECONFIG[libv4l2] = "--enable-libv4l2,--disable-libv4l2,v4l-utils"
+PACKAGECONFIG[pulseaudio] = "--enable-libpulse,--disable-libpulse,pulseaudio"
 
 PACKAGECONFIG_append = " libass libbluray libfreetype librtmp libvorbis \
-                        mp3lame openssl webp wavpack x265"
+                        mp3lame openssl pulseaudio vpx webp wavpack x265 libv4l2"
 
 MIPSFPU = "${@bb.utils.contains('TARGET_FPU', 'soft', '--disable-mipsfpu', '--enable-mipsfpu', d)}"
 

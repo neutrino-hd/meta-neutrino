@@ -6,7 +6,7 @@ SRC_URI_remove = "file://chromium/0021-chromium-Fix-build-on-32bit-arches-with-6
 
 inherit ccache
 
-PACKAGECONFIG_append += "libwebp opus ffmpeg proprietary-codecs pepper-plugins webrtc"
+PACKAGECONFIG_append += "libwebp libvpx opus ffmpeg proprietary-codecs pepper-plugins webrtc"
 
 DEPENDS_append = "libnss-mdns"
  
