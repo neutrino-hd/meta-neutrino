@@ -1,0 +1,27 @@
+--- a/CRT.h	2018-04-10 15:23:24.000000000 +0200
++++ b/CRT.h	2020-08-27 21:45:39.675915699 +0200
+@@ -140,7 +140,7 @@
+ 
+ extern int CRT_delay;
+ 
+-int* CRT_colors;
++extern int* CRT_colors;
+ 
+ extern int CRT_colorSchemes[LAST_COLORSCHEME][LAST_COLORELEMENT];
+ 
+@@ -150,13 +150,13 @@
+ 
+ extern int CRT_scrollWheelVAmount;
+ 
+-char* CRT_termType;
++extern char* CRT_termType;
+ 
+ // TODO move color scheme to Settings, perhaps?
+ 
+ extern int CRT_colorScheme;
+ 
+-void *backtraceArray[128];
++extern void *backtraceArray[128];
+ 
+ #if HAVE_SETUID_ENABLED
+ 
