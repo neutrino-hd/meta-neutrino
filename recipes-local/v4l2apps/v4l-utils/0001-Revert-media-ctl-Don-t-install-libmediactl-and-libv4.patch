@@ -1,4 +1,4 @@
-From 10fc51ceedd278ffa2063e8e0cb5c2a1a60a1038 Mon Sep 17 00:00:00 2001
+From 67a6e919b8263d6d2b7150e62f26fb06bbc526ef Mon Sep 17 00:00:00 2001
 From: Khem Raj <raj.khem@gmail.com>
 Date: Fri, 27 Feb 2015 21:55:36 +0000
 Subject: [PATCH] Revert "media-ctl: Don't install libmediactl and

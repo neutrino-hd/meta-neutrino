@@ -1,6 +1,6 @@
-From d0f6353285b72f68de4c3e65f2a5e50d54bcc833 Mon Sep 17 00:00:00 2001
-From: Markus Volk <f_l_k@t-online.de>
-Date: Sat, 14 Oct 2017 17:39:14 +0200
+From 480c04ac6a9d11bfef9d4aca073052fdcee4fdea Mon Sep 17 00:00:00 2001
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sun, 1 Mar 2015 22:25:07 +0000
 
 ---
  utils/media-ctl/Makefile.am | 1 +
