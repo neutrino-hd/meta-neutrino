@@ -7,7 +7,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-18:"
 
 PACKAGE_ARCH = "${MACHINE}"
 
-inherit cmake gettext python-dir pythonnative
+inherit cmake gettext python3-dir python3native
 
 DEPENDS += " \
             fmt \
@@ -37,7 +37,7 @@ DEPENDS += " \
             faad2 \
             fontconfig \
             fribidi \
-            glib-2.0 \ 
+            glib-2.0 \
             giflib \
             libass \
             libcdio \
