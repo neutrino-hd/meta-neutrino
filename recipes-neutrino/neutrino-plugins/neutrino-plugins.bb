@@ -7,7 +7,7 @@ DEPENDS = "freetype ffmpeg zlib libxml2 virtual/libiconv openssl libpng curl gif
 SRCREV = "${AUTOREV}"
 PV = "9"
 
-SRC_URI = "git://github.com/MarkusVolk/neutrino-plugins-max.git;protocol=https"
+SRC_URI = "git://github.com/MaxWiesel/neutrino-plugins-max.git;protocol=https"
 
 S = "${WORKDIR}/git"
 
@@ -25,7 +25,7 @@ EXTRA_OECONF += " \
 	--with-configdir=/etc/neutrino/config \
 "
 
-N_CFLAGS = "-Wall -W -Wshadow -g -O2 -funsigned-char -I${STAGING_INCDIR}/freetype2"
+N_CFLAGS = "-Wall -W -Wshadow -g -O2 -funsigned-char -I${STAGING_INCDIR}/freetype2 -fcommon"
 N_CXXFLAGS = "${N_CFLAGS}"
 N_LDFLAGS += "-Wl,--hash-style=gnu -Wl,-rpath-link,${STAGING_DIR_HOST}${libdir},-lfreetype -lcrypto -lssl -lpng -lcurl -lz"
 

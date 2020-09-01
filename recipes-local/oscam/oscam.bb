@@ -21,6 +21,8 @@ INHIBIT_PACKAGE_STRIP = "1"
 
 inherit cmake systemd
 
+CFLAGS += "-fcommon"
+
 SYSTEMD_SERVICE_${PN} = "oscam.service"
 
 EXTRA_OECMAKE = " \
