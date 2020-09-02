@@ -21,24 +21,40 @@
 # v1.2, xtest, v2.0" will force you to increment PE to get upgradeable
 # path to v2.0 revisions
 #
-# use example:
+# # use example:
+#
+# # inherit line is required
 #
 # inherit gitpkgv
 #
 # PV = "1.0+gitr${SRCPV}"      # expands to something like 1.0+gitr3+4c1c21d7dbbf93b0df336994524313dfe0d4963b
 # PKGV = "1.0+gitr${GITPKGV}"  # expands also to something like 1.0+gitr31337+4c1c21d7d
 #
-# or
-#
-# inherit gitpkgv
+# # or
 #
 # PV = "1.0+gitr${SRCPV}" # expands to something like 1.0+gitr3+4c1c21d7dbbf93b0df336994524313dfe0d4963b
 # PKGV = "${GITPKGVTAG}"  # expands to something like 1.0-31337+g4c1c21d
 #                           if there is tag v1.0 before this revision or
 #                           ver1.0-31337+g4c1c21d if there is tag ver1.0
+#
+# # also possible:
+#
+# PV = "${FLAVOUR}-${GITPKGV}" 	# if any git repository has no tags expands to something like tango-31337+g4c1c21d
+# PV = "${GITPKGVTAG}" 		# expands to something like 1.0-31337+g4c1c21d (see above)
+#
+# # NOTE:
+# # If you moved a target with 'devtool modify <target>' into workspace, Git tags and commit values will be not considered.
+# # GITPKGVTAG and GITPKGV will return the default version string
+# # with built targets from workspace is '999' as default output with 'bitbake <target>' or 'devtool build <target>'.
+#
+# # for PV and PKGV see also:
+#
+# #	https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#var-PV
+# #	https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#PKGV
+#
 
-GITPKGV = "${@get_git_pkgv(d, False)}"
-GITPKGVTAG = "${@get_git_pkgv(d, True)}"
+GITPKGV = "${@get_git_pkgv(d, 0)}"
+GITPKGVTAG = "${@get_git_pkgv(d, 1)}"
 
 def gitpkgv_drop_tag_prefix(version):
     import re
@@ -51,6 +67,11 @@ def get_git_pkgv(d, use_tags):
     import os
     import bb
     from pipes import quote
+
+    workspace_tag = '999'
+    ver = d.getVar('SRCPV')
+    if ver == workspace_tag:
+        return ver
 
     src_uri = d.getVar('SRC_URI').split()
     fetcher = bb.fetch2.Fetch(src_uri, d)
@@ -71,6 +92,7 @@ def get_git_pkgv(d, use_tags):
             format = 'default'
 
     found = False
+
     for url in ud.values():
         if url.type == 'git' or url.type == 'gitsm':
             for name, rev in url.revisions.items():
@@ -87,8 +109,7 @@ def get_git_pkgv(d, use_tags):
 
                 if not os.path.exists(rev_file) or os.path.getsize(rev_file)==0:
                     commits = bb.fetch2.runfetchcmd(
-                        "cd %(repodir)s && "
-                        "git rev-list %(rev)s -- 2> /dev/null "
+                        "git -C %(repodir)s rev-list %(rev)s -- 2> /dev/null "
                         "| wc -l" % vars,
                         d, quiet=True).strip().lstrip('0')
 
@@ -103,14 +124,10 @@ def get_git_pkgv(d, use_tags):
                         commits = f.readline(128).strip()
 
                 if use_tags:
-                    try:
-                        output = bb.fetch2.runfetchcmd(
-                            "cd %(repodir)s && "
-                            "git describe --tags 2>/dev/null" % vars,
-                            d, quiet=True).strip()
-                        ver = gitpkgv_drop_tag_prefix(output)
-                    except Exception:
-                        ver = "0.0-%s-g%s" % (commits, vars['rev'][:7])
+                    output = bb.fetch2.runfetchcmd(
+                    "git -C %(repodir)s describe --tags 2>/dev/null" % vars,
+                    d, quiet=True).strip()
+                    ver = gitpkgv_drop_tag_prefix(output)
                 else:
                     ver = "%s+%s" % (commits, vars['rev'][:7])
 
@@ -119,4 +136,4 @@ def get_git_pkgv(d, use_tags):
     if found:
         return format
 
-    return '0+0'
+    return workspace_tag
