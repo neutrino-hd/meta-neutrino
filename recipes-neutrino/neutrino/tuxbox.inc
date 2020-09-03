@@ -3,6 +3,8 @@ SRC_URI_append += "git://github.com/tuxbox-neutrino/gui-neutrino.git;protocol=ht
 		   file://green.patch \		   
 "
 
+PV = "${GITPKGVTAG}"
+
 DEFAULT_THEME ?= "Neutrino-3.0"
 
 EXTRA_OECONF_append += "--with-default-theme=${DEFAULT_THEME} \
