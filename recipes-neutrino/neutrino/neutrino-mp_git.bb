@@ -1,6 +1,5 @@
 SUMMARY = "Neutrino MP"
-DESCRIPTION = "Neutrino-MP for AX HD51 Platform."
-HOMEPAGE = "http://www.tuxbox.org"
+DESCRIPTION = "${SUMMARY} for ${MACHINE_BRAND}-${MACHINE}."
 SECTION = "libs"
 LICENSE = "GPLv2"
 #LIC_FILES_CHKSUM = "file://${WORKDIR}/COPYING.GPL;md5=751419260aa954499f7abaabaa882bbe"
