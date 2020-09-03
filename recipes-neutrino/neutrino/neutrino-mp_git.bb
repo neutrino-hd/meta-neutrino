@@ -17,7 +17,6 @@ SRC_URI = " \
 	file://neutrino.sh_${FLAVOUR} \
 	file://timezone.xml \
 	file://custom-poweroff.init \
-	file://COPYING.GPL \
 	file://pre-wlan0.sh \
 	file://post-wlan0.sh \
 	file://mount.mdev \
