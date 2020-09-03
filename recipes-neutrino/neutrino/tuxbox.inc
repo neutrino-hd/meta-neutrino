@@ -1,3 +1,6 @@
+HOMEPAGE = "http://www.tuxbox.org"
+MAINTAINER = "Tuxbox-Developers"
+
 SRC_URI_append += "git://github.com/tuxbox-neutrino/gui-neutrino.git;protocol=https \
 		   file://0001-hdd_menu.cpp-assume-device-mounted.patch \
 "
