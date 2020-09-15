@@ -1,0 +1,46 @@
+From efe53672b85d991c6caf1f44f751cb6bc316bf6f Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Mon, 14 Sep 2020 17:07:24 +0200
+Subject: [PATCH] lua-feedparser: adjust Makefile for OE
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ Makefile | 17 +++++++++++------
+ 1 file changed, 11 insertions(+), 6 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index a3debda..0ad1004 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,7 +1,9 @@
+-PREFIX = /usr/local
++PREFIX ?= /usr
++RM	= rm -rf
+ # System's lua directory (where Lua libraries are installed)
+-LUA_DIR= $(PREFIX)/share/lua/5.2
+-LUA_BIN= lua
++LUA_VER ?= 5.3
++LUA_DIR ?= $(PREFIX)/share/lua/$(LUA_VER)
++LUA_BIN = lua
+ 
+ NAME=feedparser
+ VERSION=0.71
+@@ -15,9 +17,12 @@ test:
+ 	${LUA_BIN} tests/feedparser.lua
+ 
+ install:
+-	install feedparser.lua $(LUA_DIR)/
+-	mkdir -p $(LUA_DIR)/feedparser
+-	install feedparser/* $(LUA_DIR)/feedparser
++	mkdir -p $(DESTDIR)$(LUA_DIR)/feedparser
++	install feedparser.lua $(DESTDIR)$(LUA_DIR)/
++	install feedparser/* $(DESTDIR)$(LUA_DIR)/feedparser/
+ 
+ bundle:
+ 	tar --create --verbose --exclude-vcs --gzip --file=../$(NAME)-$(VERSION).tar.gz ../$(NAME)
++	
++clean:
++	#$(RM) $(DESTDIR)$(LUA_DIR)
+-- 
+2.26.2
+

@@ -1,0 +1,98 @@
+From 65d4f267daad36269ac3b5b8f48a2efa78e29a79 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Mon, 14 Sep 2020 23:37:59 +0200
+Subject: [PATCH] test2
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ src/lua.h    | 14 +++++++++++++-
+ src/luajit.c | 37 +++++++++++++++++++++++++++++++++++++
+ 2 files changed, 50 insertions(+), 1 deletion(-)
+
+diff --git a/src/lua.h b/src/lua.h
+index 850bd79..b83006b 100644
+--- a/src/lua.h
++++ b/src/lua.h
+@@ -11,7 +11,7 @@
+ 
+ #include <stdarg.h>
+ #include <stddef.h>
+-
++#include <stdint.h> 
+ 
+ #include "luaconf.h"
+ 
+@@ -23,6 +23,18 @@
+ #define LUA_AUTHORS	"R. Ierusalimschy, L. H. de Figueiredo & W. Celes"
+ 
+ 
++/*
++** compatibility stuff
++*/
++typedef uint32_t lua_Unsigned;
++void lua_pushunsigned(lua_State* L, lua_Unsigned n);
++lua_Unsigned luaL_checkunsigned(lua_State* L, int i);
++void lua_rawgetp(lua_State* L, int i, const void* p);
++void lua_rawsetp(lua_State* L, int i, const void* p);
++#define LUAMOD_API LUALIB_API
++#define lua_pushglobaltable(L) \
++    lua_pushvalue(L, LUA_GLOBALSINDEX)
++
+ /* mark for precompiled code (`<esc>Lua') */
+ #define	LUA_SIGNATURE	"\033Lua"
+ 
+diff --git a/src/luajit.c b/src/luajit.c
+index 5390248..513f00b 100644
+--- a/src/luajit.c
++++ b/src/luajit.c
+@@ -7,6 +7,7 @@
+ */
+ 
+ #include <stdio.h>
++#include <stdint.h> 
+ #include <stdlib.h>
+ #include <string.h>
+ 
+@@ -585,3 +586,39 @@ int main(int argc, char **argv)
+   return (status || smain.status > 0) ? EXIT_FAILURE : EXIT_SUCCESS;
+ }
+ 
++LUA_INLINE lua_Unsigned luaL_optunsigned(lua_State* L, int i, lua_Unsigned def)
++{
++    return luaL_opt(L, luaL_checkunsigned, i, def);
++}
++
++LUA_INLINE void lua_pushunsigned(lua_State* L, lua_Unsigned n)
++{
++    lua_pushnumber(L, lua_unsigned2number(n));
++}
++
++LUA_INLINE lua_Unsigned luaL_checkunsigned(lua_State* L, int i)
++{
++    lua_Unsigned result;
++    lua_Number n = lua_tonumber(L, i);
++    if (n == 0 && !lua_isnumber(L, i)) {
++        luaL_checktype(L, i, LUA_TNUMBER);
++    }
++    lua_number2unsigned(result, n);
++    return result;
++}
++
++LUA_INLINE void lua_rawgetp(lua_State* L, int i, const void* p)
++{
++    int abs_i = lua_absindex(L, i);
++    lua_pushlightuserdata(L, (void*)p);
++    lua_rawget(L, abs_i);
++}
++
++LUA_INLINE void lua_rawsetp(lua_State* L, int i, const void* p)
++{
++    int abs_i = lua_absindex(L, i);
++    luaL_checkstack(L, 1, "not enough stack slots");
++    lua_pushlightuserdata(L, (void*)p);
++    lua_insert(L, -2);
++    lua_rawset(L, abs_i);
++}
+-- 
+2.26.2
+
