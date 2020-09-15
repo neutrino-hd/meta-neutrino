@@ -1,0 +1,37 @@
+From b0d90f4dc392b4c4b188f1bb98638050b5f018dd Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sun, 13 Sep 2020 14:04:43 +0200
+Subject: [PATCH] patch header for broadcom stb
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ 3rdparty/bgfx/3rdparty/khronos/EGL/eglplatform.h | 12 ++++--------
+ 1 file changed, 4 insertions(+), 8 deletions(-)
+
+diff --git a/3rdparty/bgfx/3rdparty/khronos/EGL/eglplatform.h b/3rdparty/bgfx/3rdparty/khronos/EGL/eglplatform.h
+index 6d0d8db2efe..37ea9012492 100644
+--- a/3rdparty/bgfx/3rdparty/khronos/EGL/eglplatform.h
++++ b/3rdparty/bgfx/3rdparty/khronos/EGL/eglplatform.h
+@@ -110,15 +110,11 @@ typedef intptr_t EGLNativeDisplayType;
+ typedef intptr_t EGLNativePixmapType;
+ typedef intptr_t EGLNativeWindowType;
+ 
+-#elif defined(__unix__) || defined(USE_X11)
++#elif defined(__unix__)
+ 
+-/* X11 (tentative)  */
+-#include <X11/Xlib.h>
+-#include <X11/Xutil.h>
+-
+-typedef Display *EGLNativeDisplayType;
+-typedef Pixmap   EGLNativePixmapType;
+-typedef Window   EGLNativeWindowType;
++typedef void *EGLNativeDisplayType;
++typedef void *EGLNativePixmapType;
++typedef void *EGLNativeWindowType;
+ 
+ #elif defined(__APPLE__)
+ 
+-- 
+2.26.2
+
