@@ -5,10 +5,10 @@ LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://../LICENSE;md5=193ff0a3bc8b0d2cb0d1d881586d3388"
 
 DEPENDS += "lua openssl"
-SRCREV = "fe39cdc41c84d5b365e3da766167c7c9551e3b2f"
+SRCREV = "${AUTOREV}"
 SRC_URI = "\
 	git://github.com/clark15b/xupnpd.git;branch=master \
-	file://xupnpd.patch \
+	file://xupnpd.patch;apply=no \
 	file://xupnpd-dont-bind-daemon-to-specific-ip-address.patch \
 	file://xupnpd.service \
 "	

@@ -22,7 +22,7 @@ DEPENDS += " \
 	pugixml \
 	libpng \
 	libsigc++-2.0\
-	lua \
+	virtual/lua \
 	luaposix \
 	openssl \
 	openthreads \
@@ -34,7 +34,7 @@ DEPENDS += " \
 	zlib \
 "
 
-RDEPENDS_${PN} = "streamripper virtual/libstb-hal lua luaposix lua-expat ffmpeg"
+RDEPENDS_${PN} = "streamripper virtual/libstb-hal virtual/lua luaposix lua-expat ffmpeg"
 
 S = "${WORKDIR}/git"
 
@@ -95,7 +95,7 @@ EXTRA_OEMAKE += "'ARFLAGS=rc'"
 VERSION_FILE = "${N_PREFIX}/.version"
 
 N_CFLAGS = "-Wall -Wextra -Wshadow -Wno-psabi -g -O2 -fno-strict-aliasing -rdynamic -DENABLE_FREESATEPG -DNEW_LIBCURL \
--I${S}/lib/libcoolstream2 -I${STAGING_INCDIR}/freetype2 -I${STAGING_INCDIR}/sigc++-2.0 -I${STAGING_INCDIR}/glib-2.0 -I${STAGING_LIBDIR}/glib-2.0/include"
+-I${S}/lib/libcoolstream2 -I${STAGING_INCDIR}/freetype2 -I${STAGING_INCDIR}/sigc++-2.0 -I${STAGING_INCDIR}/glib-2.0 -I${STAGING_LIBDIR}/glib-2.0/include -I${STAGING_INCDIR}/luajit-2.1"
 
 N_CXXFLAGS = "${N_CFLAGS}"
 

@@ -5,13 +5,15 @@ MAINTAINER = "Michael Liebmann"
 LICENSE = "GPL-2.0"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 HOMEPAGE = "https://slknet.de/"
-DEPENDS = "lua"
+DEPENDS = "virtual/lua"
 RDEPENDS_${PN} = "lua-json luaposix"
+
+include ../../recipes-devtools/lua/lua.inc
 
 PV = "0.12"
 
 SRC_URI = "git://github.com/knicko007/mediathek.git;branch=master;protocol=https \
-		   file://0001-Makefile-add-dummy-clean-target.patch \
+	   file://0001-Makefile-add-dummy-clean-target.patch \
 "
 
 SRCREV = "${AUTOREV}"
@@ -23,6 +25,7 @@ do_install () {
 	install -d ${D}/usr/share/tuxbox/neutrino/plugins
 	cp -rf ${S}/plugins/* ${D}/usr/share/tuxbox/neutrino/plugins
 	cp -rf ${S}/share ${D}/usr/
+	mv ${D}/usr/share/lua/5.2 ${D}/usr/share/lua/${LUA_VER}
 }
 
 FILES_${PN} += "/usr/share/*"
