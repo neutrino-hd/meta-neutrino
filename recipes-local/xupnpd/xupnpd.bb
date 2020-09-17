@@ -24,9 +24,11 @@ SYSTEMD_SERVICE_${PN} = "xupnpd.service"
 # this is very ugly, but the xupnpd makefile is utter crap :-(
 SRC = "main.cpp soap.cpp mem.cpp mcast.cpp luaxlib.cpp luaxcore.cpp luajson.cpp luajson_parser.cpp"
 
+CFLAGS += "-I${STAGING_INCDIR}/luajit-2.1"
+
 do_compile () {
 	${CC} -O2 -c -o md5.o md5c.c
-	${CC} ${CFLAGS} ${LDFLAGS} -DWITH_URANDOM -o xupnpd ${SRC} md5.o -llua -lm -ldl -lstdc++ -rdynamic -lssl -lcrypto
+	${CC} ${CFLAGS} ${LDFLAGS} -DWITH_URANDOM -o xupnpd ${SRC} md5.o -lluajit-5.1 -lm -ldl -lstdc++ -rdynamic -lssl -lcrypto
 }
 
 
