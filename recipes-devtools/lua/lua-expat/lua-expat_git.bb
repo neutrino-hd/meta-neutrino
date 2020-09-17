@@ -16,8 +16,7 @@ S = "${WORKDIR}/git"
 PV = "1.3.3"
 
 inherit autotools-brokensep
-
-CFLAGS += "-I${STAGING_INCDIR}/luajit-2.3"
+CFLAGS += "-I${STAGING_INCDIR}/luajit-2.1"
 
 do_configure_prepend () {
         sed -i "s|CFLAGS =.*|CFLAGS = ${CFLAGS} -fPIC|" ${S}/makefile

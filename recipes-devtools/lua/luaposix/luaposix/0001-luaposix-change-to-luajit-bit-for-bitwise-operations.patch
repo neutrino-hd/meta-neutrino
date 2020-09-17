@@ -1,0 +1,187 @@
+From 7a3f09b40d585f96206d7a42c639d9953d45e319 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Thu, 17 Sep 2020 13:05:09 +0200
+Subject: [PATCH] luaposix: change to luajit 'bit' for bitwise operations
+ instead of using compat_5_3
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ lib/posix.lua.in             |  4 ++--
+ lib/posix/compat.lua         | 16 ++++++++--------
+ lib/posix/deprecated.lua     |  4 ++--
+ lib/posix/init.lua           |  4 ++--
+ specs/posix_unistd_spec.yaml |  2 +-
+ specs/spec_helper.lua        |  2 +-
+ 6 files changed, 16 insertions(+), 16 deletions(-)
+
+diff --git a/lib/posix.lua.in b/lib/posix.lua.in
+index d1f6ffd..fe9dcfc 100644
+--- a/lib/posix.lua.in
++++ b/lib/posix.lua.in
+@@ -14,7 +14,7 @@
+  @module posix
+ ]]
+ 
+-local bit = require "bit32"
++local bit = require "bit"
+ local M = {}
+ 
+ 
+@@ -151,7 +151,7 @@ end
+ -- @return[2] nil
+ -- @treturn[2] string error message
+ 
+-local bit    = require "bit32"
++local bit    = require "bit"
+ local fcntl  = require "posix.fcntl"
+ local stdlib = require "posix.stdlib"
+ local unistd = require "posix.unistd"
+diff --git a/lib/posix/compat.lua b/lib/posix/compat.lua
+index eeb564e..4b25fa7 100644
+--- a/lib/posix/compat.lua
++++ b/lib/posix/compat.lua
+@@ -11,7 +11,7 @@
+ ]]
+ 
+ local _argcheck = require "posix._argcheck"
+-local bit       = require "bit32"
++local bit       = require "bit"
+ 
+ local argerror, argtypeerror, badoption =
+   _argcheck.argerror, _argcheck.argtypeerror, _argcheck.badoption
+@@ -137,7 +137,7 @@ local M = {
+ -- @see chmod(2)
+ -- @usage P.chmod ('bin/dof', '+x')
+ 
+-local bit   = require "bit32"
++local bit   = require "bit"
+ local st    = require "posix.sys.stat"
+ 
+ local _chmod, stat = st.chmod, st.stat
+@@ -179,7 +179,7 @@ end
+ -- @usage
+ --   fd = P.creat ("data", "rw-r-----")
+ 
+-local bit   = require "bit32"
++local bit   = require "bit"
+ local fcntl = require "posix.fcntl"
+ local st    = require "posix.sys.stat"
+ 
+@@ -218,7 +218,7 @@ end
+ -- @treturn[2] string error message
+ -- @treturn[2] int errnum
+ 
+-local bit = require "bit32"
++local bit = require "bit"
+ local st  = require "posix.sys.stat"
+ 
+ local _mkdir = st.mkdir
+@@ -248,7 +248,7 @@ end
+ -- @treturn[2] string error message
+ -- @treturn[2] int errnum
+ 
+-local bit = require "bit32"
++local bit = require "bit"
+ local st  = require "posix.sys.stat"
+ 
+ local _mkfifo = st.mkfifo
+@@ -281,7 +281,7 @@ end
+ -- @treturn[2] int errnum
+ -- @see msgget(2)
+ 
+-local bit   = require "bit32"
++local bit   = require "bit"
+ local msg   = require "posix.sys.msg"
+ local st    = require "posix.sys.stat"
+ 
+@@ -332,7 +332,7 @@ end
+ -- @usage
+ -- fd = P.open ("data", bit.bor (P.O_CREAT, P.O_RDWR), "rw-r-----")
+ 
+-local bit   = require "bit32"
++local bit   = require "bit"
+ local fcntl = require "posix.fcntl"
+ 
+ local _open, O_CREAT = fcntl.open, fcntl.O_CREAT
+@@ -376,7 +376,7 @@ end
+ -- @treturn[2] string error message
+ -- @treturn[2] int errnum
+ 
+-local bit = require "bit32"
++local bit = require "bit"
+ local log = require "posix.syslog"
+ 
+ local bor = bit.bor
+diff --git a/lib/posix/deprecated.lua b/lib/posix/deprecated.lua
+index 6390fc9..34f2115 100644
+--- a/lib/posix/deprecated.lua
++++ b/lib/posix/deprecated.lua
+@@ -11,7 +11,7 @@
+ ]]
+ 
+ local _argcheck = require "posix._argcheck"
+-local bit       = require "bit32"
++local bit       = require "bit"
+ 
+ -- Lua 5.3 has table.unpack but not _G.unpack
+ -- Lua 5.2 has table.unpack and _G.unpack
+@@ -748,7 +748,7 @@ end
+ --   `LOG_LOCAL0` through `LOG_LOCAL7`
+ -- @see syslog(3)
+ 
+-local bit = require "bit32"
++local bit = require "bit"
+ local log = require "posix.syslog"
+ 
+ local bor = bit.bor
+diff --git a/lib/posix/init.lua b/lib/posix/init.lua
+index eacc54a..0f1fe64 100644
+--- a/lib/posix/init.lua
++++ b/lib/posix/init.lua
+@@ -14,7 +14,7 @@
+  @module posix
+ ]]
+ 
+-local bit = require "bit32"
++local bit = require "bit"
+ local M = {}
+ 
+ 
+@@ -151,7 +151,7 @@ end
+ -- @return[2] nil
+ -- @treturn[2] string error message
+ 
+-local bit    = require "bit32"
++local bit    = require "bit"
+ local fcntl  = require "posix.fcntl"
+ local stdlib = require "posix.stdlib"
+ local unistd = require "posix.unistd"
+diff --git a/specs/posix_unistd_spec.yaml b/specs/posix_unistd_spec.yaml
+index de9644e..c3e5d22 100644
+--- a/specs/posix_unistd_spec.yaml
++++ b/specs/posix_unistd_spec.yaml
+@@ -26,7 +26,7 @@ specify posix.unistd:
+ 
+ - describe execp:
+   - before: |
+-      bit = require "bit32"
++      bit = require "bit"
+       fcntl = require "posix.fcntl"
+       syswait = require "posix.sys.wait"
+ 
+diff --git a/specs/spec_helper.lua b/specs/spec_helper.lua
+index 0c34074..ce9f0fd 100755
+--- a/specs/spec_helper.lua
++++ b/specs/spec_helper.lua
+@@ -24,7 +24,7 @@ if os.getenv "installcheck" == nil then
+ end
+ 
+ 
+-local bit = require "bit32"
++local bit = require "bit"
+ band, bnot, bor = bit.band, bit.bnot, bit.bor
+ 
+ badargs = require "specl.badargs"
+-- 
+2.26.2
+

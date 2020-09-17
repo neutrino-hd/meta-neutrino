@@ -3,7 +3,7 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 HOMEPAGE = "https://github.com/Lua-cURL/Lua-cURLv3"
 DEPENDS += "curl virtual/lua"
-RDEPENDS_${PN} += "lua"
+RDEPENDS_${PN} += "virtual/lua"
 
 include ../lua.inc
 
@@ -15,7 +15,7 @@ SRC_URI = "git://github.com/Lua-cURL/Lua-cURLv3.git;protocol=https \
 	   file://0001-Makefile-adjust-for-OE.patch \
 "
 
-EXTRA_OEMAKE += "LUA_VER=5.3"
+EXTRA_OEMAKE += "LUA_VER=${LUA_VER}"
 
 inherit autotools-brokensep
 

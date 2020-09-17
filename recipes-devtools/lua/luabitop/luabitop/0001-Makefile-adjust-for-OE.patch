@@ -1,0 +1,64 @@
+From 9dfd02aa03a953e8a934aee55c49866b8c9c8950 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Mon, 14 Sep 2020 16:18:44 +0200
+Subject: [PATCH] Makefile: adjust for OE
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ Makefile | 30 +++++++++++-------------------
+ 1 file changed, 11 insertions(+), 19 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 84eeba0..956649a 100644
+--- a/Makefile
++++ b/Makefile
+@@ -4,27 +4,19 @@ T=lcurl
+ 
+ UNAME            ?= $(shell uname)
+ DESTDIR          ?= /
+-PKG_CONFIG       ?= pkg-config
+ INSTALL          ?= install
+ RM               ?= rm
+ LUA_IMPL         ?= lua
+-CC               ?= $(MAC_ENV) gcc
+-
+-LUA_VERSION       = $(shell $(PKG_CONFIG) --print-provides --silence-errors $(LUA_IMPL))
+-ifeq ($(LUA_VERSION),)
+-LUA_CMOD         ?= /usr/lib/lua/5.1
+-LUA_LMOD         ?= /usr/share/lua/5.1
+-LIBDIR           ?= /usr/lib
+-LUA_INC          ?= /usr/include
+-CURL_LIBS         = -L/usr/lib -lcurl
+-else
+-LUA_CMOD         ?= $(shell $(PKG_CONFIG) --variable INSTALL_CMOD $(LUA_IMPL))
+-LUA_LMOD         ?= $(shell $(PKG_CONFIG) --variable INSTALL_LMOD $(LUA_IMPL))
+-LIBDIR           ?= $(shell $(PKG_CONFIG) --variable libdir $(LUA_IMPL))
+-LUA_INC          ?= $(shell $(PKG_CONFIG) --variable includedir $(LUA_IMPL))
+-LUA_LIBS          = $(shell $(PKG_CONFIG) --libs $(LUA_IMPL))
+-CURL_LIBS         = $(shell $(PKG_CONFIG) --libs libcurl)
+-endif
++CC               ?= ${CC}
++
++LUA_VERSION      ?= $(LUA_VER)
++
++LUA_CMOD         ?= ${libdir}/lua/$(LUA_VERSION)
++LUA_LMOD         ?= ${datadir}/lua/$(LUA_VERSION)
++LIBDIR           ?= ${STAGING_LIBDIR}
++LUA_INC          ?= ${STAGING_INCDIR}
++CURL_LIBS         = -L${STAGING_LIBDIR} -lcurl
++
+ 
+ ifeq ($(UNAME), Linux)
+ OS_FLAGS         ?= -shared
+@@ -49,7 +41,7 @@ DEFINES           =
+ LIBS              = $(CURL_LIBS)
+ 
+ COMMONFLAGS       = -O2 -g -pipe -fPIC $(OS_FLAGS) $(DBG)
+-LF                = $(LIBS) $(LDFLAGS)
++LF                = $(LIBS) ${LDFLAGS}
+ CF                = $(INCLUDES) $(DEFINES) $(COMMONFLAGS) $(WARN) -DPTHREADS $(CFLAGS)
+ 
+ SCR               = src/lua/*.lua src/lua/cURL/*.lua src/lua/cURL/impl/*.lua
+-- 
+2.26.2
+
