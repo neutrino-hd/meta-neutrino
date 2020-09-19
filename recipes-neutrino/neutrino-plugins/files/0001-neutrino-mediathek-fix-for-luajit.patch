@@ -1,0 +1,35 @@
+From dc9f0b8f3501b102568e74562aecff22e94855c4 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sat, 19 Sep 2020 09:19:24 +0200
+Subject: [PATCH] neutrino-mediathek: fix for luajit
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ share/lua/5.2/n_gui.lua | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/share/lua/5.2/n_gui.lua b/share/lua/5.2/n_gui.lua
+index e0a0676..c8398e5 100644
+--- a/share/lua/5.2/n_gui.lua
++++ b/share/lua/5.2/n_gui.lua
+@@ -106,14 +106,14 @@ function G.paintFrame(x, y, w, h, f, c, radius, bg)
+ 	h = math.floor(h)
+ 	if (bg > 0) then
+ 		-- background
+-		N:PaintBox(x, y, w, h, bg, radius, bit32.bor(CORNER.TOP_LEFT, CORNER.TOP_RIGHT))
++		N:PaintBox(x, y, w, h, bg, radius, bit.bor(CORNER.TOP_LEFT, CORNER.TOP_RIGHT))
+ 	end
+ 	-- top
+-	N:PaintBox(x-f, y-f, w+f*2, f, c, radius, bit32.bor(CORNER.TOP_LEFT, CORNER.TOP_RIGHT))
++	N:PaintBox(x-f, y-f, w+f*2, f, c, radius, bit.bor(CORNER.TOP_LEFT, CORNER.TOP_RIGHT))
+ 	-- right
+ 	N:PaintBox(x+w, y, f, h, c)
+ 	-- bottom
+-	N:PaintBox(x-f, y+h, w+f*2, f, c, radius, bit32.bor(CORNER.BOTTOM_LEFT, CORNER.BOTTOM_RIGHT))
++	N:PaintBox(x-f, y+h, w+f*2, f, c, radius, bit.bor(CORNER.BOTTOM_LEFT, CORNER.BOTTOM_RIGHT))
+ 	-- left
+ 	N:PaintBox(x-f, y, f, h, c)
+ end
+-- 
+2.26.2
+

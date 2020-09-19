@@ -14,6 +14,7 @@ PV = "0.12"
 
 SRC_URI = "git://github.com/knicko007/mediathek.git;branch=master;protocol=https \
 	   file://0001-Makefile-add-dummy-clean-target.patch \
+	   file://0001-neutrino-mediathek-fix-for-luajit.patch \
 "
 
 SRCREV = "${AUTOREV}"
