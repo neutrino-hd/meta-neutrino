@@ -101,6 +101,7 @@ IMAGE_INSTALL += " \
 	e2fsprogs \
 	e2fsprogs-resize2fs \
 	findutils \
+	flash-script \
 	gptfdisk \
 	hdparm \
 	ifupdown \
