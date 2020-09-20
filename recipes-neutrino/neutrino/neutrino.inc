@@ -2,7 +2,7 @@
 PROVIDES = "virtual/neutrino"
 RPROVIDES_${PN} = "virtual/neutrino"
 
-inherit autotools pkgconfig systemd ccache gitpkgv
+inherit autotools pkgconfig systemd ccache
 
 DEPENDS += " \
 	curl \
