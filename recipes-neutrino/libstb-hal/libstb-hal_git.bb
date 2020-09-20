@@ -44,7 +44,7 @@ S = "${WORKDIR}/git"
 
 # the build system is not really broken wrt separate builddir,
 # but I want it to build inside the source for various reasons :-)
-inherit autotools pkgconfig gitpkgv
+inherit autotools pkgconfig
 
 LDFLAGS += " -Wl,-rpath-link,${STAGING_LIBDIR} -L${STAGING_LIBDIR} -lrt -lavformat -lavcodec -lavutil -lswscale -lswresample"
 

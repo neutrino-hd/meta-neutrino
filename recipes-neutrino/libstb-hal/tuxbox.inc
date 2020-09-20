@@ -4,4 +4,4 @@ MAINTAINER = "Tuxbox-Developers"
 SRC_URI += "git://github.com/tuxbox-neutrino/library-stb-hal.git;branch=mpx;protocol=https \
 "
 
-PV = "${GITPKGVTAG}"
+PV = "1.0.3-mpx-${SRCPV}"
