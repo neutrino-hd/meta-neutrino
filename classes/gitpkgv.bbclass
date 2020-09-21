@@ -1,3 +1,12 @@
+# WARNING:
+# Usage of varables ${GITPKGV} and ${GITPKGVTAG} inside recipes are possible but not recommended.
+# Its working not reliable especially before sources are fetched because
+# ${GITPKGV} and ${GITPKGVTAG} need already existing fetched git repositories inside ${DL_DIR}.
+# Working with external sources in the workspace is also not reliable.
+# e.g. If you want to use gitpkgv class ensure call this command:
+#
+# 'bitbake --runall=fetch --continue  <target> && bitbake <target>
+#
 # gitpkgv.bbclass provides a GITPKGV and GITPKGVTAG variables to be
 # used in PKGV, as described bellow:
 #
