@@ -135,7 +135,6 @@ IMAGE_INSTALL += " \
 	virtual/neutrino \
 	neutrino-plugins \
 	neutrino-lua-plugins \
-	neutrino-plugin-mediathek \
 	xupnpd \
 	zip \
 "
