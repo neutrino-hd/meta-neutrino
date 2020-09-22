@@ -1,0 +1,26 @@
+From 1862fa9be5fc646e5a4b1726d2fe17baa6ae0b2d Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Tue, 22 Sep 2020 08:27:20 +0200
+Subject: [PATCH] require bit for luajit
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ lib/posix/_base.lua | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/lib/posix/_base.lua b/lib/posix/_base.lua
+index 0f41a0e..ba58cf8 100644
+--- a/lib/posix/_base.lua
++++ b/lib/posix/_base.lua
+@@ -16,7 +16,7 @@ local HAVE_TYPECHECK, typecheck = pcall(require, 'typecheck')
+ local HAVE_BITWISE_OPS, bitwise = pcall(require, 'posix._bitwise')
+ 
+ if not HAVE_BITWISE_OPS then
+-   bitwise = require 'bit32'
++   bitwise = require 'bit'
+ end
+ 
+ 
+-- 
+2.26.2
+
