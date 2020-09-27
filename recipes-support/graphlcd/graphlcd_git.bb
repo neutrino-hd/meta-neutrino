@@ -3,14 +3,14 @@ PRIORITY = "optional"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
 
-DEPENDS = "freetype fontconfig imagemagick"
+DEPENDS = "freetype fontconfig"
 
 SRC_URI = "git://github.com/MaxWiesel/graphlcd-base.git;protocol=https"
 
 S = "${WORKDIR}/git"
 SRCREV = "${AUTOREV}"
 
-EXTRA_OEMAKE += '"INCLUDES=-I${STAGING_INCDIR} -I${STAGING_INCDIR}/ImageMagick-7 -I${STAGING_INCDIR}/freetype2 -I${S}" "UDEVRULESDIR=${D}/etc/udev/rules.d"'
+EXTRA_OEMAKE += '"INCLUDES=-I${STAGING_INCDIR} -I${STAGING_INCDIR}/freetype2 -I${S}" "UDEVRULESDIR=${D}/etc/udev/rules.d"'
 
 
 inherit autotools-brokensep pkgconfig
