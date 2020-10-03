@@ -1,42 +1,22 @@
---- a/Makefile
-+++ b/Makefile
-@@ -1,10 +1,10 @@
--LUA     = lua-5.1.4
-+LUA     = lua-5.3.5
- #LUA     = lua-5.2.0
- STATIC  = false
- OPENSSL = /home/user/src/openssl-0.9.8e
- 
--CFLAGS  = -fno-exceptions -fno-rtti -O2 -I$(LUA) -L$(LUA)
--CFLAGS+= -I$(OPENSSL)/include -L$(OPENSSL)/lib/openwrt
-+CFLAGS  = -fno-exceptions -fno-rtti -O2 -I$(LUA) -L$(LUA)
-+CFLAGS+= $(shell $(PKG_CONFIG) --cflags --libs openssl)
- SRC     = main.cpp soap.cpp mem.cpp mcast.cpp luaxlib.cpp luaxcore.cpp luajson.cpp luajson_parser.cpp
- LUAMYCFLAGS = -DLUA_USE_LINUX
- 
-@@ -87,10 +87,16 @@
- 
- 
- embedded:
--	PATH=$(PATH):$(UTILS) $(MAKE) -C $(LUA) CC=$(SDK)/gcc a MYCFLAGS='$(LUAMYCFLAGS)'
--	$(SDK)/gcc -O2 -c -B$(UTILS) -o md5.o md5c.c
--	$(SDK)/gcc $(CFLAGS) -B$(UTILS) -DWITH_URANDOM -o xupnpd-$(TARGET) $(SRC) md5.o -llua -lm -ldl -lssl -lcrypto
--	$(SDK)/strip xupnpd-$(TARGET)
-+	$(TARGET)-gcc -O2 -c -o md5.o md5c.c
-+	$(TARGET)-gcc $(CFLAGS) $(LUAFLAGS) -DWITH_URANDOM -o xupnpd $(SRC) md5.o  -lrt -llua -lm -ldl -lssl -lcrypto
-+	$(TARGET)-strip xupnpd
-+
-+install:
-+	if ( test ! -d $(DESTDIR)/usr/bin ) ; then mkdir -p $(DESTDIR)/usr/bin ; fi
-+	cp -f xupnpd $(DESTDIR)/usr/bin
-+	chmod a+x $(DESTDIR)/usr/bin/xupnpd
-+	if ( test ! -d $(DESTDIR)/usr/share/xupnpd ) ; then mkdir -p $(DESTDIR)/usr/share/xupnpd ; fi
-+	cp -ap plugins profiles ui www *.lua $(DESTDIR)/usr/share/xupnpd/
- 
- clean:
- 	$(MAKE) -C $(LUA) clean
---- a/plugins/xupnpd_coolstream.lua
-+++ b/plugins/xupnpd_coolstream.lua
+From 5766e691c5f16b5dadfbd7df1c563686900ca8a5 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sat, 29 Sep 2018 15:33:04 +0200
+Subject: [PATCH] xupnpd: update
+
+---
+ plugins/xupnpd_stb.lua | 177 +++++++++++++++++++++++++++++++++++++
+ ui/xupnpd_ui.lua       |  10 +--
+ xupnpd.lua             |  23 ++---
+ xupnpd_m3u.lua         |   2 +
+ xupnpd_main.lua        |   3 +
+ 5 files changed, 200 insertions(+), 15 deletions(-)
+ create mode 100644 plugins/xupnpd_stb.lua
+
+diff --git a/plugins/xupnpd_stb.lua b/plugins/xupnpd_stb.lua
+new file mode 100644
+index 0000000..66b2141
+--- /dev/null
++++ b/plugins/xupnpd_stb.lua
 @@ -0,0 +1,177 @@
 +-- Plugin for converting channels lists from coolstream receivers
 +-- Author focus.cst@gmail.com
@@ -144,8 +124,8 @@
 +			local m3ufilename = cfg.tmp_path.."cst_"..friendly_name.."_bouquet_"..bindex..".m3u"
 +			cst_debug(0, m3ufilename)
 +			local m3ufile = io.open(m3ufilename,"w")
-+			--m3ufile:write("#EXTM3U name=\""..bouquett.." ("..friendly_name..")\" plugin=coolstream type=ts\n")
-+			m3ufile:write("#EXTM3U name=\""..bouquett.." ("..friendly_name..")\" plugin=coolstream type=m2t\n")
++			--m3ufile:write("#EXTM3U name=\""..bouquett.." ("..friendly_name..")\" plugin=stb type=ts\n")
++			m3ufile:write("#EXTM3U name=\""..bouquett.." ("..friendly_name..")\" plugin=stb type=m2t\n")
 +			for cindex,channelt in pairs(bouquet) do
 +				local id = channelt[1];
 +				if (string.sub(id, 1, 8) ~= "ffffffff") then -- skip webtv
@@ -209,15 +189,66 @@
 +end
 +
 +if not cst_test then
-+plugins['coolstream']={}
-+plugins.coolstream.name="CoolStream"
-+plugins.coolstream.desc="IP address (example: <i>192.168.0.1</i>)"
-+plugins.coolstream.updatefeed=cst_updatefeed
-+plugins.coolstream.sendurl=cst_sendurl
++plugins['stb']={}
++plugins.stb.name="STB"
++plugins.stb.desc="IP address (example: <i>192.168.0.1</i>)"
++plugins.stb.updatefeed=cst_updatefeed
++plugins.stb.sendurl=cst_sendurl
 +end
+diff --git a/ui/xupnpd_ui.lua b/src/ui/xupnpd_ui.lua
+index 757cf48..411ad57 100644
+--- a/ui/xupnpd_ui.lua
++++ b/ui/xupnpd_ui.lua
+@@ -24,7 +24,7 @@ function ui_downloads()
+         end
+     end
+     http.send('</table>')
+-    http.send('<br/><a class="btn btn-info" href="/ui">Back</a>')
++    http.send('<br/><a class="btn btn-info" href="/ui/">Back</a>')
+ end
+ 
+ function ui_playlist_get_url(pls)
+@@ -85,7 +85,7 @@ function ui_playlists()
+     http.send('<input type=file name=m3ufile><br /><br />')
+     http.send('<input class="btn btn-primary" type=submit value=Send>')
+     http.send('</form><hr/>')
+-    http.send('<br/><a class="btn btn-primary" href="/ui/reload">Reload</a> <a class="btn btn-primary" href="/ui/reload_feeds?return_url=/ui/playlists">Reload feeds</a> <a class="btn btn-info" href="/ui">Back</a>')
++    http.send('<br/><a class="btn btn-primary" href="/ui/reload">Reload</a> <a class="btn btn-primary" href="/ui/reload_feeds?return_url=/ui/playlists">Reload feeds</a> <a class="btn btn-info" href="/ui/">Back</a>')
+ end
+ 
+ function ui_feeds()
+@@ -119,7 +119,7 @@ function ui_feeds()
+     http.send('<br/><input class="btn btn-primary" type=submit value=Add> <a class="btn btn-info" href="/ui/fhelp" target="_blank">Help</a>')
+     http.send('</form><hr/>')
+ 
+-    http.send('<br/><a class="btn btn-primary" href="/ui/save_feeds">Save</a> <a class="btn btn-primary" href="/ui/reload_feeds?return_url=/ui/feeds">Reload feeds</a> <a class="btn btn-info" href="/ui">Back</a>')
++    http.send('<br/><a class="btn btn-primary" href="/ui/save_feeds">Save</a> <a class="btn btn-primary" href="/ui/reload_feeds?return_url=/ui/feeds">Reload feeds</a> <a class="btn btn-info" href="/ui/">Back</a>')
+ end
+ 
+ function ui_fhelp()
+@@ -427,7 +427,7 @@ function ui_status()
+ 
+     http.send('</table>')
+ 
+-    http.send('<br/><a class="btn btn-primary" href="/ui/status">Refresh</a> <a class="btn btn-info" href="/ui">Back</a>')
++    http.send('<br/><a class="btn btn-primary" href="/ui/status">Refresh</a> <a class="btn btn-info" href="/ui/">Back</a>')
+ end
+ 
+ function ui_kill()
+@@ -533,7 +533,7 @@ function ui_api_call(args)
+ end
+ 
+ function ui_restart()
+-    if core.restart(cfg.pid_file,"./xupnpd") then http.send('<h3>Attempt to restart...</h3>') else http.send('<h3>Unable to restart.</h3>') end
++    if core.restart(cfg.pid_file,"/usr/bin/xupnpd") then http.send('<h3>Attempt to restart...</h3>') else http.send('<h3>Unable to restart.</h3>') end
+ 
+     http.send('<br/><form method=get action="/ui"><input class="btn btn-primary" type=submit value=OK></form>')
+ 
+diff --git a/xupnpd.lua b/src/xupnpd.lua
+index 6fad96e..73244b4 100644
 --- a/xupnpd.lua
 +++ b/xupnpd.lua
-@@ -5,13 +5,13 @@
+@@ -5,13 +5,13 @@ cfg.ui_auth_file='auth.txt'
  cfg.ui_session_file='/tmp/xupnpd.session'
  
  -- multicast interface for SSDP exchange, 'eth0', 'br0', 'br-lan' for example
@@ -233,7 +264,7 @@
  
  -- SSDP announcement age
  cfg.ssdp_max_age=1800
-@@ -23,10 +23,10 @@
+@@ -23,7 +23,7 @@ cfg.http_port=4044
  cfg.log_facility='local0'
  
  -- 'cfg.daemon' detach server from terminal
@@ -241,12 +272,8 @@
 +cfg.daemon=true
  
  -- silent mode - no logs, no pid file
--cfg.embedded=false
-+cfg.embedded=true
- 
- -- 'cfg.debug' enables SSDP debug output to stdout (if cfg.daemon=false)
- -- 0-off, 1-basic, 2-messages
-@@ -36,7 +36,7 @@
+ cfg.embedded=false
+@@ -36,7 +36,7 @@ cfg.debug=1
  --cfg.udpxy_url='http://192.168.1.1:4022'
  
  -- downstream interface for builtin multicast proxy (comment 'cfg.udpxy_url' for processing 'udp://@...' playlists)
@@ -255,7 +282,7 @@
  
  -- 'cfg.proxy' enables proxy for injection DLNA headers to stream
  -- 0-off, 1-radio, 2-radio/TV
-@@ -52,19 +52,20 @@
+@@ -52,19 +52,19 @@ cfg.http_timeout=30
  cfg.dlna_notify=true
  
  -- UPnP/DLNA subscribe ttl
@@ -271,16 +298,15 @@
  
  -- Device name
 -cfg.name='UPnP-IPTV'
-+--cfg.name='UPnP-IPTV'
 +cfg.name=io.popen("uname -n"):read("*l")..'-xupnpd'
  
  -- static device UUID, '60bd2fb3-dabe-cb14-c766-0e319b54c29a' for example or nil
 -cfg.uuid='60bd2fb3-dabe-cb14-c766-0e319b54c29a'
-+cfg.uuid=''
++cfg.uuid=nil
  
  -- max url cache size
  cfg.cache_size=8
-@@ -76,12 +77,14 @@
+@@ -76,7 +76,7 @@ cfg.cache_ttl=900
  cfg.default_mime_type='mpeg'
  
  -- feeds update interval (seconds, 0 - disabled)
@@ -288,39 +314,25 @@
 +cfg.feeds_update_interval=3600
  cfg.playlists_update_interval=0
  
+ -- host for UI playlist download
+@@ -85,6 +85,8 @@ cfg.playlists_update_interval=0
  -- playlist (m3u file path or path with alias
  playlist=
  {
-+   { '/hdd/movie', 'Local Record Files' },
-+   { '/hdd/pictures', 'Local Picture Files' },
++    { '/media/hdd/movie', 'Local Record Files' },
++    { '/media/hdd/pictures', 'Local Picture Files' },
  --    { './playlists/mozhay.m3u', 'Mozhay.tv' },
  --    { './localmedia', 'Local Media Files' }
  --    { './private', 'Private Media Files', '127.0.0.1;192.168.1.1' }  -- only for 127.0.0.1 and 192.168.1.1
-@@ -90,10 +93,10 @@
- -- feeds list (plugin, feed name, feed type)
- feeds=
- {
--    { 'vimeo',          'channel/hd',           'Vimeo HD Channel' },
--    { 'vimeo',          'channel/hdxs',         'Vimeo Xtreme sports' },
--    { 'vimeo',          'channel/mtb',          'Vimeo MTB Channel' },
--    { 'youtube',        'channel/top_rated',    'YouTube Top Rated' },
-+--    { 'vimeo',          'channel/hd',           'Vimeo HD Channel' },
-+--    { 'vimeo',          'channel/hdxs',         'Vimeo Xtreme sports' },
-+--    { 'vimeo',          'channel/mtb',          'Vimeo MTB Channel' },
-+--    { 'youtube',        'channel/top_rated',    'YouTube Top Rated' },
- --    { 'youtube',        'Drift0r',              'Drift0r' },
- --    { 'youtube',        'XboxAhoy',             'XboxAhoy' },
- --    { 'ag',             'videos',               'AG - New' },
-@@ -101,6 +104,8 @@
+@@ -104,6 +106,7 @@ feeds=
  --    { 'gametrailers',   'ps3',                   'GT - PS3' },
  --    { 'giantbomb',      'all',                  'GiantBomb - All' },
  --    { 'dreambox',       'http://192.168.0.1:8001/','Dreambox1' },
-+    { 'coolstream',       'localhost', 'Neutrino' },
-+--    { 'coolstream',       '172.16.1.10', 'NEO' },
++    { 'stb',       'localhost', 'Neutrino' },
  }
  
  -- log ident, pid file end www root
-@@ -112,7 +117,7 @@
+@@ -115,7 +118,7 @@ cfg.tmp_path='/tmp/'
  cfg.plugin_path='./plugins/'
  cfg.config_path='./config/'
  cfg.playlists_path='./playlists/'
@@ -329,64 +341,21 @@
  cfg.ui_path='./ui/'
  cfg.drive=''                    -- reload playlists only if drive state=active/idle, example: cfg.drive='/dev/sda'
  cfg.profiles='./profiles/'      -- device profiles feature
---- a/ui/xupnpd_ui.lua
-+++ b/ui/xupnpd_ui.lua
-@@ -24,7 +24,7 @@
-         end
-     end
-     http.send('</table>')
--    http.send('<br/><a class="btn btn-info" href="/ui">Back</a>')
-+    http.send('<br/><a class="btn btn-info" href="/ui/">Back</a>')
- end
- 
- function ui_download(name)
-@@ -85,7 +85,7 @@
-     http.send('<input type=file name=m3ufile><br /><br />')
-     http.send('<input class="btn btn-primary" type=submit value=Send>')
-     http.send('</form><hr/>')
--    http.send('<br/><a class="btn btn-primary" href="/ui/reload">Reload</a> <a class="btn btn-primary" href="/ui/reload_feeds?return_url=/ui/playlists">Reload feeds</a> <a class="btn btn-info" href="/ui">Back</a>')
-+    http.send('<br/><a class="btn btn-primary" href="/ui/reload">Reload</a> <a class="btn btn-primary" href="/ui/reload_feeds?return_url=/ui/playlists">Reload feeds</a> <a class="btn btn-info" href="/ui/">Back</a>')
- end
- 
- function ui_feeds()
-@@ -119,7 +119,7 @@
-     http.send('<br/><input class="btn btn-primary" type=submit value=Add> <a class="btn btn-info" href="/ui/fhelp" target="_blank">Help</a>')
-     http.send('</form><hr/>')
- 
--    http.send('<br/><a class="btn btn-primary" href="/ui/save_feeds">Save</a> <a class="btn btn-primary" href="/ui/reload_feeds?return_url=/ui/feeds">Reload feeds</a> <a class="btn btn-info" href="/ui">Back</a>')
-+    http.send('<br/><a class="btn btn-primary" href="/ui/save_feeds">Save</a> <a class="btn btn-primary" href="/ui/reload_feeds?return_url=/ui/feeds">Reload feeds</a> <a class="btn btn-info" href="/ui/">Back</a>')
- end
- 
- function ui_fhelp()
-@@ -427,7 +427,7 @@
- 
-     http.send('</table>')
- 
--    http.send('<br/><a class="btn btn-primary" href="/ui/status">Refresh</a> <a class="btn btn-info" href="/ui">Back</a>')
-+    http.send('<br/><a class="btn btn-primary" href="/ui/status">Refresh</a> <a class="btn btn-info" href="/ui/">Back</a>')
- end
- 
- function ui_kill()
-@@ -533,7 +533,7 @@
- end
- 
- function ui_restart()
--    if core.restart(cfg.pid_file,"./xupnpd") then http.send('<h3>Attempt to restart...</h3>') else http.send('<h3>Unable to restart.</h3>') end
-+    if core.restart(cfg.pid_file,"/usr/bin/xupnpd") then http.send('<h3>Attempt to restart...</h3>') else http.send('<h3>Unable to restart.</h3>') end
- 
-     http.send('<br/><form method=get action="/ui"><input class="btn btn-primary" type=submit value=OK></form>')
- 
+diff --git a/xupnpd_m3u.lua b/src/xupnpd_m3u.lua
+index 6d89282..3c139e3 100644
 --- a/xupnpd_m3u.lua
 +++ b/xupnpd_m3u.lua
-@@ -83,6 +83,8 @@
-     playlist_data.objid='0'
+@@ -87,6 +87,8 @@ function reload_playlists()
      playlist_data.size=0
      playlist_data.elements={}
-+
-+    collectgarbage()   -- free unused memory immediately
  
++    collectgarbage()   -- free unused memory immediately
++
      local plist=clone_table(playlist)
  
+     add_playlists_from_dir(cfg.playlists_path,playlist,plist)
+diff --git a/xupnpd_main.lua b/src/xupnpd_main.lua
+index 5c0131d..b6421af 100644
 --- a/xupnpd_main.lua
 +++ b/xupnpd_main.lua
 @@ -2,6 +2,9 @@

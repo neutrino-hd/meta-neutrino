@@ -1,11 +1,17 @@
-From: [CST] Focus <focus.cst@gmail.com>
-Date: Thu, 24 Aug 2013 10:03:45 +0400
+From f46cdcaf609eb7c5367183b2440f5b947c445092 Mon Sep 17 00:00:00 2001
+From: "[CST] Focus" <focus.cst@gmail.com>
+Date: Sat, 24 Aug 2013 10:03:45 +0400
 Subject: [PATCH] xupnpd: don't bind daemon to specific ip address
 
 ---
---- src/luaxcore.cpp.org	2013-08-22 20:53:31 +0400
-+++ src/luaxcore.cpp	2013-08-22 09:44:37 +0400
-@@ -113,8 +113,10 @@
+ src/luaxcore.cpp | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/luaxcore.cpp b/luaxcore.cpp
+index 8aa38d8..6fa1112 100644
+--- a/luaxcore.cpp
++++ b/luaxcore.cpp
+@@ -129,8 +129,10 @@ namespace core
          sin.sin_addr.s_addr=INADDR_ANY;
          sin.sin_port=htons(port);
  

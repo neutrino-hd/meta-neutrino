@@ -8,7 +8,7 @@ DEPENDS += "virtual/lua openssl"
 SRCREV = "${AUTOREV}"
 SRC_URI = "\
 	git://github.com/clark15b/xupnpd.git;branch=master \
-	file://xupnpd.patch;apply=no \
+	file://xupnpd.patch \
 	file://xupnpd-dont-bind-daemon-to-specific-ip-address.patch \
 	file://xupnpd.service \
 "	
@@ -33,10 +33,11 @@ do_compile () {
 
 
 do_install () {
-	install -d -m 0644 ${D}/usr/share/xupnpd/config ${D}/usr/share/xupnpd/playlists ${D}${systemd_unitdir}/system ${D}${sysconfdir}/systemd/system/multi-user.target.wants/ ${D}${sysconfdir}/systemd/system/timers.target.wants/
+	install -d -m 0644 ${D}/usr/share/xupnpd/config ${D}/usr/share/xupnpd/playlists ${D}/usr/share/xupnpd/plugins ${D}${systemd_unitdir}/system ${D}${sysconfdir}/systemd/system/multi-user.target.wants/ ${D}${sysconfdir}/systemd/system/timers.target.wants/
 	install -m 644 ${WORKDIR}/xupnpd.service ${D}${systemd_unitdir}/system/xupnpd.service
 	ln -sf ${systemd_unitdir}/system/xupnpd.service ${D}${sysconfdir}/systemd/system/multi-user.target.wants/xupnpd.service
 	install -D -m 0755 ${S}/xupnpd ${D}${bindir}/xupnpd
+	install -m 644 ${S}/plugins/xupnpd_stb.lua ${D}/usr/share/xupnpd/plugins
 	cp -r ${S}/profiles	${D}/usr/share/xupnpd/
 	cp -r ${S}/ui		${D}/usr/share/xupnpd/
 	cp -r ${S}/www		${D}/usr/share/xupnpd/
