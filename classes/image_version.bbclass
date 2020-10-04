@@ -94,4 +94,15 @@ image_version_get_filename_latest_prefix() {
 	echo "$ret"
 }
 
-EXPORT_FUNCTIONS get_release_type  get_flavour_tag  get_poky_version  get_meta_tuxbox get_tuxbox_tag  get_tuxbox_version  get_meta_version  get_flavour_suffix  get_filename_prefix  get_filename_latest_prefix     
+EXPORT_FUNCTIONS get_release_type  get_flavour_tag  get_poky_version  get_meta_tuxbox get_tuxbox_tag  get_tuxbox_version  get_meta_version  get_flavour_suffix  get_filename_prefix  get_filename_latest_prefix 
+
+export IMAGE_RELEASE_TYPE="`get_release_type`"
+export IMAGE_FLAVOUR_TAG="`get_flavour_tag`"
+export IMAGE_POKY_VERSION="`get_poky_version`"
+export IMAGE_META_TUXBOX="`get_meta_tuxbox`"
+export IMAGE_TUXBOX_TAG="`get_tuxbox_tag`"
+export IMAGE_TUXBOX_VERSION="`get_tuxbox_version`"
+export IMAGE_META_VERSION="`get_meta_version`"
+export IMAGE_FLAVOUR_SUFFIX="`get_flavour_suffix`"
+export IMAGE_FILE_NAME_PREFIX="`get_filename_prefix`"
+export IMAGE_FILE_NAME_LATEST_PREFIX="`get_filename_latest_prefix`"

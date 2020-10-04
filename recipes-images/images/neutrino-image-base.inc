@@ -1,6 +1,8 @@
 # Base this image on core-image-minimal
 include recipes-core/images/core-image-minimal.bb
 
+inherit image_version
+
 # add default password for root
 
 ROOTFS_POSTPROCESS_COMMAND += "set_root_passwd;"
@@ -24,36 +26,12 @@ ROOTFS_POSTPROCESS_COMMAND += "set_image_version;"
 # required by neutrino itself.
 set_image_version () {
 	META_NAME="meta-neutrino"
-	# In case of changed repository name this keeps compatibilty.
-	# Why: meta-neutrino contains mostly recipes to create a tuxbox image and
-	# neutrino is only a part of image like all the other recipes.
-	# The flavour settings are only relevant for neutrino and for some
-	# neutrino package related environment parts
-	# so only neutrino should be marked with current flavour tags.
-	if [ -e ${COREBASE}/meta-tuxbox ]; then
-		META_NAME="meta-tuxbox"
-	fi
-
-	# We extract the image version from git describe content
-	# general meta version comes from the yocto poky repository and git tags are synchronized
-	# with our meta layers. Only the describe content will be added for our image version.
-	META_TAG=`git -C ${COREBASE}/$META_NAME describe --abbrev=0`
-	META_VERSION=$META_TAG-`git -C ${COREBASE}/$META_NAME rev-list $META_TAG..HEAD --count`
-
-	if [ -z $META_VERSION ]; then
-		META_VERSION=${DISTRO_VERSION_NUMBER}
-	fi
-
+	META_VERSION=`get_meta_version`
 	RELEASE_NAME="${IMAGE_BASENAME} ${META_VERSION}"
 	RELEASE_NAME_DISCRIBE=`git -C ${COREBASE}/$META_NAME  describe --always --tags --dirty`
 
 	# Set the release type within version files and readable text content for gui
-	RELASE_TYPE="Release"
-	if [ ${RELEASE_STATE} == 1 ]; then
-		RELASE_TYPE="Beta"
-	elif [ ${RELEASE_STATE} == 2 ]; then
-		RELASE_TYPE="Nightly"
-	fi
+	RELASE_TYPE=`get_release_type`
 
 	IMAGE_DESCRIPTION="${MACHINE_BRAND}-${MACHINE_NAME} [${ARCH}-${MACHINE}] ${RELASE_TYPE}"
 
