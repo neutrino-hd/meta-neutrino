@@ -1,0 +1,27 @@
+From 94d13bd19b9b95f129ee2cc180683ccaf063919c Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Mon, 5 Oct 2020 18:31:49 +0200
+Subject: [PATCH] avoid race between systemd-udevd and systemd-modules-load
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ units/systemd-udevd.service.in | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/units/systemd-udevd.service.in b/units/systemd-udevd.service.in
+index 8b1dd0efc7..5420b1b25b 100644
+--- a/units/systemd-udevd.service.in
++++ b/units/systemd-udevd.service.in
+@@ -11,7 +11,8 @@
+ Description=udev Kernel Device Manager
+ Documentation=man:systemd-udevd.service(8) man:udev(7)
+ DefaultDependencies=no
+-After=systemd-sysusers.service systemd-hwdb-update.service
++After=systemd-sysusers.service systemd-hwdb-update.service systemd-modules-load.service
++Wants=systemd-modules-load.service
+ Before=sysinit.target
+ ConditionPathIsReadWrite=/sys
+ 
+-- 
+2.26.2
+
