@@ -95,10 +95,37 @@ image_version_get_filename_latest_prefix() {
 	echo "$ret"
 }
 
-EXPORT_FUNCTIONS get_release_type  get_flavour_tag  get_poky_version  get_meta_tuxbox get_tuxbox_tag  get_tuxbox_version  get_meta_version  get_flavour_suffix  get_filename_prefix  get_filename_latest_prefix 
+image_version_get_yearly_tag() {
+	ret=`date '+%y'`
+	echo "$ret"
+}
+
+image_version_get_build_increment() {
+	image_build_increment_file=${TMPDIR}/image_build_increment
+	if test ! -f $image_build_increment_file; then
+		ret=0
+		echo "$ret" > $image_build_increment_file
+		echo "${IMAGE_NAME}" >> $image_build_increment_file
+		echo "$ret"
+	else
+		line1=`sed -n '1p' $image_build_increment_file`
+		line2=`sed -n '2p' $image_build_increment_file`
+		if [ ${line2} != "${IMAGE_NAME}" ]; then
+			ret=`expr $line1 + 1`
+			echo "$ret" > $image_build_increment_file
+			echo "${IMAGE_NAME}" >> $image_build_increment_file
+			echo "$ret"
+		else
+			echo "$line1"
+		fi
+	fi
+}
+
+EXPORT_FUNCTIONS get_release_type  get_flavour_tag  get_poky_version  get_meta_tuxbox get_tuxbox_tag  get_tuxbox_version  get_meta_version  get_flavour_suffix  get_filename_prefix  get_filename_latest_prefix get_yearly_tag get_build_increment
 
 export IMAGE_RELEASE_TYPE="`get_release_type`"
 export IMAGE_FLAVOUR_TAG="`get_flavour_tag`"
+export IMAGE_YEARLY_TAG="`get_yearly_tag`"
 export IMAGE_POKY_VERSION="`get_poky_version`"
 export IMAGE_META_TUXBOX="`get_meta_tuxbox`"
 export IMAGE_TUXBOX_TAG="`get_tuxbox_tag`"
@@ -107,3 +134,4 @@ export IMAGE_META_VERSION="`get_meta_version`"
 export IMAGE_FLAVOUR_SUFFIX="`get_flavour_suffix`"
 export IMAGE_FILE_NAME_PREFIX="`get_filename_prefix`"
 export IMAGE_FILE_NAME_LATEST_PREFIX="`get_filename_latest_prefix`"
+export IMAGE_BUILD_INCREMENT="`get_build_increment`"
