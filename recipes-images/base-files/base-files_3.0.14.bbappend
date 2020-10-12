@@ -12,6 +12,7 @@ SRC_URI += "file://inputrc \
 	    file://getty-toggle \
 	    file://fstrim.service \
 	    file://fstrim.timer \
+	    file://local.service \
 	    file://locale.conf \
 	    file://local_cam.sh \
 	    file://net-umount.sh \
@@ -64,6 +65,8 @@ do_install_append () {
                 install -m 0644 ${WORKDIR}/flash@.service  ${D}${systemd_unitdir}/system
                 install -m 0644 ${WORKDIR}/restore@.service  ${D}${systemd_unitdir}/system
                 install -m 0644 ${WORKDIR}/backup@.service  ${D}${systemd_unitdir}/system
+                install -m 0644 ${WORKDIR}/local.service  ${D}${systemd_unitdir}/system
+		ln -sf /lib/systemd/system/local.service  ${D}${systemd_unitdir}/system/multi-user.target.wants            
 		install -m 0644 ${WORKDIR}/vconsole.conf  ${D}${sysconfdir}
                 install -m 0755 ${WORKDIR}/getty-toggle  ${D}${bindir}
 	fi
