@@ -8,7 +8,7 @@ SRC_URI = "git://bitbucket.org/majortom/blindscan-s2.git;protocol=http file://su
 
 PV = "1+git${SRCPV}"
 
-S = "${WORKDIR}/git/"
+S = "${WORKDIR}/git"
 
 SRCREV = "1c359fac35e429d34226b28ebd8237c2f3dbb0e2"
 
