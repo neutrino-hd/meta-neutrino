@@ -70,8 +70,6 @@ DEPENDS += " \
             zlib \
             texturepacker-native \
             \
-            gstreamer1.0 \
-            gstreamer1.0-plugins-base \
           "
 
 #SRCREV = "ded117bbd636fc88802599a590e26b1d0fd7c609" #18.3
