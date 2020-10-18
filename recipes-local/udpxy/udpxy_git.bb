@@ -23,8 +23,10 @@ do_configure_append () {
 	ln -sf ${S}/* ${WORKDIR}/build/
 }
 
+CFLAGS += "-Wno-stringop-truncation"
+
 do_compile () {
-	oe_runmake rdebug
+	oe_runmake
 }
 
 do_install(){
