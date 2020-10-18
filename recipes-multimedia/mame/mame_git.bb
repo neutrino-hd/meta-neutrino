@@ -24,7 +24,7 @@ DEPENDS = " \
     zlib \
     flac \
     jpeg \
-    lua \
+    virtual/lua \
     sqlite3 \
     portaudio-v19 \
     portmidi \
