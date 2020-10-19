@@ -6,13 +6,13 @@ Subject: [PATCH] udpxrec.c: fix Wstringop-truncation
 Signed-off-by: Markus Volk <f_l_k@t-online.de>
 
 ---
- chipmunk/udpxrec.c | 10 +++++-----
+ udpxrec.c | 10 +++++-----
  1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/chipmunk/udpxrec.c b/chipmunk/udpxrec.c
 index 3783ae8..90bf199 100644
---- a/chipmunk/udpxrec.c
-+++ b/chipmunk/udpxrec.c
+--- a/udpxrec.c
++++ b/udpxrec.c
 @@ -539,7 +539,7 @@ int udpxrec_main( int argc, char* const argv[] )
      int rc = 0, ch = 0, custom_log = 0, no_daemon = 0;
      static const char OPTMASK[] = "vb:e:M:p:B:n:m:l:c:s:R:u:T";
