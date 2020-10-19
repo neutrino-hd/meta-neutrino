@@ -19,12 +19,14 @@ inherit autotools systemd
 
 SYSTEMD_SERVICE_${PN} = "udpxy.service"
 
+CFLAGS += "-Wno-stringop-truncation"
+
 do_configure_append () {
 	ln -sf ${S}/* ${WORKDIR}/build/
 }
 
 do_compile () {
-	oe_runmake rdebug
+	oe_runmake
 }
 
 do_install(){
