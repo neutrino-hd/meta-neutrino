@@ -25,11 +25,6 @@ include ${FLAVOUR}.inc
 
 # on coolstream, the same is provided by cs-drivers pkg (libcoolstream)
 PROVIDES = "virtual/libstb-hal"
-SRC_URI += "file://blank_480.mpg \
-           file://blank_576.mpg \
-           file://timer-wakeup.init \
-           file://0001-use-playback_libeplayer3-for-hisilicon.patch \
-           "
 RPROVIDES_${PN} = "virtual/libstb-hal"
 RDEPENDS_${PN} = "ffmpeg"
 
@@ -38,6 +33,12 @@ SRCREV = "${AUTOREV}"
 
 # libstb-hal-bin package for testing binaries etc.
 PACKAGES += "${PN}-bin"
+
+SRC_URI_append = " \
+	file://blank_480.mpg \
+	file://blank_576.mpg \
+	file://timer-wakeup.init \
+"
 
 S = "${WORKDIR}/git"
 
