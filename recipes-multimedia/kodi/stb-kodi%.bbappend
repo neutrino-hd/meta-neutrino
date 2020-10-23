@@ -3,7 +3,7 @@ SUMMARY = "Kodi Media Center"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://LICENSE.md;md5=7b423f1c9388eae123332e372451a4f7"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-18:"
+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
 PACKAGE_ARCH = "${MACHINE}"
 
@@ -85,7 +85,7 @@ PATCHTOOL = "git"
 PR = "r15"
 
 PV = "18.8-gitr${SRCPV}"
-SRC_URI = "git://github.com/xbmc/xbmc.git;protocol=https;branch=Leia \
+SRC_URI_append = "git://github.com/xbmc/xbmc.git;protocol=https;branch=Leia \
            \
            file://0001-Add-support-for-musl-triplets.patch \
            file://0004-Replace-u_int64_t-with-uint64_t-from-stdint.h.patch \
@@ -119,10 +119,7 @@ ACCEL_x86 = "vaapi vdpau"
 ACCEL_x86-64 = "vaapi vdpau"
 ACCEL_arm = "openglesv2"
 
-# Default to GBM everywhere, sucks to be nvidia
-WINDOWSYSTEM ?= "stb"
-
-PACKAGECONFIG ??= "${ACCEL} ${WINDOWSYSTEM} pulseaudio lcms lto \
+PACKAGECONFIG ??= "${ACCEL} pulseaudio lcms lto stb \
                    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'x11', '', d)}"
 
 # Core windowing system choices
@@ -169,7 +166,7 @@ KODI_DISABLE_INTERNAL_LIBRARIES = " \
   -DENABLE_INTERNAL_FFMPEG=OFF \
 "
 
-EXTRA_OECMAKE = " \
+EXTRA_OECMAKE_append = " \
     ${KODI_ARCH} \
     ${KODI_DISABLE_INTERNAL_LIBRARIES} \
     \

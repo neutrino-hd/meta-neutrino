@@ -1,0 +1,17 @@
+[Unit]
+Description=Kodi media thing
+
+[Service]
+User=root
+Type=simple
+SuccessExitStatus=0 1
+IOSchedulingClass=realtime
+IOSchedulingPriority=0
+ExecStartPre=/bin/sh -c "/bin/systemctl stop neutrino"
+ExecStartPre=/bin/sh -c "echo encoder > /proc/stb/avs/0/input"
+ExecStart=/usr/bin/kodi
+ExecStopPost=/bin/sh -c "/bin/systemctl start neutrino"
+
+[Install]
+WantedBy=basic.target
+
