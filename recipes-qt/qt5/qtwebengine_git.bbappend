@@ -1,8 +1,6 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/qtwebengine:"
 
-SRC_URI_append = "file://0001-qtwebengine-set-user-agent.patch \
-		  file://chromium/0001-Fix-bison-3.7.patch;patchdir=src/3rdparty \
-		  "
+SRC_URI_append = "file://0001-qtwebengine-set-user-agent.patch"
 
 SRCREV_qtwebengine = "f5268555099a1a96f8730035a40f04a473dd396e"
 SRCREV_chromium = "7b2f027ea83c372c33d5b50deb65a2d98244aa04"
@@ -14,4 +12,5 @@ inherit ccache
 PACKAGECONFIG_append += "libwebp libvpx opus ffmpeg proprietary-codecs pepper-plugins webrtc"
 
 DEPENDS_append = "libnss-mdns"
+ 
  
