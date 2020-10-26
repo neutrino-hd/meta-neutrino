@@ -247,6 +247,7 @@ RRECOMMENDS_${PN}_append = " libcec \
                              python-xmlrpc \
                              python-pycryptodomex \
                              python-profile \
+                             tvheadend \
                              tzdata-africa \
                              tzdata-americas \
                              tzdata-antarctica \
@@ -256,9 +257,11 @@ RRECOMMENDS_${PN}_append = " libcec \
                              tzdata-australia \
                              tzdata-europe \
                              tzdata-pacific \
+                             v4l-utils \
                              xkeyboard-config \
                              kodi-addon-inputstream-adaptive \
                              kodi-addon-inputstream-rtmp \
+                             kodi-addon-pvr-hts \
                              alsa-plugins \
                            "
 

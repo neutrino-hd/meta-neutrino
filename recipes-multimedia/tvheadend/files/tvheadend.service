@@ -1,0 +1,14 @@
+[Unit]
+Description=tvheadend
+Wants=network.target
+Conflicts=neutrino.service
+
+[Service]
+User=root
+Type=simple
+ExecStart=/bin/sh -c "/usr/bin/tvheadend --noacl"
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
+

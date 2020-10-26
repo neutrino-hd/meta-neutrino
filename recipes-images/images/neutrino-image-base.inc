@@ -44,6 +44,7 @@ BIG_IMAGE_FILES = " \
 	htop \
 	image-config \
 	imagemagick \
+	kernel-modules \
 	links \
 	localedef \
 	ntfs-3g \

@@ -1,17 +1,20 @@
 [Unit]
 Description=Kodi media thing
+After=systemd-user-sessions.service network.target sound.target
+Requires=tvheadend.service
+Conflicts=neutrino.service
 
 [Service]
 User=root
+Group=root
 Type=simple
-SuccessExitStatus=0 1
-IOSchedulingClass=realtime
-IOSchedulingPriority=0
-ExecStartPre=/bin/sh -c "/bin/systemctl stop neutrino"
+ExecStartPre=/bin/systemctl stop neutrino.service
 ExecStartPre=/bin/sh -c "echo encoder > /proc/stb/avs/0/input"
 ExecStart=/usr/bin/kodi
-ExecStopPost=/bin/sh -c "/bin/systemctl start neutrino"
+ExecStopPost=/bin/systemctl start neutrino.service
+Restart=always
+RestartSec=15
 
 [Install]
-WantedBy=basic.target
+WantedBy=multi-user.target
 

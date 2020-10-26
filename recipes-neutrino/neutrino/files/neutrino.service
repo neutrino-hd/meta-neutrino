@@ -2,6 +2,7 @@
 Description=Neutrino HD
 Requires=networking.service
 After=firstboot.service
+Conflicts=tvheadend.service kodi.service
 
 [Service]
 Type=simple
