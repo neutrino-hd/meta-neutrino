@@ -6,7 +6,7 @@ HOMEPAGE = "https://github.com/robbyrussell/oh-my-zsh.git"
 SECTION = "base/shell"
 
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=bfe3cd795831f8ea1dd7fc53382a1f19"
+LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=a3d89f44b0b29ba4bd48cf7cf62bc9c3"
 
 RDEPENDS_${PN} = "zsh"
 
@@ -14,7 +14,7 @@ SRC_URI = "git://github.com/robbyrussell/oh-my-zsh.git;protocol=https \
 	   file://zshrc \
 "
 
-SRCREV = "2614b7ecdfe8b8f0cbeafffefb5925196f4011d4"
+SRCREV = "852a44094a3bb4df39f8f778bc7ada2ddda09727"
 PV = "${SRCPV}"
 PR = "1"
 

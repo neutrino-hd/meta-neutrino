@@ -8,11 +8,11 @@ ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="dd/mm/yyyy"
 plugins=(
-  zsh-syntax-highlighting git autojump command-not-found python pip github gnu-utils zsh-completion zsh-autosuggestions history-substring-search
+  zsh-syntax-highlighting git command-not-found python pip github gnu-utils zsh-completions zsh-autosuggestions
 )
 source $ZSH/oh-my-zsh.sh
 export EDITOR='nano'
-export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch armv7ve"
 export LANG="de_DE.UTF-8"
 
 alias zshconfig="nano ~/.zshrc"

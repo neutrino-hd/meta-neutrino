@@ -4,14 +4,14 @@ HOMEPAGE = "https://github.com/zsh-users/zsh-autosuggestions.git"
 SECTION = "base/shell"
 
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://LICENSE;md5=5a3b07e106276bb028ef5248eb6a2eb1"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=36e39d585ac11b6fba262a822e7135d5"
 
 RDEPENDS_${PN} = "zsh"
 
 SRC_URI = "git://github.com/zsh-users/zsh-autosuggestions.git;protocol=https \
 "
 
-SRCREV = "70f36c007db30a5fe1edf2b63664088b502a729c"
+SRCREV = "ae315ded4dba10685dbbafbfa2ff3c1aefeb490d"
 PV = "${SRCPV}"
 PR = "1"
 

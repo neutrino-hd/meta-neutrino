@@ -11,8 +11,7 @@ LIC_FILES_CHKSUM = "file://LICENCE;md5=1a4c4cda3e8096d2fd483ff2f4514fec"
 DEPENDS = "ncurses bison-native libcap libpcre gdbm groff-native"
 RDEPENDS_${PN} = "base-files oh-my-zsh zsh-syntax-highlighting zsh-autosuggestions zsh-completions systemd"
 SRC_URI = "https://sourceforge.net/projects/${BPN}/files/${BPN}/${PV}/${BP}.tar.xz"
-SRC_URI[md5sum] = "540673bf823d2e13806ac0395caa8345"
-SRC_URI[sha256sum] = "a50bd66c0557e8eca3b8fa24e85d0de533e775d7a22df042da90488623752e9e"
+SRC_URI[sha256sum] = "dcc4b54cc5565670a65581760261c163d720991f0d06486da61f8d839b52de27"
 
 inherit autotools-brokensep gettext update-alternatives
 

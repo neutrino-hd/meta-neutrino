@@ -4,14 +4,14 @@ HOMEPAGE = "https://github.com/zsh-users/zsh-syntax-highlighting.git"
 SECTION = "base/shell"
 
 LICENSE = "BSD-3-Clause"
-LIC_FILES_CHKSUM = "file://COPYING.md;md5=3bf38c5f1bf4c65eeb1029f986724465"
+LIC_FILES_CHKSUM = "file://COPYING.md;md5=6b68a3be44eb63fbb43b432b64139138"
 
 RDEPENDS_${PN} = "zsh"
 
 SRC_URI = "git://github.com/zsh-users/zsh-syntax-highlighting.git;protocol=https \
 "
 
-SRCREV = "55f846c673661bde03ef97333be7889f54079c7b"
+SRCREV = "932e29a0c75411cb618f02995b66c0a4a25699bc"
 PV = "${SRCPV}"
 PR = "1"
 
