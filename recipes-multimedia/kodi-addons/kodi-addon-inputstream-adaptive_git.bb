@@ -20,3 +20,6 @@ SRC_URI = "git://github.com/peak3d/inputstream.adaptive.git;protocol=https;branc
 S = "${WORKDIR}/git"
 
 KODIADDONNAME = "inputstream.adaptive"
+
+INSANE_SKIP_${PN} = "libdir"
+
