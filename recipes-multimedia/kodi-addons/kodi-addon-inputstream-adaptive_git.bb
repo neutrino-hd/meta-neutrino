@@ -21,5 +21,5 @@ S = "${WORKDIR}/git"
 
 KODIADDONNAME = "inputstream.adaptive"
 
-INSANE_SKIP_${PN} = "libdir"
+INSANE_SKIP_${PN} = "libdir dev-so"
 
