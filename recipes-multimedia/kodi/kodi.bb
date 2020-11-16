@@ -19,4 +19,4 @@ do_install() {
 
 FILES_${PN} = "/lib /usr"
 
-RDEPENDS_${PN} += "virtual/kodi"
+RDEPENDS_${PN} += "virtual/kodi steam-devices"

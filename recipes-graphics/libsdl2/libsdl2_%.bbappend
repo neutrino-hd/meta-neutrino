@@ -1,4 +1,4 @@
 
 
-PACKAGECONFIG_append = "alsa arm-neon gles2"
+PACKAGECONFIG_append = "alsa arm-neon gles2 wayland"
 
