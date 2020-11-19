@@ -8,6 +8,7 @@ Conflicts=tvheadend.service kodi.service
 Type=simple
 ExecStart=/usr/bin/neutrino.sh
 ExecStartPost=-/etc/etckeeper/create_etc.sh
+TimeoutSec=5
 
 [Install]
 WantedBy=multi-user.target
