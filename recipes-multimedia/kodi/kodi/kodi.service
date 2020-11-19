@@ -13,7 +13,7 @@ ExecStartPre=/bin/sh -c "echo encoder > /proc/stb/avs/0/input"
 ExecStart=/usr/bin/kodi
 ExecStopPost=/bin/systemctl start neutrino.service
 Restart=always
-RestartSec=15
+TimeoutSec=5
 
 [Install]
 WantedBy=multi-user.target
