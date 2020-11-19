@@ -1,0 +1,60 @@
+From bce5ac62fabb89dc9189e5f255ac2af8960e1a59 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Thu, 19 Nov 2020 06:35:19 +0100
+Subject: [PATCH] kodi: remove upower functionality
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ xbmc/platform/linux/powermanagement/CMakeLists.txt | 8 ++------
+ 1 file changed, 2 insertions(+), 6 deletions(-)
+
+diff --git a/xbmc/platform/linux/powermanagement/CMakeLists.txt b/xbmc/platform/linux/powermanagement/CMakeLists.txt
+index 3694a7967e..51e796e095 100644
+--- a/xbmc/platform/linux/powermanagement/CMakeLists.txt
++++ b/xbmc/platform/linux/powermanagement/CMakeLists.txt
+@@ -4,12 +4,8 @@ set(HEADERS FallbackPowerSyscall.h
+             LinuxPowerSyscall.h)
+ 
+ if(DBUS_FOUND)
+-  list(APPEND SOURCES ConsoleUPowerSyscall.cpp
+-                      LogindUPowerSyscall.cpp
+-                      UPowerSyscall.cpp)
+-  list(APPEND HEADERS ConsoleUPowerSyscall.h
+-                      LogindUPowerSyscall.h
+-                      UPowerSyscall.h)
++  list(APPEND SOURCES LogindUPowerSyscall.cpp)
++  list(APPEND HEADERS LogindUPowerSyscall.h)
+ endif()
+ 
+ if(SOURCES)
+ diff --git a/xbmc/platform/linux/powermanagement/LinuxPowerSyscall.cpp b/xbmc/platform/linuxpowermanagement/LinuxPowerSyscall.cpp
+index f3dbcdb106..c946f011b9 100644
+--- a/xbmc/platform/linux/powermanagement/LinuxPowerSyscall.cpp
++++ b/xbmc/platform/linux/powermanagement/LinuxPowerSyscall.cpp
+@@ -9,9 +9,7 @@
+ #include "LinuxPowerSyscall.h"
+ #include "FallbackPowerSyscall.h"
+ #if defined(HAS_DBUS)
+-#include "ConsoleUPowerSyscall.h"
+ #include "LogindUPowerSyscall.h"
+-#include "UPowerSyscall.h"
+ #endif // HAS_DBUS
+ 
+ #include <functional>
+@@ -30,12 +28,8 @@ IPowerSyscall* CLinuxPowerSyscall::CreateInstance()
+   std::list< std::pair< std::function<bool()>,
+                         std::function<IPowerSyscall*()> > > powerManagers =
+   {
+-    std::make_pair(CConsoleUPowerSyscall::HasConsoleKitAndUPower,
+-                   [] { return new CConsoleUPowerSyscall(); }),
+     std::make_pair(CLogindUPowerSyscall::HasLogind,
+                    [] { return new CLogindUPowerSyscall(); }),
+-    std::make_pair(CUPowerSyscall::HasUPower,
+-                   [] { return new CUPowerSyscall(); })
+   };
+   for(const auto& powerManager : powerManagers)
+   {
+
+-- 
+2.28.0
+
