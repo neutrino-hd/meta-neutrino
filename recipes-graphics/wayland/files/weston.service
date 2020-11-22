@@ -1,0 +1,34 @@
+[Unit]
+Description=Weston Wayland Compositor
+Conflicts=neutrino.service
+
+[Service]
+User=root
+EnvironmentFile=-/etc/default/weston
+ExecStart=/usr/bin/weston --tty=7
+ExecStartPre=/bin/sh -c "echo encoder > /proc/stb/avs/0/input && sync"
+ExecStopPost=/bin/sh -c "/usr/bin/clear > /dev/tty7"
+ExecStopPost=/bin/systemctl start neutrino.service
+Restart=always
+TimeoutSec=10
+
+WorkingDirectory=/home/root
+PAMName=weston-autologin
+# A virtual terminal is needed.
+TTYPath=/dev/tty7
+TTYReset=yes
+TTYVHangup=yes
+TTYVTDisallocate=yes
+
+# Fail to start if not controlling the tty.
+StandardInput=tty-fail
+StandardOutput=journal
+StandardError=journal
+
+# Log this user with utmp, letting it show up with commands 'w' and 'who'.
+UtmpIdentifier=tty7
+UtmpMode=user
+
+[Install]
+WantedBy=multi-user.target
+

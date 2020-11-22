@@ -4,8 +4,16 @@ PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'kms fbdev
                    ${@bb.utils.contains('DISTRO_FEATURES', 'x11 wayland', 'xwayland', '', d)} \
                    ${@bb.utils.filter('DISTRO_FEATURES', 'pam systemd x11', d)} \
                    ${@bb.utils.contains_any('DISTRO_FEATURES', 'wayland x11', '', 'headless', d)} \
-                   launch"
-
+                   launch \
+                   egl \ 
+                   fbdev \
+                   shell-fullscreen \
+                   shell-desktop \
+                   systemd \
+                   pam \
+                   lcms \
+                   "
+	
 EXTRA_OECONF = " \
                 --disable-rdp-compositor \
 		WESTON_NATIVE_BACKEND=fbdev-backend.so \
