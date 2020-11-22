@@ -4,15 +4,16 @@ SECTION = "games"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=9938a391463fd6513858b1d7c6835613"
 
-SRC_URI = "git://github.com/ValveSoftware/steam-devices.git;protocol=https"
+SRC_URI = "git://github.com/ValveSoftware/steam-devices.git;protocol=https \
+	   file://90-valve-sc.rules \
+"
 
 SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git"
 
-do_install_append() {
+do_install() {
 	install -d ${D}${sysconfdir}/udev/rules.d
-	install -m 755 ${S}/60-steam-input.rules ${D}${sysconfdir}/udev/rules.d/
-	install -m 755 ${S}/60-steam-vr.rules ${D}${sysconfdir}/udev/rules.d/
+	install -m 644 ${WORKDIR}/90-valve-sc.rules ${D}${sysconfdir}/udev/rules.d
 }
 
 FILES_${PN} += "${sysconfdir}"
