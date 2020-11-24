@@ -1,0 +1,39 @@
+From 8e20abbb419352adbd1c368d8322cacc77011e2c Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Tue, 24 Nov 2020 07:13:11 +0100
+Subject: [PATCH] fix build
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ meson.build | 2 +-
+ steam/fd.h  | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/meson.build b/meson.build
+index d0c3ab4..0b18c0f 100644
+--- a/meson.build
++++ b/meson.build
+@@ -1,7 +1,7 @@
+ project('inputmap', ['c', 'cpp'], default_options : ['cpp_std=gnu++11'])
+ 
+ 
+-lemon_exe = executable('lemon', ['lemon/lemon.c'])
++lemon_exe = executable('lemon', ['lemon/lemon.c'], native : true)
+ 
+ lemon = generator(lemon_exe,
+   output  : ['@BASENAME@.cpp', '@BASENAME@.h'],
+diff --git a/steam/fd.h b/steam/fd.h
+index 42421f5..1df901a 100644
+--- a/steam/fd.h
++++ b/steam/fd.h
+@@ -26,6 +26,7 @@ along with inputmap.  If not, see <http://www.gnu.org/licenses/>.
+ #include <unistd.h>
+ #include <fcntl.h>
+ #include "unique_handle.h"
++#include "stdexcept"
+ 
+ struct FileCloser
+ {
+-- 
+2.28.0
+
