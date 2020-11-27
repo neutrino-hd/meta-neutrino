@@ -8,7 +8,6 @@ DEPENDS = "systemd"
 
 SRC_URI = "git://github.com/rodrigorc/inputmap.git;protocol=https \
 	   file://0001-disable-unsupported-events-by-the-old-kernels.patch \
-	   file://0001-fix-build.patch \
 "
 
 SRCREV = "${AUTOREV}"
