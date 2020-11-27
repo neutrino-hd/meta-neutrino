@@ -1,0 +1,76 @@
+From 9b52fa049db0199f5ab9026f4d1891471465b77c Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Thu, 26 Nov 2020 08:02:04 +0100
+Subject: [PATCH] disable unsupported events by old kernels
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ event-codes.inc | 36 ++++++++++++++++++------------------
+ inputmap.cpp    |  4 ++--
+ 2 files changed, 20 insertions(+), 20 deletions(-)
+
+diff --git a/event-codes.inc b/event-codes.inc
+index 7bfb803..313927c 100644
+--- a/event-codes.inc
++++ b/event-codes.inc
+@@ -634,24 +634,24 @@ BitKey(KEY_KBDINPUTASSIST_PREVGROUP)
+ BitKey(KEY_KBDINPUTASSIST_NEXTGROUP)
+ BitKey(KEY_KBDINPUTASSIST_ACCEPT)
+ BitKey(KEY_KBDINPUTASSIST_CANCEL)
+-BitKey(KEY_RIGHT_UP)
+-BitKey(KEY_RIGHT_DOWN)
+-BitKey(KEY_LEFT_UP)
+-BitKey(KEY_LEFT_DOWN)
+-BitKey(KEY_ROOT_MENU)
+-BitKey(KEY_MEDIA_TOP_MENU)
+-BitKey(KEY_NUMERIC_11)
+-BitKey(KEY_NUMERIC_12)
+-BitKey(KEY_AUDIO_DESC)
+-BitKey(KEY_3D_MODE)
+-BitKey(KEY_NEXT_FAVORITE)
+-BitKey(KEY_STOP_RECORD)
+-BitKey(KEY_PAUSE_RECORD)
+-BitKey(KEY_VOD)
+-BitKey(KEY_UNMUTE)
+-BitKey(KEY_FASTREVERSE)
+-BitKey(KEY_SLOWREVERSE)
+-BitKey(KEY_DATA)
++//BitKey(KEY_RIGHT_UP)
++//BitKey(KEY_RIGHT_DOWN)
++//BitKey(KEY_LEFT_UP)
++//BitKey(KEY_LEFT_DOWN)
++//BitKey(KEY_ROOT_MENU)
++//BitKey(KEY_MEDIA_TOP_MENU)
++//BitKey(KEY_NUMERIC_11)
++//BitKey(KEY_NUMERIC_12)
++//BitKey(KEY_AUDIO_DESC)
++//BitKey(KEY_3D_MODE)
++//BitKey(KEY_NEXT_FAVORITE)
++//BitKey(KEY_STOP_RECORD)
++//BitKey(KEY_PAUSE_RECORD)
++//BitKey(KEY_VOD)
++//BitKey(KEY_UNMUTE)
++//BitKey(KEY_FASTREVERSE)
++//BitKey(KEY_SLOWREVERSE)
++//BitKey(KEY_DATA)
+ BitKey(BTN_TRIGGER_HAPPY)
+ BitKey(BTN_TRIGGER_HAPPY1)
+ BitKey(BTN_TRIGGER_HAPPY2)
+diff --git a/inputmap.cpp b/inputmap.cpp
+index d85b281..357dbeb 100644
+--- a/inputmap.cpp
++++ b/inputmap.cpp
+@@ -112,8 +112,8 @@ struct
+     {"gsc", BUS_GSC},
+     {"atari", BUS_ATARI},
+     {"spi", BUS_SPI},
+-    {"rmi", BUS_RMI},
+-    {"cec", BUS_CEC},
++//    {"rmi", BUS_RMI},
++//    {"cec", BUS_CEC},
+ };
+ 
+ const char *bus_name(int bus_id)
+-- 
+2.28.0
+
