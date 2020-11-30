@@ -10,9 +10,8 @@ SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git"
 
 DEPENDS = "virtual/libsdl2 alsa-lib ncurses freetype zlib expat"
-RDEPENDS_${PN} = "steam-devices"
 
-inherit autotools-brokensep pkgconfig
+inherit autotools-brokensep pkgconfig gettext
 
 do_configure_prepend() {
     # Upstream doesn't ship this and autoreconf won't install it as automake isn't used.
