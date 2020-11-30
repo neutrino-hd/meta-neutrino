@@ -1,0 +1,13 @@
+[Unit]
+Description=Bluetooth Power Switch
+After=bluetooth.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/bluetoothctl -- power on
+ExecStop=/usr/bin/bluetoothctl -- power off
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
+
