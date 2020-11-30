@@ -53,6 +53,7 @@ BIG_IMAGE_FILES = " \
 	parted \
 	procps \
 	proftpd \
+	pulseaudio \
 	samba \
 	sed \
 	usbutils \
