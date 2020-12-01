@@ -1,5 +1,13 @@
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
+SRC_URI_append += "file://client.conf \
+		   file://default.pa \
+		   file://pulseaudio.service \
+		   file://pulseaudio-bluetooth.conf \
+		   file://pulseaudio-system.conf \
+		   file://system.pa \
+"
+
 PACKAGECONFIG_append = "systemd autospawn-for-root"
 
 RRECOMMENDS_${PN} += " \
@@ -36,3 +44,15 @@ RRECOMMENDS_${PN} += " \
 		pulseaudio-module-switch-on-connect \
 		pulseaudio-module-systemd-login \
 		"
+		
+do_install_append() {
+	install -d ${D}${systemd_unitdir}/system
+	install -m644 ${WORKDIR}/pulseaudio-system.conf ${D}${sysconfdir}/dbus-1/system.d
+	install -m644 ${WORKDIR}/pulseaudio-bluetooth.conf ${D}${sysconfdir}/dbus-1/system.d
+	install -m644 ${WORKDIR}/system.pa ${D}${sysconfdir}/pulse
+	install -m644 ${WORKDIR}/default.pa ${D}${sysconfdir}/pulse
+	install -m644 ${WORKDIR}/client.conf ${D}${sysconfdir}/pulse
+	install -m644 ${WORKDIR}/pulseaudio.service ${D}${systemd_unitdir}/system
+}
+
+FILES_${PN} += "${systemd_unitdir}"
