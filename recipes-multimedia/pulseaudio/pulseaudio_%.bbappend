@@ -55,8 +55,8 @@ do_install_append() {
 	install -m644 ${WORKDIR}/client.conf ${D}${sysconfdir}/pulse
 	install -m644 ${WORKDIR}/pulseaudio.service ${D}${systemd_unitdir}/system
 	install -m644 ${WORKDIR}/pulseaudio.socket ${D}${systemd_unitdir}/system
-	install -m644 ${WORKDIR}/pulseaudio.service ${D}${systemd_unitdir}/system/multi-user.target.wants
-	install -m644 ${WORKDIR}/pulseaudio.socket ${D}${systemd_unitdir}/system/multi-user.target.wants	
+	ln -sf ${systemd_unitdir}/system/pulseaudio.service ${D}${systemd_unitdir}/system/multi-user.target.wants
+	ln -sf ${systemd_unitdir}/system/pulseaudio.socket ${D}${systemd_unitdir}/system/multi-user.target.wants	
 }
 
 FILES_${PN} += "${systemd_unitdir}"
