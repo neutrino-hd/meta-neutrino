@@ -106,6 +106,7 @@ SRC_URI_append = "git://github.com/xbmc/xbmc.git;protocol=https;branch=Leia \
            file://0001-add-find-GLIB.patch \
            file://0001-fix-build-with-crossguid-0.2.x.patch \
            file://0001-kodi-remove-upower-functionality.patch \
+           file://0001-kodi-adjust-path-for-mmc-mount.patch \
           "
 
 SRC_URI_append_libc-musl = " \
