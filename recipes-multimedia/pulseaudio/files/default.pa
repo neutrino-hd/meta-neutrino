@@ -70,11 +70,6 @@ load-module module-bluetooth-policy
 load-module module-bluetooth-discover
 .endif
 
-### Automatically load driver modules for Bluetooth hardware
-.ifexists module-bluetooth-policy.so
-load-module module-bluetooth-policy
-.endif
-
 .ifexists module-bluez5-device.so
 load-module module-bluez5-device
 .endif
@@ -157,6 +152,5 @@ load-module module-filter-apply
 #set-default-sink output
 #set-default-source input
 
-load-module module-native-protocol-tcp auth-anonymous=1
 load-module module-native-protocol-tcp auth-anonymous=1
 load-module module-native-protocol-unix auth-anonymous=1 socket=/tmp/pulse-socket
