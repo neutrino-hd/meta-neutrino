@@ -8,7 +8,6 @@ SRC_URI = " \
 	file://GPL-3.0 \
 	file://udpxy.service \
 	file://udpxy.default \
-	file://0001-udrec.c-fix-Wstringop-truncation.patch \
 "
 
 SRCREV = "${AUTOREV}"
