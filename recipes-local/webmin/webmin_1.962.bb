@@ -1,14 +1,14 @@
 SUMMARY = "Web-based administration interface"
 HOMEPAGE = "http://www.webmin.com"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://LICENCE;md5=0373ac9f611e542ddebe1ec6394afc3c"
+LIC_FILES_CHKSUM = "file://LICENCE;md5=0a6446108c96d0819d21e40b48109507"
 
-SRC_URI = "git://github.com/webmin/webmin.git;protocol=https \
+SRC_URI = "${SOURCEFORGE_MIRROR}/webadmin/webmin-${PV}.tar.gz \
            file://setup.sh \
            file://init-exclude.patch \
            file://net-generic.patch \
            file://remove-startup-option.patch \
-           file://disable-version-check.patch \
+           file://disable-version-check.patch;apply=no \
            file://nfs-export.patch \
            file://exports-lib.pl.patch \
            file://mount-excludefs.patch \
@@ -26,9 +26,9 @@ SRC_URI = "git://github.com/webmin/webmin.git;protocol=https \
 	   file://webmin \
 "
 
-SRCREV = "${AUTOREV}"
+RDEPENDS-${PN}-module += "perl"
 
-S = "${WORKDIR}/git"
+SRC_URI[sha256sum] = "357642af9d753435e999adfe40772b998bfcb21852993081239948e9216bc6fd"
 
 inherit perlnative systemd
 
@@ -54,6 +54,7 @@ do_configure() {
     [ -f exports/config-debian-linux ] && mv exports/config-debian-linux exports/config-generic-linux
     sed -i "s/killall -HUP rpc.nfsd && //" exports/config-generic-linux
     sed -i "s/netstd_nfs/nfsserver/g" exports/config-generic-linux
+    sed -i "s/os_support=.*/os_support=generic-linux/" net/module.info
 
     # Fix insane naming that causes problems at packaging time (must be done before deleting below)
     find . -name "*\**" | while read from
@@ -136,7 +137,7 @@ do_install_append() {
         echo "preroot=authentic-theme" >> ${D}${sysconfdir}/webmin/miniserv.conf
 	echo "preroot_root=authentic-theme" >> ${D}${sysconfdir}/webmin/miniserv.conf
         echo "lang=de" >> ${D}${sysconfdir}/webmin/config
-	echo "show=*" > ${D}${sysconfdir}/webmin/system-status/root.acl
+        echo "show=*" > ${D}${sysconfdir}/webmin/system-status/root.acl
 }
 
 SYSTEMD_SERVICE_${PN} = "webmin.service"
@@ -147,8 +148,8 @@ DEPENDS += "perl smartmontools procps mdadm"
 # FIXME: some of this should be figured out automatically
 RDEPENDS_${PN} += "perl perl-module-socket perl-module-exporter perl-module-exporter-heavy perl-module-carp perl-module-strict webmin-theme-authentic-theme"
 RDEPENDS_${PN} += "perl-module-warnings perl-module-xsloader perl-module-posix perl-module-autoloader perl-module-digest-md5"
-RDEPENDS_${PN} += "perl-module-fcntl perl-module-tie-hash perl-module-vars perl-module-time-local perl-module-config perl-module-constant"
-RDEPENDS_${PN} += "perl-module-file-glob perl-module-file-copy perl-module-sdbm-file perl-module-feature smartmontools"
+RDEPENDS_${PN} += "perl-module-fcntl perl-module-tie-hash perl-module-vars perl-module-time-local perl-module-config perl-module-constant perl-module-overloading"
+RDEPENDS_${PN} += "perl-module-file-glob perl-module-file-copy perl-module-sdbm-file perl-module-feature smartmontools perl-module-encode-encoding perl-module-base"
 
 PACKAGES_DYNAMIC += "webmin-module-* webmin-theme-*"
 RDEPENDS_${PN} += "webmin-module-system-status libnet-ssleay-perl perl-module-file-path webmin-module-mount gnupg webmin-module-samba \
@@ -190,3 +191,5 @@ package_do_pkgconfig() {
 }
 
 INSANE_SKIP_${PN}-module-shellinabox += "file-rdeps already-stripped"
+
+INSANE_SKIP += "file-rdeps src-uri-bad"
