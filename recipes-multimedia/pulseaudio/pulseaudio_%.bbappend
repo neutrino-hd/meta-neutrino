@@ -36,7 +36,6 @@ RRECOMMENDS_${PN} += " \
 		pulseaudio-module-native-protocol-unix \
 		pulseaudio-module-default-device-restore \
 		pulseaudio-module-intended-roles \
-		pulseaudio-module-rescue-streams \
 		pulseaudio-module-always-sink \
 		pulseaudio-module-suspend-on-idle \
 		pulseaudio-module-position-event-sounds \
