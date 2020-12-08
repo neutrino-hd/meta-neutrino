@@ -67,7 +67,7 @@ set_image_version () {
 
 	# We create a symlink from /etc/image-version to /.version to have all required content
 	# and we have a compatible data source.
-	ln -sf /etc/image-version ${IMAGE_ROOTFS}.version
+	ln -sf /etc/image-version ${IMAGE_ROOTFS}/.version
 
 	# Finally we create content for update.urls file.
 	if [ ! -z ${RELEASE_TEXT_LOCATION_HOST} ]; then
