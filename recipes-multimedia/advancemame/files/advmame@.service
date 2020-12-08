@@ -1,0 +1,16 @@
+[Unit]
+Description=AdvanceMame Game Starter
+After=systemd-user-sessions.service network.target sound.target
+Conflicts=neutrino.service
+
+[Service]
+Type=simple
+ExecStartPre=systemctl stop neutrino
+ExecStartPre=/bin/sh -c "echo encoder > /proc/stb/avs/0/input"
+ExecStart=/usr/bin/advmame -cfg /etc/advmame.rc %I
+ExecStopPost=/bin/systemctl start neutrino.service
+Restart=always
+TimeoutSec=5
+
+[Install]
+WantedBy=multi-user.target

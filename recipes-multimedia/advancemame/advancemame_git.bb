@@ -4,7 +4,13 @@ SECTION = "emulators"
 LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=8ca43cbc842c2336e835926c2166c28b"
 
-SRC_URI = "git://github.com/amadvance/${BPN}.git;protocol=https"
+SRC_URI = "git://github.com/amadvance/${BPN}.git;protocol=https \
+	   file://advmame.rc \
+	   file://advmame@.service \
+	   file://advmame.cfg \
+	   file://advmame.lua \
+	   file://advmame_hint.png \
+"
 
 SRCREV = "${AUTOREV}"
 S = "${WORKDIR}/git"
@@ -18,5 +24,19 @@ do_configure_prepend() {
     cp -f $(automake --print-libdir)/install-sh ${S}/
 }
 
-FILES_${PN} += "${datadir}/advance/*"
+do_install_append() {
+	install -d ${D}${sysconfdir} -d ${D}${systemd_unitdir}/system -d ${D}${datadir}/tuxbox/neutrino/plugins
+	install -m644 ${WORKDIR}/advmame.rc ${D}${sysconfdir}
+	install -m644 ${WORKDIR}/advmame@.service ${D}${systemd_unitdir}/system
+	install -m644 ${WORKDIR}/advmame.cfg ${D}${datadir}/tuxbox/neutrino/plugins
+	install -m644 ${WORKDIR}/advmame.lua ${D}${datadir}/tuxbox/neutrino/plugins
+	install -m644 ${WORKDIR}/advmame_hint.png ${D}${datadir}/tuxbox/neutrino/plugins
+}
+
+FILES_${PN} += "${datadir} \
+		${sysconfdir} \
+		${base_libdir} \
+"
+
 FILES_${PN}-doc += "${prefix}/doc/* ${prefix}/man/*"
+
