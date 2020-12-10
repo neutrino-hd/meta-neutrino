@@ -25,7 +25,7 @@ load-module module-card-restore
 
 ### Automatically load driver modules depending on the hardware available
 .ifexists module-udev-detect.so
-load-module module-udev-detect
+load-module module-udev-detect tsched=0
 .else
 ### Use the static hardware detection module (for systems that lack udev/hal support)
 load-module module-detect
@@ -35,13 +35,18 @@ load-module module-detect
 .ifexists module-esound-protocol-unix.so
 load-module module-esound-protocol-unix
 .endif
-load-module module-native-protocol-unix
+load-module module-native-protocol-tcp auth-anonymous=1
+load-module module-native-protocol-unix auth-anonymous=1 socket=/tmp/pulse-socket
 
 ### Automatically restore the default sink/source when changed by the user
 ### during runtime
 ### NOTE: This should be loaded as early as possible so that subsequent modules
 ### that look up the default sink/source get the right value
 load-module module-default-device-restore
+load-module module-systemd-login
+
+### Should be after module-*-restore but before module-*-detect
+load-module module-switch-on-port-available
 
 ### Make sure we always have a sink around, even if it is a null sink.
 load-module module-always-sink
@@ -50,8 +55,8 @@ load-module module-always-sink
 load-module module-suspend-on-idle
 
 ### Enable positioned event sounds
-load-module module-position-event-sounds
- 
+#load-module module-position-event-sounds
+
 ### Automatically load driver modules for Bluetooth hardware
 .ifexists module-bluetooth-policy.so
 load-module module-bluetooth-policy
@@ -61,13 +66,6 @@ load-module module-bluetooth-policy
 load-module module-bluetooth-discover
 .endif
 
-.ifexists module-bluez5-device.so
-load-module module-bluez5-device
-.endif
-
 .ifexists module-bluez5-discover.so
 load-module module-bluez5-discover
 .endif
-
-load-module module-native-protocol-tcp auth-anonymous=1
-load-module module-native-protocol-unix auth-anonymous=1 socket=/tmp/pulse-socket

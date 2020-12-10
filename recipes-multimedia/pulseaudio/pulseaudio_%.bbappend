@@ -7,6 +7,7 @@ SRC_URI_append += "file://client.conf \
 		   file://pulseaudio-bluetooth.conf \
 		   file://pulseaudio-system.conf \
 		   file://system.pa \
+		   file://daemon.conf \
 "
 
 PACKAGECONFIG_append = "systemd autospawn-for-root"
@@ -52,6 +53,7 @@ do_install_append() {
 	install -m644 ${WORKDIR}/system.pa ${D}${sysconfdir}/pulse
 	install -m644 ${WORKDIR}/default.pa ${D}${sysconfdir}/pulse
 	install -m644 ${WORKDIR}/client.conf ${D}${sysconfdir}/pulse
+	install -m644 ${WORKDIR}/daemon.conf ${D}${sysconfdir}/pulse
 	install -m644 ${WORKDIR}/pulseaudio.service ${D}${systemd_unitdir}/system
 	install -m644 ${WORKDIR}/pulseaudio.socket ${D}${systemd_unitdir}/system
 	ln -sf ${systemd_unitdir}/system/pulseaudio.service ${D}${systemd_unitdir}/system/multi-user.target.wants
@@ -59,3 +61,4 @@ do_install_append() {
 }
 
 FILES_${PN} += "${systemd_unitdir}"
+
