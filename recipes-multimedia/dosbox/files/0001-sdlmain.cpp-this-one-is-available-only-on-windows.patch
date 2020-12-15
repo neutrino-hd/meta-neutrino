@@ -1,0 +1,35 @@
+From 04432de2ea1e429d222fee614ba83f1789e0732e Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Tue, 15 Dec 2020 17:42:26 +0100
+Subject: [PATCH] sdlmain.cpp: this one is available only on windows
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ src/gui/sdlmain.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/gui/sdlmain.cpp b/src/gui/sdlmain.cpp
+index f4eeda0..d1ac396 100644
+--- a/src/gui/sdlmain.cpp
++++ b/src/gui/sdlmain.cpp
+@@ -986,7 +986,7 @@ Bitu GFX_SetSize(Bitu width,Bitu height,Bitu flags,double scalex,double scaley,G
+ 
+ 	char tmpBuf[1024];
+ 	sprintf(tmpBuf, "Using DOS framebuffer size of %d x %d", width, height);
+-	OutputDebugString(tmpBuf);
++//	OutputDebugString(tmpBuf);
+ 
+ 	sdl.draw.width=width;
+ 	sdl.draw.height=height;
+@@ -3056,7 +3056,7 @@ int main(int argc, char* argv[]) {
+ #endif
+ #ifdef __WINDOWS__
+ 	SDL_setenv("SDL_AUDIODRIVER", "directsound", 1);
+-#endif
++#endif
+ 
+ 	if ( SDL_Init( SDL_INIT_AUDIO|SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_EVENTS) < 0 )
+ 		E_Exit("Can't init SDL %s",SDL_GetError());
+-- 
+2.28.0
+

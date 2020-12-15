@@ -1,0 +1,49 @@
+From 93c864efaabdb30b9b107cc2571396e438b6bdb0 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Tue, 15 Dec 2020 18:13:11 +0100
+Subject: [PATCH] a
+
+Signed-off-by: Markus Volk <f_l_k@t-online.de>
+---
+ configure.in | 25 +++----------------------
+ 1 file changed, 3 insertions(+), 22 deletions(-)
+
+diff --git a/configure.in b/configure.in
+index d5619d6..65cec8e 100644
+--- a/configure.in
++++ b/configure.in
+@@ -27,28 +27,9 @@ if test x$host = xi386-pc-os2-emx ; then
+     LIBS="$LIBS -los2me"
+ fi
+ 
+-dnl Check for SDL
+-SDL_VERSION=2.0.4
+-AM_PATH_SDL($SDL_VERSION,
+-            :,
+-	    AC_MSG_ERROR([*** SDL version $SDL_VERSION not found!])
+-)
+-LIBS="$LIBS $SDL_LIBS"
+-CPPFLAGS="$CPPFLAGS $SDL_CFLAGS"
+-
+-dnl Check if SDL is 2.0.x (1.x not supported)
+-AC_MSG_CHECKING([SDL version only being 2.0.X])
+-AC_COMPILE_IFELSE([
+-#include "SDL.h"
+-void blah(){
+-#if SDL_MAJOR_VERSION != 2
+-#error "Only SDL 2.0 supported"
+-#endif
+-;
+-}
+-],AC_MSG_RESULT([yes]),[
+- AC_MSG_RESULT([no])
+- AC_MSG_ERROR([Only libSDL 2.0.X supported])])
++PKG_CHECK_MODULES([SDL2], [sdl2])
++LIBS="$LIBS $SDL2_LIBS"
++CPPFLAGS="$CPPFLAGS $SDL2_CFLAGS"
+ 
+ dnl Checks for header files.
+ 
+-- 
+2.28.0
+
