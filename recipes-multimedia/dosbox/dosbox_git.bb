@@ -10,10 +10,12 @@ inherit autotools pkgconfig
 
 SRC_URI = "git://github.com/aqualung99/dosbox-0.74-ES.git;protocol=https \
 	   file://0001-use-pkgconfig-to-find-sdl2.patch \
-	   file://0001-sdlmain.cpp-this-one-is-available-only-on-windows.patch \
+	   file://0001-sdlmain.cpp-adjust-hardcoded-path.patch \
 "
+
 SRCREV = "${AUTOREV}"
 
 S = "${WORKDIR}/git"
 PV = "0.74-ES"
 
+CXXFLAGS += "-Wall -Wextra -Wshadow -Wno-psabi -g -O2 -D_REENTRANT -I${STAGING_INCDIR}/SDL2 -lSDL2"
