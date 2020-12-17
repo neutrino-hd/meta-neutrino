@@ -26,12 +26,12 @@ ROOTFS_POSTPROCESS_COMMAND += "set_image_version;"
 # required by neutrino itself.
 set_image_version () {
 	META_NAME="meta-neutrino"
-	META_VERSION=`get_meta_version`
+	META_VERSION=${IMAGE_META_VERSION}
 	RELEASE_NAME="${IMAGE_BASENAME} ${META_VERSION}"
 	RELEASE_NAME_DISCRIBE=`git -C ${COREBASE}/$META_NAME  describe --always --tags --dirty`
 
 	# Set the release type within version files and readable text content for gui
-	RELASE_TYPE=`get_release_type`
+	RELASE_TYPE=${IMAGE_RELEASE_TYPE}
 
 	IMAGE_DESCRIPTION="${MACHINE_BRAND}-${MACHINE_NAME} [${ARCH}-${MACHINE}] ${RELASE_TYPE}"
 
