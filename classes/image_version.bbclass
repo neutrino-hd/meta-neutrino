@@ -87,11 +87,7 @@ image_version_get_filename_prefix() {
 }
 
 image_version_get_filename_latest_prefix() {
-	ret=${IMAGE_BASENAME}_${MACHINE}
-	if [ ${INHIBIT_EXTENDED_IMAGE_VERSION} == "0" ]; then
-		ret=${IMAGE_BASENAME}_${MACHINE}_latest_`get_flavour_suffix`
-	fi
-	rm -f ${DEPLOY_DIR_IMAGE}/*_latest_*.zip
+	ret=${DISTRO}_${MACHINE}
 	echo "$ret"
 }
 
