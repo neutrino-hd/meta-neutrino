@@ -37,7 +37,9 @@ set_image_version () {
 
 	# get content of ../imageversion file
 	# required to synchronize version entry with content of ../imageversion file, which is used for image updates
-	echo ${IMAGE_NAME} `cat ${DEPLOY_DIR_IMAGE}/version` > ${DEPLOY_DIR_IMAGE}/imageversion
+	if test -f ${DEPLOY_DIR_IMAGE}/version; then
+		echo ${IMAGE_NAME} `cat ${DEPLOY_DIR_IMAGE}/version` > ${DEPLOY_DIR_IMAGE}/imageversion
+	fi
 	
 	IMAGE_STAMP_STR=`cat ${DEPLOY_DIR_IMAGE}/imageversion`
 	IMAGE_STAMP_LEN=`expr length ${IMAGE_STAMP_STR}`
