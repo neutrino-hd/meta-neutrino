@@ -1,54 +1,54 @@
 
 # set release type, configured in local.conf
 image_version_get_release_type() {
-	if [ ${RELEASE_STATE} == 0 ]; then
-		ret="release"
-	elif [ ${RELEASE_STATE} == 1 ]; then
-		ret="beta"
-	elif [ ${RELEASE_STATE} == 2 ]; then
-		ret="nightly"
+	if [ "${RELEASE_STATE}" = "0" ]; then
+		RES="release"
+	elif [ "${RELEASE_STATE}" = "1" ]; then
+		RES="beta"
+	elif [ "${RELEASE_STATE}" = "2" ]; then
+		RES="nightly"
 	else
-		ret="personal"
+		RES="personal"
 	fi
-	echo "$ret"
+	echo "$RES"
 }
 
 image_version_get_flavour_tag() {
-	ret=""
-	if [ ${FLAVOUR} != ${DISTRO} ]; then
-		ret="${FLAVOUR}-flavour_"
+	RES=""
+	if [ "${FLAVOUR}" != "${}" ]; then
+		RES="${FLAVOUR}-flavour_"
 	fi
-	echo "$ret"
+	echo "$RES"
 }
 
 image_version_get_poky_version() {
 	POKY_TAG=`git -C ${COREBASE} describe --abbrev=0`
-	ret=`git -C ${COREBASE} rev-list $POKY_TAG..HEAD --count`
-	echo "$ret"
+	RES=`git -C ${COREBASE} rev-list $POKY_TAG..HEAD --count`
+	echo "$RES"
 }
 
 image_version_get_meta_tuxbox() {
-	ret="meta-neutrino"
+	RES="meta-neutrino"
 	# In case of a changed repository name this should keeping compatibilty.
 	# Why: meta-neutrino contains mostly recipes to create an image and
 	# neutrino is only a part of image like all the other recipes.
 	if [ -e ${COREBASE}/meta-tuxbox ]; then
-		ret="meta-tuxbox"
+		RES="meta-tuxbox"
 	fi
-	echo "$ret"
+	echo "$RES"
 }
 
 image_version_get_tuxbox_tag() {
 	META_TUXBOX=`get_meta_tuxbox`
-	ret=`git -C ${COREBASE}/$META_TUXBOX describe --abbrev=0`
-	echo "$ret"
+	RES=`git -C ${COREBASE}/$META_TUXBOX describe --abbrev=0`
+	echo "$RES"
 }
 
 image_version_get_tuxbox_version() {
 	META_TUXBOX=`get_meta_tuxbox`
 	TUXBOX_TAG=`get_tuxbox_tag`
-	ret=`git -C ${COREBASE}/$META_TUXBOX rev-list $TUXBOX_TAG..HEAD --count`
-	echo "$ret"
+	RES=`git -C ${COREBASE}/$META_TUXBOX rev-list $TUXBOX_TAG..HEAD --count`
+	echo "$RES"
 }
 
 image_version_get_meta_version() {
@@ -58,59 +58,57 @@ image_version_get_meta_version() {
 	META_TUXBOX_TAG=`get_tuxbox_tag`
 	META_POKY_VERSION=`get_poky_version`
 	META_TUXBOX_VERSION=`get_tuxbox_version`
-	ret="$META_TUXBOX_TAG-$META_POKY_VERSION-$META_TUXBOX_VERSION"
+	RES="$META_TUXBOX_TAG-$META_POKY_VERSION-$META_TUXBOX_VERSION"
 
 	# If we found a user defined version it will be preferred
-	if [ ${DISTRO_CUSTOM_VERSION} != "" ]; then
-		ret=${DISTRO_CUSTOM_VERSION}
+	if [ "${DISTRO_CUSTOM_VERSION}" != "" ]; then
+		RES=${DISTRO_CUSTOM_VERSION}
 	fi
 
-	# If no meta version or any user version was found then ret contains the
+	# If no meta version or any user version was found then RES contains the
 	# default distro version number which is defined in tuxbox.conf.
-	if [ -z $ret ]; then
-		ret=${DISTRO_VERSION_NUMBER}
+	if [ -z $RES ]; then
+		RES=${DISTRO_VERSION_NUMBER}
 	fi
-	echo "$ret"
+	echo "$RES"
 }
 
 image_version_get_flavour_suffix() {
-	ret=${IMAGE_FLAVOUR_TAG}v`get_meta_version`_`get_release_type`
-	echo "$ret"
+	RES=${IMAGE_FLAVOUR_TAG}v`get_meta_version`_`get_release_type`
+	echo "$RES"
 }
 
 image_version_get_filename_prefix() {
-	ret=${IMAGE_NAME}
-	if [ ${INHIBIT_EXTENDED_IMAGE_VERSION} == "0" ]; then
-		ret=${IMAGE_NAME}_`get_flavour_suffix`
+	RES=${IMAGE_NAME}
+	if [ "${INHIBIT_EXTENDED_IMAGE_VERSION}" = "0" ]; then
+		RES=${IMAGE_NAME}_`get_flavour_suffix`
 	fi
-	echo "$ret"
+	echo "$RES"
 }
 
 image_version_get_filename_latest_prefix() {
-	ret=${DISTRO}_${MACHINE}
-	echo "$ret"
+	echo ${DISTRO}_${MACHINE}
 }
 
 image_version_get_yearly_tag() {
-	ret=`date '+%y'`
-	echo "$ret"
+	echo `date '+%y'`
 }
 
 image_version_get_build_increment() {
 	image_build_increment_file=${TMPDIR}/image_build_increment
 	if test ! -f $image_build_increment_file; then
-		ret=0
-		echo "$ret" > $image_build_increment_file
+		RES=0
+		echo "$RES" > $image_build_increment_file
 		echo "${IMAGE_NAME}" >> $image_build_increment_file
-		echo "$ret"
+		echo "$RES"
 	else
 		line1=`sed -n '1p' $image_build_increment_file`
 		line2=`sed -n '2p' $image_build_increment_file`
 		if [ ${line2} != "${IMAGE_NAME}" ]; then
-			ret=`expr $line1 + 1`
-			echo "$ret" > $image_build_increment_file
+			RES=`expr $line1 + 1`
+			echo "$RES" > $image_build_increment_file
 			echo "${IMAGE_NAME}" >> $image_build_increment_file
-			echo "$ret"
+			echo "$RES"
 		else
 			echo "$line1"
 		fi
