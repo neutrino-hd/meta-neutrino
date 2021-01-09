@@ -37,21 +37,24 @@ set_image_version () {
 
 	# get content of ../imageversion file
 	# required to synchronize version entry with content of ../imageversion file, which is used for image updates
-	if test -f ${DEPLOY_DIR_IMAGE}/version; then
-		echo ${IMAGE_NAME} `cat ${DEPLOY_DIR_IMAGE}/version` > ${DEPLOY_DIR_IMAGE}/imageversion
-	fi
-	
+	echo ${IMAGE_NAME} > ${DEPLOY_DIR_IMAGE}/imageversion
+
 	IMAGE_STAMP_STR=`cat ${DEPLOY_DIR_IMAGE}/imageversion`
-	IMAGE_STAMP_LEN=`expr length ${IMAGE_STAMP_STR}`
-	IMAGE_STAMP_START=`expr ${IMAGE_STAMP_LEN} - 14`
-	IMAGE_STAMP=${IMAGE_STAMP_STR:$IMAGE_STAMP_START:$IMAGE_STAMP_LEN}
-	IMAGE_BUILD_TIME_STAMP=${IMAGE_STAMP:0:12}
+	IMAGE_STAMP_LEN=${#IMAGE_STAMP_STR}
+	IMAGE_STAMP_START=`expr ${IMAGE_STAMP_LEN}-14`
+	IMAGE_STAMP=`echo ${IMAGE_STAMP_STR} | cut -d '-' -f3`
+	IMAGE_BUILD_TIME_STAMP=`echo ${IMAGE_STAMP} | cut -c1-12`
 
 	#IMAGE_ROOTFS_ETC_DIR=${D}${sysconfdir}
 	IMAGE_ROOTFS_ETC_DIR=${IMAGE_ROOTFS}/etc
 
 	# create content for /etc/image-version file
-	echo "builddate=${IMAGE_STAMP:6:2}.${IMAGE_STAMP:4:2}.${IMAGE_STAMP:0:4} ${IMAGE_STAMP:8:2}:${IMAGE_STAMP:10:2}" > ${IMAGE_ROOTFS_ETC_DIR}/image-version
+	DD=`echo ${IMAGE_STAMP} | cut -c7-8`
+	MM=`echo ${IMAGE_STAMP} | cut -c5-6`
+	YY=`echo ${IMAGE_STAMP} | cut -c1-4`
+	HH=`echo ${IMAGE_STAMP} | cut -c9-10`
+	mm=`echo ${IMAGE_STAMP} | cut -c11-12`
+	echo "builddate=${DD}.${MM}.${YY} ${HH}:${mm}" > ${IMAGE_ROOTFS_ETC_DIR}/image-version
 	echo "box_model=${MACHINE}"                                                     				>> ${IMAGE_ROOTFS_ETC_DIR}/image-version
 	echo "creator=${CREATOR}"                                                       				>> ${IMAGE_ROOTFS_ETC_DIR}/image-version
 	echo "distro=${DISTRO}"                                                             				>> ${IMAGE_ROOTFS_ETC_DIR}/image-version
@@ -76,6 +79,7 @@ set_image_version () {
 		echo "${IMAGE_LOCATION} ${RELEASE_STATE}${DISTRO_VERSION_NUMBER_CYCLE}${IMAGE_BUILD_TIME_STAMP} MD5 ${RELEASE_NAME} ${IMAGE_DESCRIPTION} ${UPDATE_SERVER_URL}" > ${RELEASE_TEXT_LOCATION_HOST}
 	fi
 }
+
 
 
 KERNEL_MODULES_INSTALLED += ""
