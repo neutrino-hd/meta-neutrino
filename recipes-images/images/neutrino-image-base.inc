@@ -159,7 +159,7 @@ EXTERNAL_WIFI_DRIVERS = " \
 	rtl8192eu \
 	"
 
-IMAGE_INSTALL ?= " \
+IMAGE_INSTALL += " \
 	autofs \
 	ca-certificates \
 	curl \
