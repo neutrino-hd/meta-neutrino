@@ -93,6 +93,7 @@ BIG_IMAGE_FILES = " \
 	dvb-femon \
 	etckeeper \
 	exfat-utils \
+	f2fs-tools \
 	fbset \
 	fuse-exfat \
 	glibc-binary-localedata-en-us \
