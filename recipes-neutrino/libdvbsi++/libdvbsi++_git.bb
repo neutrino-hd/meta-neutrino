@@ -3,13 +3,14 @@ AUTHOR = "Andreas Oberritter"
 SECTION = "libs/multimedia"
 LICENSE = "LGPLv2.1"
 LIC_FILES_CHKSUM = "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
-PR = "r3"
+
+PR = "r4"
+PV = "0.3.9-${SRCPV}"
+SRCREV = "${AUTOREV}"
 
 SRC_URI = " \
-           git://github.com/OpenVisionE2/libdvbsi.git;protocol=https \
+	git://git.code.sf.net/p/tuxbox-cvs/libdvbsi++;protocol=https \
 "
-
-SRCREV = "${AUTOREV}"
 
 S = "${WORKDIR}/git"
 
