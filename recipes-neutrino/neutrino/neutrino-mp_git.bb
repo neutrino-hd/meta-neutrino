@@ -21,6 +21,7 @@ SRC_URI = " \
 	file://mount.mdev \
 	file://etc.tar.gz \
 	file://tobackup.conf \
+	file://backup_rootfs.jpg \
 	file://update_download.jpg \
 	file://update_decompress.jpg \
 	file://update_kernel.jpg \

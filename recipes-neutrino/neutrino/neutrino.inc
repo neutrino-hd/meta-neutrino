@@ -146,6 +146,7 @@ do_install_append() {
 		echo "${RELEASE_TEXT_LOCATION}" > ${D}/etc/update.urls.disable
 	fi
 	cp -rf ${WORKDIR}/etc ${D}
+	install -m 644 ${WORKDIR}/backup_rootfs.jpg ${D}${datadir}/tuxbox/neutrino/icons
 	install -m 644 ${WORKDIR}/update_download.jpg ${D}${datadir}/tuxbox/neutrino/icons
 	install -m 644 ${WORKDIR}/update_decompress.jpg ${D}${datadir}/tuxbox/neutrino/icons
 	install -m 644 ${WORKDIR}/update_kernel.jpg ${D}${datadir}/tuxbox/neutrino/icons
