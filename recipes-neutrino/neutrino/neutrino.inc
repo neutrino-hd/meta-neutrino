@@ -88,6 +88,9 @@ EXTRA_OECONF = " \
         --disable-youtube-key-manage \
         --disable-shoutcast-key-manage \
 	--disable-weather-key-manage \
+	\
+	--enable-pip \
+	--enable-dynamicdemux \
 "
 
 EXTRA_OEMAKE += "'ARFLAGS=rc'"
