@@ -3,32 +3,39 @@ HOMEPAGE = "http://www.webmin.com"
 LICENSE = "BSD"
 LIC_FILES_CHKSUM = "file://LICENCE;md5=0a6446108c96d0819d21e40b48109507"
 
-SRC_URI = "${SOURCEFORGE_MIRROR}/webadmin/webmin-${PV}.tar.gz \
-           file://setup.sh \
-           file://init-exclude.patch \
-           file://net-generic.patch \
-           file://remove-startup-option.patch \
-           file://disable-version-check.patch;apply=no \
-           file://nfs-export.patch \
-           file://exports-lib.pl.patch \
-           file://mount-excludefs.patch \
-           file://samba-config-fix.patch \
-           file://proftpd-config-fix.patch \
-           file://net-lib.pl.patch \
-           file://media-tomb.patch \
-           file://remove-python2.3.patch \
-           file://mysql-config-fix.patch \
-           file://webmin.service \
-	   file://samba_config \
-	   file://exports_config \
-	   file://smart_config \
-	   file://proftpd_config \
-	   file://webmin \
+SRC_URI = " \
+		${SOURCEFORGE_MIRROR}/webadmin/webmin-${PV}.tar.gz \
+		file://0001-add-webmin-recipe.patch \
+		file://0002-net-generic.patch \
+		file://0003-add-webmin-recipe.patch \
+		file://0004-add-webmin-recipe.patch \
+		file://0005-nfs-export-remove-nfsd-check.patch \
+		file://0006-Add-excludefs-config-option-to-mount-module.patch \
+		file://0007-Upstream-status-Inappropriate-configuration.patch \
+		file://0008-Upstream-status-Inappropriate-configuration.patch \
+		file://0009-add-webmin-recipe.patch \
+		file://0010-original-patch-media-tomb.patch.patch \
+		file://0011-ajaxterm-ajaxterm-qweb.py-fix-hardcode-of-python2.3.patch \
+		file://0012-Adjust-Mysql-config-defaults.patch \
+		file://0013-webmin-use-correct-path-path-to-opkg.patch \
+		file://authentic_settings.js \
+		file://authentic_settings-root \
+		file://exports_config \
+		file://proftpd_config \
+		file://samba_config \
+		file://setup.sh \
+		file://smart_config \
+		file://webmin \
+		file://webmin.service \
+"
+
+SRC_URI += " \
+		file://disable-version-check.patch;apply=no \
 "
 
 RDEPENDS-${PN}-module += "perl"
 
-SRC_URI[sha256sum] = "357642af9d753435e999adfe40772b998bfcb21852993081239948e9216bc6fd"
+SRC_URI[sha256sum] = "1913836c76ef4f38d7ffc997f26039b0fbb170126264077bacd3d76e4731c6b0"
 
 inherit perlnative systemd
 

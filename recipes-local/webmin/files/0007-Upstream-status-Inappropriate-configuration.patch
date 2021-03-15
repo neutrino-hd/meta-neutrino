@@ -1,16 +1,17 @@
-From caf40a2c62fb890407a1e14e68f4ff39bbbb94a0 Mon Sep 17 00:00:00 2001
+From 7fb83cfc6d38c0da3901afea97d893433fda14ad Mon Sep 17 00:00:00 2001
 From: Zhai Edwin <edwin.zhai@intel.com>
 Date: Sun, 15 Apr 2018 18:49:09 +0200
-Subject: [PATCH] Upstream-status: Inappropriate [configuration]
+Subject: [PATCH 07/12] Upstream-status: Inappropriate [configuration]
 
 Signed-off-by: Zhai Edwin <edwin.zhai@intel.com>
 
+%% original patch: samba-config-fix.patch
 ---
  samba/config-generic-linux | 16 ++++++++--------
  1 file changed, 8 insertions(+), 8 deletions(-)
 
 diff --git a/samba/config-generic-linux b/samba/config-generic-linux
-index 8105e0d..5ce1012 100644
+index 8105e0d1e..5ce10127a 100644
 --- a/samba/config-generic-linux
 +++ b/samba/config-generic-linux
 @@ -1,15 +1,15 @@
@@ -37,3 +38,6 @@ index 8105e0d..5ce1012 100644
 -net=/usr/local/samba/bin/net
 +pdbedit=/usr/bin/pdbedit
 +net=/usr/bin/net
+-- 
+2.20.1
+

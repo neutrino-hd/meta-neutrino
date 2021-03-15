@@ -1,7 +1,7 @@
-From 4d56682f378b81cd47b443b18874bfe8071a9e02 Mon Sep 17 00:00:00 2001
+From c0864f5cf3a3946d96d31184bc843ef1f0e5966a Mon Sep 17 00:00:00 2001
 From: Dexuan Cui <dexuan.cui@intel.com>
 Date: Sun, 15 Apr 2018 18:49:09 +0200
-Subject: [PATCH] add webmin recipe
+Subject: [PATCH 09/12] add webmin recipe
 
 Upstream-Status: Inappropriate [config]
 
@@ -9,21 +9,26 @@ XXX: need to work out a better fix.
 
 Signed-off-by: Dexuan Cui <dexuan.cui@intel.com>
 
+%% original patch: net-lib.pl.patch
 ---
- net/net-lib.pl | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ net/net-lib.pl | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/net/net-lib.pl b/net/net-lib.pl
-index 9948dc2..2be7de5 100755
+index 2aefb447b..0e89a912d 100755
 --- a/net/net-lib.pl
 +++ b/net/net-lib.pl
-@@ -26,7 +26,8 @@ elsif ($gconfig{'os_type'} eq 'debian-linux' && -d "/etc/netplan") {
- 	do "netplan-lib.pl";
+@@ -31,8 +31,8 @@ elsif ($gconfig{'os_type'} eq 'debian-linux' &&
+ 	$net_mode = "netplan";
  	}
  else {
 -	do "$gconfig{'os_type'}-lib.pl";
+-	$net_mode = $gconfig{'os_type'};
 +	#do "$gconfig{'os_type'}-lib.pl";
 +	do "debian-linux-lib.pl";
  	}
  
  # list_hosts()
+-- 
+2.20.1
+

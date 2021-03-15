@@ -1,7 +1,7 @@
-From 5987b3570cd535391485df770e27d280da7d6d9d Mon Sep 17 00:00:00 2001
+From 3d40bb77ad7c825afcdc2926c36dadf0ae2a33f9 Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
 Date: Sun, 15 Apr 2018 18:49:09 +0200
-Subject: [PATCH] add webmin recipe
+Subject: [PATCH 03/12] add webmin recipe
 
 # Remove "start on boot" option from webmin configuration, as
 # end-users should not need to configure this from the web interface
@@ -10,12 +10,13 @@ Subject: [PATCH] add webmin recipe
 #
 # Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
 
+%% original patch: remove-startup-option.patch
 ---
  webmin/index.cgi | 14 --------------
  1 file changed, 14 deletions(-)
 
 diff --git a/webmin/index.cgi b/webmin/index.cgi
-index 7c566dc..3917694 100755
+index 73ef3ea0c..8403dfd0f 100755
 --- a/webmin/index.cgi
 +++ b/webmin/index.cgi
 @@ -79,20 +79,6 @@ print &ui_buttons_start();
@@ -39,3 +40,6 @@ index 7c566dc..3917694 100755
  # Restart Webmin
  if (!$miniserv{'inetd'} && $ENV{'MINISERV_CONFIG'}) {
  	print &ui_buttons_row("restart.cgi",
+-- 
+2.20.1
+

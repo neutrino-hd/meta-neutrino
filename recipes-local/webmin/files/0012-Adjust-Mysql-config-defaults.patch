@@ -1,18 +1,19 @@
-From 79df038ca12232997f7ce6cefc640148842b4ded Mon Sep 17 00:00:00 2001
+From 50e0e81dabc88f4ab9ebab83a4841f50bd3a5431 Mon Sep 17 00:00:00 2001
 From: Diego Rondini <diego.ml@zoho.com>
 Date: Thu, 18 Feb 2016 15:44:06 +0100
-Subject: [PATCH] Adjust Mysql config defaults
+Subject: [PATCH 12/12] Adjust Mysql config defaults
 
 Upstream-status: Inappropriate [configuration]
 
 Signed-off-by: Diego Rondini <diego.ml@zoho.com>
 
+%% original patch: mysql-config-fix.patch
 ---
  mysql/config | 18 +++++++++---------
  1 file changed, 9 insertions(+), 9 deletions(-)
 
 diff --git a/mysql/config b/mysql/config
-index e5b6fb3..77bfe69 100644
+index e5b6fb381..77bfe695b 100644
 --- a/mysql/config
 +++ b/mysql/config
 @@ -1,13 +1,13 @@
@@ -46,3 +47,6 @@ index e5b6fb3..77bfe69 100644
  max_dbs=50
  my_cnf=/etc/my.cnf
  max_text=1000
+-- 
+2.20.1
+

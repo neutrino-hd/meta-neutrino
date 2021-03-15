@@ -1,16 +1,17 @@
-From 98ee74870f5a67d42aee6a67c815632168c3b83b Mon Sep 17 00:00:00 2001
+From c4c68a90010582093e130187b135152d2b866fda Mon Sep 17 00:00:00 2001
 From: Zhai Edwin <edwin.zhai@intel.com>
 Date: Sun, 15 Apr 2018 18:49:09 +0200
-Subject: [PATCH] Upstream-status: Inappropriate [configuration]
+Subject: [PATCH 08/12] Upstream-status: Inappropriate [configuration]
 
 Signed-off-by: Zhai Edwin <edwin.zhai@intel.com>
 
+%% original patch: proftpd-config-fix.patch
 ---
  proftpd/config | 6 +++---
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/proftpd/config b/proftpd/config
-index a0134c9..2e59da2 100644
+index a0134c95a..2e59da2e5 100644
 --- a/proftpd/config
 +++ b/proftpd/config
 @@ -1,6 +1,6 @@
@@ -23,3 +24,6 @@ index a0134c9..2e59da2 100644
  ftpusers=/etc/ftpusers
  test_config=1
  test_always=0
+-- 
+2.20.1
+

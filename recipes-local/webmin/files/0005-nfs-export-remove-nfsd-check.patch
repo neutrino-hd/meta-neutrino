@@ -1,7 +1,7 @@
-From 5cc30c8d10ef560a5c6d77900c71a35c90423027 Mon Sep 17 00:00:00 2001
+From 6bcc068a2917afd24afded5b2a03daf630e35770 Mon Sep 17 00:00:00 2001
 From: Kevin Strasser <kevin.strasser@linux.intel.com>
 Date: Wed, 1 Aug 2012 11:51:26 -0700
-Subject: [PATCH] nfs export: remove nfsd check
+Subject: [PATCH 05/12] nfs export: remove nfsd check
 
 nfsd runs as a kernel process and does not have a pid. This means
 that the command assigned to apply_cmd will never be executed when
@@ -11,15 +11,16 @@ Upstream-Status: Inappropriate [config]
 
 Signed-off-by: Kevin Strasser <kevin.strasser@linux.intel.com>
 
+%% original patch: exports-lib.pl.patch
 ---
  exports/exports-lib.pl | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/exports/exports-lib.pl b/exports/exports-lib.pl
-index 3ab6c91..4a3fb74 100755
+index 1700f3a3c..729c3ae25 100755
 --- a/exports/exports-lib.pl
 +++ b/exports/exports-lib.pl
-@@ -301,7 +301,7 @@ return !&has_command("rpc.nfsd") && !&has_command("nfsd") &&
+@@ -302,7 +302,7 @@ return !&has_command("rpc.nfsd") && !&has_command("nfsd") &&
  sub restart_mountd
  {
  # Try exportfs -r first
@@ -28,3 +29,6 @@ index 3ab6c91..4a3fb74 100755
  	my $out = &backquote_logged("$config{'apply_cmd'} 2>&1 </dev/null");
  	if (!$? && $out !~ /invalid|error|failed/i) {
  		# Looks like it worked!
+-- 
+2.20.1
+

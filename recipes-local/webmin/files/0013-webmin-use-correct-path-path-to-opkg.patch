@@ -1,0 +1,27 @@
+From 04b0b478b8ac504bd6bc2fc5c7e6a8949f7f0efc Mon Sep 17 00:00:00 2001
+From: Thilo Graf <dbt@novatux.de>
+Date: Mon, 15 Mar 2021 16:44:14 +0100
+Subject: [PATCH 13/13] webmin: use correct path path to opkg
+
+This avoids usage of dpkg. Unintended webmin upgrades should
+not destroy current webmin installation.
+---
+ software/ipkg-lib.pl | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/software/ipkg-lib.pl b/software/ipkg-lib.pl
+index 36d0a4de9..691e844bb 100755
+--- a/software/ipkg-lib.pl
++++ b/software/ipkg-lib.pl
+@@ -17,7 +17,7 @@ if (&use_pkg_ng()) {
+ 
+ sub use_pkg_ng
+ {
+-return 0 if (-x "/opt/bin/opkg");
++return 0 if (-x "/usr/bin/opkg");
+ }
+ 
+ 
+-- 
+2.20.1
+

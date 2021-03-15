@@ -1,20 +1,24 @@
-From 0ffef565c72e86ccee60a7badaaed745236ddafa Mon Sep 17 00:00:00 2001
+From 6c52eecf71b504dc1d1cba018ba2d395d7919197 Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
 Date: Tue, 17 Apr 2018 01:15:40 +0200
-Subject: [PATCH] net-generic
+Subject: [PATCH 02/12] net-generic
 
 Signed-off-by: Markus Volk <f_l_k@t-online.de>
 
+%% original patch: net-generic.patch
 ---
  net/generic-linux-lib.pl | 2 ++
- 2 files changed, 3 insertions(+), 1 deletion(-)
+ 1 file changed, 2 insertions(+)
  create mode 100644 net/generic-linux-lib.pl
 
 diff --git a/net/generic-linux-lib.pl b/net/generic-linux-lib.pl
 new file mode 100644
-index 0000000..dbca8d8
+index 000000000..dbca8d858
 --- /dev/null
 +++ b/net/generic-linux-lib.pl
 @@ -0,0 +1,2 @@
 +do 'linux-lib.pl'
 +
+-- 
+2.20.1
+

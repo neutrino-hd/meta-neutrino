@@ -1,7 +1,7 @@
-From 81d1ae883db2c5e8350cd2035699c1b319e2c626 Mon Sep 17 00:00:00 2001
+From 4704b38f86e3123a143f3e556fa7c0f8e4594553 Mon Sep 17 00:00:00 2001
 From: Yu Ke <ke.yu@intel.com>
 Date: Fri, 28 Oct 2011 14:40:51 +0800
-Subject: [PATCH] add webmin recipe
+Subject: [PATCH 04/12] add webmin recipe
 
 commit e48f61d2f6df32a518bcb84db8c6eacfe5435c32
 
@@ -15,12 +15,13 @@ Upstream-Status: Pending
 
 Signed-off-by: Yu Ke <ke.yu@intel.com>
 
+%% original patch: nfs-export.patch
 ---
  exports/save_export.cgi | 7 ++++++-
  1 file changed, 6 insertions(+), 1 deletion(-)
 
 diff --git a/exports/save_export.cgi b/exports/save_export.cgi
-index bcd4f88..0aa64b1 100755
+index bcd4f8863..0aa64b192 100755
 --- a/exports/save_export.cgi
 +++ b/exports/save_export.cgi
 @@ -50,7 +50,7 @@ else {
@@ -44,3 +45,6 @@ index bcd4f88..0aa64b1 100755
  
  	delete($opts{'nohide'});
  	delete($opts{'hide'});
+-- 
+2.20.1
+
