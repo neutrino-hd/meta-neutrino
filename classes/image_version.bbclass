@@ -95,22 +95,27 @@ image_version_get_yearly_tag() {
 }
 
 image_version_get_build_increment() {
-	image_build_increment_file=${TMPDIR}/image_build_increment
-	if test ! -f $image_build_increment_file; then
-		RES=0
-		echo "$RES" > $image_build_increment_file
-		echo "${IMAGE_NAME}" >> $image_build_increment_file
-		echo "$RES"
+	if test -f ${LOCAL_BUILD_INCREMENT_FILE}; then
+		line=`sed -n '1p' ${LOCAL_BUILD_INCREMENT_FILE}`
+		echo "$line"
 	else
-		line1=`sed -n '1p' $image_build_increment_file`
-		line2=`sed -n '2p' $image_build_increment_file`
-		if [ ${line2} != "${IMAGE_NAME}" ]; then
-			RES=`expr $line1 + 1`
+		image_build_increment_file=${TMPDIR}/image_build_increment
+		if test ! -f $image_build_increment_file; then
+			RES=0
 			echo "$RES" > $image_build_increment_file
 			echo "${IMAGE_NAME}" >> $image_build_increment_file
 			echo "$RES"
 		else
-			echo "$line1"
+			line1=`sed -n '1p' $image_build_increment_file`
+			line2=`sed -n '2p' $image_build_increment_file`
+			if [ ${line2} != "${IMAGE_NAME}" ]; then
+				RES=`expr $line1 + 1`
+				echo "$RES" > $image_build_increment_file
+				echo "${IMAGE_NAME}" >> $image_build_increment_file
+				echo "$RES"
+			else
+				echo "$line1"
+			fi
 		fi
 	fi
 }
