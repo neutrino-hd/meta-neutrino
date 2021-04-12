@@ -1,4 +1,4 @@
-From f46cdcaf609eb7c5367183b2440f5b947c445092 Mon Sep 17 00:00:00 2001
+From 5e1d264ff459cdb2c33473eafa11a6405126ea24 Mon Sep 17 00:00:00 2001
 From: "[CST] Focus" <focus.cst@gmail.com>
 Date: Sat, 24 Aug 2013 10:03:45 +0400
 Subject: [PATCH] xupnpd: don't bind daemon to specific ip address

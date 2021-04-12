@@ -1,4 +1,4 @@
-From 5766e691c5f16b5dadfbd7df1c563686900ca8a5 Mon Sep 17 00:00:00 2001
+From 3611a5753c35f774183a81d5ade9cfa9d3024ae4 Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
 Date: Sat, 29 Sep 2018 15:33:04 +0200
 Subject: [PATCH] xupnpd: update
@@ -14,7 +14,7 @@ Subject: [PATCH] xupnpd: update
 
 diff --git a/plugins/xupnpd_stb.lua b/plugins/xupnpd_stb.lua
 new file mode 100644
-index 0000000..66b2141
+index 0000000..c4b1e98
 --- /dev/null
 +++ b/plugins/xupnpd_stb.lua
 @@ -0,0 +1,177 @@
@@ -245,7 +245,7 @@ index 757cf48..411ad57 100644
      http.send('<br/><form method=get action="/ui"><input class="btn btn-primary" type=submit value=OK></form>')
  
 diff --git a/xupnpd.lua b/src/xupnpd.lua
-index 6fad96e..73244b4 100644
+index 848d323..2aa3d9a 100644
 --- a/xupnpd.lua
 +++ b/xupnpd.lua
 @@ -5,13 +5,13 @@ cfg.ui_auth_file='auth.txt'
@@ -355,12 +355,12 @@ index 6d89282..3c139e3 100644
  
      add_playlists_from_dir(cfg.playlists_path,playlist,plist)
 diff --git a/xupnpd_main.lua b/src/xupnpd_main.lua
-index 5c0131d..b6421af 100644
+index 36ff028..fd4a2cf 100644
 --- a/xupnpd_main.lua
 +++ b/xupnpd_main.lua
-@@ -2,6 +2,9 @@
- -- clark15b@gmail.com
- -- https://tsdemuxer.googlecode.com/svn/trunk/xupnpd
+@@ -4,6 +4,9 @@
+ 
+ table.maxn = table.maxn or function(t) return #t end  -- support Lua 5.3+
  
 +-- fix memleak on coolstream boxes by changing collectgarbage() interval from 200 (default) to 50
 +collectgarbage('setpause', 50)
