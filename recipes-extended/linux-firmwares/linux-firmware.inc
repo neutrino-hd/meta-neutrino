@@ -2,7 +2,7 @@ inherit allarch
 
 PV = "${SRCPV}"
 
-SRC_URI = "git://github.com/BjornLee/linux-firmware.git;protocol=git \
+SRC_URI = "git://github.com/Toysoft/linux-firmware.git;protocol=git \
 	   file://license \
 "
 
