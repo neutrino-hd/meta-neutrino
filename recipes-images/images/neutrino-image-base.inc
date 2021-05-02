@@ -162,6 +162,7 @@ EXTERNAL_WIFI_DRIVERS = " \
 
 IMAGE_INSTALL += " \
 	autofs \
+	bc \
 	ca-certificates \
 	curl \
 	dosfstools \
