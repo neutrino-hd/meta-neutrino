@@ -13,8 +13,9 @@ DEPENDS_append += "libpam"
 EXTRA_OECONF_append = " --with-pam"
 
 do_install_append () {
-	sed -i "s|yocto|${MACHINE}|" ${WORKDIR}/sshd_banner
-	install -m 0600 ${WORKDIR}/sshd_banner ${D}${sysconfdir}/ssh/sshd_banner
+	#sed -i "s|yocto|${MACHINE}|" ${WORKDIR}/sshd_banner
+	ln -sf /etc/welcome ${D}${sysconfdir}/ssh/sshd_banner
+	#install -m 0600 ${WORKDIR}/sshd_banner ${D}${sysconfdir}/ssh/sshd_banner
 }
 
 FILES_${PN}-sshd += "${sysconfdir}/ssh/sshd_banner"

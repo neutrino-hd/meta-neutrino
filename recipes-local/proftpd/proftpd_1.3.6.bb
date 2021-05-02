@@ -13,7 +13,6 @@ SRC_URI = "ftp://ftp.proftpd.org/distrib/source/${BPN}-${PV}.tar.gz \
            file://build_fixup.patch \
            file://proftpd.service \
 	   file://ftpusers \
-	   file://proftpd_banner \
 	   file://proftpd.conf \
 	   file://ftp.pam \
 	   file://Makefile.patch \
@@ -22,7 +21,7 @@ SRC_URI = "ftp://ftp.proftpd.org/distrib/source/${BPN}-${PV}.tar.gz \
 SRC_URI[md5sum] = "13270911c42aac842435f18205546a1b"
 SRC_URI[sha256sum] = "91ef74b143495d5ff97c4d4770c6804072a8c8eb1ad1ecc8cc541b40e152ecaf"
 
-DEPENDS += "libpam ncurses shadow libcap"
+DEPENDS += "libpam ncurses shadow libcap base-files"
 RDEPENDS_${PN} = "pam-plugin-listfile"
 
 FTPUSER = "ftp"
@@ -66,7 +65,8 @@ do_install () {
     make install-utils DESTDIR=${D}              
     make install-modules DESTDIR=${D}
     install -m 644 ${WORKDIR}/proftpd.conf ${D}${sysconfdir}/proftpd.conf
-    install -m 644 ${WORKDIR}/proftpd_banner ${D}${sysconfdir}/welcome.msg
+    #install -m 644 ${WORKDIR}/proftpd_banner ${D}${sysconfdir}/welcome.msg
+    ln -sf /etc/welcome ${D}${sysconfdir}/welcome.msg
     install -d ${D}${sysconfdir}/pam.d/
     cp ${WORKDIR}/ftp.pam ${D}${sysconfdir}/pam.d/ftp
     sed -i "s:/lib/security:${base_libdir}/security:" ${D}${sysconfdir}/pam.d/ftp
