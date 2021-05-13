@@ -1,3 +1,4 @@
+include neutrino-common-vars.inc
 
 PROVIDES = "virtual/neutrino"
 RPROVIDES_${PN} = "virtual/neutrino"
@@ -68,25 +69,28 @@ EXTRA_OECONF = " \
 	--prefix=${N_PREFIX} \
 	--exec_prefix=${N_EXEC_PREFIX} \
 	--includedir=${N_PREFIX}/include \
+	\
 	--with-configdir=/etc/neutrino/config \
 	--with-controldir_var=/etc/neutrino/config \
-	--with-plugindir=/usr/share/tuxbox/neutrino/plugins \
-        --with-plugindir_var=/etc/neutrino/plugins \
-	--with-webtvdir=/usr/share/tuxbox/neutrino/plugins/webtv \
-	--with-webtvdir_var=/etc/neutrino/plugins/webtv \
-        --with-webradiodir=/usr/share/tuxbox/neutrino/plugins/webradio \
-        --with-webradiodir_var=/etc/neutrino/plugins/webradio \
-	--with-luaplugindir=/usr/share/tuxbox/neutrino/plugins \
-	--with-gamesdir=/etc/neutrino/plugins \
+	\
+	--with-plugindir=${N_PLUGIN_DIR} \
+	--with-plugindir_var=${N_PLUGIN_DIR_VAR} \
+	--with-webtvdir=${N_WEBTV_DIR} \
+	--with-webtvdir_var=${N_WEBTV_DIR_VAR} \
+	--with-webradiodir=${N_WEBRADIO_DIR} \
+	--with-webradiodir_var=${N_WEBRADIO_DIR_VAR} \
+	--with-luaplugindir=${N_LUAPLUGIN_DIR} \
+	--with-gamesdir=${N_GAMES_DIR}  \
+	\
 	--with-tmdb-dev-key="${TMDB_DEV_KEY}" \
 	--with-omdb-api-key="${OMDB_API_KEY}" \
 	--with-youtube-dev-key="${YT_DEV_KEY}" \
 	--with-shoutcast-dev-key="${SHOUTCAST_DEV_KEY}" \
 	--with-weather-dev-key="${WEATHER_DEV_KEY}" \
-        --disable-tmdb-key-manage \
-        --disable-omdb-key-manage \
-        --disable-youtube-key-manage \
-        --disable-shoutcast-key-manage \
+	--disable-tmdb-key-manage \
+	--disable-omdb-key-manage \
+	--disable-youtube-key-manage \
+	--disable-shoutcast-key-manage \
 	--disable-weather-key-manage \
 	\
 	--enable-pip \
