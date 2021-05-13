@@ -1,13 +1,14 @@
 
 include themes.inc
 
-DESCRIPTION = "Tangos Theme Set"
+DESCRIPTION = "${PRE_DESCRIPTION}"
 HOMEPAGE = "https://github.com/TangoCash/neutrino-tangos"
 MAINTAINER = "Tango"
+SUMMARY = "${DESCRIPTION} by ${MAINTAINER}"
 
 SRC_URI = "git://github.com/TangoCash/neutrino-tangos.git;protocol=https;subpath=${SUBPATH}"
 
-PR = "r2"
+PR = "r3"
 PV = "git-${SRCPV}"
 
 do_install () {
