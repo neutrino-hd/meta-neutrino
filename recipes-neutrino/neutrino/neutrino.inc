@@ -81,6 +81,8 @@ EXTRA_OECONF = " \
 	--with-webradiodir_var=${N_WEBRADIO_DIR_VAR} \
 	--with-luaplugindir=${N_LUAPLUGIN_DIR} \
 	--with-gamesdir=${N_GAMES_DIR}  \
+	--with-iconsdir=${N_ICONS_DIR}  \
+	--with-iconsdir_var=${N_ICONS_DIR}  \
 	\
 	--with-tmdb-dev-key="${TMDB_DEV_KEY}" \
 	--with-omdb-api-key="${OMDB_API_KEY}" \
