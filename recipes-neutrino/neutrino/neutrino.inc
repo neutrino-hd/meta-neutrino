@@ -98,6 +98,7 @@ EXTRA_OECONF = " \
 	--enable-pip \
 	--enable-dynamicdemux \
 	--enable-pkg-management \
+	--enable-lcd4linux \
 "
 
 EXTRA_OEMAKE += "'ARFLAGS=rc'"
