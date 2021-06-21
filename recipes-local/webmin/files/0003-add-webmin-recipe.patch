@@ -1,7 +1,7 @@
-From 3d40bb77ad7c825afcdc2926c36dadf0ae2a33f9 Mon Sep 17 00:00:00 2001
+From d0a1b11cc90fd5d118f5d48026008b7d59dc092b Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
 Date: Sun, 15 Apr 2018 18:49:09 +0200
-Subject: [PATCH 03/12] add webmin recipe
+Subject: [PATCH 03/13] add webmin recipe
 
 # Remove "start on boot" option from webmin configuration, as
 # end-users should not need to configure this from the web interface

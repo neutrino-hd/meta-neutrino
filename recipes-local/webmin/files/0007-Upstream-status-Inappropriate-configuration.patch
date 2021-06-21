@@ -1,7 +1,7 @@
-From 7fb83cfc6d38c0da3901afea97d893433fda14ad Mon Sep 17 00:00:00 2001
+From 28f006b370e4416e8718b5e475fb04b61db1223b Mon Sep 17 00:00:00 2001
 From: Zhai Edwin <edwin.zhai@intel.com>
 Date: Sun, 15 Apr 2018 18:49:09 +0200
-Subject: [PATCH 07/12] Upstream-status: Inappropriate [configuration]
+Subject: [PATCH 07/13] Upstream-status: Inappropriate [configuration]
 
 Signed-off-by: Zhai Edwin <edwin.zhai@intel.com>
 

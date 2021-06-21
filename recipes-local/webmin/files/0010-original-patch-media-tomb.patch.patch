@@ -1,7 +1,7 @@
-From 00e992519f2c676109997cce66f50e009d11a254 Mon Sep 17 00:00:00 2001
+From 195b50d4fda1b2d1f78f68b2184deacc52bd7230 Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
 Date: Sun, 15 Apr 2018 18:49:09 +0200
-Subject: [PATCH 10/12] %% original patch: media-tomb.patch
+Subject: [PATCH 10/13] %% original patch: media-tomb.patch
 
 ---
  mediatomb/index.cgi        | 13 +++++++++++++

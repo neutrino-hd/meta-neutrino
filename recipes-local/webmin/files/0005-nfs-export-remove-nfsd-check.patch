@@ -1,7 +1,7 @@
-From 6bcc068a2917afd24afded5b2a03daf630e35770 Mon Sep 17 00:00:00 2001
+From 998fa6c214ff2a66ef1ee6420f4d628001c4f8d6 Mon Sep 17 00:00:00 2001
 From: Kevin Strasser <kevin.strasser@linux.intel.com>
 Date: Wed, 1 Aug 2012 11:51:26 -0700
-Subject: [PATCH 05/12] nfs export: remove nfsd check
+Subject: [PATCH 05/13] nfs export: remove nfsd check
 
 nfsd runs as a kernel process and does not have a pid. This means
 that the command assigned to apply_cmd will never be executed when

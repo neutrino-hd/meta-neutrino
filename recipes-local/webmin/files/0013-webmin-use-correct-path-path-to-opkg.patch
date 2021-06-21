@@ -1,4 +1,4 @@
-From 04b0b478b8ac504bd6bc2fc5c7e6a8949f7f0efc Mon Sep 17 00:00:00 2001
+From f3c5ab39341cad730d667d9818958584d9b9c157 Mon Sep 17 00:00:00 2001
 From: Thilo Graf <dbt@novatux.de>
 Date: Mon, 15 Mar 2021 16:44:14 +0100
 Subject: [PATCH 13/13] webmin: use correct path path to opkg

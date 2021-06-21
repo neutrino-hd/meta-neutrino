@@ -1,7 +1,7 @@
-From 6c52eecf71b504dc1d1cba018ba2d395d7919197 Mon Sep 17 00:00:00 2001
+From 5614bc587e4ef96aede0de0d1ac58ace0e6b88ee Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
 Date: Tue, 17 Apr 2018 01:15:40 +0200
-Subject: [PATCH 02/12] net-generic
+Subject: [PATCH 02/13] net-generic
 
 Signed-off-by: Markus Volk <f_l_k@t-online.de>
 

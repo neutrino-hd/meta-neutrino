@@ -1,7 +1,7 @@
-From 885eb84f5cebe9a05cb775d4168c5d7c4d7a5631 Mon Sep 17 00:00:00 2001
+From 4f7741ed860243330f2a15db7d7028185686755d Mon Sep 17 00:00:00 2001
 From: Markus Volk <f_l_k@t-online.de>
 Date: Sun, 15 Apr 2018 18:49:09 +0200
-Subject: [PATCH 01/12] add webmin recipe
+Subject: [PATCH 01/13] add webmin recipe
 
 # Hack in support for an "exclude" config option for the init module, so
 # we can hide certain system services that shouldn't really be configurable
@@ -57,7 +57,7 @@ index 23e9cc342..12ff9117c 100755
  	# For each action, look at /etc/rc*.d/* files to see if it is 
  	# started at boot
 diff --git a/init/init-lib.pl b/init/init-lib.pl
-index 4f7d14442..58fb78a4e 100755
+index 12e9ab313..d3944055f 100755
 --- a/init/init-lib.pl
 +++ b/init/init-lib.pl
 @@ -125,8 +125,9 @@ List boot time action names from init.d, such as httpd and cron.

@@ -1,7 +1,7 @@
-From 9be02820e9e4f8a507f9a71269cd38b975ed2294 Mon Sep 17 00:00:00 2001
+From 81fd6a0e4a2e1c8be59e569c3ba99c41eeb8f4f7 Mon Sep 17 00:00:00 2001
 From: Robert Yang <liezhi.yang@windriver.com>
 Date: Tue, 2 Sep 2014 00:11:05 -0700
-Subject: [PATCH 11/12] ajaxterm/ajaxterm/qweb.py: fix hardcode of python2.3
+Subject: [PATCH 11/13] ajaxterm/ajaxterm/qweb.py: fix hardcode of python2.3
 
 Upstream-Status: Pending
 

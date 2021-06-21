@@ -1,7 +1,7 @@
-From 4704b38f86e3123a143f3e556fa7c0f8e4594553 Mon Sep 17 00:00:00 2001
+From 8f8f27da2c28b5f13b53065ec91eb1ded47e7a63 Mon Sep 17 00:00:00 2001
 From: Yu Ke <ke.yu@intel.com>
 Date: Fri, 28 Oct 2011 14:40:51 +0800
-Subject: [PATCH 04/12] add webmin recipe
+Subject: [PATCH 04/13] add webmin recipe
 
 commit e48f61d2f6df32a518bcb84db8c6eacfe5435c32
 
