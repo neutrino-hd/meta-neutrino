@@ -8,25 +8,24 @@ SUMMARY = "${DESCRIPTION} by ${MAINTAINER}"
 
 SRC_URI = "git://github.com/TangoCash/neutrino-tangos.git;protocol=https;subpath=${SUBPATH}"
 
-PR = "r3"
+PR = "r4"
 PV = "git-${SRCPV}"
 
 do_install () {
 	install -d ${D}/var/tuxbox/themes
-        install -m 644 ${S}/themes/GlassHD.theme ${D}/var/tuxbox/themes
-        install -m 644 ${S}/themes/Lechuk.theme ${D}/var/tuxbox/themes
-        install -m 644 ${S}/themes/Sportster.theme ${D}/var/tuxbox/themes
-        install -m 644 ${S}/themes/TangoCash.theme ${D}/var/tuxbox/themes
-        install -m 644 ${S}/themes/adtheme.theme ${D}/var/tuxbox/themes
-        install -m 644 ${S}/themes/bgfade.theme ${D}/var/tuxbox/themes
-        install -m 644 ${S}/themes/colors.theme ${D}/var/tuxbox/themes
-        install -m 644 ${S}/themes/dbox-all.theme ${D}/var/tuxbox/themes
-        install -m 644 ${S}/themes/megasat4000.theme ${D}/var/tuxbox/themes
-        install -m 644 ${S}/themes/nesh.theme ${D}/var/tuxbox/themes
+	THEME_LIST="GlassHD Lechuk Sportster TangoCash adtheme bgfade colors dbox-all megasat4000 nesh"
+	for t in  ${THEME_LIST} ; do
+		install -m 644 ${S}/data/themes/${t}.theme ${D}/var/tuxbox/themes
+	done
+
+	install -d ${D}/var/tuxbox/themes/${PN}-icons/icons
+	ICONS=`find ${S}/data/icons -name *.png`
+	for i in  ${ICONS} ; do
+		install -m 644 ${i} ${D}/var/tuxbox/themes/${PN}-icons/icons
+	done
+
+	for t in  ${THEME_LIST} ; do
+		LINKNAME=${D}/var/tuxbox/themes/${t}
+		ln -sf /var/tuxbox/themes/${PN}-icons ${LINKNAME}
+	done
 }
-
-
-FILES_${PN} = "\
-    /var/tuxbox/themes \
-"
-
