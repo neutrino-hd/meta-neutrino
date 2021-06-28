@@ -10,7 +10,7 @@ elif [ $RET -eq 1 ]; then
         echo "...Reboot" > /dev/dbox/oled0
         systemctl reboot
 elif
-        [ RET -eq 2 ]; then
+        [ $RET -eq 2 ]; then
         :
 fi
 
