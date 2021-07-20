@@ -96,10 +96,13 @@ EXTRA_OECONF = " \
 	--disable-weather-key-manage \
 	\
 	--enable-pip \
-	--enable-dynamicdemux \
 	--enable-pkg-management \
 	--enable-lcd4linux \
 "
+
+# EXTRA_OECONF += " \
+# 	--enable-dynamicdemux \
+# "
 
 EXTRA_OEMAKE += "'ARFLAGS=rc'"
 
