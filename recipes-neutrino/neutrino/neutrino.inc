@@ -70,8 +70,8 @@ EXTRA_OECONF = " \
 	--exec_prefix=${N_EXEC_PREFIX} \
 	--includedir=${N_PREFIX}/include \
 	\
-	--with-configdir=/etc/neutrino/config \
-	--with-controldir_var=/etc/neutrino/config \
+	--with-configdir=${N_CONFIG_DIR} \
+	--with-controldir_var=${N_CONTROL_DIR_VAR} \
 	\
 	--with-plugindir=${N_PLUGIN_DIR} \
 	--with-plugindir_var=${N_PLUGIN_DIR_VAR} \
