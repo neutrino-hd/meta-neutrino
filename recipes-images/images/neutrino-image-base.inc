@@ -160,7 +160,35 @@ EXTERNAL_WIFI_DRIVERS = " \
 	rtl8192eu \
 	"
 
-IMAGE_INSTALL += " \
+PLUGIN_INSTALL = " \
+	getrc \
+	input \
+	msgbox \
+	shellexec \
+	tuxcom \
+	tuxwetter \
+"
+
+PLUGIN_LUA_INSTALL = "	\
+	ard-mediathek \
+	logoupdater \
+	mediathek \
+	mtv \
+	rss \
+	settingsupdater \
+	stb-backup \
+	stb-flash \
+	stb-flash-local \
+	stb-restore \
+	stb-startup \
+"
+
+PLUGIN_INSTALL += " \
+	${PLUGIN_LUA_INSTALL} \
+"
+
+IMAGE_INSTALL = " \
+	${PLUGIN_INSTALL} \
 	autofs \
 	bc \
 	ca-certificates \
@@ -199,13 +227,35 @@ IMAGE_INSTALL += " \
 	util-linux-mount \
 	util-linux-swaponoff \
 	util-linux-umount \
-	virtual/screengrabber \
 	virtual/neutrino \
-	neutrino-plugins \
-	neutrino-lua-plugins \
+	virtual/screengrabber \
 	xupnpd \
 	zip \
 "
+
+## build and create packages, but do not install
+EXTRA_IMAGEDEPENDS = " \
+	samba \
+	webmin \
+	\
+	browser \
+	favorites-to-bin \
+	heizoelpreise \
+	logomask \
+	myspass \
+	netzkino  \
+	rcu-switcher \
+	stb-log \
+	stb-move \
+	stb-shell \
+	to-web-tv-xml \
+	webradio \
+	webtv \
+	\
+	themes-ni \
+	themes-tango \
+"
+
 
 EXTRAOPKGCONFIG = "neutrino-feed-config"
 
