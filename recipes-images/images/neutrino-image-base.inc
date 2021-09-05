@@ -252,6 +252,11 @@ EXTRA_IMAGEDEPENDS = " \
 	webradio \
 	webtv \
 	\
+	autoreboot \
+	epgscan \
+	imgbackup \
+	pr-auto-timer \
+	\
 	themes-ni \
 	themes-tango \
 "
