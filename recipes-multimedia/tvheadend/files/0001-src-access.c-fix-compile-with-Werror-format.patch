@@ -1,0 +1,29 @@
+From 0914bd09cd2439493ab0a7158ff40b45dd747ce5 Mon Sep 17 00:00:00 2001
+From: Thilo Graf <dbt@novatux.de>
+Date: Tue, 7 Sep 2021 11:16:42 +0200
+Subject: [PATCH 2/2] src/access.c: fix compile with -Werror=format
+
+error was:
+
+format '%lu' expects argument of type 'long unsigned int',
+but argument 5 has type 'uint64_t' {aka 'long long unsigned int'} [-Werror=format=]
+---
+ src/access.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/access.c b/src/access.c
+index 4422db912..d43e3fe7c 100644
+--- a/src/access.c
++++ b/src/access.c
+@@ -524,7 +524,7 @@ access_dump_a(access_t *a)
+ 
+   if (a->aa_chrange) {
+     for (first = 0; first < a->aa_chrange_count; first += 2)
+-      tvh_strlcatf(buf, sizeof(buf), l, ", [chmin=%lu, chmax=%lu]",
++      tvh_strlcatf(buf, sizeof(buf), l, ", [chmin=%llu, chmax=%llu]",
+                    a->aa_chrange[first],
+                    a->aa_chrange[first+1]);
+   }
+-- 
+2.20.1
+
