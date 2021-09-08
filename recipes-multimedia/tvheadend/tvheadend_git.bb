@@ -8,7 +8,6 @@ LIC_FILES_CHKSUM = "file://LICENSE.md;md5=9cae5acac2e9ee2fc3aec01ac88ce5db"
 
 SRC_URI = "git://github.com/tvheadend/tvheadend.git \
 	   file://tvheadend.service \
-	   file://0001-src-access.c-fix-compile-with-Werror-format.patch \
 "
 SRCREV = "${AUTOREV}"
 
