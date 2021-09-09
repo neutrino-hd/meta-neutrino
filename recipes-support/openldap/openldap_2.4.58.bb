@@ -1,5 +1,3 @@
-# OpenLDAP, a license free (see http://www.OpenLDAP.org/license.html)
-#
 SUMMARY = "OpenLDAP Directory Service"
 DESCRIPTION = "OpenLDAP Software is an open source implementation of the Lightweight Directory Access Protocol."
 HOMEPAGE = "http://www.OpenLDAP.org/license.html"
@@ -9,24 +7,26 @@ HOMEPAGE = "http://www.OpenLDAP.org/license.html"
 # basically BSD.  opensource.org does not record this license
 # at present (so it is apparently not OSI certified).
 LICENSE = "OpenLDAP"
-LIC_FILES_CHKSUM = "file://COPYRIGHT;md5=9d845a25aef97da753144f1dacbf680c \
+LIC_FILES_CHKSUM = "file://COPYRIGHT;md5=b6dea6c170362fc46381fe3690c722cb \
                     file://LICENSE;md5=153d07ef052c4a37a8fac23bc6031972 \
-"
+                    "
 SECTION = "libs"
 
-LDAP_VER = "${@'.'.join(d.getVar('PV',1).split('.')[0:2])}"
+LDAP_VER = "${@'.'.join(d.getVar('PV').split('.')[0:2])}"
 
-SRC_URI = "ftp://ftp.openldap.org/pub/OpenLDAP/openldap-release/${BP}.tgz \
+SRC_URI = "http://www.openldap.org/software/download/OpenLDAP/openldap-release/${BP}.tgz \
     file://openldap-m4-pthread.patch \
-    file://kill-icu.patch \
     file://openldap-2.4.28-gnutls-gcrypt.patch \
     file://use-urandom.patch \
     file://initscript \
     file://slapd.service \
     file://thread_stub.patch \
+    file://openldap-CVE-2015-3276.patch \
+    file://remove-user-host-pwd-from-version.patch \
 "
-SRC_URI[md5sum] = "49ca65e27891fcf977d78c10f073c705"
-SRC_URI[sha256sum] = "34d78e5598a2b0360d26a9050fcdbbe198c65493b013bb607839d5598b6978c8"
+
+SRC_URI[md5sum] = "c203d735ba69976e5b28dc39006f29b5"
+SRC_URI[sha256sum] = "57b59254be15d0bf6a9ab3d514c1c05777b02123291533134a87c94468f8f47b"
 
 DEPENDS = "util-linux groff-native"
 
@@ -51,7 +51,8 @@ EXTRA_OECONF += "--with-yielding-select=yes"
 EXTRA_OECONF += "--enable-dynamic"
 
 PACKAGECONFIG ??= "gnutls modules \
-                   ldap meta monitor null passwd shell proxycache dnssrv \
+                   mdb ldap meta monitor null passwd shell proxycache dnssrv \
+                   ${@bb.utils.filter('DISTRO_FEATURES', 'ipv6', d)} \
 "
 #--with-tls              with TLS/SSL support auto|openssl|gnutls [auto]
 PACKAGECONFIG[gnutls] = "--with-tls=gnutls,,gnutls libgcrypt"
@@ -59,6 +60,7 @@ PACKAGECONFIG[openssl] = "--with-tls=openssl,,openssl"
 
 PACKAGECONFIG[sasl] = "--with-cyrus-sasl,--without-cyrus-sasl,cyrus-sasl"
 PACKAGECONFIG[modules] = "lt_cv_dlopen_self=yes --enable-modules,--disable-modules,libtool"
+PACKAGECONFIG[ipv6] = "--enable-ipv6,--disable-ipv6"
 
 # SLAPD options
 #
@@ -68,7 +70,7 @@ EXTRA_OECONF += "--enable-crypt"
 # SLAPD BACKEND
 #
 # The backend must be set by the configuration.  This controls the
-# required database. 
+# required database.
 #
 # Backends="bdb dnssrv hdb ldap mdb meta monitor ndb null passwd perl relay shell sock sql"
 #
@@ -93,7 +95,7 @@ PACKAGECONFIG[hdb] = "--enable-hdb=yes,--enable-hdb=no,db"
 PACKAGECONFIG[ldap] = "--enable-ldap=mod,--enable-ldap=no,"
 
 #--enable-mdb          enable mdb database backend no|yes|mod [yes]
-PACKAGECONFIG[mdb] = "--enable-mdb=mod,--enable-mdb=no,"
+PACKAGECONFIG[mdb] = "--enable-mdb=yes,--enable-mdb=no,"
 
 #--enable-meta         enable metadirectory backend no|yes|mod no
 PACKAGECONFIG[meta] = "--enable-meta=mod,--enable-meta=no,"
@@ -144,14 +146,18 @@ PACKAGES += "${PN}-overlay-proxycache"
 # Append URANDOM_DEVICE='/dev/urandom' to CPPFLAGS:
 # This allows tls to obtain random bits from /dev/urandom, by default
 # it was disabled for cross-compiling.
-CPPFLAGS_append = " -D_GNU_SOURCE -DURANDOM_DEVICE=\'/dev/urandom\'"
+CPPFLAGS_append = " -D_GNU_SOURCE -DURANDOM_DEVICE=\'/dev/urandom\' -fPIC"
+
+LDFLAGS_append = " -pthread"
 
 do_configure() {
-    cp ${STAGING_DATADIR_NATIVE}/libtool/build-aux/ltmain.sh ${S}/build
     rm -f ${S}/libtool
     aclocal
     libtoolize --force --copy
     gnu-configize
+    cp ${STAGING_DATADIR_NATIVE}/libtool/build-aux/ltmain.sh ${S}/build
+    cp ${STAGING_DATADIR_NATIVE}/libtool/build-aux/missing ${S}/build
+    cp ${STAGING_DATADIR_NATIVE}/libtool/build-aux/compile ${S}/build
     autoconf
     oe_runconf
 }
@@ -164,13 +170,13 @@ LEAD_SONAME = "libldap-${LDAP_VER}.so.*"
 PACKAGES += "${PN}-slapd ${PN}-slurpd ${PN}-bin"
 
 # Package contents - shift most standard contents to -bin
-FILES_${PN} = "${libdir}/lib*.so.* ${sysconfdir}/openldap/ldap.* ${localstatedir}/openldap-data"
+FILES_${PN} = "${libdir}/lib*.so.* ${sysconfdir}/openldap/ldap.* ${localstatedir}/${BPN}/data"
 FILES_${PN}-slapd = "${sysconfdir}/init.d ${libexecdir}/slapd ${sbindir} ${localstatedir}/run ${localstatedir}/volatile/run \
     ${sysconfdir}/openldap/slapd.* ${sysconfdir}/openldap/schema \
     ${sysconfdir}/openldap/DB_CONFIG.example ${systemd_unitdir}/system/*"
-FILES_${PN}-slurpd = "${libexecdir}/slurpd ${localstatedir}/openldap-slurp ${localstatedir}/run ${localstatedir}/volatile/run"
+FILES_${PN}-slurpd = "${libexecdir}/slurpd ${localstatedir}/openldap-slurp"
 FILES_${PN}-bin = "${bindir}"
-FILES_${PN}-dev = "${includedir} ${libdir}/lib*.so ${libdir}/*.la ${libdir}/*.a ${libexecdir}/openldap/*.a ${libexecdir}/openldap/*.la ${libexecdir}/openldap/*.so"
+FILES_${PN}-dev = "${includedir} ${libdir}/lib*.so ${libdir}/*.la ${libexecdir}/openldap/*.a ${libexecdir}/openldap/*.la ${libexecdir}/openldap/*.so"
 FILES_${PN}-dbg += "${libexecdir}/openldap/.debug"
 
 do_install_append() {
@@ -182,6 +188,7 @@ do_install_append() {
 
     # Installing slapd under ${sbin} is more FHS and LSB compliance
     mv ${D}${libexecdir}/slapd ${D}/${sbindir}/slapd
+    rmdir --ignore-fail-on-non-empty ${D}${libexecdir}
     SLAPTOOLS="slapadd slapcat slapdn slapindex slappasswd slaptest slapauth slapacl slapschema"
     cd ${D}/${sbindir}/
     rm -f ${SLAPTOOLS}
@@ -193,6 +200,18 @@ do_install_append() {
     install -d ${D}${systemd_unitdir}/system/
     install -m 0644 ${WORKDIR}/slapd.service ${D}${systemd_unitdir}/system/
     sed -i -e 's,@SBINDIR@,${sbindir},g' ${D}${systemd_unitdir}/system/*.service
+
+    # Uses mdm as the database
+    #  and localstatedir as data directory ...
+    sed -e 's/# modulepath/modulepath/' \
+        -e 's/# moduleload\s*back_bdb.*/moduleload    back_mdb/' \
+        -e 's/database\s*bdb/database        mdb/' \
+        -e 's%^directory\s*.*%directory   ${localstatedir}/${BPN}/data/%' \
+        -i ${D}${sysconfdir}/openldap/slapd.conf
+
+    mkdir -p ${D}${localstatedir}/${BPN}/data
+
+
 }
 
 INITSCRIPT_PACKAGES = "${PN}-slapd"
@@ -204,15 +223,27 @@ SYSTEMD_AUTO_ENABLE_${PN}-slapd ?= "disable"
 
 PACKAGES_DYNAMIC += "^${PN}-backends.* ^${PN}-backend-.*"
 
+# The modules require their .so to be dynamicaly loaded
+INSANE_SKIP_${PN}-backend-dnssrv  += "dev-so"
+INSANE_SKIP_${PN}-backend-ldap    += "dev-so"
+INSANE_SKIP_${PN}-backend-meta    += "dev-so"
+INSANE_SKIP_${PN}-backend-mdb     += "dev-so"
+INSANE_SKIP_${PN}-backend-monitor += "dev-so"
+INSANE_SKIP_${PN}-backend-null    += "dev-so"
+INSANE_SKIP_${PN}-backend-passwd  += "dev-so"
+INSANE_SKIP_${PN}-backend-shell   += "dev-so"
+
+
 python populate_packages_prepend () {
     backend_dir    = d.expand('${libexecdir}/openldap')
+    do_split_packages(d, backend_dir, 'back_([a-z]*)\.so$', 'openldap-backend-%s', 'OpenLDAP %s backend', prepend=True, extra_depends='', allow_links=True)
     do_split_packages(d, backend_dir, 'back_([a-z]*)\-.*\.so\..*$', 'openldap-backend-%s', 'OpenLDAP %s backend', extra_depends='', allow_links=True)
 
     metapkg = "${PN}-backends"
     d.setVar('ALLOW_EMPTY_' + metapkg, "1")
     d.setVar('FILES_' + metapkg, "")
     metapkg_rdepends = []
-    packages = d.getVar('PACKAGES', 1).split()
+    packages = d.getVar('PACKAGES').split()
     for pkg in packages[1:]:
         if pkg.count("openldap-backend-") and not pkg in metapkg_rdepends and not pkg.count("-dev") and not pkg.count("-dbg") and not pkg.count("static") and not pkg.count("locale"):
             metapkg_rdepends.append(pkg)
@@ -221,3 +252,5 @@ python populate_packages_prepend () {
     packages.append(metapkg)
     d.setVar('PACKAGES', ' '.join(packages))
 }
+
+BBCLASSEXTEND = "native"
