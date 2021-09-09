@@ -14,7 +14,7 @@ DESCRIPTION = "Kerberos is a system for authenticating users and services on a n
 HOMEPAGE = "http://web.mit.edu/Kerberos/"
 SECTION = "console/network"
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://${S}/../NOTICE;md5=7f95bc3d8d0351aa481d56d5e9de20c3"
+LIC_FILES_CHKSUM = "file://${S}/../NOTICE;md5=dd4d0ad4c5e98abb58aa0d312f276791"
 DEPENDS = "bison-native ncurses util-linux e2fsprogs e2fsprogs-native openssl"
 
 inherit autotools-brokensep binconfig perlnative systemd update-rc.d
@@ -31,19 +31,21 @@ SRC_URI = "http://web.mit.edu/kerberos/dist/${BPN}/${SHRT_VER}/${BP}.tar.gz \
            file://krb5-kdc.service \
            file://krb5-admin-server.service \
 "
-SRC_URI[md5sum] = "848e9b80d6aaaa798e3f3df24b83c407"
-SRC_URI[sha256sum] = "214ffe394e3ad0c730564074ec44f1da119159d94281bbec541dc29168d21117"
+SRC_URI[md5sum] = "aa4337fffa3b61f22dbd0167f708818f"
+SRC_URI[sha256sum] = "1a4bba94df92f6d39a197a10687653e8bfbc9a2076e129f6eb92766974f86134"
 
 CVE_PRODUCT = "kerberos"
+CVE_VERSION = "5-${PV}"
 
 S = "${WORKDIR}/${BP}/src"
 
-PACKAGECONFIG ??= ""
+PACKAGECONFIG ??= "pkinit"
 PACKAGECONFIG[libedit] = "--with-libedit,--without-libedit,libedit"
 PACKAGECONFIG[openssl] = "--with-crypto-impl=openssl,,openssl"
 PACKAGECONFIG[keyutils] = "--enable-keyutils,--disable-keyutils,keyutils"
 PACKAGECONFIG[ldap] = "--with-ldap,--without-ldap,openldap"
 PACKAGECONFIG[readline] = "--with-readline,--without-readline,readline"
+PACKAGECONFIG[pkinit] = "--enable-pkinit, --disable-pkinit"
 
 EXTRA_OECONF += " --without-tcl --with-system-et --disable-rpath"
 CACHED_CONFIGUREVARS += "krb5_cv_attr_constructor_destructor=yes ac_cv_func_regcomp=yes \
@@ -103,6 +105,7 @@ PACKAGES =+ "${PN}-admin-server \
              ${PN}-kpropd \
              ${PN}-otp \
              ${PN}-pkinit \
+             ${PN}-spake \
              ${PN}-user \
              libgssapi-krb5 \
              libgssrpc \
@@ -149,6 +152,7 @@ FILES_${PN}-kdc-ldap = "${libdir}/krb5/libkdb_ldap${SOLIBS} \
 FILES_${PN}-kpropd = "${sbindir}/kpropd"
 FILES_${PN}-otp = "${libdir}/krb5/plugins/preauth/otp.so"
 FILES_${PN}-pkinit = "${libdir}/krb5/plugins/preauth/pkinit.so"
+FILES_${PN}-spake = "${libdir}/krb5/plugins/preauth/spake.so"
 FILES_${PN}-user = "${bindir}/k*"
 
 FILES_libgssapi-krb5 = "${libdir}/libgssapi_krb5${SOLIBS}"
