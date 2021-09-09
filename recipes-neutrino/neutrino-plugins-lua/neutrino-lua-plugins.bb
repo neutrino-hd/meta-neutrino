@@ -3,7 +3,7 @@ include neutrino-lua-plugins-source.inc
 DESCRIPTION = "Lua plugins for Neutrino"
 LICENSE = "GPL-2.0"
 MAINTAINER = "tuxbox-neutrino"
-LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0-only;md5=801f80980d171dd6425610833a22dbe6"
 HOMEPAGE = "https://github.com/tuxbox-neutrino/plugin-scripts-lua.git"
 
 RDEPENDS_${PN} = " \
