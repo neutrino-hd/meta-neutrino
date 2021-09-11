@@ -5,18 +5,28 @@ LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://COPYING;md5=b1a795ac1a06805cf8fd74920bc46b5c"
 DEPENDS = "libexif libjpeg-turbo libid3tag flac libvorbis sqlite3 ffmpeg util-linux virtual/libiconv"
 
-PR = "r1"
 
-SRC_URI = "${SOURCEFORGE_MIRROR}/project/minidlna/minidlna/${PV}/minidlna-${PV}.tar.gz \
-		file://minidlna.conf \
-		file://minidlna.service \
+VERSION = "1"
+MINOR = "3"
+MICRO = "0"
+PV = "${VERSION}.${MINOR}.${MICRO}"
+PR = "r2"
+
+SRC_URI = " \
+	git://git.code.sf.net/p/minidlna/git;protokoll=https;tag=v${VERSION}_${MINOR}_${MICRO} \
+	file://minidlna.conf \
+	file://minidlna.service \
+	file://0001-Update-Gettext-version.patch \
+	file://0002-Revert-Fix-some-build-warnings-when-building-with-mu.patch \
 "
 
-SRC_URI[sha256sum] = "47d9b06b4c48801a4c1112ec23d24782728b5495e95ec2195bbe5c81bc2d3c63"
-
-S = "${WORKDIR}/${PN}-${PV}"
+S = "${WORKDIR}/git"
 
 inherit autotools-brokensep gettext systemd
+
+# This remove "--exclude=autopoint" option from autoreconf argument to avoid
+# configure.ac:30: error: required file './ABOUT-NLS' not found
+EXTRA_AUTORECONF = ""
 
 PACKAGES =+ "${PN}-utils"
 
