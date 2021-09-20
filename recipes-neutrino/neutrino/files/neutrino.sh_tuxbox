@@ -11,5 +11,8 @@ elif [ $RET -eq 1 ]; then
 elif [ $RET -eq 2 ]; then
         echo "...Reboot" > /dev/dbox/oled0
         systemctl reboot
+elif [ $RET -eq 3 ]; then
+        echo "...Restart" > /dev/dbox/oled0
+        systemctl restart neutrino
 fi
 
