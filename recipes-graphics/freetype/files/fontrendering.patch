@@ -1,11 +1,26 @@
---- a/include/freetype/config/ftoption.h	2019-02-23 10:09:06.000000000 +0100
-+++ b/include/freetype/config/ftoption.h	2019-08-25 06:40:06.165420461 +0200
-@@ -126,7 +126,7 @@
-    * macro is not defined, FreeType offers alternative LCD rendering
-    * technology that produces excellent output without LCD filtering.
+From df83d4e5e47bb04d2542984f006f6f532a1ea215 Mon Sep 17 00:00:00 2001
+From: Markus Volk <f_l_k@t-online.de>
+Date: Sun, 24 Sep 2017 13:22:44 +0200
+Subject: [PATCH] initial commit
+
+%% original patch: fontrendering.patch
+---
+ include/freetype/config/ftoption.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/include/freetype/config/ftoption.h b/include/freetype/config/ftoption.h
+index 097f19b..e5de62e 100644
+--- a/include/freetype/config/ftoption.h
++++ b/include/freetype/config/ftoption.h
+@@ -124,7 +124,7 @@ FT_BEGIN_HEADER
+    * When this macro is not defined, FreeType offers alternative LCD
+    * rendering technology that produces excellent output.
     */
 -/* #define FT_CONFIG_OPTION_SUBPIXEL_RENDERING */
 +#define FT_CONFIG_OPTION_SUBPIXEL_RENDERING
  
  
    /**************************************************************************
+-- 
+2.20.1
+
