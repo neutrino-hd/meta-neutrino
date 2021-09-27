@@ -13,3 +13,6 @@ do_install () {
 	install -d ${D}${N_PLUGIN_DIR}
 	oe_runmake install DESTDIR=${D}
 }
+
+FILES_${PN} += "/var \
+"
