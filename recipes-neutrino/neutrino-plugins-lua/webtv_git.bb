@@ -1,10 +1,10 @@
 include neutrino-lua-plugins-target-pattern.inc
 
-SUMMARY = "Content for ${SRC_NAME}, required by Neutrino bouqets. Contributed by tuxbox, ni."
+SUMMARY = "Content for ${SRC_NAME}, required by Neutrino bouquets. Contributed by tuxbox, ni."
 MAINTAINER = "community"
 SECTION = "optional"
 
-PR = "r1"
+PR = "r2"
 PV = "0.${SRCPV}"
 
 SRCREV_prov0 = "${AUTOREV}"
@@ -28,24 +28,10 @@ SRC_URI = " \
 ## Finally we will patch some adjustments.
 do_patch () {
 	WEBTVPROVLIST="prov0 prov1"
-	WEBTVLIST=" \
-			best_bitrate_m3u8 \
-			LocalTVEpg \
-			plutotv  \
-			rakutentv \
-			yt_live "
 
-	for p in $WEBTVPROVLIST ; do
-		for w in $WEBTVLIST ; do
-			LUAFILE=${SRC_RAW}/${SRC_NAME}-$p/$w.lua
-			if test -f $LUAFILE; then
-				cp -f $LUAFILE ${S}
-			fi
-			XMLFILE=${SRC_RAW}/${SRC_NAME}-$p/$w.xml
-			if test -f $XMLFILE; then
-				cp -f $XMLFILE ${S}
-			fi
-		done
+	for p in $WEBTVPROVLIST; do
+		cp  ${SRC_RAW}/${SRC_NAME}-$p/*.lua ${S}
+		cp  ${SRC_RAW}/${SRC_NAME}-$p/*.xml ${S}
 	done
 
 	git -C ${S} apply ${WORKDIR}/0001-yt_live.xml-update-live-channels.patch
