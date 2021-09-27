@@ -80,6 +80,7 @@ EXTRA_OECONF = " \
 	--with-webradiodir=${N_WEBRADIO_DIR} \
 	--with-webradiodir_var=${N_WEBRADIO_DIR_VAR} \
 	--with-luaplugindir=${N_LUAPLUGIN_DIR} \
+	--with-luaplugindir_var=${N_LUAPLUGIN_DIR_VAR} \
 	--with-gamesdir=${N_GAMES_DIR}  \
 	--with-iconsdir=${N_ICONS_DIR}  \
 	--with-iconsdir_var=${N_ICONS_DIR}  \
