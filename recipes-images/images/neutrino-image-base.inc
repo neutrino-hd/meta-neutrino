@@ -166,7 +166,6 @@ PLUGIN_INSTALL = " \
 	msgbox \
 	shellexec \
 	tuxcom \
-	tuxwetter \
 "
 
 PLUGIN_LUA_INSTALL = "	\
@@ -181,6 +180,8 @@ PLUGIN_LUA_INSTALL = "	\
 	stb-flash-local \
 	stb-restore \
 	stb-startup \
+	webradio \
+	webtv \
 "
 
 PLUGIN_INSTALL += " \
@@ -252,10 +253,15 @@ EXTRA_IMAGEDEPENDS = " \
 	webradio \
 	webtv \
 	\
+	asc2uni \
 	autoreboot \
 	epgscan \
 	imgbackup \
+	logomask \
 	pr-auto-timer \
+	tuxcal \
+	tuxmail \
+	tuxwetter \
 	\
 	themes-ni \
 	themes-tango \
