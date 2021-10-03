@@ -161,6 +161,7 @@ EXTERNAL_WIFI_DRIVERS = " \
 	"
 
 PLUGIN_INSTALL = " \
+	asc2uni \
 	getrc \
 	input \
 	msgbox \
@@ -180,8 +181,10 @@ PLUGIN_LUA_INSTALL = "	\
 	stb-flash-local \
 	stb-restore \
 	stb-startup \
+	to-web-tv-xml \
 	webradio \
 	webtv \
+	zdfhbbtv \
 "
 
 PLUGIN_INSTALL += " \
@@ -249,11 +252,7 @@ EXTRA_IMAGEDEPENDS = " \
 	stb-log \
 	stb-move \
 	stb-shell \
-	to-web-tv-xml \
-	webradio \
-	webtv \
 	\
-	asc2uni \
 	autoreboot \
 	epgscan \
 	imgbackup \
