@@ -5,7 +5,10 @@ LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=80
 RDEPENDS_${PN} = "lcd4linux"
 
 SRC_URI = "git://github.com/horsti58/SamsungLCD4Linux;protocol=https \
+	file://0001-adopt-design-and-removed-brandings.patch \
 "
+
+PATCHTOOL = "git"
 
 SRCREV = "${AUTOREV}"
 PV = "${SRCPV}"
