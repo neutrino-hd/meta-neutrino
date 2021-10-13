@@ -4,6 +4,8 @@ SUMMARY = "Content for ${SRC_NAME}, required by Neutrino bouquets. Contributed b
 MAINTAINER = "community"
 SECTION = "optional"
 
+DEPENDS = "plutotv-update"
+
 PR = "r2"
 PV = "0.${SRCPV}"
 
