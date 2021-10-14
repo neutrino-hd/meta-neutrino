@@ -10,8 +10,8 @@ HOMEPAGE = "https://ctdb.samba.org/"
 LICENSE = "GPL-2.0+ & LGPL-3.0+ & GPL-3.0+"
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=d32239bcb673463ab874e80d47fae504 \
-                    file://${COREBASE}/meta/files/common-licenses/LGPL-3.0;md5=bfccfe952269fff2b407dd11f2f3083b \
-                    file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6 \
+                    file://${COMMON_LICENSE_DIR}/LGPL-3.0;md5=bfccfe952269fff2b407dd11f2f3083b \
+                    file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6 \
                     "
 
 SRC_URI = "https://ftp.samba.org/pub/${PN}/${BP}.tar.gz \

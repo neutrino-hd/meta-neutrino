@@ -1,6 +1,6 @@
 DESCRIPTION = "Sortierte Senderliste SAT 19.2E-13.0E-23.5E-28.2E von Annie"
 LICENSE = "BSD-2-Clause"
-LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/BSD-2-Clause;md5=cb641bc04cda31daea161b1bc15da69f"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/BSD-2-Clause;md5=cb641bc04cda31daea161b1bc15da69f"
 HOMEPAGE = "https://github.com/neutrino-hd/settings-annie"
 
 S = "${WORKDIR}/git"

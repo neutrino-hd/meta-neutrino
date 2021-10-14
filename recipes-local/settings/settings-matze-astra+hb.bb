@@ -1,6 +1,6 @@
 DESCRIPTION = "Settings for Neutrino made by Matze - Astra + Hotbird"
 LICENSE = "BSD-2-Clause"
-LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/BSD-2-Clause;md5=cb641bc04cda31daea161b1bc15da69f"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/BSD-2-Clause;md5=cb641bc04cda31daea161b1bc15da69f"
 HOMEPAGE = "http://matzesetting.brinkster.net"
 
 S = "${WORKDIR}"

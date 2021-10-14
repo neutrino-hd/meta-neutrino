@@ -1,7 +1,7 @@
 DESCRIPTION = "Syntax Highlighting für GNU nano"
 HOMEPAGE = "http://www.nano-editor.org/"
 LICENSE = "GPL-3.0"
-LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-3.0;md5=c79ff39f19dfec6d293b95dea7b07891"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-3.0;md5=c79ff39f19dfec6d293b95dea7b07891"
 SECTION = "console/utils"
 RDEPENDS_${PN} = "nano"
 

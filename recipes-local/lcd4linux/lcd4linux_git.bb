@@ -1,6 +1,6 @@
 SUMMARY = "LCD4Linux is a small program that grabs information from the kernel and some subsystems and displays it on an external liquid crystal display."
 LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 
 DEPENDS = "libusb1 libusb-compat gd ncurses readline jpeg dbus-glib sqlite3"
 RDEPENDS_${PN} = "jpeg samsunglcd4linux"

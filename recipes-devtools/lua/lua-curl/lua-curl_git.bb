@@ -1,6 +1,6 @@
 DESCRIPTION = "lua-cURL"
 LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 HOMEPAGE = "https://github.com/Lua-cURL/Lua-cURLv3"
 DEPENDS += "curl virtual/lua"
 RDEPENDS_${PN} += "virtual/lua"

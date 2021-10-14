@@ -1,7 +1,7 @@
 DESCRIPTION = "A utility program for spinning-down external disks after a period of idle time"
 HOMEPAGE = "http://hd-idle.sourceforge.net/"
 LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
 DEPENDS = ""
 PR = "1"
 
