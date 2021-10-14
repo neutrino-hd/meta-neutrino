@@ -217,7 +217,6 @@ IMAGE_INSTALL = " \
 	openssh \
 	openssl \
 	opkg \
-	opkg-upgrade \
 	oscam \
 	pv \
 	rpcbind \
