@@ -4,7 +4,7 @@ HOMEPAGE = "http://www.libroxml.net"
 SECTION = "libs"
 PRIORITY = "optional"
 LICENSE = "LGPLv2.1"
-LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/LGPL-2.1;md5=1a6d268fd218675ffea8be556788b780"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/LGPL-2.1;md5=1a6d268fd218675ffea8be556788b780"
 
 
 SRC_URI[md5sum] = "a975f91be150f7a19168a45ce15769ca"

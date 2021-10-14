@@ -2,7 +2,7 @@ SUMMARY = "OSEmu: emu for oscam/doscam"
 HOMEPAGE = "https://github.com/nautilus7/OSEmu"
 LICENSE = "GPL-3.0"
 PRIORITY = "optional"
-LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/GPL-3.0;md5=c79ff39f19dfec6d293b95dea7b07891"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-3.0;md5=c79ff39f19dfec6d293b95dea7b07891"
 
 SRC_URI[md5sum] = "c93cd8e3417a6432396c49a488edd14a"
 SRC_URI[sha256sum] = "5dd2e1bb7a82798a325d947d7fd77f383e47c68d2582a0953020e3bc57191039"

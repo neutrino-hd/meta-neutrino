@@ -4,7 +4,7 @@ HOMEPAGE = "http://tor.eff.org"
 SECTION = "console/network"
 PRIORITY = "optional"
 LICENSE = "BSD"
-LIC_FILES_CHKSUM = "file://${COREBASE}/meta/files/common-licenses/BSD;md5=3775480a712fc46a69647678acb234cb"
+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/BSD;md5=3775480a712fc46a69647678acb234cb"
 DEPENDS = "libevent openssl zlib socat tsocks"
 RDEPENDS_${PN} = "socat tsocks"
 SRC_URI = "http://tor.eff.org/dist/${P}.tar.gz \
