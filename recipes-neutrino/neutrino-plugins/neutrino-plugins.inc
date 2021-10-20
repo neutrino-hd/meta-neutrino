@@ -59,6 +59,7 @@ EXTRA_OECONF += " \
 	--with-iconsdir=${N_ICONS_DIR}  \
 	--with-iconsdir_var=${N_ICONS_DIR}  \
 	--with-configdir=${N_CONFIG_DIR} \
+	--with-zapitdir=${N_ZAPITDIR} \
 "
 
 N_CFLAGS = "-Wall -W -Wshadow -g -O2 -funsigned-char -I${STAGING_INCDIR}/freetype2 -fcommon"

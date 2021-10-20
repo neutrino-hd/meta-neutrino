@@ -84,6 +84,7 @@ EXTRA_OECONF = " \
 	--with-gamesdir=${N_GAMES_DIR}  \
 	--with-iconsdir=${N_ICONS_DIR}  \
 	--with-iconsdir_var=${N_ICONS_DIR}  \
+	--with-zapitdir=${N_ZAPITDIR} \
 	\
 	--with-tmdb-dev-key="${TMDB_DEV_KEY}" \
 	--with-omdb-api-key="${OMDB_API_KEY}" \
@@ -110,7 +111,8 @@ EXTRA_OEMAKE += "'ARFLAGS=rc'"
 # VERSION_FILE = "${N_PREFIX}/.version"
 
 N_CFLAGS = "-Wall -Wextra -Wshadow -Wno-psabi -g -O2 -fno-strict-aliasing -rdynamic -DENABLE_FREESATEPG -DNEW_LIBCURL \
--I${S}/lib/libcoolstream2 -I${STAGING_INCDIR}/freetype2 -I${STAGING_INCDIR}/sigc++-2.0 -I${STAGING_INCDIR}/glib-2.0 -I${STAGING_LIBDIR}/glib-2.0/include -I${STAGING_INCDIR}/luajit-2.1"
+-I${S}/lib/libcoolstream2 -I${STAGING_INCDIR}/freetype2 -I${STAGING_INCDIR}/sigc++-2.0 -I${STAGING_INCDIR}/glib-2.0 -I${STAGING_LIBDIR}/glib-2.0/include -I${STAGING_INCDIR}/luajit-2.1 \
+"
 
 N_CXXFLAGS = "${N_CFLAGS}"
 
