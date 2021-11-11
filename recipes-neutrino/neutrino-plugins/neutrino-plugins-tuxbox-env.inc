@@ -9,5 +9,5 @@ SRCREV_FORMAT = "${MAINTAINER}-${PLUGIN_NAME}"
 SUB_PATH ?= ""
 
 SRC_URI += " \
-	git://github.com/tuxbox-neutrino/plugin-${PLUGIN_NAME}.git;name=${PLUGIN_NAME};subpath=${SUB_PATH};protocol=https;destsuffix=git/${PLUGIN_NAME} \
+	git://github.com/tuxbox-neutrino/plugin-${PLUGIN_NAME}.git;name=${PLUGIN_NAME};subpath=${SUB_PATH};protocol=https;destsuffix=src/${PLUGIN_NAME} \
 "

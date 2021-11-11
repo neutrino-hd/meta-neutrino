@@ -36,7 +36,7 @@ SRC_URI = " \
 	file://Makefile.am.template \
 "
 
-S = "${WORKDIR}/git"
+S = "${WORKDIR}/src"
 
 ALLOW_EMPTY_neutrino-plugins = "1"
 
@@ -69,26 +69,31 @@ N_LDFLAGS += "-Wl,--hash-style=gnu -Wl,-rpath-link,${STAGING_DIR_HOST}${libdir},
 do_patch () {
 	# Here we misuse the patch routine to assemble and modify some required files in the source directory.
 	# First we move a general fileset e.g. autogen.sh, acinclude.m4, COPYING etc. into source directory...
-	cp -f acinclude.m4  autogen.sh ${S}
+	if test -f ${WORKDIR}/acinclude.m4; then
+		cp -f ${WORKDIR}/acinclude.m4 ${S}/acinclude.m4
+	fi
+	if test -f ${WORKDIR}/autogen.sh; then
+		cp -f ${WORKDIR}/autogen.sh ${S}/autogen.sh
+	fi
 
 	# ... then we move the templates for configure.ac and Makefile.am into source directory.
 	# Btw: if we found an extra configure.ac or template file, it will be used instead default template file, because
 	# in some cases it could be easier to have a completed file.
-	if test -f "${WORKDIR}/configure.ac.${PLUGIN_NAME}"; then
-		cp -f "${WORKDIR}/configure.ac.${PLUGIN_NAME}" "${S}"/configure.ac
+	if test -f ${WORKDIR}/configure.ac.${PLUGIN_NAME}; then
+		cp -f ${WORKDIR}/configure.ac.${PLUGIN_NAME} ${S}/configure.ac
 	else
-		cp -f "${WORKDIR}/configure.ac.template" "${S}"/configure.ac
+		cp -f ${WORKDIR}/configure.ac.template ${S}/configure.ac
 	fi
 
-	if test -f "${WORKDIR}/Makefile.am.${PLUGIN_NAME}"; then
-		cp -f "${WORKDIR}/Makefile.am.${PLUGIN_NAME}" "${S}"/Makefile.am
+	if test -f ${WORKDIR}/Makefile.am.${PLUGIN_NAME}; then
+		cp -f ${WORKDIR}/Makefile.am.${PLUGIN_NAME} ${S}/Makefile.am
 	else
-		cp -f "${WORKDIR}/Makefile.am.template" "${S}"/Makefile.am
+		cp -f ${WORKDIR}/Makefile.am.template ${S}/Makefile.am
 	fi
 
 	# copy available Makefiles from "${WORKDIR}"/${PLUGIN_NAME} in to plugin source directory
-	if test -f "${WORKDIR}/${PLUGIN_NAME}/Makefile.am"; then
-		cp -f "${WORKDIR}/${PLUGIN_NAME}/Makefile.am" "${S}/${PLUGIN_NAME}"
+	if test -f ${WORKDIR}/${PLUGIN_NAME}/Makefile.am; then
+		cp -f ${WORKDIR}/${PLUGIN_NAME}/Makefile.am ${S}/${PLUGIN_NAME}
 	fi
 
 	# Finally we modify configure.ac and Makefile.am, means: we replace the placeholders
