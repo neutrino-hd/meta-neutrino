@@ -13,6 +13,6 @@ SRCREV_FORMAT = "${MAINTAINER}-${PLUGIN_NAME}"
 SUB_PATH ?= "${PLUGIN_NAME}"
 
 SRC_URI += " \
-	git://github.com/neutrino-images/ni-neutrino-plugins.git;name=${PLUGIN_NAME};protocol=https;subpath=${SUB_PATH};destsuffix=git/${PLUGIN_NAME} \
-	git://github.com/neutrino-images/ni-neutrino-plugins.git;name=include;protocol=https;subpath=include;destsuffix=git/include \
+	git://github.com/neutrino-images/ni-neutrino-plugins.git;name=${PLUGIN_NAME};protocol=https;subpath=${SUB_PATH};destsuffix=src/${PLUGIN_NAME} \
+	git://github.com/neutrino-images/ni-neutrino-plugins.git;name=include;protocol=https;subpath=include;destsuffix=src/include \
 "
