@@ -174,6 +174,7 @@ PLUGIN_LUA_INSTALL = "	\
 	logoupdater \
 	mediathek \
 	mtv \
+	plutotv-vod \
 	rss \
 	settingsupdater \
 	stb-backup \
