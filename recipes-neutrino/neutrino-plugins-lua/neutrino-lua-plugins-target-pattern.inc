@@ -9,4 +9,5 @@ SRC_SUBPATH = "plugins/${SRC_NAME}"
 
 do_install () {
 	cp -rf ${S}/${SRC_SUBPATH}/* ${D}${N_PLUGIN_DIR}
+	rm -f ${D}${N_PLUGIN_DIR}/Makefile.*
 }
