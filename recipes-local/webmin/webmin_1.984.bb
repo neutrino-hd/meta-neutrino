@@ -35,7 +35,7 @@ SRC_URI += " \
 
 RDEPENDS-${PN}-module += "perl"
 
-SRC_URI[sha256sum] = "cbf3cbc0644b3d94c0e56d364c3f57d6264498534e69273d37f7e48a8f0c81a4"
+SRC_URI[sha256sum] = "e82477b205264a3b6b420f86b3e33a3e1bd7ee73ecbe421a6842a20811226b40"
 
 inherit perlnative systemd
 
