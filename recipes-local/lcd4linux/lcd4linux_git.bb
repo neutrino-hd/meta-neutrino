@@ -32,7 +32,7 @@ do_setlibtool_aarch64 (){
 EXTRE_OECONF += "\
     --with-ncurses=${STAGING_LIBDIR}/..\
     --with-drivers='DPF,SamsungSPF,VUSOLO4K,PNG' \
-    --with-plugins='all,!apm,!asterisk,!dbus,!dvb,!gps,!hddtemp,!huawei,!imon,!isdn,!kvv,!mpd,!mpris_dbus,!mysql,!pop3,!ppp,!python,!qnaplog,!raspi,!sample,!seti,!w1retap,!wireless,!xmms' \
+    --with-plugins='all,!dbus,!mpris_dbus,!asterisk,!isdn,!pop3,!ppp,!seti,!huawei,!imon,!kvv,!sample,!w1retap,!wireless,!xmms,!gps,!mpd,!mysql,!qnaplog,!iconv,!apm,!raspi,!dvb,!hddtemp,!python' \
     --without-x \
 "
 
