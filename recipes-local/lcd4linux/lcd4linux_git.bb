@@ -9,6 +9,8 @@ SRC_URI = "git://github.com/TangoCash/lcd4linux.git;protocol=https \
        file://lcd4linux.service \
 "
 
+include lcd4linux.inc
+
 SRCREV = "${AUTOREV}"
 PV = "${SRCPV}"
 S =  "${WORKDIR}/git"
