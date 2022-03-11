@@ -1,0 +1,25 @@
+From aa8e1b452feb8f4d6bbff889bb793f0bbea9e134 Mon Sep 17 00:00:00 2001
+From: Thilo Graf <dbt@novatux.de>
+Date: Fri, 11 Mar 2022 12:34:36 +0100
+Subject: [PATCH 1/4] Makefile.am: fix libtool path
+
+---
+ Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index 36de70d..613cb75 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -13,7 +13,7 @@ bin_PROGRAMS = lcd4linux
+ # Fixme: -W should be renamed to -Wextra someday...
+ AM_CFLAGS = -D_GNU_SOURCE -Wall -Wextra -fno-strict-aliasing
+ 
+-LIBTOOL=libtool
++LIBTOOL=$(shell which libtool)
+ ACLOCAL_AMFLAGS=-I m4
+ # use this for lots of warnings
+ #AM_CFLAGS = -D_GNU_SOURCE -std=c99 -m64 -Wall -W -pedantic -Wno-variadic-macros -fno-strict-aliasing
+-- 
+2.35.1
+

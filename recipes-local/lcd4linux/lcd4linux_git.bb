@@ -6,7 +6,11 @@ DEPENDS = "libusb1 libusb-compat gd ncurses readline jpeg dbus-glib sqlite3"
 RDEPENDS_${PN} = "jpeg samsunglcd4linux"
 
 SRC_URI = "git://github.com/TangoCash/lcd4linux.git;protocol=https \
-       file://lcd4linux.service \
+	file://lcd4linux.service \
+	file://0001-Makefile.am-fix-libtool-path.patch \
+	file://0002-gitignore-add-some-build-stuff.patch \
+	file://0003-drv_TEW673GRU_c-fix-build.patch \
+	file://0004-INSTALL-update.patch \
 "
 
 include lcd4linux.inc
