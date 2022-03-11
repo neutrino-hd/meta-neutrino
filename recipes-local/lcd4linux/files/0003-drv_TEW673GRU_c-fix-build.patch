@@ -1,0 +1,26 @@
+From 70d24519e9e670ef51c47a82f6bad4afae552857 Mon Sep 17 00:00:00 2001
+From: Thilo Graf <dbt@novatux.de>
+Date: Fri, 11 Mar 2022 12:43:35 +0100
+Subject: [PATCH 3/4] drv_TEW673GRU.c: fix build
+
+drv_generic_graphic_real_clear was not declared
+---
+ drv_TEW673GRU.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drv_TEW673GRU.c b/drv_TEW673GRU.c
+index 60f0d82..5c4bc6e 100644
+--- a/drv_TEW673GRU.c
++++ b/drv_TEW673GRU.c
+@@ -375,7 +375,7 @@ int drv_TEW673GRU_init(const char *section, const int quiet)
+ 
+     if (MODE) {
+ 	drv_generic_graphic_real_blit = drv_TEW673GRU_blit;
+-	drv_generic_graphic_real_clear = drv_TEW673GRU_clear;
++// 	drv_generic_graphic_real_clear = drv_TEW673GRU_clear;
+     } else {
+ 	drv_generic_text_real_write = drv_TEW673GRU_write;
+     }
+-- 
+2.35.1
+
