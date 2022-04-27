@@ -12,8 +12,8 @@ SRC_URI = " \
 	http://regex.info/code/JSON.lua \
 "
 
-SRC_URI[md5sum] = "dc70adca6d27ec74b4547913ecd5957d"
-SRC_URI[sha256sum] = "abea53010e9e6897095623967eee6b6d74b7f8da13442176dcef04e01160e4f2"
+SRC_URI[md5sum] = "8575931d92291618ddf387940c85051a"
+SRC_URI[sha256sum] = "d536afcef0904370ad6d202758bc1b2b9b0debd19a4c7fa0402030cd1ecd65c5"
 
 S = "${WORKDIR}"
 
