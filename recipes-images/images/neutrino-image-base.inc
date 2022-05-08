@@ -242,6 +242,8 @@ EXTRA_IMAGEDEPENDS = " \
 	webmin \
 	\
 	browser \
+	dropbear \
+	ethtool \
 	favorites-to-bin \
 	heizoelpreise \
 	logomask \
