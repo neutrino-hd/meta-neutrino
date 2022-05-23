@@ -119,12 +119,10 @@ BIG_IMAGE_FILES = " \
 	procps \
 	proftpd \
 	pulseaudio \
-	samba \
 	sed \
 	usbutils \
 	util-linux \
 	util-linux-fstrim \
-	webmin \
 	wpa-supplicant \
 	zsh \
 "
