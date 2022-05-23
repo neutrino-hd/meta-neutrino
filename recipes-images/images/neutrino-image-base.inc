@@ -192,7 +192,7 @@ PLUGIN_INSTALL += " \
 	${PLUGIN_LUA_INSTALL} \
 "
 
-IMAGE_INSTALL = " \
+IMAGE_INSTALL += " \
 	${PLUGIN_INSTALL} \
 	autofs \
 	bc \
