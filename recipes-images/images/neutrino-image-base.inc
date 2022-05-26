@@ -91,7 +91,6 @@ BIG_IMAGE_FILES = " \
 	bzip2 \
 	cifs-utils \
 	dvb-femon \
-	etckeeper \
 	exfat-utils \
 	f2fs-tools \
 	fbset \
@@ -243,6 +242,7 @@ EXTRA_IMAGEDEPENDS = " \
 	\
 	browser \
 	dropbear \
+	etckeeper \
 	ethtool \
 	favorites-to-bin \
 	heizoelpreise \
