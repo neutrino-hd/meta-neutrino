@@ -12,7 +12,6 @@ PV = "${SRCPV}"
 
 SRC_URI = " \
 	git://github.com/neutrino-images/ni-rtmpdump.git;protocol=https \
-	file://0001-Add-my-modifications-to-some-files.patch;apply=no \
 "
 
 S = "${WORKDIR}/git"
