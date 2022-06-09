@@ -1,0 +1,39 @@
+From e955996e3f0eae9c518d4e6e036ba3e1636a4698 Mon Sep 17 00:00:00 2001
+From: Unknown User <unknown@unknown.user>
+Date: Thu, 9 Jun 2022 20:42:09 +0200
+Subject: [PATCH 11/14] djmount: libupnp-1.6.6
+
+Signed-off-by: Thilo Graf <dbt@novatux.de>
+---
+ djmount/fuse_main.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/djmount/fuse_main.c b/djmount/fuse_main.c
+index f47a6e8..ae74cb3 100644
+--- a/djmount/fuse_main.c
++++ b/djmount/fuse_main.c
+@@ -618,7 +618,7 @@ main (int argc, char *argv[])
+ 	}  
+ 	Log_Colorize (true);
+ #if UPNP_HAVE_DEBUG
+-	SetLogFileNames ("/dev/null", "/dev/null");
++	UpnpSetLogFileNames ("/dev/null", "/dev/null");
+ #endif
+ 	
+ 	/*
+@@ -745,10 +745,10 @@ main (int argc, char *argv[])
+ 					Log_SetMaxLevel (LOG_ERROR);
+ #if UPNP_HAVE_DEBUG
+ 				} else if (strcmp (s, "upnperr") == 0) {
+-					SetLogFileNames ("/dev/stdout", 
++					UpnpSetLogFileNames ("/dev/stdout",
+ 							 "/dev/null");
+ 				} else if (strcmp (s, "upnpall") == 0) {
+-					SetLogFileNames ("/dev/stdout", 
++					UpnpSetLogFileNames ("/dev/stdout",
+ 							 "/dev/stdout");
+ #endif
+ 				} else {
+-- 
+2.35.1
+

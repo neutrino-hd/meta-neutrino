@@ -1,0 +1,26 @@
+From 00f7657c26ccc126149ec33de773f6787588c8c6 Mon Sep 17 00:00:00 2001
+From: Unknown Author <unknown@unknown.mail>
+Date: Tue, 7 Jun 2022 20:50:37 +0200
+Subject: [PATCH 09/14] djmount: pthread-fix
+
+Signed-off-by: Thilo Graf <dbt@novatux.de>
+---
+ libupnp/threadutil/inc/ithread.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/libupnp/threadutil/inc/ithread.h b/libupnp/threadutil/inc/ithread.h
+index b785f63..5b2e834 100755
+--- a/libupnp/threadutil/inc/ithread.h
++++ b/libupnp/threadutil/inc/ithread.h
+@@ -179,7 +179,7 @@ extern "C" {
+  *      Returns EINVAL if the kind is not supported.
+  *      See man page for pthread_mutexattr_setkind_np
+  *****************************************************************************/
+-#define ithread_mutexattr_setkind_np pthread_mutexattr_setkind_np
++#define ithread_mutexattr_setkind_np pthread_mutexattr_settype
+ 
+ 
+ /****************************************************************************
+-- 
+2.35.1
+

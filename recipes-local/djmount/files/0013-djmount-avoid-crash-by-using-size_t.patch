@@ -1,0 +1,25 @@
+From 520eecce9c13d5310aee5d4033feb1a6053235f3 Mon Sep 17 00:00:00 2001
+From: Thilo Graf <dbt@novatux.de>
+Date: Thu, 9 Jun 2022 20:47:30 +0200
+Subject: [PATCH 13/14] djmount: avoid crash-by using size_t
+
+---
+ djmount/file_buffer.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/djmount/file_buffer.c b/djmount/file_buffer.c
+index 9d3e8ae..4a927ac 100644
+--- a/djmount/file_buffer.c
++++ b/djmount/file_buffer.c
+@@ -212,7 +212,7 @@ FileBuffer_Read (FileBuffer* file, char* buffer,
+ 		 * to return the exact number of bytes requested.
+ 		 */
+ 		do {
+-			unsigned int read_size = size - n;
++			size_t read_size = size - n;
+ 			if (n > 0) {
+ 				Log_Printf (LOG_DEBUG, 
+ 					    "UpnpReadHttpGet loop ! url '%s' "
+-- 
+2.35.1
+

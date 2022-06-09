@@ -1,0 +1,36 @@
+From 0aac71a5854e80c2cb7e488ceaadf41d997efe7b Mon Sep 17 00:00:00 2001
+From: Unknown Author <unknown@unknown.mail>
+Date: Tue, 7 Jun 2022 20:52:23 +0200
+Subject: [PATCH 10/14] djmount: fix-build-with-gettext-0.20.x
+
+Signed-off-by: Thilo Graf <dbt@novatux.de>
+---
+ configure.ac | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index f2fe1eb..aaf18ed 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -17,7 +17,7 @@ AC_CONFIG_MACRO_DIR(m4)
+ 
+ AC_CONFIG_SRCDIR(djmount/djfs.c)
+ 
+-AM_INIT_AUTOMAKE([1.9 -Wall std-options gnu])
++AM_INIT_AUTOMAKE([1.9 -Wall subdir-objects std-options gnu foreign])
+ 
+ AC_CONFIG_HEADERS(config.h)
+ 
+@@ -191,7 +191,8 @@ if test x"$enable_charset" = xyes; then
+ 	# Checks for function in C library or libiconv 
+ 	# (AM macros from "gettext" package)
+ 	AM_ICONV
+-	AM_LANGINFO_CODESET
++#	AM_LANGINFO_CODESET
++	AM_GNU_GETTEXT([external])
+ 	# TBD print warning if no setlocale or nl_langinfo(CODESET) implemented
+ fi
+ AM_CONDITIONAL(WANT_ICONV, 
+-- 
+2.35.1
+

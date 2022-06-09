@@ -1,0 +1,25 @@
+From 946b88a69a57c59231aeda2394dcb7a463360412 Mon Sep 17 00:00:00 2001
+From: Unknown User <unknown@unknown.user>
+Date: Thu, 9 Jun 2022 20:43:45 +0200
+Subject: [PATCH 12/14] djmount: libupnp-1.6.13
+
+Signed-off-by: Thilo Graf <dbt@novatux.de>
+---
+ djmount/upnp_util.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/djmount/upnp_util.h b/djmount/upnp_util.h
+index 93b85eb..f3703f9 100644
+--- a/djmount/upnp_util.h
++++ b/djmount/upnp_util.h
+@@ -28,6 +28,7 @@
+ 
+ 
+ #include <upnp/upnptools.h>
++#include <upnp/upnp.h>
+ 
+ 
+ #ifdef __cplusplus
+-- 
+2.35.1
+

@@ -10,5 +10,7 @@ SRC_URI = "${SOURCEFORGE_MIRROR}/pupnp/${P}.tar.bz2"
 
 inherit autotools pkgconfig
 
-SRC_URI[sha256sum] = "ecb23d4291968c8a7bdd4eb16fc2250dbacc16b354345a13342d67f571d35ceb"
+S = "${WORKDIR}/libupnp-${PV}"
+
+SRC_URI[sha256sum] = "091c80aada1e939c2294245c122be2f5e337cc932af7f7d40504751680b5b5ac"
 

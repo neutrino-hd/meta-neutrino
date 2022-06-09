@@ -1,0 +1,39 @@
+From 24d4d43702a76f2bae72200a96e1527faa149afc Mon Sep 17 00:00:00 2001
+From: Thilo Graf <dbt@novatux.de>
+Date: Thu, 9 Jun 2022 20:49:11 +0200
+Subject: [PATCH 14/14] djmount: enable bigfiles
+
+---
+ djmount/media_file.c                             | 2 +-
+ libupnp/upnp/src/genlib/net/http/httpreadwrite.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/djmount/media_file.c b/djmount/media_file.c
+index 3352763..65394c7 100644
+--- a/djmount/media_file.c
++++ b/djmount/media_file.c
+@@ -282,7 +282,7 @@ MediaFile_GetResSize (const MediaFile* const file)
+ {
+ 	const char* const str = ixmlElement_getAttribute (file->res, "size");
+ 	off_t res;
+-	STRING_TO_INT (str, res, 8ULL * 1024 * 1024 * 1024);
++	STRING_TO_INT (str, res, 8ULL << 30);
+ 	return res;
+ }
+ 
+diff --git a/libupnp/upnp/src/genlib/net/http/httpreadwrite.c b/libupnp/upnp/src/genlib/net/http/httpreadwrite.c
+index bb03419..4fbb186 100644
+--- a/libupnp/upnp/src/genlib/net/http/httpreadwrite.c
++++ b/libupnp/upnp/src/genlib/net/http/httpreadwrite.c
+@@ -2107,7 +2107,7 @@ http_OpenHttpGetEx( IN const char *url_str,
+         }
+ 
+         memset( &rangeBuf, 0, sizeof( rangeBuf ) );
+-	sprintf( rangeBuf.RangeHeader, "Range: bytes=%llu-%llu\r\n",
++        sprintf( rangeBuf.RangeHeader, "Range: bytes=%llu-%llu\r\n",
+                  lowRange, highRange );
+ 
+         membuffer_init( &request );
+-- 
+2.35.1
+
