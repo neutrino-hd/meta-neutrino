@@ -1,7 +1,7 @@
 HOMEPAGE = "http://pupnp.sourceforge.net/"
 LICENSE = "BSD"
 
-LIC_FILES_CHKSUM = "file://COPYING;md5=394a0f17b97f33426275571e15920434"
+LIC_FILES_CHKSUM = "file://COPYING;md5=d41d8cd98f00b204e9800998ecf8427e"
 
 PR = "r1"
 
