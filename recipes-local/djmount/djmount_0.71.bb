@@ -3,7 +3,7 @@ HOMEPAGE = "http://djmount.sourceforge.net/"
 LICENSE = "GPLv2+"
 DEPENDS = "libupnp fuse gettext-native"
 RDEPENDS_${PN} = "fuse"
-PR = "r7"
+PR = "r8"
 
 LIC_FILES_CHKSUM = "file://COPYING;md5=eb723b61539feef013de476e68b5c50a"
 
@@ -32,6 +32,8 @@ SRC_URI = "${SOURCEFORGE_MIRROR}/djmount/djmount-0.71.tar.gz \
 	file://0012-djmount-libupnp-1.6.13.patch \
 	file://0013-djmount-avoid-crash-by-using-size_t.patch \
 	file://0014-djmount-enable-bigfiles.patch \
+	file://0015-djmount-fix-compiler-warnings.patch \
+	file://0016-djmount-codeset.patch \
 "
 
 SRC_URI[md5sum] = "c922753e706c194bf82a8b6ca77e6a9a"
