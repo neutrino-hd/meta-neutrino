@@ -5,6 +5,7 @@ LIC_FILES_CHKSUM = "file://LICENCE;md5=0a6446108c96d0819d21e40b48109507"
 
 SRC_URI = " \
 		${SOURCEFORGE_MIRROR}/webadmin/webmin-${PV}.tar.gz \
+\
 		file://0001-add-webmin-recipe.patch \
 		file://0002-net-generic.patch \
 		file://0003-add-webmin-recipe.patch \
@@ -18,6 +19,7 @@ SRC_URI = " \
 		file://0011-ajaxterm-ajaxterm-qweb.py-fix-hardcode-of-python2.3.patch \
 		file://0012-Adjust-Mysql-config-defaults.patch \
 		file://0013-webmin-use-correct-path-path-to-opkg.patch \
+\
 		file://authentic_settings.js \
 		file://authentic_settings-root \
 		file://exports_config \
@@ -35,7 +37,7 @@ SRC_URI += " \
 
 RDEPENDS-${PN}-module += "perl"
 
-SRC_URI[sha256sum] = "3e7814cac64fed9a94ad61b3ffda33c0eb81e6a56ac6812623b78b5601d13064"
+SRC_URI[sha256sum] = "aee5ae6d73d6fb4904f03215efa8aa485e27fbf65b13aca726a8ab9723fea0ee"
 
 inherit perlnative systemd
 
