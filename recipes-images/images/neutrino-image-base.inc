@@ -259,6 +259,7 @@ EXTRA_IMAGEDEPENDS = " \
 	imgbackup \
 	logomask \
 	pr-auto-timer \
+	replay \
 	tuxcal \
 	tuxmail \
 	tuxwetter \
