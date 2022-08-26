@@ -237,7 +237,6 @@ IMAGE_INSTALL += " \
 
 ## build and create packages, but do not install
 EXTRA_IMAGEDEPENDS = " \
-	lshw \
 	samba \
 	webmin \
 	\
