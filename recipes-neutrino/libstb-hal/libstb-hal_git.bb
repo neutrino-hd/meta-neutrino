@@ -51,7 +51,7 @@ LDFLAGS += " -Wl,-rpath-link,${STAGING_LIBDIR} -L${STAGING_LIBDIR} -lrt -lavform
 
 EXTRA_OECONF += "\
 	--enable-maintainer-mode \
-	--disable-silent-rules \
+	--enable-silent-rules \
 	--enable-shared \
 "
 
