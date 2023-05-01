@@ -12,6 +12,6 @@ SRC_URI_append = " \
 SRC_URI[sha256sum] = ""
 
 do_install_append () {
-	install -d ${D}${N_ICONS_DIR}
-	install -m 644 ${WORKDIR}/settingupdater_1.png ${D}${N_ICONS_DIR}/settingupdater.png
+	install -d ${D}${N_LUAPLUGIN_DIR}
+	install -m 644 ${WORKDIR}/settingupdater_1.png ${D}${N_LUAPLUGIN_DIR}/${SRC_NAME}.png
 }
