@@ -1,0 +1,29 @@
+From e39720f781b3d4de8eab537a7b4404ccb22cb2ab Mon Sep 17 00:00:00 2001
+From: Thilo Graf <dbt@novatux.de>
+Date: Sun, 28 May 2023 17:07:24 +0200
+Subject: [PATCH] sysinfo: fix install dir
+
+Installdir is defined via configure.
+---
+ Makefile.am | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index c84a878..a4c6996 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -24,7 +24,7 @@ sysinfo_LDADD = \
+ 	@PNG_LIBS@
+ 
+ install-exec-local:
+-	install -d $(DESTDIR)/var/tuxbox/plugins
+-	install -m 0644 sysinfo.cfg $(DESTDIR)/var/tuxbox/plugins
+-	install -m 0644 sysinfo_hint.png $(DESTDIR)/var/tuxbox/plugins
+-	install -m 0755 sysinfo $(DESTDIR)/var/tuxbox/plugins/sysinfo.so
++	install -d $(DESTDIR)/$(PLUGINDIR)
++	install -m 0644 $(srcdir)/sysinfo.cfg $(DESTDIR)/$(PLUGINDIR)/sysinfo.cfg
++	install -m 0644 $(srcdir)/sysinfo_hint.png $(DESTDIR)/$(PLUGINDIR)/sysinfo_hint.png
++	install -m 0755 sysinfo $(DESTDIR)/$(PLUGINDIR)/sysinfo.so
+-- 
+2.30.2
+
