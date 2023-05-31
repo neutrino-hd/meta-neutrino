@@ -7,5 +7,5 @@ SRC_URI += " \
 "
 
 do_patch () {
-	git -C ${S}/${PLUGIN_NAME} apply ${S}/0001-sysinfo-fix-install-of-sysinfo-in-Makefile.am.patch
+	git -C ${S}/${PLUGIN_NAME} apply ${WORKDIR}/0001-sysinfo-fix-install-of-sysinfo-in-Makefile.am.patch
 }
